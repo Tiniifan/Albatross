@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Albatross.Yokai_Watch.Logic;
 
 namespace Albatross.Yokai_Watch.Games.YW3
 {
@@ -31,6 +32,16 @@ namespace Albatross.Yokai_Watch.Games.YW3
             public bool IsDeva;
             public bool IsMystery;
             public bool IsTreasure;
+
+            public void ReplaceWith(Yokai yokai)
+            {
+                Model.ModelFromText(yokai.ModelName);
+                Rank = yokai.Rank;
+                IsRare = yokai.Statut.IsRare;
+                IsLegendary = yokai.Statut.IsLegendary;
+                Tribe = yokai.Tribe;
+                IsClassic = yokai.Statut.IsClassic;
+            }
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -65,12 +76,31 @@ namespace Albatross.Yokai_Watch.Games.YW3
             public int EvolveOffset;
             public uint Unk6;
             public int WaitTime;
+
+            public void ReplaceWith(Yokai yokai)
+            {
+                MinStat = new GameSupport.Stat { HP = yokai.MinStat[0], Strength = yokai.MinStat[1], Spirit = yokai.MinStat[2], Defense = yokai.MinStat[3], Speed = yokai.MinStat[4] };
+                MaxStat = new GameSupport.Stat { HP = yokai.MaxStat[0], Strength = yokai.MaxStat[1], Spirit = yokai.MaxStat[2], Defense = yokai.MaxStat[3], Speed = yokai.MaxStat[4] };
+                AttackID = yokai.AttackID;
+                TechniqueID = yokai.TechniqueID;
+                InspiritID = yokai.InspiritID;
+                //AttributesDamage = new GameSupport.Attributes { Fire = yokai.AttributeDamage[0], Ice = yokai.AttributeDamage[1], Earth = yokai.AttributeDamage[2], Ligthning = yokai.AttributeDamage[3], Water = yokai.AttributeDamage[4], Wind = yokai.AttributeDamage[4] };
+                SoultimateID = yokai.SoultimateID;
+                SkillID = yokai.SkillID;
+                //Money = yokai.Money;
+                //Experience = yokai.Experience;
+                //Drop1 = new GameSupport.Drop { ID = yokai.DropID[0], Rate = yokai.DropRate[0] };
+                //Drop2 = new GameSupport.Drop { ID = yokai.DropID[1], Rate = yokai.DropRate[1] };
+                ExperienceCurve = yokai.ExperienceCurve;
+                EvolveOffset = yokai.EvolveOffset;
+                //MedaliumOffset = yokai.MedaliumOffset;
+            }
         }
 
         public static Dictionary<string, string> AvailableLanguages = new Dictionary<string, string>()
         {
             { "English", "en"},
-            { "Deutsch)", "de"},
+            { "Deutsch", "de"},
             { "Español", "es"},
             { "Français", "fr"},
             { "Italiano", "it"},

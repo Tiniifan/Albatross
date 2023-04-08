@@ -3,10 +3,10 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using Albatross.Yokai_Watch;
 using Albatross.Yokai_Watch.Games;
+using Albatross.Yokai_Watch.Games.YW1;
 using Albatross.Yokai_Watch.Games.YW2;
-using Albatross.Level5.Image;
+using Albatross.Yokai_Watch.Games.YW3;
 
 namespace Albatross
 {
@@ -54,9 +54,17 @@ namespace Albatross
             string projectLanguage = gameDataGridView.Rows[selectedIndex].Cells[2].Value.ToString();
             string projectFolder = gameDataGridView.Rows[selectedIndex].Cells[3].Value.ToString();
 
-            if (projectGame == "yw2")
+            switch(projectGame)
             {
-                game = new YW2(projectFolder, projectLanguage);
+                case "yw1":
+                    game = new YW1(projectFolder, projectLanguage);
+                    break;
+                case "yw2":
+                    game = new YW2(projectFolder, projectLanguage);
+                    break;
+                case "yw3":
+                    game = new YW3(projectFolder, projectLanguage);
+                    break;
             }
 
             HomeGame homeGame = new HomeGame(projectName, game);

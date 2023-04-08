@@ -47,12 +47,12 @@ namespace Albatross
             // 
             this.groupBox1.Controls.Add(this.nameTextBox);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.gameFlatComboBox1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.pathTextBox);
             this.groupBox1.Controls.Add(this.languageFlatComboBox);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.gameFlatComboBox1);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -89,8 +89,10 @@ namespace Albatross
             this.gameFlatComboBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.gameFlatComboBox1.FormattingEnabled = true;
             this.gameFlatComboBox1.Items.AddRange(new object[] {
-            "Yo-Kai Watch 2"});
-            this.gameFlatComboBox1.Location = new System.Drawing.Point(130, 81);
+            "Yo-Kai Watch 1",
+            "Yo-Kai Watch 2",
+            "Yo-Kai Watch 3"});
+            this.gameFlatComboBox1.Location = new System.Drawing.Point(130, 54);
             this.gameFlatComboBox1.Name = "gameFlatComboBox1";
             this.gameFlatComboBox1.Size = new System.Drawing.Size(200, 21);
             this.gameFlatComboBox1.TabIndex = 33;
@@ -101,18 +103,18 @@ namespace Albatross
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(17, 84);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 32;
-            this.label3.Text = "Game";
+            this.label3.Text = "Language";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(16, 57);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 31;
-            this.label2.Text = "Language";
+            this.label2.Text = "Game";
             // 
             // pathTextBox
             // 
@@ -133,7 +135,7 @@ namespace Albatross
             this.languageFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.languageFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.languageFlatComboBox.FormattingEnabled = true;
-            this.languageFlatComboBox.Location = new System.Drawing.Point(130, 54);
+            this.languageFlatComboBox.Location = new System.Drawing.Point(130, 81);
             this.languageFlatComboBox.Name = "languageFlatComboBox";
             this.languageFlatComboBox.Size = new System.Drawing.Size(200, 21);
             this.languageFlatComboBox.TabIndex = 29;

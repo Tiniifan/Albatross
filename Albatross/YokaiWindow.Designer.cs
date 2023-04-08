@@ -454,7 +454,7 @@ namespace Albatross
             this.moneyFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.moneyFlatNumericUpDown.Location = new System.Drawing.Point(66, 100);
             this.moneyFlatNumericUpDown.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -494,7 +494,7 @@ namespace Albatross
             this.experienceFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.experienceFlatNumericUpDown.Location = new System.Drawing.Point(333, 100);
             this.experienceFlatNumericUpDown.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -1055,7 +1055,7 @@ namespace Albatross
             this.maxStatFlatNumericUpDown5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.maxStatFlatNumericUpDown5.Location = new System.Drawing.Point(371, 79);
             this.maxStatFlatNumericUpDown5.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -1073,7 +1073,7 @@ namespace Albatross
             this.maxStatFlatNumericUpDown4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.maxStatFlatNumericUpDown4.Location = new System.Drawing.Point(292, 79);
             this.maxStatFlatNumericUpDown4.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -1091,7 +1091,7 @@ namespace Albatross
             this.maxStatFlatNumericUpDown3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.maxStatFlatNumericUpDown3.Location = new System.Drawing.Point(213, 79);
             this.maxStatFlatNumericUpDown3.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -1109,7 +1109,7 @@ namespace Albatross
             this.maxStatFlatNumericUpDown2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.maxStatFlatNumericUpDown2.Location = new System.Drawing.Point(133, 79);
             this.maxStatFlatNumericUpDown2.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -1127,7 +1127,7 @@ namespace Albatross
             this.maxStatFlatNumericUpDown1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.maxStatFlatNumericUpDown1.Location = new System.Drawing.Point(55, 79);
             this.maxStatFlatNumericUpDown1.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -1154,7 +1154,7 @@ namespace Albatross
             this.minStatFlatNumericUpDown5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.minStatFlatNumericUpDown5.Location = new System.Drawing.Point(371, 51);
             this.minStatFlatNumericUpDown5.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -1172,7 +1172,7 @@ namespace Albatross
             this.minStatFlatNumericUpDown4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.minStatFlatNumericUpDown4.Location = new System.Drawing.Point(292, 51);
             this.minStatFlatNumericUpDown4.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -1190,7 +1190,7 @@ namespace Albatross
             this.minStatFlatNumericUpDown3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.minStatFlatNumericUpDown3.Location = new System.Drawing.Point(213, 51);
             this.minStatFlatNumericUpDown3.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -1208,7 +1208,7 @@ namespace Albatross
             this.minStatFlatNumericUpDown2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.minStatFlatNumericUpDown2.Location = new System.Drawing.Point(134, 51);
             this.minStatFlatNumericUpDown2.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});
@@ -1253,7 +1253,7 @@ namespace Albatross
             this.minStatFlatNumericUpDown1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.minStatFlatNumericUpDown1.Location = new System.Drawing.Point(55, 51);
             this.minStatFlatNumericUpDown1.Maximum = new decimal(new int[] {
-            1048575,
+            2147483647,
             0,
             0,
             0});

@@ -145,8 +145,11 @@ namespace Albatross
                 // Drop
                 for (int i = 0; i < 2; i++)
                 {
-                    SetComboBox((uint)SelectedYokai.DropID[i], Game.Items, groupBox5.Controls["itemFlatComboBox" + (i + 1)] as ComboBox);
-                    (groupBox5.Controls["dropFlatNumericUpDown" + (i + 1)] as NumericUpDown).Value = SelectedYokai.DropRate[i];
+                    if (SelectedYokai.DropID != null)
+                    {
+                        SetComboBox((uint)SelectedYokai.DropID[i], Game.Items, groupBox5.Controls["itemFlatComboBox" + (i + 1)] as ComboBox);
+                        (groupBox5.Controls["dropFlatNumericUpDown" + (i + 1)] as NumericUpDown).Value = SelectedYokai.DropRate[i];
+                    }
                 }
                 moneyFlatNumericUpDown.Value = SelectedYokai.Money;
                 experienceFlatNumericUpDown.Value = SelectedYokai.Experience;
@@ -180,6 +183,12 @@ namespace Albatross
                 pictureBox1.Image = null;
             } else
             {
+                if (modelFlatComboBox.Focused)
+                {
+                    SelectedYokai.ModelName = modelFlatComboBox.Text;
+                    Game.SaveYokai(SelectedYokai);
+                }
+
                 try
                 {
                     byte[] imageData = Game.Game.Directory.GetFileFromFullPath("/data/menu/face_icon/" + SelectedYokai.ModelName + ".xi");
@@ -188,12 +197,6 @@ namespace Albatross
                 catch (Exception ex)
                 {
                     pictureBox1.Image = null;
-                }
-
-                if (modelFlatComboBox.Focused)
-                {
-                    SelectedYokai.ModelName = modelFlatComboBox.Text;
-                    Game.SaveYokai(SelectedYokai);
                 }
             }
         }
@@ -206,13 +209,13 @@ namespace Albatross
             }
             else
             {
-                SetPictureBox(tribePictureBox, "Albatross.Resources.Tribe_Icon.y_type0" + Game.Tribes.Values.ToList().IndexOf(tribeFlatComboBox.Text) + ".xi.00.png");
-
                 if (tribeFlatComboBox.Focused)
                 {
                     SelectedYokai.Tribe = Game.Tribes.Values.ToList().IndexOf(tribeFlatComboBox.Text);
                     Game.SaveYokai(SelectedYokai);
                 }
+
+                SetPictureBox(tribePictureBox, "Albatross.Resources.Tribe_Icon.y_type0" + SelectedYokai.Tribe + ".xi.00.png");
             }
         }
 

@@ -17,18 +17,6 @@ namespace Albatross.Yokai_Watch.Games
             public int Number;
             public int Variant;
 
-            private string NumberToString(int number)
-            {
-                if (number < 10)
-                {
-                    return "0" + number + "0";
-                }
-                else
-                {
-                    return number.ToString().PadRight(3, '0');
-                }
-            }
-
             public void ModelFromText(string text)
             {
                 int prefixIndex = Array.IndexOf(PrefixLetter, text[0]);
@@ -42,7 +30,7 @@ namespace Albatross.Yokai_Watch.Games
 
             public string GetText()
             {
-                return PrefixLetter[Prefix-5] + NumberToString(Number) + NumberToString(Variant);
+                return PrefixLetter[Prefix-5] + Number.ToString("D3") + Variant.ToString("D3");
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Albatross.Yokai_Watch.Logic;
 
 namespace Albatross.Yokai_Watch.Games.YW1
 {
@@ -22,6 +23,14 @@ namespace Albatross.Yokai_Watch.Games.YW1
             public GameSupport.Medal Medal;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x20)]
             public byte[] EmptyBlock3;
+
+            public void ReplaceWith(Yokai yokai)
+            {
+                Model.ModelFromText(yokai.ModelName);
+                Rank = yokai.Rank;
+                IsRare = yokai.Statut.IsRare;
+                IsLegendary = yokai.Statut.IsLegendary;
+            }
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -59,6 +68,25 @@ namespace Albatross.Yokai_Watch.Games.YW1
             public int EvolveOffset;
             public int MedaliumOffset;
             public uint Unk6;
+
+            public void ReplaceWith(Yokai yokai)
+            {
+                Tribe = yokai.Tribe;
+                BaseStat = new GameSupport.Stat { HP = yokai.MinStat[0], Strength = yokai.MinStat[1], Spirit = yokai.MinStat[2], Defense = yokai.MinStat[3], Speed = yokai.MinStat[4] };
+                AttackID = yokai.AttackID;
+                TechniqueID = yokai.TechniqueID;
+                InspiritID = yokai.InspiritID;
+                AttributesDamage = new GameSupport.Attributes { Fire = yokai.AttributeDamage[0], Ice = yokai.AttributeDamage[1], Earth = yokai.AttributeDamage[2], Ligthning = yokai.AttributeDamage[3], Water = yokai.AttributeDamage[4], Wind = yokai.AttributeDamage[4] };
+                SoultimateID = yokai.SoultimateID;
+                SkillID = yokai.SkillID;
+                Money = yokai.Money;
+                Experience = yokai.Experience;
+                Drop1 = new GameSupport.Drop { ID = yokai.DropID[0], Rate = yokai.DropRate[0] };
+                Drop2 = new GameSupport.Drop { ID = yokai.DropID[1], Rate = yokai.DropRate[1] };
+                ExperienceCurve = yokai.ExperienceCurve;
+                EvolveOffset = yokai.EvolveOffset;
+                MedaliumOffset = yokai.MedaliumOffset;
+            }
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]

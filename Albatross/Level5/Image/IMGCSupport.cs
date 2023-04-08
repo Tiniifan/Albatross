@@ -32,7 +32,8 @@ namespace Albatross.Level5.Image
 
         public static Dictionary<byte, IColorFormat> ImageFormats = new Dictionary<byte, IColorFormat>
         {
-            {0, new RGBA8() }
+            {0, new RGBA8() },
+            {1, new RGBA4() }
         };
     }
 }

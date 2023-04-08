@@ -97,6 +97,7 @@
     <Compile Include="UI\FlatNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Yokai Watch\Common\Attribute.cs" />
     <Compile Include="Yokai Watch\Common\Items.cs" />
     <Compile Include="Yokai Watch\Common\Skills.cs" />
     <Compile Include="Yokai Watch\Common\Soultimates.cs" />
@@ -119,9 +120,11 @@
     </Compile>
     <Compile Include="Yokai Watch\Games\GameSupport.cs" />
     <Compile Include="Yokai Watch\Games\YW1\YW1Support.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\YW1.cs" />
     <Compile Include="Yokai Watch\Games\YW2\YW2.cs" />
     <Compile Include="Yokai Watch\Games\IGame.cs" />
     <Compile Include="Yokai Watch\Games\YW2\YW2Support.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\YW3.cs" />
     <Compile Include="Yokai Watch\Games\YW3\YW3Support.cs" />
     <Compile Include="Yokai Watch\Logic\Yokai.cs" />
     <Compile Include="YokaiWindow.cs">
@@ -193,6 +196,9 @@
     <Content Include="Icon.ico" />
     <Content Include="LICENSE-APACHE.txt" />
     <Content Include="LICENSE.EndianBitConverter.txt" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type010.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type011.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type012.xi.00.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

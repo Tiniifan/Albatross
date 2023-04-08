@@ -3,7 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
+using Albatross.Yokai_Watch.Games.YW1;
 using Albatross.Yokai_Watch.Games.YW2;
+using Albatross.Yokai_Watch.Games.YW3;
 
 namespace Albatross
 {
@@ -16,13 +18,16 @@ namespace Albatross
 
         private string GetLanguageCode(string language)
         {
-            // Yokai Watch 2
-            if (gameFlatComboBox1.SelectedIndex == 0)
+            switch (gameFlatComboBox1.SelectedIndex)
             {
-                return YW2Support.AvailableLanguages[language];
-            } else
-            {
-                return null;
+                case 0:
+                    return YW1Support.AvailableLanguages[language];
+                case 1:
+                    return YW2Support.AvailableLanguages[language];
+                case 2:
+                    return YW3Support.AvailableLanguages[language];
+                default:
+                    return null;
             }
         }
 
@@ -55,10 +60,17 @@ namespace Albatross
             {
                 languageFlatComboBox.Items.Clear();
 
-                // Yokai Watch 2
-                if (gameFlatComboBox1.SelectedIndex == 0)
+                switch (gameFlatComboBox1.SelectedIndex)
                 {
-                    languageFlatComboBox.Items.AddRange(YW2Support.AvailableLanguages.Keys.ToArray());
+                    case 0:
+                        languageFlatComboBox.Items.AddRange(YW1Support.AvailableLanguages.Keys.ToArray());
+                        break;
+                    case 1:
+                        languageFlatComboBox.Items.AddRange(YW2Support.AvailableLanguages.Keys.ToArray());
+                        break;
+                    case 2:
+                        languageFlatComboBox.Items.AddRange(YW3Support.AvailableLanguages.Keys.ToArray());
+                        break;
                 }
 
                 ProjectCanBeCreated();
@@ -80,28 +92,51 @@ namespace Albatross
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            bool projectCreated = false;
+
+            string languageCode = GetLanguageCode(languageFlatComboBox.Text);
+
             if (gameFlatComboBox1.SelectedIndex == 0)
             {
-                string languageCode = GetLanguageCode(languageFlatComboBox.Text);
-
-                // Yokai Watch 2
-                if (gameFlatComboBox1.SelectedIndex == 0)
+                projectCreated = File.Exists(pathTextBox.Text + @"\yw1_a.fa");
+                if (projectCreated)
                 {
-                    if (File.Exists(pathTextBox.Text + @"\yw2_a.fa") && File.Exists(pathTextBox.Text + @"\yw2_lg_" + languageCode + @".fa"))
+                    using (StreamWriter sw = File.AppendText("./AlbatrosTemp.txt"))
                     {
-                        using (StreamWriter sw = File.AppendText("./AlbatrosTemp.txt"))
-                        {
-                            sw.WriteLine(nameTextBox.Text.Replace("|", "") + "|yw2|" + languageCode + "|" + pathTextBox.Text);
-                        }
-
-                        MessageBox.Show("Project successful created!");
-                        Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cannot open this extractedromfs folder due to a missing folder.");
+                        sw.WriteLine(nameTextBox.Text.Replace("|", "") + "|yw1|" + languageCode + "|" + pathTextBox.Text);
                     }
                 }
+            }
+            else if (gameFlatComboBox1.SelectedIndex == 1)
+            {
+                projectCreated = File.Exists(pathTextBox.Text + @"\yw2_a.fa") && File.Exists(pathTextBox.Text + @"\yw2_lg_" + languageCode + @".fa");
+                if (projectCreated)
+                {
+                    using (StreamWriter sw = File.AppendText("./AlbatrosTemp.txt"))
+                    {
+                        sw.WriteLine(nameTextBox.Text.Replace("|", "") + "|yw2|" + languageCode + "|" + pathTextBox.Text);
+                    }
+                }
+            }
+            else if (gameFlatComboBox1.SelectedIndex == 2)
+            {
+                projectCreated = File.Exists(pathTextBox.Text + @"\yw_a.fa") && File.Exists(pathTextBox.Text + @"\yw_lg_" + languageCode + @".fa");
+                if (projectCreated)
+                {
+                    using (StreamWriter sw = File.AppendText("./AlbatrosTemp.txt"))
+                    {
+                        sw.WriteLine(nameTextBox.Text.Replace("|", "") + "|yw3|" + languageCode + "|" + pathTextBox.Text);
+                    }
+                }
+            }
+
+            if (projectCreated)
+            {
+                MessageBox.Show("Project successful created!");
+                Close();
+            } else
+            {
+                MessageBox.Show("Cannot open this ExtractedRomfs folder due to a missing file.");
             }
         }
 
