@@ -115,6 +115,7 @@ namespace Albatross.Yokai_Watch.Games.YW1
         public static Dictionary<string, string> AvailableLanguages = new Dictionary<string, string>()
         {
             { "English (GB)", "engb"},
+            { "English (US)", "en"},
             { "Deutsch)", "de"},
             { "Español", "es"},
             { "Français", "fr"},
