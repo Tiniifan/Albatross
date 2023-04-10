@@ -24,6 +24,14 @@ The Tool is written in C# and the project is Open Source, everyone can contribut
 - Yo-Kai Watch 2 ✅ (Only tryed on Psychic Specters)
 - Yo-kai Watch 3 ❌
 
+**Special Thanks**  
+
+My tool couldn't have been done without the logic that I could learn by studying Metanoia and Kurriimu.
+- [RoadrunnerWMC (For LZ10)](https://github.com/RoadrunnerWMC/ndspy)
+- [Ploaj (For some logic about L5 files)](https://github.com/Ploaj/Metanoia/tree/master/Metanoia)
+- [onepicefreak (For some logic about L5 files)](https://github.com/FanTranslatorsInternational/Kuriimu2)
+- Reza Aghaei, tobeypeters, r-aghaei  (For the dark mod of some vs control)
+
 **Screenshot**
 
 ![](https://imgur.com/0W0t5gM.png)
