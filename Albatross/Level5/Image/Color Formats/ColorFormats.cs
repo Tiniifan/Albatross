@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace Albatross.Level5.Image
 {
@@ -69,6 +70,28 @@ namespace Albatross.Level5.Image
             }
             int argb = (data[0] << 24) | (data[3] << 16) | (data[2] << 8) | data[1];
             return Color.FromArgb(argb);
+        }
+    }
+
+    public class ETC1A4 : IColorFormat
+    {
+        public string Name => "ETC1A4";
+
+        public int Size => 4;
+
+        public byte[] Encode(Color color)
+        {
+            // Not implemented
+            return null;
+        }
+
+        public Color Decode(byte[] data)
+        {
+            int r = data[0];
+            int g = data[1];
+            int b = data[2];
+            int a = data[3];
+            return Color.FromArgb(a, r, g, b);
         }
     }
 }

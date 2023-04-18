@@ -28,6 +28,8 @@ namespace Albatross.Yokai_Watch.Games.YW1
 
         public Dictionary<int, string> Tribes => Common.Tribes.YW1;
 
+        public List<Effect> Effects => Common.Effects.YW1;
+
         public ARC0 Game { get; set; }
 
         public ARC0 Language { get; set; }
@@ -59,12 +61,12 @@ namespace Albatross.Yokai_Watch.Games.YW1
             // Close File
             Game.Close();
 
-            if (File.Exists(@"./temp/yw1_a.fa"))
+            if (File.Exists(RomfsPath + @"\yw1_a.fa"))
             {
-                File.Delete(@"./temp/yw1_a.fa");
+                File.Delete(RomfsPath + @"\yw1_a.fa");
             }
 
-            File.Move(@"./temp/yw2_a.fa", RomfsPath + @"\yw1_a.fa");
+            File.Move(tempPath + @"\yw1_a.fa", RomfsPath + @"\yw1_a.fa");
 
             // Re Open
             Game = new ARC0(new FileStream(RomfsPath + @"\yw1_a.fa", FileMode.Open));
@@ -116,7 +118,7 @@ namespace Albatross.Yokai_Watch.Games.YW1
                         EvolveOffset = yokaiConfig.Key.EvolveOffset,
                         MedaliumOffset = yokaiConfig.Key.MedaliumOffset,
                         Medal = new Point(yokaiConfig.Value.Medal.X, yokaiConfig.Value.Medal.Y),
-                        ScoutableID = (uint)yokaiConfig.Key.ScoutableID,
+                        ScoutableID = yokaiConfig.Key.ScoutableID,
                         BaseID = yokaiConfig.Key.BaseID,
                         ParamID = yokaiConfig.Key.ParamID,
                         Statut = new Statut
@@ -209,6 +211,232 @@ namespace Albatross.Yokai_Watch.Games.YW1
             //}
 
             return (0, 0x0);
+        }
+
+        public List<Item> GetItems()
+        {
+            List<Item> items = new List<Item>();
+
+            T2bþ itemNames = new T2bþ(Game.Directory.GetFileFromFullPath("/data/res/text/item_text_" + LanguageCode + ".cfg.bin"));
+
+            using (BinaryDataReader itemconfig = new BinaryDataReader(Game.Directory.GetFileFromFullPath("/data/res/item/item_config_0.05d.cfg.bin")))
+            {
+                itemconfig.SeekOf<uint>(0x02c18213, 0x10);
+                itemconfig.Skip(0x08);
+                YW1Support.Equipment[] equipments = itemconfig.ReadMultipleStruct<YW1Support.Equipment>(itemconfig.ReadValue<int>());
+
+                // Update Effect List
+                uint[] effectsID = equipments.SelectMany(x => new[] { x.Effect1ID, x.Effect2ID }).ToArray();
+                foreach (uint effectID in effectsID.Where(x => x != 0x00))
+                {
+                    Effect effect = Effects.FirstOrDefault(x => x.ID == effectID);
+                    effect.Text = itemNames.GetText(effect.TextID, 0);
+                }
+
+                items.AddRange(equipments.Select(equipment => new Equipment
+                {
+                    Name = itemNames.GetNounText(equipment.Item.NameID, 0),
+                    Description = itemNames.GetText(equipment.Item.DescriptionID, 0),
+                    ID = equipment.Item.ItemID,
+                    MaxQuantity = equipment.Item.MaxQuantity,
+                    CanBeBuy = equipment.Item.CanBeBuy,
+                    CanBeSell = equipment.Item.CanBeSell,
+                    SellPrize = equipment.Item.SellPrize / 100,
+                    ItemIcon = "item_" + (equipment.Item.ItemIcon.X + equipment.Item.ItemIcon.Y * 16 +1).ToString("000"),
+                    Effect1 = Effects.FirstOrDefault(x => x.ID == equipment.Effect1ID),
+                    Effect2 = Effects.FirstOrDefault(x => x.ID == equipment.Effect2ID),
+                    Stat = new int[4] { equipment.EquipmentStat.Strength, equipment.EquipmentStat.Spirit, equipment.EquipmentStat.Defense, equipment.EquipmentStat.Speed },
+                    CharaConditionID = equipment.CharaConditionID,
+                }
+                ));
+
+                itemconfig.SeekOf<uint>(0xb12f6877, (uint)itemconfig.Position);
+                itemconfig.Skip(0x08);
+                YW1Support.Consumable[] consumables = itemconfig.ReadMultipleStruct<YW1Support.Consumable>(itemconfig.ReadValue<int>());
+                items.AddRange(consumables.Select(consumable => new Consumable
+                {
+                    Name = itemNames.GetNounText(consumable.Item.NameID, 0),
+                    Description = itemNames.GetNounText(consumable.Item.DescriptionID, 0),
+                    ID = consumable.Item.ItemID,
+                    MaxQuantity = consumable.Item.MaxQuantity,
+                    CanBeBuy = consumable.Item.CanBeBuy,
+                    CanBeSell = consumable.Item.CanBeSell,
+                    SellPrize = consumable.Item.SellPrize / 100,
+                    ItemIcon = "item_" + (consumable.Item.ItemIcon.X + consumable.Item.ItemIcon.Y * 16 + 1).ToString("000"),
+                    Effect1ID = consumable.Effect1ID,
+                    Effect2ID = consumable.Effect2ID,
+                }
+                ));
+
+                itemconfig.SeekOf<uint>(0x275ad2aa, (uint)itemconfig.Position);
+                itemconfig.Skip(0x08);
+                YW1Support.KeyItem[] keyitems = itemconfig.ReadMultipleStruct<YW1Support.KeyItem>(itemconfig.ReadValue<int>());
+                items.AddRange(keyitems.Select(key => new KeyItem
+                {
+                    Name = itemNames.GetNounText(key.Item.NameID, 0),
+                    Description = itemNames.GetNounText(key.Item.DescriptionID, 0),
+                    ID = key.Item.ItemID,
+                    MaxQuantity = key.Item.MaxQuantity,
+                    CanBeBuy = key.Item.CanBeBuy,
+                    CanBeSell = key.Item.CanBeSell,
+                    SellPrize = key.Item.SellPrize / 100,
+                    ItemIcon = "item_" + (key.Item.ItemIcon.X + key.Item.ItemIcon.Y * 16 + 1).ToString("000"),
+                }
+                ));
+
+                itemconfig.SeekOf<uint>(0x562199bb, (uint)itemconfig.Position);
+                itemconfig.Skip(0x08);
+                YW1Support.CreatureItem[] creatures = itemconfig.ReadMultipleStruct<YW1Support.CreatureItem>(itemconfig.ReadValue<int>());
+                items.AddRange(creatures.Select(creature => new CreatureItem
+                {
+                    Name = itemNames.GetNounText(creature.Item.NameID, 0),
+                    Description = itemNames.GetNounText(creature.Item.DescriptionID, 0),
+                    ID = creature.Item.ItemID,
+                    MaxQuantity = creature.Item.MaxQuantity,
+                    CanBeBuy = creature.Item.CanBeBuy,
+                    CanBeSell = creature.Item.CanBeSell,
+                    SellPrize = creature.Item.SellPrize / 100,
+                    ItemIcon = "item_" + (creature.Item.ItemIcon.X + creature.Item.ItemIcon.Y * 16 + 1).ToString("000"),
+                }
+                ));
+            }
+
+            return items;
+        }
+
+        public void SaveItems(List<Item> items)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (BinaryDataWriter itemWriter = new BinaryDataWriter(memoryStream))
+                {
+                    using (BinaryDataReader itemReader = new BinaryDataReader(Game.Directory.GetFileFromFullPath("/data/res/item/item_config_0.05d.cfg.bin")))
+                    {
+                        // Not implement add item
+                    }
+                }
+            }
+        }
+
+        public Dictionary<string, List<Yokai>> GetCharaCond(List<Yokai> yokais)
+        {
+            Dictionary<string, List<Yokai>> charaConds = new Dictionary<string, List<Yokai>>();
+
+            using (BinaryDataReader itemconfig = new BinaryDataReader(Game.Directory.GetFileFromFullPath("/data/res/item/item_config_0.05d.cfg.bin")))
+            {
+                itemconfig.SeekOf<uint>(0x4139418c, 0x10);
+                itemconfig.Skip(0x08);
+                YW1Support.ItemEquipCond[] itemEquipConds = itemconfig.ReadMultipleStruct<YW1Support.ItemEquipCond>(itemconfig.ReadValue<int>());
+
+                itemconfig.SeekOf<uint>(0x67803ed1, (uint)itemconfig.Position);
+                itemconfig.Skip(0x08);
+                YW1Support.ItemEquipCondChara[] itemEquipCondCharas = itemconfig.ReadMultipleStruct<YW1Support.ItemEquipCondChara>(itemconfig.ReadValue<int>());
+
+                charaConds.Add("No condition", new List<Yokai>());
+                charaConds.Add("For D and E Rank Yo-kai", yokais.Where(x => x.Rank < 2 && x.Statut.IsScoutable).ToList());
+
+                for (int i = 1; i < itemEquipConds.Length; i ++)
+                {
+                    YW1Support.ItemEquipCond itemEquipCond = itemEquipConds[i];
+                    List<Yokai> yokaisWithCondition = new List<Yokai>();
+
+                    for (int j = 0; j < itemEquipCond.Number; j++)
+                    {
+                        YW1Support.ItemEquipCondChara itemEquipCondChara = itemEquipCondCharas[itemEquipCond.StartOffset + j];
+                        yokaisWithCondition.Add(yokais.FirstOrDefault(x => x.BaseID == itemEquipCondChara.CharaBaseID));
+                    }
+
+                    charaConds.Add("Custom Condition " + i, yokaisWithCondition);
+                }
+
+                return charaConds;
+            }
+        }
+
+        public void SaveCharaCond(Dictionary<string, List<Yokai>> charaConds)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (BinaryDataWriter itemWriter = new BinaryDataWriter(memoryStream))
+                {
+                    using (BinaryDataReader itemReader = new BinaryDataReader(Game.Directory.GetFileFromFullPath("/data/res/item/item_config_0.05d.cfg.bin")))
+                    {
+                        int entryCount = itemReader.ReadValue<int>();
+                        long tableOffset = itemReader.ReadValue<int>();
+                        
+                        // Item condition
+                        itemReader.SeekOf<uint>(0x4139418c, 0x10);
+                        itemWriter.Write(itemReader.GetSection(0, (int)itemReader.Position));
+                        itemReader.Skip(0x08);
+                        int oldNumberItemCondition = itemReader.ReadValue<int>();
+
+                        // Header condition
+                        itemWriter.Write(0x4139418c);
+                        itemWriter.Write(0xFFFF0101);
+                        itemWriter.Write(charaConds.Count - 1);
+
+                        // No condition
+                        itemWriter.Write(0x3ADB482F);
+                        itemWriter.Write(0xFFFF1503);
+                        itemWriter.Write(1);
+                        itemWriter.Write(0);
+                        itemWriter.Write(0);
+
+                        // Custom condition
+                        int yokaiOffset = 0;
+                        foreach (List<Yokai> yokais in charaConds.Where(x => x.Key.StartsWith("Custom Condition")).Select(x => x.Value))
+                        {
+                            itemWriter.Write(0x3ADB482F);
+                            itemWriter.Write(0xFFFF1503);
+                            itemWriter.Write(0xFFFFFFFF);
+                            itemWriter.Write(yokaiOffset);
+                            itemWriter.Write(yokais.Count);
+                            yokaiOffset += yokais.Count;
+                        }
+
+                        // Close item condition
+                        itemWriter.Write(0xF928CEB7);
+                        itemWriter.Write(0xFFFFFF00);
+
+                        itemReader.SeekOf<uint>(0x67803ed1, (uint)itemReader.Position);
+                        itemReader.Skip(0x08);
+                        int oldNumberItemConditionChara = itemReader.ReadValue<int>();
+
+                        // Header condition chara
+                        itemWriter.Write(0x67803ED1);
+                        itemWriter.Write(0xFFFF0101);
+                        itemWriter.Write(yokaiOffset);
+
+                        // Custom condition chara
+                        foreach (List<Yokai> yokais in charaConds.Where(x => x.Key.StartsWith("Custom Condition")).Select(x => x.Value))
+                        {
+                            foreach (Yokai yokai in yokais)
+                            {
+                                itemWriter.Write(0xB3371A58);
+                                itemWriter.Write(0xFFFF0101);
+                                itemWriter.Write(yokai.BaseID);
+                            }
+                        }
+
+                        // write end of file
+                        itemWriter.Write(0x06572B28);
+                        itemWriter.WriteAlignment();
+                        itemReader.Seek((uint)tableOffset);
+                        tableOffset = itemWriter.Position;
+                        itemWriter.Write(itemReader.GetSection((int) (itemReader.Length-itemReader.Position)));
+
+                        // Edit Header file
+                        itemWriter.Seek(0x0);
+                        entryCount -= oldNumberItemCondition;
+                        entryCount -= oldNumberItemConditionChara;
+                        itemWriter.Write(entryCount + (charaConds.Count - 1) + yokaiOffset);
+                        itemWriter.Write(tableOffset);
+                    }
+
+                    // Replace File
+                    Game.Directory.GetFolderFromFullPath("/data/res/item/").Files["item_config_0.05d.cfg.bin"].ByteContent = memoryStream.ToArray();
+                }
+            }
         }
     }
 }

@@ -22,6 +22,8 @@ namespace Albatross.Yokai_Watch.Games
 
         Dictionary<int, string> Tribes { get; }
 
+        List<Effect> Effects { get; }
+
         ARC0 Game { get; set; }
 
         ARC0 Language { get; set; }
@@ -29,6 +31,12 @@ namespace Albatross.Yokai_Watch.Games
         List<Yokai> GetYokais();
 
         void SaveYokai(Yokai yokai);
+
+        List<Item> GetItems();
+
+        Dictionary<string, List<Yokai>> GetCharaCond(List<Yokai> yokais);
+
+        void SaveCharaCond(Dictionary<string, List<Yokai>> charaConds);
 
         void Save();
 

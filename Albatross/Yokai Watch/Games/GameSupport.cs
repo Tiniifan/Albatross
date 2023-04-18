@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+
 namespace Albatross.Yokai_Watch.Games
 {
     public static class GameSupport
@@ -43,6 +45,14 @@ namespace Albatross.Yokai_Watch.Games
             public int Speed;
         }
 
+        public struct EquipmentStat
+        {
+            public int Strength;
+            public int Spirit;
+            public int Defense;
+            public int Speed;
+        }
+
         public struct Attributes
         {
             public float Fire;
@@ -65,6 +75,25 @@ namespace Albatross.Yokai_Watch.Games
             public uint ID2;
             public uint ID3;
             public uint ID4;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Item
+        {
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x0C)]
+            public byte[] EmptyBlock1;
+            public uint ItemID;
+            public uint NameID;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x10)]
+            public byte[] EmptyBlock2;
+            public int MaxQuantity;
+            public bool CanBeBuy;
+            public bool CanBeSell;
+            public uint Unk1;
+            public int SellPrize;
+            public uint Unk2;
+            public GameSupport.Medal ItemIcon;
+            public uint DescriptionID;
         }
     }
 }

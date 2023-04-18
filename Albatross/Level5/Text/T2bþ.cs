@@ -32,8 +32,12 @@ namespace Albatross.Level5.Text
                 var entries = reader.ReadMultipleStruct<T2bþSupport.Text>(reader.ReadValue<int>());
                 foreach (T2bþSupport.Text entry in entries)
                 {
-                    readerText.Seek((uint)entry.TextOffset);
-                    Text.Add(new Entry(entry.Crc32, entry.TextNumber, readerText.ReadString(Encoding.UTF8)));
+                    int offset = entry.TextOffset;
+                    if (offset != -1)
+                    {
+                        readerText.Seek((uint)entry.TextOffset);
+                        Text.Add(new Entry(entry.Crc32, entry.TextNumber, readerText.ReadString(Encoding.UTF8)));
+                    }
                 }
             }
 
@@ -66,6 +70,20 @@ namespace Albatross.Level5.Text
             {
                 return noun.Text;
             } else
+            {
+                return null;
+            }
+        }
+
+        public string GetText(UInt32 key, int textNumber)
+        {
+            Entry noun = Text.FirstOrDefault(x => x.Key == key && x.TextNumber == textNumber);
+
+            if (noun != null)
+            {
+                return noun.Text;
+            }
+            else
             {
                 return null;
             }

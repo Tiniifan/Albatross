@@ -10,7 +10,7 @@ using Albatross.Yokai_Watch.Logic;
 
 namespace Albatross.Yokai_Watch.Games.YW3
 {
-    public class YW3 : IGame 
+    public class YW3 : IGame
     {
         public string Name => "Yo-Kai Watch 3";
 
@@ -27,6 +27,8 @@ namespace Albatross.Yokai_Watch.Games.YW3
         public Dictionary<uint, string> Items => Common.Items.YW3;
 
         public Dictionary<int, string> Tribes => Common.Tribes.YW3;
+
+        public List<Effect> Effects => null;
 
         public ARC0 Game { get; set; }
 
@@ -63,7 +65,7 @@ namespace Albatross.Yokai_Watch.Games.YW3
             Language.Close();
 
             // Move
-            string[] sourceFiles = new string[2] { @"./temp/yw_a.fa", @"./temp/yw_lg_" + LanguageCode + ".fa"};
+            string[] sourceFiles = new string[2] { @"./temp/yw_a.fa", @"./temp/yw_lg_" + LanguageCode + ".fa" };
             string[] destinationFiles = new string[2] { RomfsPath + @"\yw_a.fa", RomfsPath + @"\yw_lg_" + LanguageCode + ".fa" };
 
             for (int i = 0; i < 2; i++)
@@ -227,6 +229,21 @@ namespace Albatross.Yokai_Watch.Games.YW3
             //}
 
             return (0, 0x0);
+        }
+
+        public List<Item> GetItems()
+        {
+            return null;
+        }
+
+        public Dictionary<string, List<Yokai>> GetCharaCond(List<Yokai> yokais)
+        {
+            return null;
+        }
+
+        public void SaveCharaCond(Dictionary<string, List<Yokai>> charaConds)
+        {
+
         }
     }
 }

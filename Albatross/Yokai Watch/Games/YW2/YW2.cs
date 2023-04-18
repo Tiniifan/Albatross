@@ -28,6 +28,8 @@ namespace Albatross.Yokai_Watch.Games.YW2
 
         public Dictionary<int, string> Tribes => Common.Tribes.YW2;
 
+        public List<Effect> Effects => null;
+
         public ARC0 Game { get; set; }
 
         public ARC0 Language { get; set; }
@@ -221,6 +223,21 @@ namespace Albatross.Yokai_Watch.Games.YW2
             //}
 
             return (0, 0x0);
+        }
+
+        public List<Item> GetItems()
+        {
+            return null;
+        }
+
+        public Dictionary<string, List<Yokai>> GetCharaCond(List<Yokai> yokais)
+        {
+            return null;
+        }
+
+        public void SaveCharaCond(Dictionary<string, List<Yokai>> charaConds)
+        {
+
         }
     }
 }

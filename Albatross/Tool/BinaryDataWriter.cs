@@ -60,7 +60,7 @@ namespace Albatross.Tool
 
         public void Write(byte value)
         {
-            Write(System.BitConverter.GetBytes(value));
+            _stream.WriteByte(value);
         }
 
         public void Write(short value)
@@ -99,6 +99,12 @@ namespace Albatross.Tool
             if (remainder <= 0) return;
             for (var i = 0; i < alignment - remainder; i++)
                 Write(alignmentByte);
+        }
+
+        public void WriteAlignment()
+        {
+            Write((byte)0x00);
+            WriteAlignment(16, 0xFF);
         }
 
         public void WriteStruct<T>(T structure)

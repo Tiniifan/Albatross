@@ -105,5 +105,53 @@ namespace Albatross.Yokai_Watch.Games.YW3
             { "Français", "fr"},
             { "Italiano", "it"},
         };
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Consumable
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x14)]
+            public byte[] EmptyBlock1;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct CreatureItem
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x0C)]
+            public byte[] EmptyBlock1;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct KeyItem
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x08)]
+            public byte[] EmptyBlock1;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct HackSlashBattle
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x20)]
+            public byte[] UnkBlock;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct ItemFlag
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x08)]
+            public byte[] UnkBlock;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct HiddenTreasure
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x08)]
+            public byte[] UnkBlock;
+        }
     }
 }

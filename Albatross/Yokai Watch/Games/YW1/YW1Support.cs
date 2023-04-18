@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Albatross.Yokai_Watch.Logic;
 
@@ -116,10 +117,66 @@ namespace Albatross.Yokai_Watch.Games.YW1
         {
             { "English (GB)", "engb"},
             { "English (US)", "en"},
-            { "Deutsch)", "de"},
+            { "Deutsch", "de"},
             { "Español", "es"},
             { "Français", "fr"},
             { "Italiano", "it"},
         };
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Equipment
+        {
+            public GameSupport.Item Item;
+            public uint EffectText1ID;
+            public uint EffectText2ID;
+            public GameSupport.EquipmentStat EquipmentStat;
+            public uint Effect1ID;
+            public uint Effect2ID;
+            public int CharaConditionID;
+            public uint NameID;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Consumable
+        {
+            public GameSupport.Item Item;
+            public uint Effect1ID;
+            public uint Effect2ID;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x18)]
+            public byte[] EmptyBlock1;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct KeyItem
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x0C)]
+            public byte[] EmptyBlock1;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct CreatureItem
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x10)]
+            public byte[] EmptyBlock1;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct ItemEquipCond
+        {
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x0C)]
+            public byte[] EmptyBlock1;
+            public int StartOffset;
+            public int Number;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct ItemEquipCondChara
+        {
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x08)]
+            public byte[] EmptyBlock1;
+            public uint CharaBaseID;
+        }
     }
 }

@@ -109,5 +109,55 @@ namespace Albatross.Yokai_Watch.Games.YW2
             { "Nederlands", "nl"},
             { "русский язык", "ru"},
         };
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Equipment
+        {
+            public GameSupport.Item Item;
+            public uint Effect1ID;
+            public uint Effect2ID;
+            public GameSupport.EquipmentStat EquipmentStat;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x08)]
+            public byte[] EmptyBlock3;
+            public int CharaConditionID;
+            public uint Unk1;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Soul
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x18)]
+            public byte[] EmptyBlock1;
+            public uint SoulEffectID;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x0C)]
+            public byte[] EmptyBlock2;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Consumable
+        {
+            public GameSupport.Item Item;
+            public uint Effect1ID;
+            public uint Effect2ID;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x18)]
+            public byte[] EmptyBlock1;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct KeyItem
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x0C)]
+            public byte[] EmptyBlock1;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct CreatureItem
+        {
+            public GameSupport.Item Item;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x10)]
+            public byte[] EmptyBlock1;
+        }
     }
 }

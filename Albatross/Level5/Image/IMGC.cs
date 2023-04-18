@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 using Albatross.Tool;
 using Albatross.Level5.Compression;
-using System.Runtime.InteropServices;
+using Albatross.Level5.Compression.ETC1;
 
 namespace Albatross.Level5.Image
 {
@@ -22,7 +23,6 @@ namespace Albatross.Level5.Image
 
             byte[] _tileData = Compressor.Decompress(data.GetSection((uint)header.TileOffset, header.TileSize1));
             byte[] imageData = Compressor.Decompress(data.GetSection((uint) (header.TileOffset + header.TileSize2), header.ImageSize));
-
             return DecodeImage(_tileData, imageData, IMGCSupport.ImageFormats[header.ImageFormat], header.Width, header.Height, header.BitDepth);
         }
 
@@ -74,8 +74,19 @@ namespace Albatross.Level5.Image
 
                 var stride = data.Stride / 4;
 
-                Color[] resultArray = Enumerable.Range(0, ms.ToArray().Length / imgFormat.Size)
-                    .Select(i => ms.ToArray().Skip(i * imgFormat.Size).Take(imgFormat.Size))
+                byte[] imageDataAfterSwizzle;
+                switch (imgFormat.Name)
+                {
+                    case "ETC1A4":
+                        imageDataAfterSwizzle = new ETC1(true, width, height).Decompress(ms.ToArray());
+                        break;
+                    default:
+                        imageDataAfterSwizzle = ms.ToArray();
+                        break;
+                }
+
+                Color[] resultArray = Enumerable.Range(0, imageDataAfterSwizzle.Length / imgFormat.Size)
+                    .Select(i => imageDataAfterSwizzle.Skip(i * imgFormat.Size).Take(imgFormat.Size))
                     .Select(group => imgFormat.Decode(group.ToArray()))
                     .ToArray();
 
