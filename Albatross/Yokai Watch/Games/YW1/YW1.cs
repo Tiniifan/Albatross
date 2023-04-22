@@ -48,15 +48,8 @@ namespace Albatross.Yokai_Watch.Games.YW1
 
         public void Save()
         {
-            string tempPath = @"./temp";
-
-            if (!Directory.Exists(tempPath))
-            {
-                Directory.CreateDirectory(tempPath);
-            }
-
             // Save
-            Game.Save(tempPath + @"\yw1_a.fa");
+            Game.Save(RomfsPath + @"\yw1_a.fa.temp");
 
             // Close File
             Game.Close();
@@ -66,7 +59,7 @@ namespace Albatross.Yokai_Watch.Games.YW1
                 File.Delete(RomfsPath + @"\yw1_a.fa");
             }
 
-            File.Move(tempPath + @"\yw1_a.fa", RomfsPath + @"\yw1_a.fa");
+            File.Move(RomfsPath + @"\yw1_a.fa.temp", RomfsPath + @"\yw1_a.fa");
 
             // Re Open
             Game = new ARC0(new FileStream(RomfsPath + @"\yw1_a.fa", FileMode.Open));

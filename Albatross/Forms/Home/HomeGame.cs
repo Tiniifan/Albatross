@@ -37,5 +37,10 @@ namespace Albatross
             ItemWindow itemwindow = new ItemWindow(Game);
             itemwindow.ShowDialog();
         }
+
+        private void HomeGame_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Call Close Event
+        }
     }
 }

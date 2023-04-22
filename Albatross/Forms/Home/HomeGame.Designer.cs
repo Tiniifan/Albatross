@@ -31,6 +31,7 @@ namespace Albatross
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeGame));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.itemsButton = new System.Windows.Forms.Button();
             this.yokaisButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.featureListBox = new System.Windows.Forms.ListBox();
@@ -38,7 +39,6 @@ namespace Albatross
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.itemsButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -55,6 +55,17 @@ namespace Albatross
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data";
+            // 
+            // itemsButton
+            // 
+            this.itemsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.itemsButton.Location = new System.Drawing.Point(6, 52);
+            this.itemsButton.Name = "itemsButton";
+            this.itemsButton.Size = new System.Drawing.Size(200, 23);
+            this.itemsButton.TabIndex = 1;
+            this.itemsButton.Text = "Items";
+            this.itemsButton.UseVisualStyleBackColor = true;
+            this.itemsButton.Click += new System.EventHandler(this.ItemsButton_Click);
             // 
             // yokaisButton
             // 
@@ -128,17 +139,6 @@ namespace Albatross
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click_1);
             // 
-            // itemsButton
-            // 
-            this.itemsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.itemsButton.Location = new System.Drawing.Point(6, 52);
-            this.itemsButton.Name = "itemsButton";
-            this.itemsButton.Size = new System.Drawing.Size(200, 23);
-            this.itemsButton.TabIndex = 1;
-            this.itemsButton.Text = "Items";
-            this.itemsButton.UseVisualStyleBackColor = true;
-            this.itemsButton.Click += new System.EventHandler(this.ItemsButton_Click);
-            // 
             // HomeGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,6 +154,7 @@ namespace Albatross
             this.MinimumSize = new System.Drawing.Size(478, 481);
             this.Name = "HomeGame";
             this.Text = "Albatross";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HomeGame_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
