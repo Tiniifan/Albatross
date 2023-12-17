@@ -1,0 +1,493 @@
+﻿using System;
+using System.IO;
+using System.Data;
+using System.Linq;
+using System.Drawing;
+using System.Reflection;
+using System.Windows.Forms;
+using System.Collections.Generic;
+using Albatross.Level5.Text;
+using Albatross.Level5.Image;
+using Albatross.Yokai_Watch.Logic;
+using Albatross.Yokai_Watch.Games;
+using Albatross.Yokai_Watch.Common;
+
+namespace Albatross.Forms.Characters
+{
+    public partial class CharabaseWindow : Form
+    {
+        private IGame GameOpened;
+
+        private List<ICharabase> Charabases;
+
+        private List<ICharabase> CharabasesFiltred;
+
+        private ICharabase SelectedCharabase;
+
+        private T2bþ Charanames;
+
+        private Bitmap FaceIcon;
+
+        public CharabaseWindow(IGame game)
+        {
+            GameOpened = game;
+
+            Charabases = new List<ICharabase>();
+            CharabasesFiltred = new List<ICharabase>();
+
+            InitializeComponent();
+        }
+
+        private string[] GetNames(ICharabase[] charabases)
+        {
+            return charabases
+                .Select((charabase, index) =>
+                {
+                    return Charanames.Nouns.TryGetValue(charabase.NameHash, out var noun) && noun.Strings.Count > 0
+                        ? noun.Strings[0].Text
+                        : "Name " + index;
+                })
+                .ToArray();
+        }
+
+        private void SetComboBox(int itemID, Dictionary<int, string> dict, ComboBox comboBox)
+        {
+            if (dict.ContainsKey(itemID))
+            {
+                comboBox.SelectedIndex = comboBox.Items.IndexOf(dict[itemID]);
+            }
+            else
+            {
+                comboBox.SelectedIndex = -1;
+            }
+        }
+
+        private void SetPictureBox(PictureBox picturebox, string filename)
+        {
+            using (Stream imgStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(filename))
+            {
+                var image = new Bitmap(imgStream);
+                picturebox.Image = image;
+            }
+        }
+
+        private Bitmap CropMedal(int x, int y, int size)
+        {
+            // Define the region to crop.
+            Rectangle cropRect = new Rectangle(x * size, y * size, size, size);
+
+            // Ensure that the crop region is within the bounds of the FaceIcon image.
+            if (cropRect.X >= FaceIcon.Width || cropRect.Y >= FaceIcon.Height)
+            {
+                // If the crop region is outside the image bounds, return a transparent bitmap.
+                return new Bitmap(size, size);
+            }
+
+            // Adjust the crop region to fit within the image bounds.
+            cropRect.Intersect(new Rectangle(0, 0, FaceIcon.Width, FaceIcon.Height));
+
+            // Create a new bitmap based on the adjusted region.
+            Bitmap croppedBitmap = new Bitmap(cropRect.Width, cropRect.Height);
+
+            // Use Graphics to draw the desired region into the new bitmap.
+            using (Graphics g = Graphics.FromImage(croppedBitmap))
+            {
+                g.DrawImage(FaceIcon, new Rectangle(0, 0, cropRect.Width, cropRect.Height), cropRect, GraphicsUnit.Pixel);
+            }
+
+            return croppedBitmap;
+        }
+
+        private void SetMedal(bool draw)
+        {
+            if (draw)
+            {
+                int x = Convert.ToInt32(medalXFlatNumericUpDown.Value);
+                int y = Convert.ToInt32(medalYFlatNumericUpDown.Value);
+
+                // Set medal
+                if (GameOpened.Name == "Yo-Kai Watch 1")
+                {
+                    medalPictureBox.Image = CropMedal(x, y, 44);
+                }
+            } else
+            {
+                medalPictureBox.Image = null;
+            }
+        }
+
+        private void CharabaseWindow_Load(object sender, EventArgs e)
+        {
+            // Get icons
+            byte[] faceIconData = GameOpened.Files["face_icon"].File.Directory.GetFileFromFullPath(GameOpened.Files["face_icon"].Path + "/face_icon.xi");
+            FaceIcon = IMGC.ToBitmap(faceIconData);
+
+            // Get resources
+            Charabases.AddRange(GameOpened.GetCharacterbase(false));
+            Charabases.AddRange(GameOpened.GetCharacterbase(true));            
+
+            // Get names
+            Charanames = new T2bþ(GameOpened.Files["chara_text"].File.Directory.GetFileFromFullPath(GameOpened.Files["chara_text"].Path));
+
+            // Prepare combobox 
+            tribeFlatComboBox.Items.AddRange(GameOpened.Tribes.Values.ToArray());
+            rankFlatComboBox.Items.AddRange(Ranks.YW.Values.ToArray());
+            favoritefoodFlatComboBox.Items.AddRange(GameOpened.FoodsType.Values.ToArray());
+            hatedFoodFlatComboBox.Items.AddRange(GameOpened.FoodsType.Values.ToArray());
+            modelFlatComboBox.Items.AddRange(GameOpened.Files["model"].File.Directory.GetFolderFromFullPath(GameOpened.Files["model"].Path).Folders.Select(x => x.Name).ToArray());
+
+            // Update name according to hash
+            characterListBox.Items.AddRange(GetNames(Charabases.ToArray()).ToArray());
+
+            if (GameOpened.Name == "Yo-Kai Watch 1")
+            {
+                label8.Enabled = false;
+                tribePictureBox.Enabled = false;
+                tribeFlatComboBox.Enabled = false;
+            }
+        }
+
+        private void CharabaseWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GameOpened.SaveCharaBase(Charabases.ToArray());
+            GameSupport.SaveTextFile(GameOpened.Files["chara_text"], Charanames);
+        }
+
+        private void InsertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (characterListBox.SelectedIndex == -1) return;
+
+            DialogResult dialogResult = MessageBox.Show("Do you want to delete " + characterListBox.SelectedItem.ToString() + "?", "Delete character", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                characterGroupBox.Enabled = false;
+
+                Charabases.Remove(SelectedCharabase);
+                facePictureBox.Image = null;
+
+                MessageBox.Show(characterListBox.SelectedItem.ToString() + " has been removed!");
+
+                if (CharabasesFiltred != null && CharabasesFiltred.Count > 0)
+                {
+                    CharabasesFiltred.Remove(SelectedCharabase);
+
+                    string[] names = GetNames(CharabasesFiltred.ToArray());
+
+                    string focusedText = characterListBox.Text;
+
+                    characterListBox.Items.Clear();
+                    characterListBox.Items.AddRange(names);
+
+                    if (names.Contains(focusedText))
+                    {
+                        characterListBox.SelectedIndex = Array.IndexOf(names, focusedText);
+                    }
+                }
+                else
+                {
+                    characterListBox.Items.Clear();
+                    characterListBox.Items.AddRange(GetNames(Charabases.ToArray()).ToArray());
+                }
+            }
+        }
+
+        private void CharacterListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CharabasesFiltred != null && CharabasesFiltred.Count > 0)
+            {
+                SelectedCharabase = CharabasesFiltred[characterListBox.SelectedIndex];
+            }
+            else
+            {
+                SelectedCharabase = Charabases[characterListBox.SelectedIndex];
+            }
+
+            hashTextBox.Text = SelectedCharabase.BaseHash.ToString("X8");
+
+            if (Charanames.Nouns.ContainsKey(SelectedCharabase.NameHash))
+            {
+                nameTextBox.Text = Charanames.Nouns[SelectedCharabase.NameHash].Strings[0].Text;
+            }
+            else
+            {
+                nameTextBox.Clear();
+            }
+
+            if (Charanames.Texts.ContainsKey(SelectedCharabase.DescriptionHash))
+            {
+                string characterDescription = Charanames.Texts[SelectedCharabase.DescriptionHash].Strings[0].Text;
+                characterDescription = characterDescription.Replace("\\n", Environment.NewLine);
+                descriptionTextBox.Text = characterDescription;
+            }
+            else
+            {
+                descriptionTextBox.Clear();
+            }
+
+            string fileName = GameSupport.GetFileModelText(SelectedCharabase.FileNamePrefix, SelectedCharabase.FileNameNumber, SelectedCharabase.FileNameVariant);
+
+            if (modelFlatComboBox.Items.IndexOf(fileName) == -1)
+            {
+                modelFlatComboBox.SelectedIndex = -1;
+                facePictureBox.Image = null;
+            }
+            else
+            {
+                modelFlatComboBox.SelectedItem = fileName;
+            }
+
+            baseGroupBox.Enabled = SelectedCharabase.IsYokai;
+            foodGroupBox.Enabled = SelectedCharabase.IsYokai;
+            descriptionGroupBox.Enabled = SelectedCharabase.IsYokai;
+
+            if (SelectedCharabase.IsYokai)
+            {
+                medalXFlatNumericUpDown.Value = SelectedCharabase.MedalPosX;
+                medalYFlatNumericUpDown.Value = SelectedCharabase.MedalPosY;
+                isRareFlatCheckBox.Checked = SelectedCharabase.IsRare;
+                isLegendaryFlatCheckBox.Checked = SelectedCharabase.IsLegend;
+                SetComboBox(SelectedCharabase.Tribe, GameOpened.Tribes, tribeFlatComboBox);
+                SetComboBox(SelectedCharabase.Rank, Ranks.YW, rankFlatComboBox);
+                SetComboBox(SelectedCharabase.FavoriteFoodHash, GameOpened.FoodsType, favoritefoodFlatComboBox);
+                SetComboBox(SelectedCharabase.HatedFoodHash, GameOpened.FoodsType, hatedFoodFlatComboBox);
+                SetMedal(true);
+            } else
+            {
+                SetMedal(false);
+            }
+
+            characterGroupBox.Enabled = true;
+        }
+
+        private void CharacterListBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int index = characterListBox.IndexFromPoint(e.Location);
+                if (index != ListBox.NoMatches)
+                {
+                    characterListBox.SelectedIndex = index;
+                }
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!searchTextBox.Focused || searchTextBox.Text == "Search...") return;
+
+            if (searchTextBox.Text == null || searchTextBox.Text == "")
+            {
+                characterListBox.Items.Clear();
+                characterListBox.Items.AddRange(GetNames(Charabases.ToArray()).ToArray());
+                CharabasesFiltred = null;
+                searchTextBox.Text = "Search...";
+            }
+            else
+            {
+                CharabasesFiltred = Charabases
+                    .Where(x =>
+                        Charanames.Nouns.ContainsKey(x.NameHash) &&
+                        Charanames.Nouns[x.NameHash].Strings.Any(s => s.Text.ToLower().Contains(searchTextBox.Text.ToLower())))
+                    .ToList();
+
+                string[] names = GetNames(CharabasesFiltred.ToArray());
+
+                string focusedText = characterListBox.Text;
+
+                characterListBox.Items.Clear();
+                characterListBox.Items.AddRange(names);
+
+                if (names.Contains(focusedText))
+                {
+                    characterListBox.SelectedIndex = Array.IndexOf(names, focusedText);
+                }
+            }
+        }
+
+        private void NameTextBox_Click(object sender, EventArgs e)
+        {
+            Nyanko.Nyanko nyanko = new Nyanko.Nyanko(Path.GetFileName(GameOpened.Files["chara_text"].Path), Charanames, false, true, SelectedCharabase.NameHash);
+            nyanko.ShowDialog();
+            Charanames = nyanko.T2bþFileOpened;
+
+            // Update current name
+            if (nyanko.SelectedHash != 0)
+            {
+                SelectedCharabase.NameHash = nyanko.SelectedHash;
+            }
+
+            // Update all name
+            int selectedIndex = characterListBox.SelectedIndex;
+            characterListBox.Items.Clear();
+            characterListBox.Items.AddRange(GetNames(Charabases.ToArray()));
+            characterListBox.SelectedIndex = selectedIndex;
+        }
+
+        private void ModelFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (modelFlatComboBox.SelectedIndex != -1)
+            {
+                try
+                {
+                    byte[] imageData = GameOpened.Files["face_icon"].File.Directory.GetFileFromFullPath(GameOpened.Files["face_icon"].Path + "/" + modelFlatComboBox.SelectedItem.ToString() + ".xi");
+                    facePictureBox.Image = IMGC.ToBitmap(imageData);
+                }
+                catch
+                {
+                    facePictureBox.Image = null;
+                }
+            }
+            else
+            {
+                facePictureBox.Image = null;
+            }
+
+            if (modelFlatComboBox.Focused && modelFlatComboBox.SelectedIndex != -1)
+            {
+                (int,int,int) fileName = GameSupport.GetFileModelValue(modelFlatComboBox.SelectedItem.ToString());
+                SelectedCharabase.FileNamePrefix = fileName.Item1;
+                SelectedCharabase.FileNameNumber = fileName.Item2;
+                SelectedCharabase.FileNameVariant = fileName.Item2;
+            }
+        }
+
+        private void MedalXFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!medalXFlatNumericUpDown.Focused) return;
+
+            SelectedCharabase.MedalPosX = Convert.ToInt32(medalXFlatNumericUpDown.Value);
+
+            SetMedal(true);
+        }
+
+        private void MedalYFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!medalYFlatNumericUpDown.Focused) return;
+
+            SelectedCharabase.MedalPosY = Convert.ToInt32(medalYFlatNumericUpDown.Value);
+
+            SetMedal(true);
+        }
+
+        private void SetMedalButton_Click(object sender, EventArgs e)
+        {
+            int medalSize = -1;
+
+            if (GameOpened.Name == "Yo-Kai Watch 1")
+            {
+                medalSize = 22;
+            }
+
+            MedalWindow medalWindow = new MedalWindow(FaceIcon, medalSize);
+            medalWindow.ShowDialog();
+
+            if (medalWindow.X > -1 && medalWindow.Y > -1)
+            {
+                SelectedCharabase.MedalPosX = medalWindow.X;
+                SelectedCharabase.MedalPosY = medalWindow.Y;
+                medalXFlatNumericUpDown.Value = medalWindow.X;
+                medalYFlatNumericUpDown.Value = medalWindow.Y;
+
+                SetMedal(true);
+            }
+        }
+
+        private void IsRareFlatCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isRareFlatCheckBox.Focused) return;
+
+            SelectedCharabase.IsRare = isRareFlatCheckBox.Checked;
+        }
+
+        private void IsLegendaryFlatCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isLegendaryFlatCheckBox.Focused) return;
+
+            SelectedCharabase.IsLegend = isLegendaryFlatCheckBox.Checked;
+        }
+
+        private void TribeFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!tribeFlatComboBox.Focused) return;
+        }
+
+        private void RankFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rankFlatComboBox.SelectedIndex == -1)
+            {
+                rankPictureBox.Image = null;
+            }
+            else
+            {
+                SetPictureBox(rankPictureBox, "Albatross.Resources.Rank_Icon.Rank_" + rankFlatComboBox.SelectedItem.ToString() + ".png");
+
+                if (rankFlatComboBox.Focused)
+                {
+                    SelectedCharabase.Rank = Ranks.YW.Values.ToList().IndexOf(rankFlatComboBox.SelectedItem.ToString());
+                }
+            }
+        }
+
+        private void FavoritefoodFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (favoritefoodFlatComboBox.SelectedIndex == -1)
+            {
+                favoriteFoodPictureBox.Image = null;
+            }
+            else
+            {
+                SetPictureBox(favoriteFoodPictureBox, "Albatross.Resources.Food_Icon.foodType_" + SelectedCharabase.FavoriteFoodHash.ToString().PadLeft(2, '0') + ".png");
+
+                if (favoritefoodFlatComboBox.Focused)
+                {
+                    SelectedCharabase.FavoriteFoodHash = GameOpened.FoodsType.Values.ToList().IndexOf(favoritefoodFlatComboBox.SelectedItem.ToString());
+                }
+            }
+        }
+
+        private void HatedFoodFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (hatedFoodFlatComboBox.SelectedIndex == -1)
+            {
+                favoriteFoodPictureBox.Image = null;
+            }
+            else
+            {
+                SetPictureBox(hatedFoodPictureBox, "Albatross.Resources.Food_Icon.foodType_" + SelectedCharabase.HatedFoodHash.ToString().PadLeft(2, '0') + ".png");
+
+                if (hatedFoodFlatComboBox.Focused)
+                {
+                    SelectedCharabase.HatedFoodHash = GameOpened.FoodsType.Values.ToList().IndexOf(hatedFoodFlatComboBox.SelectedItem.ToString());
+                }
+            }
+        }
+
+        private void DescriptionTextBox_Click(object sender, EventArgs e)
+        {
+            Nyanko.Nyanko nyanko = new Nyanko.Nyanko(Path.GetFileName(GameOpened.Files["chara_text"].Path), Charanames, true, false, SelectedCharabase.DescriptionHash);
+            nyanko.ShowDialog();
+            Charanames = nyanko.T2bþFileOpened;
+
+            // Update current description
+            if (nyanko.SelectedHash != 0)
+            {
+                SelectedCharabase.DescriptionHash = nyanko.SelectedHash;
+
+                if (Charanames.Texts.ContainsKey(SelectedCharabase.DescriptionHash))
+                {
+                    string description = Charanames.Texts[SelectedCharabase.DescriptionHash].Strings[0].Text;
+                    descriptionTextBox.Text = description.Replace("\\n", Environment.NewLine);
+                }
+                else
+                {
+                    descriptionTextBox.Clear();
+                }
+            }
+        }
+    }
+}

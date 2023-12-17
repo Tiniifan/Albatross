@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2D1162DE-BB5C-49C1-8F38-D8BF323A2B58}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Albatross</RootNamespace>
+    <AssemblyName>Albatross</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Albatross.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\Characters\CharabaseWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Characters\CharabaseWindow.Designer.cs">
+      <DependentUpon>CharabaseWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Characters\CharaparamWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Characters\CharaparamWindow.Designer.cs">
+      <DependentUpon>CharaparamWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Characters\MedalWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Characters\MedalWindow.Designer.cs">
+      <DependentUpon>MedalWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Characters\NewCharabaseWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Characters\NewCharabaseWindow.Designer.cs">
+      <DependentUpon>NewCharabaseWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Nyanko\Nyanko.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Nyanko\Nyanko.Designer.cs">
+      <DependentUpon>Nyanko.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Nyanko\SearchWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Nyanko\SearchWindow.Designer.cs">
+      <DependentUpon>SearchWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Level5\Archive\ARC0\ARC0.cs" />
+    <Compile Include="Level5\Archive\ARC0\ARC0Support.cs" />
+    <Compile Include="Level5\Archive\IArchive.cs" />
+    <Compile Include="Level5\Archive\XPCK\XPCK.cs" />
+    <Compile Include="Level5\Archive\XPCK\XPCKSupport.cs" />
+    <Compile Include="Level5\Binary\CfgBin.cs" />
+    <Compile Include="Level5\Binary\CfgBinSupport.cs" />
+    <Compile Include="Level5\Binary\Logic\Entry.cs" />
+    <Compile Include="Level5\Binary\Logic\OffsetTextPair.cs" />
+    <Compile Include="Level5\Binary\Logic\Type.cs" />
+    <Compile Include="Level5\Binary\Logic\Variable.cs" />
+    <Compile Include="Level5\Compression\Compressor.cs" />
+    <Compile Include="Level5\Compression\ETC1\ETC1.cs" />
+    <Compile Include="Level5\Compression\ETC1\ETC1Decoder.cs" />
+    <Compile Include="Level5\Compression\ETC1\RGB.cs" />
+    <Compile Include="Level5\Compression\Huffman\Huffman.cs" />
+    <Compile Include="Level5\Compression\Huffman\HuffmanDecoder.cs" />
+    <Compile Include="Level5\Compression\ICompression.cs" />
+    <Compile Include="Level5\Compression\LZ10\LZ10.cs" />
+    <Compile Include="Level5\Compression\NoCompression\NoCompression.cs" />
+    <Compile Include="Level5\Compression\RLE\RLE.cs" />
+    <Compile Include="Level5\Compression\Zlib\Zlib.cs" />
+    <Compile Include="Level5\Image\Color Formats\IColorFormat.cs" />
+    <Compile Include="Level5\Image\IMGC.cs" />
+    <Compile Include="Level5\Image\Color Formats\ColorFormats.cs" />
+    <Compile Include="Level5\Image\IMGCSupport.cs" />
+    <Compile Include="Level5\Image\IMGCSwizzle.cs" />
+    <Compile Include="Level5\Text\Logic\TextConfig.cs" />
+    <Compile Include="Level5\Text\T2bþ.cs" />
+    <Compile Include="Forms\Home\NewProjectWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\NewProjectWindow.Designer.cs">
+      <DependentUpon>NewProjectWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\BinaryDataWriter.cs" />
+    <Compile Include="Tools\Crc32.cs" />
+    <Compile Include="Tools\EnumHelper.cs" />
+    <Compile Include="Tools\SubMemoryStream.cs" />
+    <Compile Include="Tools\VirtualDirectory.cs" />
+    <Compile Include="UI\FlatCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\FlatComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\FlatNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Yokai Watch\Common\Attribute.cs" />
+    <Compile Include="Yokai Watch\Common\Effects.cs" />
+    <Compile Include="Yokai Watch\Common\FoodsType.cs" />
+    <Compile Include="Yokai Watch\Common\Items.cs" />
+    <Compile Include="Yokai Watch\Common\Skills.cs" />
+    <Compile Include="Yokai Watch\Common\Soultimates.cs" />
+    <Compile Include="Yokai Watch\Common\Inspirits.cs" />
+    <Compile Include="Yokai Watch\Common\Ranks.cs" />
+    <Compile Include="Yokai Watch\Common\Tribes.cs" />
+    <Compile Include="Yokai Watch\Common\Techniques.cs" />
+    <Compile Include="Yokai Watch\Common\Attacks.cs" />
+    <Compile Include="Forms\Home\HomeGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\HomeGame.Designer.cs">
+      <DependentUpon>HomeGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\BinaryDataReader.cs" />
+    <Compile Include="UI\VSTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Yokai Watch\Games\GameFile.cs" />
+    <Compile Include="Yokai Watch\Games\GameSupport.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\Logic\BattleCommand.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\Logic\Charaability.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\Logic\Charabase.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\Logic\Charaevolve.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\Logic\Charaparam.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\Logic\Charascale.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\Logic\Fusion.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\Logic\Itemconfig.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\YW1Support.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\YW1.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\Logic\Battlecommand.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\Logic\Charabase.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\Logic\Charaevolve.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\Logic\Charaparam.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\Logic\Encountchara.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\Logic\Charascale.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\Logic\Fusion.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\Logic\Legendconfig.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\Logic\Skillconfig.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\YW2.cs" />
+    <Compile Include="Yokai Watch\Games\IGame.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\YW2Support.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\Charabase.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\Charaparam.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\Charascale.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\Skillconfig.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\YW3.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\YW3Support.cs" />
+    <Compile Include="Yokai Watch\Logic\IBattleCommand.cs" />
+    <Compile Include="Yokai Watch\Logic\ICharaabilityConfig.cs" />
+    <Compile Include="Yokai Watch\Logic\ICharabase.cs" />
+    <Compile Include="Yokai Watch\Logic\ICharaevolve.cs" />
+    <Compile Include="Yokai Watch\Logic\ICharaparam.cs" />
+    <Compile Include="Yokai Watch\Logic\IItem.cs" />
+    <EmbeddedResource Include="Forms\Characters\CharabaseWindow.resx">
+      <DependentUpon>CharabaseWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Characters\CharaparamWindow.resx">
+      <DependentUpon>CharaparamWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Characters\MedalWindow.resx">
+      <DependentUpon>MedalWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\HomeGame.resx">
+      <DependentUpon>HomeGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\NewProjectWindow.resx">
+      <DependentUpon>NewProjectWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Nyanko\Nyanko.resx">
+      <DependentUpon>Nyanko.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Nyanko\SearchWindow.resx">
+      <DependentUpon>SearchWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type01.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type02.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type03.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type04.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type05.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type06.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type07.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type08.xi.00.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Rank Icon\Rank_A.png" />
+    <EmbeddedResource Include="Resources\Rank Icon\Rank_B.png" />
+    <EmbeddedResource Include="Resources\Rank Icon\Rank_C.png" />
+    <EmbeddedResource Include="Resources\Rank Icon\Rank_D.png" />
+    <EmbeddedResource Include="Resources\Rank Icon\Rank_E.png" />
+    <EmbeddedResource Include="Resources\Rank Icon\Rank_S.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type00.xi.00.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type09.xi.00.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+    <Content Include="LICENSE-APACHE.txt" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_10.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_00.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_01.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_02.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_03.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_04.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_05.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_06.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_08.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_12.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_13.png" />
+    <EmbeddedResource Include="Resources\Food Icon\foodType_14.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type010.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type011.xi.00.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\y_type012.xi.00.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
