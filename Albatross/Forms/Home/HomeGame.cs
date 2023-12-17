@@ -49,6 +49,9 @@ namespace Albatross
                 case "Charabase":
                     CharabaseButton_Click(sender, e);
                     break;
+                case "Charascale":
+                    CharascaleButton_Click(sender, e);
+                    break;
                 case "Charaparam":
                     CharaparamButton_Click(sender, e);
                     break;
@@ -65,6 +68,12 @@ namespace Albatross
         {
             CharaparamWindow charaparamWindow = new CharaparamWindow(Game);
             charaparamWindow.ShowDialog();
+        }
+
+        private void CharascaleButton_Click(object sender, EventArgs e)
+        {
+            CharascaleWindow charascaleWindow = new CharascaleWindow(Game);
+            charascaleWindow.ShowDialog();
         }
     }
 }

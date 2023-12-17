@@ -39,6 +39,7 @@ namespace Albatross
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.charascaleButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -46,6 +47,7 @@ namespace Albatross
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.charascaleButton);
             this.groupBox1.Controls.Add(this.charaparamButton);
             this.groupBox1.Controls.Add(this.charabaseButton);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -59,7 +61,7 @@ namespace Albatross
             // charaparamButton
             // 
             this.charaparamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.charaparamButton.Location = new System.Drawing.Point(6, 52);
+            this.charaparamButton.Location = new System.Drawing.Point(6, 77);
             this.charaparamButton.Name = "charaparamButton";
             this.charaparamButton.Size = new System.Drawing.Size(200, 23);
             this.charaparamButton.TabIndex = 1;
@@ -96,6 +98,7 @@ namespace Albatross
             this.featureListBox.FormattingEnabled = true;
             this.featureListBox.Items.AddRange(new object[] {
             "Charabase",
+            "Charascale",
             "Charaparam"});
             this.featureListBox.Location = new System.Drawing.Point(6, 19);
             this.featureListBox.Name = "featureListBox";
@@ -140,6 +143,17 @@ namespace Albatross
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click_1);
             // 
+            // charascaleButton
+            // 
+            this.charascaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.charascaleButton.Location = new System.Drawing.Point(6, 48);
+            this.charascaleButton.Name = "charascaleButton";
+            this.charascaleButton.Size = new System.Drawing.Size(200, 23);
+            this.charascaleButton.TabIndex = 2;
+            this.charascaleButton.Text = "Charascale";
+            this.charascaleButton.UseVisualStyleBackColor = true;
+            this.charascaleButton.Click += new System.EventHandler(this.CharascaleButton_Click);
+            // 
             // HomeGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,6 +189,7 @@ namespace Albatross
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.Button charaparamButton;
+        private System.Windows.Forms.Button charascaleButton;
     }
 }
 

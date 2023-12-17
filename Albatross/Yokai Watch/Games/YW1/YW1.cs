@@ -121,6 +121,30 @@ namespace Albatross.Yokai_Watch.Games.YW1
             Game.Directory.GetFolderFromFullPath("/data/res/character").Files["chara_base_0.04j.cfg.bin"].ByteContent = charaBaseFile.Save();
         }
 
+        public ICharascale[] GetCharascale()
+        {
+            CfgBin charaparamFile = new CfgBin();
+            charaparamFile.Open(Game.Directory.GetFileFromFullPath("/data/res/character/chara_scale.cfg.bin"));
+
+            return charaparamFile.Entries
+                .Where(x => x.GetName() == "CHARA_SCALE_INFO_BEGIN")
+                .SelectMany(x => x.Children)
+                .Select(x => x.ToClass<Charascale>())
+                .ToArray();
+        }
+
+        public void SaveCharascale(ICharascale[] charascales)
+        {
+            Charascale[] formatCharascales = charascales.OfType<Charascale>().ToArray();
+
+            CfgBin charaparamFile = new CfgBin();
+            charaparamFile.Open(Game.Directory.GetFileFromFullPath("/data/res/character/chara_scale.cfg.bin"));
+
+            charaparamFile.ReplaceEntry("CHARA_SCALE_INFO_BEGIN", "CHARA_SCALE_INFO_", formatCharascales);
+
+            Game.Directory.GetFolderFromFullPath("/data/res/character").Files["chara_scale.cfg.bin"].ByteContent = charaparamFile.Save();
+        }
+
         public ICharaparam[] GetCharaparam()
         {
             CfgBin charaparamFile = new CfgBin();

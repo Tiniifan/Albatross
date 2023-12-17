@@ -182,6 +182,7 @@ namespace Albatross.Level5.Binary
         public void ReplaceEntry<T>(string entryBeginName, string entryName, T[] values) where T : class
         {
             Entry baseBegin = Entries.Where(x => x.GetName() == entryBeginName).FirstOrDefault();
+            baseBegin.Variables[0].Value = values.Count();
             baseBegin.Children.Clear();
 
             for (int i = 0; i < values.Count(); i++)

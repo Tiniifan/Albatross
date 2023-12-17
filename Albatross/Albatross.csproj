@@ -211,7 +211,7 @@
     <Compile Include="Yokai Watch\Logic\ICharaevolve.cs" />
     <Compile Include="Yokai Watch\Logic\ICharaparam.cs" />
     <Compile Include="Yokai Watch\Logic\IItem.cs" />
-    <Compile Include="Yokai Watch\Logic\Icharascale.cs" />
+    <Compile Include="Yokai Watch\Logic\ICharascale.cs" />
     <EmbeddedResource Include="Forms\Characters\CharabaseWindow.resx">
       <DependentUpon>CharabaseWindow.cs</DependentUpon>
     </EmbeddedResource>

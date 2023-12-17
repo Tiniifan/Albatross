@@ -37,6 +37,10 @@ namespace Albatross.Yokai_Watch.Games
 
         void SaveCharaBase(ICharabase[] charabases);
 
+        ICharascale[] GetCharascale();
+
+        void SaveCharascale(ICharascale[] charascales);
+
         ICharaparam[] GetCharaparam();
 
         void SaveCharaparam(ICharaparam[] charaparams);

@@ -2,7 +2,7 @@
 
 namespace Albatross.Yokai_Watch.Games.YW1.Logic
 {
-    public class Charascale : Icharascale
+    public class Charascale : ICharascale
     {
         public int BaseHash { get => base.BaseHash; set => base.BaseHash = value; }
         public float Scale1 { get => base.Scale1; set => base.Scale1 = value; }

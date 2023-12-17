@@ -125,6 +125,16 @@ namespace Albatross.Yokai_Watch.Games.YW3
 
         }
 
+        public ICharascale[] GetCharascale()
+        {
+            return null;
+        }
+
+        public void SaveCharascale(ICharascale[] charascales)
+        {
+
+        }
+
         public ICharaparam[] GetCharaparam()
         {
             VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/character");

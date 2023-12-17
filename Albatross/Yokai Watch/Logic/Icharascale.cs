@@ -1,6 +1,6 @@
 ﻿namespace Albatross.Yokai_Watch.Logic
 {
-    public class Icharascale
+    public class ICharascale
     {
         public int BaseHash { get; set; }
         public float Scale1 { get; set; }

@@ -41,11 +41,11 @@
             this.facePictureBox = new System.Windows.Forms.PictureBox();
             this.characterGroupBox = new System.Windows.Forms.GroupBox();
             this.baseGroupBox = new System.Windows.Forms.GroupBox();
-            this.experienceCurveFlatNumericUpDown = new Albatross.UI.FlatNumericUpDown();
-            this.flatNumericUpDown1 = new Albatross.UI.FlatNumericUpDown();
-            this.flatNumericUpDown2 = new Albatross.UI.FlatNumericUpDown();
-            this.flatNumericUpDown3 = new Albatross.UI.FlatNumericUpDown();
-            this.flatNumericUpDown4 = new Albatross.UI.FlatNumericUpDown();
+            this.scaleFlatNumericUpDown1 = new Albatross.UI.FlatNumericUpDown();
+            this.scaleFlatNumericUpDown2 = new Albatross.UI.FlatNumericUpDown();
+            this.scaleFlatNumericUpDown3 = new Albatross.UI.FlatNumericUpDown();
+            this.scaleFlatNumericUpDown4 = new Albatross.UI.FlatNumericUpDown();
+            this.scaleFlatNumericUpDown5 = new Albatross.UI.FlatNumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,11 +55,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).BeginInit();
             this.characterGroupBox.SuspendLayout();
             this.baseGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.experienceCurveFlatNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flatNumericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flatNumericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flatNumericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flatNumericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown5)).BeginInit();
             this.SuspendLayout();
             // 
             // characterListBox
@@ -72,6 +72,7 @@
             this.characterListBox.Name = "characterListBox";
             this.characterListBox.Size = new System.Drawing.Size(185, 303);
             this.characterListBox.TabIndex = 9;
+            this.characterListBox.SelectedIndexChanged += new System.EventHandler(this.CharacterListBox_SelectedIndexChanged);
             // 
             // characterContextMenuStrip
             // 
@@ -81,21 +82,23 @@
             this.deleteToolStripMenuItem});
             this.characterContextMenuStrip.Name = "characterContextMenuStrip";
             this.characterContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.characterContextMenuStrip.Size = new System.Drawing.Size(108, 48);
+            this.characterContextMenuStrip.Size = new System.Drawing.Size(202, 48);
             // 
             // insertToolStripMenuItem
             // 
             this.insertToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.insertToolStripMenuItem.Text = "Insert";
+            this.insertToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.insertToolStripMenuItem.Text = "Insert from unused base";
+            this.insertToolStripMenuItem.Click += new System.EventHandler(this.InsertToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.deleteToolStripMenuItem.Text = "Remove unused scale";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // searchTextBox
             // 
@@ -107,6 +110,7 @@
             this.searchTextBox.Size = new System.Drawing.Size(185, 13);
             this.searchTextBox.TabIndex = 8;
             this.searchTextBox.Text = "Search...";
+            this.searchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             // 
             // hashTextBox
             // 
@@ -180,11 +184,11 @@
             this.baseGroupBox.Controls.Add(this.label4);
             this.baseGroupBox.Controls.Add(this.label3);
             this.baseGroupBox.Controls.Add(this.label2);
-            this.baseGroupBox.Controls.Add(this.flatNumericUpDown4);
-            this.baseGroupBox.Controls.Add(this.flatNumericUpDown3);
-            this.baseGroupBox.Controls.Add(this.flatNumericUpDown2);
-            this.baseGroupBox.Controls.Add(this.flatNumericUpDown1);
-            this.baseGroupBox.Controls.Add(this.experienceCurveFlatNumericUpDown);
+            this.baseGroupBox.Controls.Add(this.scaleFlatNumericUpDown5);
+            this.baseGroupBox.Controls.Add(this.scaleFlatNumericUpDown4);
+            this.baseGroupBox.Controls.Add(this.scaleFlatNumericUpDown3);
+            this.baseGroupBox.Controls.Add(this.scaleFlatNumericUpDown2);
+            this.baseGroupBox.Controls.Add(this.scaleFlatNumericUpDown1);
             this.baseGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.baseGroupBox.Location = new System.Drawing.Point(20, 110);
             this.baseGroupBox.Name = "baseGroupBox";
@@ -193,95 +197,125 @@
             this.baseGroupBox.TabStop = false;
             this.baseGroupBox.Text = "Scale";
             // 
-            // experienceCurveFlatNumericUpDown
+            // scaleFlatNumericUpDown1
             // 
-            this.experienceCurveFlatNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.experienceCurveFlatNumericUpDown.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.experienceCurveFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.experienceCurveFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.experienceCurveFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.experienceCurveFlatNumericUpDown.Location = new System.Drawing.Point(79, 41);
-            this.experienceCurveFlatNumericUpDown.Maximum = new decimal(new int[] {
-            6,
+            this.scaleFlatNumericUpDown1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.scaleFlatNumericUpDown1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.scaleFlatNumericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.scaleFlatNumericUpDown1.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.scaleFlatNumericUpDown1.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown1.Location = new System.Drawing.Point(79, 32);
+            this.scaleFlatNumericUpDown1.Maximum = new decimal(new int[] {
+            999,
             0,
             0,
             0});
-            this.experienceCurveFlatNumericUpDown.Name = "experienceCurveFlatNumericUpDown";
-            this.experienceCurveFlatNumericUpDown.Size = new System.Drawing.Size(130, 20);
-            this.experienceCurveFlatNumericUpDown.TabIndex = 69;
+            this.scaleFlatNumericUpDown1.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.scaleFlatNumericUpDown1.Name = "scaleFlatNumericUpDown1";
+            this.scaleFlatNumericUpDown1.Size = new System.Drawing.Size(130, 20);
+            this.scaleFlatNumericUpDown1.TabIndex = 69;
             // 
-            // flatNumericUpDown1
+            // scaleFlatNumericUpDown2
             // 
-            this.flatNumericUpDown1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.flatNumericUpDown1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.flatNumericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flatNumericUpDown1.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.flatNumericUpDown1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.flatNumericUpDown1.Location = new System.Drawing.Point(79, 67);
-            this.flatNumericUpDown1.Maximum = new decimal(new int[] {
-            6,
+            this.scaleFlatNumericUpDown2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.scaleFlatNumericUpDown2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.scaleFlatNumericUpDown2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.scaleFlatNumericUpDown2.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.scaleFlatNumericUpDown2.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown2.Location = new System.Drawing.Point(79, 58);
+            this.scaleFlatNumericUpDown2.Maximum = new decimal(new int[] {
+            999,
             0,
             0,
             0});
-            this.flatNumericUpDown1.Name = "flatNumericUpDown1";
-            this.flatNumericUpDown1.Size = new System.Drawing.Size(130, 20);
-            this.flatNumericUpDown1.TabIndex = 70;
+            this.scaleFlatNumericUpDown2.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.scaleFlatNumericUpDown2.Name = "scaleFlatNumericUpDown2";
+            this.scaleFlatNumericUpDown2.Size = new System.Drawing.Size(130, 20);
+            this.scaleFlatNumericUpDown2.TabIndex = 70;
             // 
-            // flatNumericUpDown2
+            // scaleFlatNumericUpDown3
             // 
-            this.flatNumericUpDown2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.flatNumericUpDown2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.flatNumericUpDown2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flatNumericUpDown2.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.flatNumericUpDown2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.flatNumericUpDown2.Location = new System.Drawing.Point(79, 93);
-            this.flatNumericUpDown2.Maximum = new decimal(new int[] {
-            6,
+            this.scaleFlatNumericUpDown3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.scaleFlatNumericUpDown3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.scaleFlatNumericUpDown3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.scaleFlatNumericUpDown3.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.scaleFlatNumericUpDown3.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown3.Location = new System.Drawing.Point(79, 84);
+            this.scaleFlatNumericUpDown3.Maximum = new decimal(new int[] {
+            999,
             0,
             0,
             0});
-            this.flatNumericUpDown2.Name = "flatNumericUpDown2";
-            this.flatNumericUpDown2.Size = new System.Drawing.Size(130, 20);
-            this.flatNumericUpDown2.TabIndex = 71;
+            this.scaleFlatNumericUpDown3.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.scaleFlatNumericUpDown3.Name = "scaleFlatNumericUpDown3";
+            this.scaleFlatNumericUpDown3.Size = new System.Drawing.Size(130, 20);
+            this.scaleFlatNumericUpDown3.TabIndex = 71;
             // 
-            // flatNumericUpDown3
+            // scaleFlatNumericUpDown4
             // 
-            this.flatNumericUpDown3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.flatNumericUpDown3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.flatNumericUpDown3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flatNumericUpDown3.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.flatNumericUpDown3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.flatNumericUpDown3.Location = new System.Drawing.Point(79, 119);
-            this.flatNumericUpDown3.Maximum = new decimal(new int[] {
-            6,
+            this.scaleFlatNumericUpDown4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.scaleFlatNumericUpDown4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.scaleFlatNumericUpDown4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.scaleFlatNumericUpDown4.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.scaleFlatNumericUpDown4.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown4.Location = new System.Drawing.Point(79, 110);
+            this.scaleFlatNumericUpDown4.Maximum = new decimal(new int[] {
+            999,
             0,
             0,
             0});
-            this.flatNumericUpDown3.Name = "flatNumericUpDown3";
-            this.flatNumericUpDown3.Size = new System.Drawing.Size(130, 20);
-            this.flatNumericUpDown3.TabIndex = 72;
+            this.scaleFlatNumericUpDown4.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.scaleFlatNumericUpDown4.Name = "scaleFlatNumericUpDown4";
+            this.scaleFlatNumericUpDown4.Size = new System.Drawing.Size(130, 20);
+            this.scaleFlatNumericUpDown4.TabIndex = 72;
             // 
-            // flatNumericUpDown4
+            // scaleFlatNumericUpDown5
             // 
-            this.flatNumericUpDown4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.flatNumericUpDown4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.flatNumericUpDown4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flatNumericUpDown4.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.flatNumericUpDown4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.flatNumericUpDown4.Location = new System.Drawing.Point(79, 145);
-            this.flatNumericUpDown4.Maximum = new decimal(new int[] {
-            6,
+            this.scaleFlatNumericUpDown5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.scaleFlatNumericUpDown5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.scaleFlatNumericUpDown5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.scaleFlatNumericUpDown5.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.scaleFlatNumericUpDown5.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown5.Location = new System.Drawing.Point(79, 136);
+            this.scaleFlatNumericUpDown5.Maximum = new decimal(new int[] {
+            999,
             0,
             0,
             0});
-            this.flatNumericUpDown4.Name = "flatNumericUpDown4";
-            this.flatNumericUpDown4.Size = new System.Drawing.Size(130, 20);
-            this.flatNumericUpDown4.TabIndex = 73;
+            this.scaleFlatNumericUpDown5.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.scaleFlatNumericUpDown5.Name = "scaleFlatNumericUpDown5";
+            this.scaleFlatNumericUpDown5.Size = new System.Drawing.Size(130, 20);
+            this.scaleFlatNumericUpDown5.TabIndex = 73;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 43);
+            this.label2.Location = new System.Drawing.Point(30, 34);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 74;
@@ -290,7 +324,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 69);
+            this.label3.Location = new System.Drawing.Point(30, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 75;
@@ -299,7 +333,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(30, 95);
+            this.label4.Location = new System.Drawing.Point(30, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 76;
@@ -308,7 +342,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(30, 121);
+            this.label6.Location = new System.Drawing.Point(30, 112);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 77;
@@ -317,7 +351,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(30, 147);
+            this.label7.Location = new System.Drawing.Point(30, 138);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 13);
             this.label7.TabIndex = 78;
@@ -334,17 +368,18 @@
             this.Controls.Add(this.characterGroupBox);
             this.Name = "CharascaleWindow";
             this.Text = "CharascaleWindow";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CharascaleWindow_FormClosed);
             this.characterContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).EndInit();
             this.characterGroupBox.ResumeLayout(false);
             this.characterGroupBox.PerformLayout();
             this.baseGroupBox.ResumeLayout(false);
             this.baseGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.experienceCurveFlatNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flatNumericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flatNumericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flatNumericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flatNumericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -368,10 +403,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private UI.FlatNumericUpDown flatNumericUpDown4;
-        private UI.FlatNumericUpDown flatNumericUpDown3;
-        private UI.FlatNumericUpDown flatNumericUpDown2;
-        private UI.FlatNumericUpDown flatNumericUpDown1;
-        private UI.FlatNumericUpDown experienceCurveFlatNumericUpDown;
+        private UI.FlatNumericUpDown scaleFlatNumericUpDown5;
+        private UI.FlatNumericUpDown scaleFlatNumericUpDown4;
+        private UI.FlatNumericUpDown scaleFlatNumericUpDown3;
+        private UI.FlatNumericUpDown scaleFlatNumericUpDown2;
+        private UI.FlatNumericUpDown scaleFlatNumericUpDown1;
     }
 }
