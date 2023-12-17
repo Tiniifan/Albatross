@@ -146,7 +146,7 @@ namespace Albatross.Yokai_Watch.Games.YW3
 
         }
 
-        public object[] GetCharaevolution()
+        public ICharaevolve[] GetCharaevolution()
         {
             VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/character");
             string lastcharabase = characterFolder.Files.Keys.Where(x => x.StartsWith("chara_param")).OrderByDescending(x => x).First();
@@ -154,11 +154,12 @@ namespace Albatross.Yokai_Watch.Games.YW3
             CfgBin charaBaseFile = new CfgBin();
             charaBaseFile.Open(Game.Directory.GetFileFromFullPath("/data/res/character/" + lastcharabase));
 
-            return charaBaseFile.Entries
-                .Where(x => x.GetName() == "CHARA_BASE_YOKAI_INFO")
-                .SelectMany(x => x.Children)
-                .Select(x => x.ToClass<Charabase>())
-                .ToArray();
+            return new ICharaevolve[] { };
+        }
+
+        public void SaveCharaevolution(ICharaevolve[] charaevolutions)
+        {
+
         }
 
         public IItem[] GetItems(string itemType)

@@ -11,7 +11,7 @@ namespace Albatross.Yokai_Watch.Games
 {
     public static class GameSupport
     {
-        private static Dictionary<int, char> PrefixLetter = new Dictionary<int, char>() 
+        public static Dictionary<int, char> PrefixLetter = new Dictionary<int, char>() 
         {
             {0, 'c'},
             {6, 'y'},
@@ -31,7 +31,6 @@ namespace Albatross.Yokai_Watch.Games
             int number = int.Parse(text.Substring(1, 3));
             int variant = int.Parse(text.Substring(4, 3));
 
-            prefixIndex = prefixIndex + 5;
             number = BitConverter.ToInt32(BitConverter.GetBytes(number), 0);
             variant = BitConverter.ToInt32(BitConverter.GetBytes(variant), 0);
 
@@ -42,6 +41,11 @@ namespace Albatross.Yokai_Watch.Games
         {
             VirtualDirectory directory = fileName.File.Directory.GetFolderFromFullPath(Path.GetDirectoryName(fileName.Path).Replace("\\", "/"));
             directory.Files[Path.GetFileName(fileName.Path)].ByteContent = fileData.Save(false);
+        }
+
+        public static T GetLogic<T>() where T : class, new()
+        {
+            return new T();
         }
     }
 }

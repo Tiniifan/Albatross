@@ -41,7 +41,9 @@ namespace Albatross.Yokai_Watch.Games
 
         void SaveCharaparam(ICharaparam[] charaparams);
 
-        object[] GetCharaevolution();
+        ICharaevolve[] GetCharaevolution();
+
+        void SaveCharaevolution(ICharaevolve[] charaevolves);
 
         IItem[] GetItems(string itemType);
 

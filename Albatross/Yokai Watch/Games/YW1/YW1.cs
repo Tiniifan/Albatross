@@ -145,7 +145,7 @@ namespace Albatross.Yokai_Watch.Games.YW1
             Game.Directory.GetFolderFromFullPath("/data/res/character").Files["chara_param_0.02.cfg.bin"].ByteContent = charaparamFile.Save();
         }
 
-        public object[] GetCharaevolution()
+        public ICharaevolve[] GetCharaevolution()
         {
             CfgBin charaparamFile = new CfgBin();
             charaparamFile.Open(Game.Directory.GetFileFromFullPath("/data/res/character/chara_param_0.02.cfg.bin"));
@@ -155,6 +155,18 @@ namespace Albatross.Yokai_Watch.Games.YW1
                 .SelectMany(x => x.Children)
                 .Select(x => x.ToClass<Charaevolve>())
                 .ToArray();
+        }
+
+        public void SaveCharaevolution(ICharaevolve[] charaevolutions)
+        {
+            Charaevolve[] formatCharaevolutions = charaevolutions.OfType<Charaevolve>().ToArray();
+
+            CfgBin charaparamFile = new CfgBin();
+            charaparamFile.Open(Game.Directory.GetFileFromFullPath("/data/res/character/chara_param_0.02.cfg.bin"));
+
+            charaparamFile.ReplaceEntry("CHARA_EVOLVE_INFO_BEGIN", "CHARA_EVOLVE_INFO_", formatCharaevolutions);
+
+            Game.Directory.GetFolderFromFullPath("/data/res/character").Files["chara_param_0.02.cfg.bin"].ByteContent = charaparamFile.Save();
         }
 
         public IItem[] GetItems(string itemType)

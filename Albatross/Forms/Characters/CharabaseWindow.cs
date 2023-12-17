@@ -1,11 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Data;
 using System.Linq;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using Albatross.Tools;
 using Albatross.Level5.Text;
 using Albatross.Level5.Image;
 using Albatross.Yokai_Watch.Logic;
@@ -36,6 +38,7 @@ namespace Albatross.Forms.Characters
             CharabasesFiltred = new List<ICharabase>();
 
             InitializeComponent();
+            LoadCharabase();
         }
 
         private string[] GetNames(ICharabase[] charabases)
@@ -59,6 +62,7 @@ namespace Albatross.Forms.Characters
             else
             {
                 comboBox.SelectedIndex = -1;
+                comboBox.Text = "";
             }
         }
 
@@ -116,15 +120,25 @@ namespace Albatross.Forms.Characters
             }
         }
 
-        private void CharabaseWindow_Load(object sender, EventArgs e)
+        private void LoadCharabase()
         {
+            // Reset form
+            FaceIcon = null;
+            tribeFlatComboBox.Items.Clear();
+            rankFlatComboBox.Items.Clear();
+            hatedFoodFlatComboBox.Items.Clear();
+            modelFlatComboBox.Items.Clear();
+            characterListBox.Items.Clear();
+            facePictureBox.Image = null;
+            characterGroupBox.Enabled = false;
+
             // Get icons
             byte[] faceIconData = GameOpened.Files["face_icon"].File.Directory.GetFileFromFullPath(GameOpened.Files["face_icon"].Path + "/face_icon.xi");
             FaceIcon = IMGC.ToBitmap(faceIconData);
 
             // Get resources
             Charabases.AddRange(GameOpened.GetCharacterbase(false));
-            Charabases.AddRange(GameOpened.GetCharacterbase(true));            
+            Charabases.AddRange(GameOpened.GetCharacterbase(true));
 
             // Get names
             Charanames = new T2bþ(GameOpened.Files["chara_text"].File.Directory.GetFileFromFullPath(GameOpened.Files["chara_text"].Path));
@@ -155,6 +169,50 @@ namespace Albatross.Forms.Characters
 
         private void InsertToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using (NewCharabaseWindow newCharabaseWindow = new NewCharabaseWindow(GameOpened, Charanames, modelFlatComboBox.Items.OfType<string>().ToArray()))
+            {
+                DialogResult result = newCharabaseWindow.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    this.Focus();
+                    characterGroupBox.Enabled = false;
+                    
+                    Charanames = newCharabaseWindow.Charanames;
+                    GameOpened = newCharabaseWindow.GameOpened;
+                    ICharabase newCharabase = newCharabaseWindow.NewCharabase;
+
+                    // Generate a base name with a random number
+                    string baseName = "base_" + RandomNumber.Next().ToString();
+                    uint baseHashUInt = Crc32.Compute(Encoding.GetEncoding("Shift-JIS").GetBytes(baseName));
+                    int baseHash = unchecked((int)baseHashUInt);
+
+                    // Check if the generated base hash already exists, generate a new base name if needed
+                    while (Charabases.Any(x => x.BaseHash == baseHash))
+                    {
+                        baseName = "base_" + RandomNumber.Next().ToString();
+                        baseHashUInt = Crc32.Compute(Encoding.GetEncoding("Shift-JIS").GetBytes(baseName));
+                        baseHash = unchecked((int)baseHashUInt);
+                    }
+
+                    newCharabase.BaseHash = baseHash;
+
+                    int lastIndex = Charabases.FindLastIndex(x => x.IsYokai == newCharabase.IsYokai) + 1;
+                    Charabases.Insert(lastIndex, newCharabase);
+
+                    // Update available model
+                    modelFlatComboBox.Items.Clear();
+                    modelFlatComboBox.Items.AddRange(GameOpened.Files["model"].File.Directory.GetFolderFromFullPath(GameOpened.Files["model"].Path).Folders.Select(x => x.Name).ToArray());
+
+                    // Update all names
+                    characterListBox.Items.Clear();
+                    characterListBox.Items.AddRange(GetNames(Charabases.ToArray()).ToArray());
+
+                    // Select the added charabase
+                    characterListBox.Focus();
+                    characterListBox.SelectedIndex = lastIndex;
+                }
+            }
 
         }
 
@@ -234,6 +292,7 @@ namespace Albatross.Forms.Characters
             if (modelFlatComboBox.Items.IndexOf(fileName) == -1)
             {
                 modelFlatComboBox.SelectedIndex = -1;
+                modelFlatComboBox.Text = "";
                 facePictureBox.Image = null;
             }
             else
@@ -413,7 +472,25 @@ namespace Albatross.Forms.Characters
 
         private void TribeFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (tribeFlatComboBox.SelectedIndex == -1)
+            {
+                tribePictureBox.Image = null;
+            }
+            else
+            {
+                SetPictureBox(tribePictureBox, "Albatross.Resources.Tribe_Icon.y_type0" + SelectedCharabase.Tribe + ".xi.00.png");
+            }
+
             if (!tribeFlatComboBox.Focused) return;
+
+            if (tribeFlatComboBox.SelectedIndex != -1)
+            {
+                SelectedCharabase.Tribe = Ranks.YW.Values.ToList().IndexOf(tribeFlatComboBox.SelectedItem.ToString());
+            }
+            else
+            {
+                SelectedCharabase.Tribe = 0;
+            }
         }
 
         private void RankFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -421,15 +498,20 @@ namespace Albatross.Forms.Characters
             if (rankFlatComboBox.SelectedIndex == -1)
             {
                 rankPictureBox.Image = null;
+            } else
+            {
+                SetPictureBox(rankPictureBox, "Albatross.Resources.Rank_Icon.Rank_" + rankFlatComboBox.SelectedItem.ToString() + ".png");
+            }
+
+            if (!rankFlatComboBox.Focused) return;
+
+            if (rankFlatComboBox.SelectedIndex != -1)
+            {
+                SelectedCharabase.Rank = Ranks.YW.Values.ToList().IndexOf(rankFlatComboBox.SelectedItem.ToString());
             }
             else
             {
-                SetPictureBox(rankPictureBox, "Albatross.Resources.Rank_Icon.Rank_" + rankFlatComboBox.SelectedItem.ToString() + ".png");
-
-                if (rankFlatComboBox.Focused)
-                {
-                    SelectedCharabase.Rank = Ranks.YW.Values.ToList().IndexOf(rankFlatComboBox.SelectedItem.ToString());
-                }
+                SelectedCharabase.Rank = 0;
             }
         }
 
@@ -442,11 +524,17 @@ namespace Albatross.Forms.Characters
             else
             {
                 SetPictureBox(favoriteFoodPictureBox, "Albatross.Resources.Food_Icon.foodType_" + SelectedCharabase.FavoriteFoodHash.ToString().PadLeft(2, '0') + ".png");
+            }
 
-                if (favoritefoodFlatComboBox.Focused)
-                {
-                    SelectedCharabase.FavoriteFoodHash = GameOpened.FoodsType.Values.ToList().IndexOf(favoritefoodFlatComboBox.SelectedItem.ToString());
-                }
+            if (!favoritefoodFlatComboBox.Focused) return;
+
+            if (favoritefoodFlatComboBox.SelectedIndex != -1)
+            {
+                SelectedCharabase.FavoriteFoodHash = GameOpened.FoodsType.Keys.ToList().IndexOf(favoritefoodFlatComboBox.SelectedIndex);
+            }
+            else
+            {
+                SelectedCharabase.FavoriteFoodHash = 0;
             }
         }
 
@@ -454,16 +542,22 @@ namespace Albatross.Forms.Characters
         {
             if (hatedFoodFlatComboBox.SelectedIndex == -1)
             {
-                favoriteFoodPictureBox.Image = null;
+                hatedFoodPictureBox.Image = null;
             }
             else
             {
                 SetPictureBox(hatedFoodPictureBox, "Albatross.Resources.Food_Icon.foodType_" + SelectedCharabase.HatedFoodHash.ToString().PadLeft(2, '0') + ".png");
+            }
 
-                if (hatedFoodFlatComboBox.Focused)
-                {
-                    SelectedCharabase.HatedFoodHash = GameOpened.FoodsType.Values.ToList().IndexOf(hatedFoodFlatComboBox.SelectedItem.ToString());
-                }
+            if (!hatedFoodFlatComboBox.Focused) return;
+
+            if (hatedFoodFlatComboBox.SelectedIndex != -1)
+            {
+                SelectedCharabase.HatedFoodHash = GameOpened.FoodsType.Keys.ToList().IndexOf(hatedFoodFlatComboBox.SelectedIndex);
+            }
+            else
+            {
+                SelectedCharabase.HatedFoodHash = 0;
             }
         }
 

@@ -38,6 +38,9 @@
         public int Quote3 { get; set; }
         public int Quote4 { get; set; }
         public int EvolveOffset { get; set; }
+
+        public int EvolveParam { get; set; }
+        public int EvolveLevel { get; set; }
         public int MedaliumOffset { get; set; }
         public bool ShowInMedalium { get; set; }
     }

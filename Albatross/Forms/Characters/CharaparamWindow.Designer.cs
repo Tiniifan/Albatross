@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.characterListBox = new System.Windows.Forms.ListBox();
+            this.characterContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.characterGroupBox = new System.Windows.Forms.GroupBox();
             this.vsTabControl1 = new Albatross.UI.VSTabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -122,6 +126,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.baseModelFlatComboBox = new Albatross.UI.FlatComboBox();
             this.facePictureBox = new System.Windows.Forms.PictureBox();
+            this.characterContextMenuStrip.SuspendLayout();
             this.characterGroupBox.SuspendLayout();
             this.vsTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -182,6 +187,7 @@
             // characterListBox
             // 
             this.characterListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.characterListBox.ContextMenuStrip = this.characterContextMenuStrip;
             this.characterListBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.characterListBox.FormattingEnabled = true;
             this.characterListBox.Location = new System.Drawing.Point(12, 38);
@@ -189,6 +195,33 @@
             this.characterListBox.Size = new System.Drawing.Size(185, 550);
             this.characterListBox.TabIndex = 7;
             this.characterListBox.SelectedIndexChanged += new System.EventHandler(this.CharacterListBox_SelectedIndexChanged);
+            this.characterListBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CharacterListBox_MouseUp);
+            // 
+            // characterContextMenuStrip
+            // 
+            this.characterContextMenuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.characterContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.insertToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.characterContextMenuStrip.Name = "characterContextMenuStrip";
+            this.characterContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.characterContextMenuStrip.Size = new System.Drawing.Size(108, 48);
+            // 
+            // insertToolStripMenuItem
+            // 
+            this.insertToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
+            this.insertToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.insertToolStripMenuItem.Text = "Insert";
+            this.insertToolStripMenuItem.Click += new System.EventHandler(this.InsertToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // characterGroupBox
             // 
@@ -267,6 +300,7 @@
             this.evolutionFlatNumericUpDown.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.evolutionFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.evolutionFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.evolutionFlatNumericUpDown.Enabled = false;
             this.evolutionFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.evolutionFlatNumericUpDown.Location = new System.Drawing.Point(279, 43);
             this.evolutionFlatNumericUpDown.Name = "evolutionFlatNumericUpDown";
@@ -304,10 +338,12 @@
             this.evolutionFlatComboBox.Size = new System.Drawing.Size(130, 21);
             this.evolutionFlatComboBox.TabIndex = 58;
             this.evolutionFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.EvolutionFlatComboBox_SelectedIndexChanged);
+            this.evolutionFlatComboBox.TextChanged += new System.EventHandler(this.EvolutionFlatComboBox_TextChanged);
             // 
             // label27
             // 
             this.label27.AutoSize = true;
+            this.label27.Enabled = false;
             this.label27.Location = new System.Drawing.Point(227, 28);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(32, 13);
@@ -1441,7 +1477,7 @@
             this.Name = "CharaparamWindow";
             this.Text = "CharaparamWindow";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CharaparamWindow_FormClosed);
-            this.Load += new System.EventHandler(this.CharaparamWindow_Load);
+            this.characterContextMenuStrip.ResumeLayout(false);
             this.characterGroupBox.ResumeLayout(false);
             this.characterGroupBox.PerformLayout();
             this.vsTabControl1.ResumeLayout(false);
@@ -1597,5 +1633,8 @@
         private UI.FlatCheckBox isShownFlatCheckBox;
         private System.Windows.Forms.PictureBox itemPictureBox2;
         private System.Windows.Forms.PictureBox itemPictureBox1;
+        private System.Windows.Forms.ContextMenuStrip characterContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem insertToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

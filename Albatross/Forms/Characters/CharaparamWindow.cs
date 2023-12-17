@@ -1,16 +1,19 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Data;
 using System.Linq;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using Albatross.Tools;
 using Albatross.Level5.Text;
 using Albatross.Level5.Image;
 using Albatross.Yokai_Watch.Logic;
 using Albatross.Yokai_Watch.Games;
 using Albatross.Yokai_Watch.Common;
+using YKW1 = Albatross.Yokai_Watch.Games.YW1.Logic;
 
 namespace Albatross.Forms.Characters
 {
@@ -56,6 +59,7 @@ namespace Albatross.Forms.Characters
             CharaparamsFiltred = new List<ICharaparam>();
 
             InitializeComponent();
+            LoadCharaparam();
         }
 
         private string[] GetNames(ICharabase[] charabases)
@@ -145,6 +149,7 @@ namespace Albatross.Forms.Characters
             else
             {
                 comboBox.SelectedIndex = -1;
+                comboBox.Text = "";
             }
         }
 
@@ -157,14 +162,29 @@ namespace Albatross.Forms.Characters
             }
         }
 
-        private void CharaparamWindow_Load(object sender, EventArgs e)
+        private void LoadCharaparam()
         {
+            // Reset form
+            tribeFlatComboBox.Items.Clear();
+            scoutFlatComboBox.Items.Clear();
+            attackFlatComboBox.Items.Clear();
+            inspiritFlatComboBox.Items.Clear();
+            soultimateFlatComboBox.Items.Clear();
+            skillFlatComboBox.Items.Clear();
+            itemFlatComboBox1.Items.Clear();
+            baseModelFlatComboBox.Items.Clear();
+            characterListBox.Items.Clear();
+            evolutionFlatComboBox.Items.Clear();
+            facePictureBox.Image = null;
+            characterGroupBox.Enabled = false;
+
             // Get resources
             Items.AddRange(GameOpened.GetItems("all"));
             Skills.AddRange(GameOpened.GetSkills());
             BattleCommands.AddRange(GameOpened.GetBattleCommands());
             Charabases.AddRange(GameOpened.GetCharacterbase(true));
             Charaparams.AddRange(GameOpened.GetCharaparam());
+            ICharaevolve[] charaevolves = GameOpened.GetCharaevolution();
 
             // Get names
             Itemnames = new T2bþ(GameOpened.Files["item_text"].File.Directory.GetFileFromFullPath(GameOpened.Files["item_text"].Path));
@@ -186,13 +206,134 @@ namespace Albatross.Forms.Characters
             itemFlatComboBox2.Items.AddRange(itemFlatComboBox1.Items.Cast<Object>().ToArray());
             baseModelFlatComboBox.Items.AddRange(GetNames(Charabases.ToArray()).ToArray());
             characterListBox.Items.AddRange(GetNames(Charaparams.ToArray()).ToArray());
+            evolutionFlatComboBox.Items.AddRange(characterListBox.Items.Cast<Object>().ToArray());
+
+            // Link charaevolve to charaparam
+            foreach(ICharaparam charaparamsWithEvolve in Charaparams.Where(x => x.EvolveOffset != -1).ToArray())
+            {
+                ICharaevolve charaevolve = charaevolves[charaparamsWithEvolve.EvolveOffset];
+                charaparamsWithEvolve.EvolveParam = charaevolve.ParamHash;
+                charaparamsWithEvolve.EvolveLevel = charaevolve.Level;
+            }
         }
 
         private void CharaparamWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
+            // Generate charaevolves array
+            List<ICharaevolve> charaevolves = new List<ICharaevolve>() { };
+
+            // Loop through Charaparams with non-zero ParamHash
+            foreach (ICharaparam charaparamWithEvolve in Charaparams.Where(x => x.ParamHash != 0).ToArray())
+            {
+                ICharaevolve charaevolve = null;
+
+                // Determine the game type and get the corresponding Charaevolve logic
+                switch (GameOpened.Name)
+                {
+                    case "Yo-Kai Watch 1":
+                        charaevolve = GameSupport.GetLogic<YKW1.Charaevolve>();
+                        break;
+                }
+
+                // Assign values to charaevolve properties
+                charaevolve.ParamHash = charaparamWithEvolve.EvolveParam;
+                charaevolve.Level = charaparamWithEvolve.EvolveLevel;
+                charaparamWithEvolve.EvolveOffset = charaevolves.Count();
+
+                // Add charaevolve to the charaevolves list
+                charaevolves.Add(charaevolve);
+            }
+
+            // Save Charaparams and charaevolves arrays to the game
             GameOpened.SaveCharaparam(Charaparams.ToArray());
+            GameOpened.SaveCharaevolution(charaevolves.ToArray());
+
+            // Save text files related to battle and member commands
             GameSupport.SaveTextFile(GameOpened.Files["battle_text"], BattleCommandnames);
             GameSupport.SaveTextFile(GameOpened.Files["addmembermenu_text"], Addmembernames);
+        }
+
+
+        private void InsertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ICharaparam newCharaparam = null;
+
+            switch (GameOpened.Name)
+            {
+                case "Yo-Kai Watch 1":
+                    newCharaparam = GameSupport.GetLogic<YKW1.Charaparam>();
+                    break;
+            }
+
+            // Generate a param name with a random number
+            string paramName = "param_" + RandomNumber.Next().ToString();
+            uint paramHashUInt = Crc32.Compute(Encoding.GetEncoding("Shift-JIS").GetBytes(paramName));
+            int paramHash = unchecked((int)paramHashUInt);
+
+            // Check if the generated base hash already exists, generate a new base name if needed
+            while (Charaparams.Any(x => x.ParamHash == paramHash))
+            {
+                paramName = "param_" + RandomNumber.Next().ToString();
+                paramHashUInt = Crc32.Compute(Encoding.GetEncoding("Shift-JIS").GetBytes(paramName));
+                paramHash = unchecked((int)paramHashUInt);
+            }
+
+            newCharaparam.BaseHash = paramHash;
+            newCharaparam.EvolveOffset = -1;
+;
+            Charaparams.Add(newCharaparam);
+
+            // Update all names
+            characterListBox.Items.Clear();
+            evolutionFlatComboBox.Items.Clear();
+            characterListBox.Items.AddRange(GetNames(Charaparams.ToArray()).ToArray());
+            evolutionFlatComboBox.Items.AddRange(characterListBox.Items.Cast<Object>().ToArray());
+
+            // Select the added charabase
+            characterListBox.Focus();
+            characterListBox.SelectedIndex = characterListBox.Items.Count-1;
+        }
+
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (characterListBox.SelectedIndex == -1) return;
+
+            DialogResult dialogResult = MessageBox.Show("Do you want to delete " + characterListBox.SelectedItem.ToString() + "?", "Delete character", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                characterGroupBox.Enabled = false;
+
+                Charaparams.Remove(SelectedCharaparam);
+                facePictureBox.Image = null;
+
+                MessageBox.Show(characterListBox.SelectedItem.ToString() + " has been removed!");
+
+                if (CharaparamsFiltred != null && CharaparamsFiltred.Count > 0)
+                {
+                    CharaparamsFiltred.Remove(SelectedCharaparam);
+
+                    string[] names = GetNames(CharaparamsFiltred.ToArray());
+
+                    string focusedText = characterListBox.Text;
+
+                    characterListBox.Items.Clear();
+                    evolutionFlatComboBox.Items.Clear();
+                    characterListBox.Items.AddRange(names);
+                    evolutionFlatComboBox.Items.AddRange(GetNames(Charaparams.ToArray()).ToArray());
+
+                    if (names.Contains(focusedText))
+                    {
+                        characterListBox.SelectedIndex = Array.IndexOf(names, focusedText);
+                    }
+                }
+                else
+                {
+                    characterListBox.Items.Clear();
+                    evolutionFlatComboBox.Items.Clear();
+                    characterListBox.Items.AddRange(GetNames(Charaparams.ToArray()).ToArray());
+                    evolutionFlatComboBox.Items.AddRange(characterListBox.Items.Cast<Object>().ToArray());
+                }
+            }
         }
 
         private void CharacterListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -210,7 +351,7 @@ namespace Albatross.Forms.Characters
 
             hashTextBox.Text = SelectedCharaparam.ParamHash.ToString("X8");
 
-            ICharabase selectedCharabase = Charabases.First(x => x.BaseHash == SelectedCharaparam.BaseHash);
+            ICharabase selectedCharabase = Charabases.FirstOrDefault(x => x.BaseHash == SelectedCharaparam.BaseHash);
 
             if (selectedCharabase != null)
             {
@@ -236,15 +377,35 @@ namespace Albatross.Forms.Characters
                 {
                     facePictureBox.Image = null;
                 }
-            } else
+            } 
+            else
             {
                 baseModelFlatComboBox.SelectedIndex = -1;
+                nameTextBox.Text = "";
+                facePictureBox.Image = null;
             }
 
             SetComboBox(SelectedCharaparam.Tribe, GameOpened.Tribes, tribeFlatComboBox);
             experienceCurveFlatNumericUpDown.Value = SelectedCharaparam.ExperienceCurve;
             medalFlatNumericUpDown.Value = SelectedCharaparam.MedaliumOffset;
             isShownFlatCheckBox.Checked = SelectedCharaparam.ShowInMedalium;
+            if (SelectedCharaparam.EvolveParam != 0)
+            {
+                evolutionFlatComboBox.SelectedIndex = Charaparams.FindIndex(x => x.ParamHash == SelectedCharaparam.EvolveParam);
+                evolutionFlatNumericUpDown.Value = SelectedCharaparam.EvolveLevel;
+
+                label27.Enabled = true;
+                evolutionFlatNumericUpDown.Enabled = true;
+            } else
+            {
+                evolutionFlatComboBox.SelectedIndex = -1;
+                evolutionFlatComboBox.Text = "";
+                evolutionFlatNumericUpDown.Value = 0;
+
+                label27.Enabled = false;
+                evolutionFlatNumericUpDown.Enabled = false;
+                evolutionPictureBox.Image = null;
+            }
             itemFlatComboBox1.SelectedIndex = Items.FindIndex(x => x.ItemHash == SelectedCharaparam.Drop1Hash);
             dropFlatNumericUpDown1.Value = SelectedCharaparam.Drop1Rate;
             itemFlatComboBox2.SelectedIndex = Items.FindIndex(x => x.ItemHash == SelectedCharaparam.Drop2Hash);
@@ -313,6 +474,18 @@ namespace Albatross.Forms.Characters
             }
 
             characterGroupBox.Enabled = true;
+        }
+
+        private void CharacterListBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int index = characterListBox.IndexFromPoint(e.Location);
+                if (index != ListBox.NoMatches)
+                {
+                    characterListBox.SelectedIndex = index;
+                }
+            }
         }
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
@@ -392,12 +565,18 @@ namespace Albatross.Forms.Characters
             }
             else
             {
-                if (tribeFlatComboBox.Focused)
-                {
-                    SelectedCharaparam.Tribe = GameOpened.Tribes.Values.ToList().IndexOf(tribeFlatComboBox.Text);
-                }
-
                 SetPictureBox(tribePictureBox, "Albatross.Resources.Tribe_Icon.y_type0" + SelectedCharaparam.Tribe + ".xi.00.png");
+            }
+
+            if (!tribeFlatComboBox.Focused) return;
+
+            if (tribeFlatComboBox.SelectedIndex != -1)
+            {
+                SelectedCharaparam.Tribe = Ranks.YW.Values.ToList().IndexOf(tribeFlatComboBox.SelectedItem.ToString());
+            }
+            else
+            {
+                SelectedCharaparam.Tribe = 0;
             }
         }
 
@@ -429,12 +608,69 @@ namespace Albatross.Forms.Characters
 
         private void EvolutionFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (evolutionFlatComboBox.SelectedIndex == -1)
+            {
+                evolutionPictureBox.Image = null;
+                evolutionFlatComboBox.Text = "";
+            }
+            else
+            {
+                ICharaparam charaparam = Charaparams[evolutionFlatComboBox.SelectedIndex];
+                ICharabase charabase = Charabases.FirstOrDefault(x => x.BaseHash == charaparam.BaseHash);
 
+                if (charabase != null)
+                {
+                    string fileName = GameSupport.GetFileModelText(charabase.FileNamePrefix, charabase.FileNameNumber, charabase.FileNameVariant);
+
+                    try
+                    {
+                        byte[] imageData = GameOpened.Files["face_icon"].File.Directory.GetFileFromFullPath(GameOpened.Files["face_icon"].Path + "/" + fileName + ".xi");
+                        evolutionPictureBox.Image = IMGC.ToBitmap(imageData);
+                    }
+                    catch
+                    {
+                        evolutionPictureBox.Image = null;
+                    }
+                }
+            }
+
+            if (!evolutionFlatComboBox.Focused) return;
+
+            if (evolutionFlatComboBox.SelectedIndex != -1)
+            {
+                SelectedCharaparam.EvolveParam = Charaparams[evolutionFlatComboBox.SelectedIndex].ParamHash;
+                evolutionFlatNumericUpDown.Enabled = true;
+            }
+            else
+            {
+                SelectedCharaparam.EvolveOffset = -1;
+                SelectedCharaparam.EvolveParam = 0;
+                SelectedCharaparam.EvolveLevel = 0;
+                evolutionFlatNumericUpDown.Value = 0;
+                evolutionFlatNumericUpDown.Enabled = false;
+            }
+        }
+
+        private void EvolutionFlatComboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!evolutionFlatComboBox.Focused) return;
+
+            if (string.IsNullOrEmpty(evolutionFlatComboBox.Text))
+            {
+                SelectedCharaparam.EvolveOffset = -1;
+                SelectedCharaparam.EvolveParam = 0;
+                SelectedCharaparam.EvolveLevel = 0;
+                evolutionFlatNumericUpDown.Value = 0;
+                evolutionFlatNumericUpDown.Enabled = false;
+                evolutionPictureBox.Image = null;
+            }
         }
 
         private void EvolutionFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
+            if (!evolutionFlatNumericUpDown.Focused) return;
 
+            SelectedCharaparam.EvolveLevel = Convert.ToInt32(evolutionFlatNumericUpDown.Value);
         }
 
         private void ItemFlatComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -639,7 +875,7 @@ namespace Albatross.Forms.Characters
         {
             if (!attackFlatComboBox.Focused) return;
 
-            if (attackFlatComboBox.SelectedIndex != -1)
+            if (attackFlatComboBox.SelectedIndex == -1)
             {
                 SelectedCharaparam.AttackHash = 0;
             }
@@ -653,7 +889,7 @@ namespace Albatross.Forms.Characters
         {
             if (!techniqueFlatComboBox.Focused) return;
 
-            if (techniqueFlatComboBox.SelectedIndex != -1)
+            if (techniqueFlatComboBox.SelectedIndex == -1)
             {
                 SelectedCharaparam.TechniqueHash = 0;
             }
@@ -667,7 +903,7 @@ namespace Albatross.Forms.Characters
         {
             if (!inspiritFlatComboBox.Focused) return;
 
-            if (inspiritFlatComboBox.SelectedIndex != -1)
+            if (inspiritFlatComboBox.SelectedIndex == -1)
             {
                 SelectedCharaparam.InspiritHash = 0;
             }
@@ -681,7 +917,7 @@ namespace Albatross.Forms.Characters
         {
             if (!soultimateFlatComboBox.Focused) return;
 
-            if (soultimateFlatComboBox.SelectedIndex != -1)
+            if (soultimateFlatComboBox.SelectedIndex == -1)
             {
                 SelectedCharaparam.SoultimateHash = 0;
             }
@@ -695,7 +931,7 @@ namespace Albatross.Forms.Characters
         {
             if (!skillFlatComboBox.Focused) return;
 
-            if (skillFlatComboBox.SelectedIndex != -1)
+            if (skillFlatComboBox.SelectedIndex == -1)
             {
                 SelectedCharaparam.SkillHash = 0;
             }
