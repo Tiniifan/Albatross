@@ -29,41 +29,58 @@
         private void InitializeComponent()
         {
             this.faceIconPictureBox = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.medalText = new System.Windows.Forms.Label();
+            this.medalPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.faceIconPictureBox)).BeginInit();
+            this.medalPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // faceIconPictureBox
             // 
-            this.faceIconPictureBox.Location = new System.Drawing.Point(12, 27);
+            this.faceIconPictureBox.Location = new System.Drawing.Point(4, 3);
             this.faceIconPictureBox.Name = "faceIconPictureBox";
             this.faceIconPictureBox.Size = new System.Drawing.Size(512, 256);
-            this.faceIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.faceIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.faceIconPictureBox.TabIndex = 0;
             this.faceIconPictureBox.TabStop = false;
             this.faceIconPictureBox.Click += new System.EventHandler(this.FaceIconPictureBox_Click);
             // 
-            // label1
+            // medalText
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(232, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Choose your medal!";
+            this.medalText.AutoSize = true;
+            this.medalText.ForeColor = System.Drawing.Color.White;
+            this.medalText.Location = new System.Drawing.Point(232, 5);
+            this.medalText.Name = "medalText";
+            this.medalText.Size = new System.Drawing.Size(100, 13);
+            this.medalText.TabIndex = 1;
+            this.medalText.Text = "Choose your medal!";
+            // 
+            // medalPanel
+            // 
+            this.medalPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.medalPanel.AutoScroll = true;
+            this.medalPanel.Controls.Add(this.faceIconPictureBox);
+            this.medalPanel.Location = new System.Drawing.Point(12, 30);
+            this.medalPanel.Name = "medalPanel";
+            this.medalPanel.Size = new System.Drawing.Size(519, 263);
+            this.medalPanel.TabIndex = 2;
             // 
             // MedalWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(536, 297);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.faceIconPictureBox);
+            this.ClientSize = new System.Drawing.Size(543, 305);
+            this.Controls.Add(this.medalPanel);
+            this.Controls.Add(this.medalText);
             this.Name = "MedalWindow";
             this.Text = "MedalWindow";
+            this.SizeChanged += new System.EventHandler(this.MedalWindow_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.faceIconPictureBox)).EndInit();
+            this.medalPanel.ResumeLayout(false);
+            this.medalPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -72,6 +89,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox faceIconPictureBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label medalText;
+        private System.Windows.Forms.Panel medalPanel;
     }
 }

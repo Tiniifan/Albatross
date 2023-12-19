@@ -131,6 +131,7 @@ namespace Albatross
             this.gameDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.gameDataGridView.Size = new System.Drawing.Size(543, 271);
             this.gameDataGridView.TabIndex = 5;
+            this.gameDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GameDataGridView_CellDoubleClick);
             // 
             // Column1
             // 
@@ -172,7 +173,6 @@ namespace Albatross
             this.MinimumSize = new System.Drawing.Size(478, 349);
             this.Name = "Home";
             this.Text = "Albatross";
-            this.Load += new System.EventHandler(this.Home_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gameDataGridView)).EndInit();

@@ -16,21 +16,11 @@ namespace Albatross.Yokai_Watch.Games.YW3
     {
         public string Name => "Yo-Kai Watch 3";
 
-        public Dictionary<uint, string> Attacks => Common.Attacks.YW3;
-
-        public Dictionary<uint, string> Techniques => Common.Techniques.YW3;
-
-        public Dictionary<uint, string> Inspirits => Common.Inspirits.YW3;
-
-        public Dictionary<uint, string> Soultimates => Common.Soultimates.YW3;
-
-        public Dictionary<uint, string> Skills => Common.Skills.YW3;
-
-        public Dictionary<uint, string> Items => Common.Items.YW3;
-
         public Dictionary<int, string> Tribes => Common.Tribes.YW3;
 
         public Dictionary<int, string> FoodsType => Common.FoodsType.YW3;
+
+        public Dictionary<int, string> ScoutablesType => Common.ScoutablesType.YW3;
 
         public ARC0 Game { get; set; }
 

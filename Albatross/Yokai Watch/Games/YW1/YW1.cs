@@ -19,21 +19,11 @@ namespace Albatross.Yokai_Watch.Games.YW1
     {
         public string Name => "Yo-Kai Watch 1";
 
-        public Dictionary<uint, string> Attacks => Common.Attacks.YW1;
-
-        public Dictionary<uint, string> Techniques => Common.Techniques.YW1;
-
-        public Dictionary<uint, string> Inspirits => Common.Inspirits.YW1;
-
-        public Dictionary<uint, string> Soultimates => Common.Soultimates.YW1;
-
-        public Dictionary<uint, string> Skills => Common.Skills.YW1;
-
-        public Dictionary<uint, string> Items => Common.Items.YW1;
-
         public Dictionary<int, string> Tribes => Common.Tribes.YW1;
 
         public Dictionary<int, string> FoodsType => Common.FoodsType.YW1;
+
+        public Dictionary<int, string> ScoutablesType => Common.ScoutablesType.YW1;
 
         public ARC0 Game { get; set; }
 

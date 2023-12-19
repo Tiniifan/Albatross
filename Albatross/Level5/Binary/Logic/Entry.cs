@@ -593,6 +593,20 @@ namespace Albatross.Level5.Binary.Logic
                 }
                 else
                 {
+                    //Console.WriteLine(structure + " " + valueIndex + " " + values.Length);
+
+                    if (values[valueIndex] is OffsetTextPair offsetTextPair)
+                    {
+                        if (propertyType == typeof(string))
+                        {
+                            values[valueIndex] = offsetTextPair.Text;
+                        }
+                        else
+                        {
+                            values[valueIndex] = offsetTextPair.Offset;
+                        }
+                    }
+
                     object convertedValue = Convert.ChangeType(values[valueIndex], propertyType);
                     property.SetValue(structure, convertedValue);
                     valueIndex++;

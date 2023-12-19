@@ -14,6 +14,7 @@ using Albatross.Yokai_Watch.Logic;
 using Albatross.Yokai_Watch.Games;
 using Albatross.Yokai_Watch.Common;
 using YKW1 = Albatross.Yokai_Watch.Games.YW1.Logic;
+using YKW2 = Albatross.Yokai_Watch.Games.YW2.Logic;
 
 namespace Albatross.Forms.Characters
 {
@@ -196,7 +197,7 @@ namespace Albatross.Forms.Characters
 
             // Prepare combobox 
             tribeFlatComboBox.Items.AddRange(GameOpened.Tribes.Values.ToArray());
-            scoutFlatComboBox.Items.AddRange(Ranks.YW.Values.ToArray());
+            scoutFlatComboBox.Items.AddRange(GameOpened.ScoutablesType.Values.ToArray());
             attackFlatComboBox.Items.AddRange(GetNames(BattleCommands.ToArray()).ToArray());
             techniqueFlatComboBox.Items.AddRange(attackFlatComboBox.Items.Cast<Object>().ToArray());
             inspiritFlatComboBox.Items.AddRange(attackFlatComboBox.Items.Cast<Object>().ToArray());
@@ -215,6 +216,33 @@ namespace Albatross.Forms.Characters
                 charaparamsWithEvolve.EvolveParam = charaevolve.ParamHash;
                 charaparamsWithEvolve.EvolveLevel = charaevolve.Level;
             }
+
+            if (GameOpened.Name == "Yo-Kai Watch 1")
+            {
+                label8.Enabled = true;
+                tribePictureBox.Enabled = true;
+                tribeFlatComboBox.Enabled = true;
+                label13.Enabled = false;
+                scoutFlatComboBox.Enabled = false;
+                maxStatFlatNumericUpDown1.Enabled = false;
+                maxStatFlatNumericUpDown2.Enabled = false;
+                maxStatFlatNumericUpDown3.Enabled = false;
+                maxStatFlatNumericUpDown4.Enabled = false;
+                maxStatFlatNumericUpDown5.Enabled = false;
+            }
+            else if (GameOpened.Name == "Yo-Kai Watch 2")
+            {
+                label8.Enabled = false;
+                tribePictureBox.Enabled = false;
+                tribeFlatComboBox.Enabled = false;
+                label13.Enabled = true;
+                scoutFlatComboBox.Enabled = true;
+                maxStatFlatNumericUpDown1.Enabled = true;
+                maxStatFlatNumericUpDown2.Enabled = true;
+                maxStatFlatNumericUpDown3.Enabled = true;
+                maxStatFlatNumericUpDown4.Enabled = true;
+                maxStatFlatNumericUpDown5.Enabled = true;
+            }
         }
 
         private void CharaparamWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -232,6 +260,9 @@ namespace Albatross.Forms.Characters
                 {
                     case "Yo-Kai Watch 1":
                         charaevolve = GameSupport.GetLogic<YKW1.Charaevolve>();
+                        break;
+                    case "Yo-Kai Watch 2":
+                        charaevolve = GameSupport.GetLogic<YKW2.Charaevolve>();
                         break;
                 }
 
@@ -262,6 +293,9 @@ namespace Albatross.Forms.Characters
             {
                 case "Yo-Kai Watch 1":
                     newCharaparam = GameSupport.GetLogic<YKW1.Charaparam>();
+                    break;
+                case "Yo-Kai Watch 2":
+                    newCharaparam = GameSupport.GetLogic<YKW2.Charaparam>();
                     break;
             }
 
@@ -389,6 +423,7 @@ namespace Albatross.Forms.Characters
             }
 
             SetComboBox(SelectedCharaparam.Tribe, GameOpened.Tribes, tribeFlatComboBox);
+            SetComboBox(SelectedCharaparam.ScoutableHash, GameOpened.ScoutablesType, scoutFlatComboBox);
             experienceCurveFlatNumericUpDown.Value = SelectedCharaparam.ExperienceCurve;
             medalFlatNumericUpDown.Value = SelectedCharaparam.MedaliumOffset;
             isShownFlatCheckBox.Checked = SelectedCharaparam.ShowInMedalium;

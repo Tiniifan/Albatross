@@ -9,21 +9,11 @@ namespace Albatross.Yokai_Watch.Games
     {
         string Name { get; }
 
-        Dictionary<uint, string> Attacks { get; }
-
-        Dictionary<uint, string> Techniques { get; }
-
-        Dictionary<uint, string> Inspirits { get; }
-
-        Dictionary<uint, string> Soultimates { get; }
-
-        Dictionary<uint, string> Skills { get; }
-
-        Dictionary<uint, string> Items { get; }
-
         Dictionary<int, string> Tribes { get; }
 
         Dictionary<int, string> FoodsType { get; }
+
+        Dictionary<int, string> ScoutablesType { get; }
 
         ARC0 Game { get; set; }
 

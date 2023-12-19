@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Albatross.Yokai_Watch.Logic;
+﻿using Albatross.Yokai_Watch.Logic;
 
 namespace Albatross.Yokai_Watch.Games.YW1.Logic
 {

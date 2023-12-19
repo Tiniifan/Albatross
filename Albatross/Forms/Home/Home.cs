@@ -22,11 +22,17 @@ namespace Albatross
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewProjectWindow newProjectWindow = new NewProjectWindow();
-            newProjectWindow.ShowDialog();
+
+            if (newProjectWindow.ShowDialog() == DialogResult.OK)
+            {
+                LoadGame();
+            }
         }
 
         private void LoadGame()
         {
+            gameDataGridView.Rows.Clear();
+
             if (File.Exists("./AlbatrosTemp.txt"))
             {
                 var lines = File.ReadAllLines("./AlbatrosTemp.txt");
@@ -41,12 +47,7 @@ namespace Albatross
             deleteToolStripMenuItem.Enabled = gameDataGridView.RowCount > 0;
         }
 
-        public void Home_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenGame()
         {
             IGame game = null;
 
@@ -56,7 +57,7 @@ namespace Albatross
             string projectLanguage = gameDataGridView.Rows[selectedIndex].Cells[2].Value.ToString();
             string projectFolder = gameDataGridView.Rows[selectedIndex].Cells[3].Value.ToString();
 
-            switch(projectGame)
+            switch (projectGame)
             {
                 case "yw1":
                     game = new YW1(projectFolder, projectLanguage);
@@ -67,10 +68,21 @@ namespace Albatross
                 case "yw3":
                     game = new YW3(projectFolder, projectLanguage);
                     break;
+                default:
+                    MessageBox.Show("Can't open this project because the game isn't supported", "Unsupported game", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
             }
 
-            HomeGame homeGame = new HomeGame(projectName, game);
-            homeGame.Show();
+            if (game != null)
+            {
+                HomeGame homeGame = new HomeGame(projectName, game);
+                homeGame.Show();
+            }
+        }
+
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenGame();
         }
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -95,9 +107,12 @@ namespace Albatross
                 File.WriteAllLines("./AlbatrosTemp.txt", lines.ToArray());
             }
 
-            gameDataGridView.Rows.Clear();
-
             LoadGame();
+        }
+
+        private void GameDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OpenGame();
         }
     }
 }

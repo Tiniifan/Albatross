@@ -132,18 +132,13 @@ namespace Albatross
 
             if (projectCreated)
             {
+                this.DialogResult = DialogResult.OK;
                 MessageBox.Show("Project successful created!");
                 Close();
             } else
             {
                 MessageBox.Show("Cannot open this ExtractedRomfs folder due to a missing file.");
             }
-        }
-
-        private void NewProjectWindow_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Home home = (Home)Application.OpenForms["Home"];
-            home.Home_Load(sender, e);
         }
     }
 }

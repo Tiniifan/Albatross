@@ -14,6 +14,7 @@ using Albatross.Yokai_Watch.Logic;
 using Albatross.Yokai_Watch.Games;
 using Albatross.Yokai_Watch.Common;
 using YKW1 = Albatross.Yokai_Watch.Games.YW1.Logic;
+using YKW2 = Albatross.Yokai_Watch.Games.YW2.Logic;
 
 namespace Albatross.Forms.Characters
 {
@@ -77,6 +78,17 @@ namespace Albatross.Forms.Characters
 
             // Prepare combobox 
             characterListBox.Items.AddRange(GetNames(Charascales.ToArray()).ToArray());
+
+            if (GameOpened.Name == "Yo-Kai Watch 1")
+            {
+                scaleText6.Enabled = false;
+                scaleFlatNumericUpDown6.Enabled = false;
+            }
+            else
+            {
+                scaleText6.Enabled = true;
+                scaleFlatNumericUpDown6.Enabled = true;
+            }
         }
 
         private void CharascaleWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -95,6 +107,9 @@ namespace Albatross.Forms.Characters
                 {
                     case "Yo-Kai Watch 1":
                         newCharascale = GameSupport.GetLogic<YKW1.Charascale>();
+                        break;
+                    case "Yo-Kai Watch 2":
+                        newCharascale = GameSupport.GetLogic<YKW2.Charascale>();
                         break;
                 }
 
@@ -204,6 +219,7 @@ namespace Albatross.Forms.Characters
             scaleFlatNumericUpDown3.Value = Convert.ToDecimal(SelectedCharascale.Scale3);
             scaleFlatNumericUpDown4.Value = Convert.ToDecimal(SelectedCharascale.Scale4);
             scaleFlatNumericUpDown5.Value = Convert.ToDecimal(SelectedCharascale.Scale5);
+            scaleFlatNumericUpDown6.Value = Convert.ToDecimal(SelectedCharascale.Scale6);
 
             characterGroupBox.Enabled = true;
         }
@@ -244,6 +260,48 @@ namespace Albatross.Forms.Characters
                     characterListBox.SelectedIndex = Array.IndexOf(names, focusedText);
                 }
             }
+        }
+
+        private void ScaleFlatNumericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            if (!scaleFlatNumericUpDown1.Focused) return;
+
+            SelectedCharascale.Scale1 = Convert.ToInt32(scaleFlatNumericUpDown1.Value);
+        }
+
+        private void ScaleFlatNumericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            if (!scaleFlatNumericUpDown2.Focused) return;
+
+            SelectedCharascale.Scale2 = Convert.ToInt32(scaleFlatNumericUpDown2.Value);
+        }
+
+        private void ScaleFlatNumericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            if (!scaleFlatNumericUpDown3.Focused) return;
+
+            SelectedCharascale.Scale3 = Convert.ToInt32(scaleFlatNumericUpDown3.Value);
+        }
+
+        private void ScaleFlatNumericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+            if (!scaleFlatNumericUpDown4.Focused) return;
+
+            SelectedCharascale.Scale4 = Convert.ToInt32(scaleFlatNumericUpDown4.Value);
+        }
+
+        private void ScaleFlatNumericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+            if (!scaleFlatNumericUpDown5.Focused) return;
+
+            SelectedCharascale.Scale5 = Convert.ToInt32(scaleFlatNumericUpDown5.Value);
+        }
+
+        private void ScaleFlatNumericUpDown6_ValueChanged(object sender, EventArgs e)
+        {
+            if (!scaleFlatNumericUpDown6.Focused) return;
+
+            SelectedCharascale.Scale6 = Convert.ToInt32(scaleFlatNumericUpDown6.Value);
         }
     }
 }

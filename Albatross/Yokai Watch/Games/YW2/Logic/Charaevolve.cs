@@ -1,8 +1,10 @@
-﻿namespace Albatross.Yokai_Watch.Games.YW2.Logic
+﻿using Albatross.Yokai_Watch.Logic;
+
+namespace Albatross.Yokai_Watch.Games.YW2.Logic
 {
-    public class Charaevolve
+    public class Charaevolve : ICharaevolve
     {
-        public int Level { get; set; }
-        public int ParamHash { get; set; }
+        public new int Level { get => base.Level; set => base.Level = value; }
+        public new int ParamHash { get => base.ParamHash; set => base.ParamHash = value; }
     }
 }

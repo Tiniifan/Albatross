@@ -33,12 +33,12 @@ namespace Albatross
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.gameFlatComboBox1 = new Albatross.UI.FlatComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pathTextBox = new System.Windows.Forms.TextBox();
             this.languageFlatComboBox = new Albatross.UI.FlatComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.gameFlatComboBox1 = new Albatross.UI.FlatComboBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -80,23 +80,6 @@ namespace Albatross
             this.label4.Size = new System.Drawing.Size(107, 13);
             this.label4.TabIndex = 34;
             this.label4.Text = "ExtractedRomfs Path";
-            // 
-            // gameFlatComboBox1
-            // 
-            this.gameFlatComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.gameFlatComboBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.gameFlatComboBox1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.gameFlatComboBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gameFlatComboBox1.FormattingEnabled = true;
-            this.gameFlatComboBox1.Items.AddRange(new object[] {
-            "Yo-Kai Watch 1",
-            "Yo-Kai Watch 2",
-            "Yo-Kai Watch 3"});
-            this.gameFlatComboBox1.Location = new System.Drawing.Point(130, 54);
-            this.gameFlatComboBox1.Name = "gameFlatComboBox1";
-            this.gameFlatComboBox1.Size = new System.Drawing.Size(200, 21);
-            this.gameFlatComboBox1.TabIndex = 33;
-            this.gameFlatComboBox1.SelectedIndexChanged += new System.EventHandler(this.GameFlatComboBox1_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -150,6 +133,23 @@ namespace Albatross
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
+            // gameFlatComboBox1
+            // 
+            this.gameFlatComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.gameFlatComboBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.gameFlatComboBox1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.gameFlatComboBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gameFlatComboBox1.FormattingEnabled = true;
+            this.gameFlatComboBox1.Items.AddRange(new object[] {
+            "Yo-Kai Watch 1",
+            "Yo-Kai Watch 2",
+            "Yo-Kai Watch 3"});
+            this.gameFlatComboBox1.Location = new System.Drawing.Point(130, 54);
+            this.gameFlatComboBox1.Name = "gameFlatComboBox1";
+            this.gameFlatComboBox1.Size = new System.Drawing.Size(200, 21);
+            this.gameFlatComboBox1.TabIndex = 33;
+            this.gameFlatComboBox1.SelectedIndexChanged += new System.EventHandler(this.GameFlatComboBox1_SelectedIndexChanged);
+            // 
             // saveButton
             // 
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
@@ -176,7 +176,6 @@ namespace Albatross
             this.MinimumSize = new System.Drawing.Size(380, 232);
             this.Name = "NewProjectWindow";
             this.Text = "NewProjectWindow";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NewProjectWindow_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

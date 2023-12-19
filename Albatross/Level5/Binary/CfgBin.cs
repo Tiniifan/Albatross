@@ -446,6 +446,10 @@ namespace Albatross.Level5.Binary
                     Entry newItem = new Entry(name, variables, Encoding);
 
                     string entryNameWithMaxDepth = depth.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+                    if (entryNameWithMaxDepth.Contains("_LIST_BEG_"))
+                    {
+                        entryNameWithMaxDepth = entryNameWithMaxDepth.Replace("_LIST_BEG_", "_BEG_");
+                    }
                     string[] entryNameWithMaxDepthParts = entryNameWithMaxDepth.Split('_');
                     string entryBaseName = string.Join("_", entryNameWithMaxDepthParts.Take(entryNameWithMaxDepthParts.Length - 2));
 

@@ -66,7 +66,6 @@
             this.tribePictureBox = new System.Windows.Forms.PictureBox();
             this.tribeFlatComboBox = new Albatross.UI.FlatComboBox();
             this.scoutFlatComboBox = new Albatross.UI.FlatComboBox();
-            this.rankPictureBox = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -144,7 +143,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.medalFlatNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.experienceCurveFlatNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tribePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rankPictureBox)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -525,7 +523,6 @@
             this.groupBox2.Controls.Add(this.tribePictureBox);
             this.groupBox2.Controls.Add(this.tribeFlatComboBox);
             this.groupBox2.Controls.Add(this.scoutFlatComboBox);
-            this.groupBox2.Controls.Add(this.rankPictureBox);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox2.Location = new System.Drawing.Point(19, 15);
@@ -644,15 +641,6 @@
             this.scoutFlatComboBox.Size = new System.Drawing.Size(130, 21);
             this.scoutFlatComboBox.TabIndex = 61;
             this.scoutFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.ScoutFlatComboBox_SelectedIndexChanged);
-            // 
-            // rankPictureBox
-            // 
-            this.rankPictureBox.Location = new System.Drawing.Point(247, 44);
-            this.rankPictureBox.Name = "rankPictureBox";
-            this.rankPictureBox.Size = new System.Drawing.Size(24, 24);
-            this.rankPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.rankPictureBox.TabIndex = 60;
-            this.rankPictureBox.TabStop = false;
             // 
             // label13
             // 
@@ -1499,7 +1487,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.medalFlatNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.experienceCurveFlatNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tribePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rankPictureBox)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1575,7 +1562,6 @@
         private System.Windows.Forms.PictureBox tribePictureBox;
         private UI.FlatComboBox tribeFlatComboBox;
         private UI.FlatComboBox scoutFlatComboBox;
-        private System.Windows.Forms.PictureBox rankPictureBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox4;

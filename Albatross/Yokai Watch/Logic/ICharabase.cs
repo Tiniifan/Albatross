@@ -18,10 +18,11 @@ namespace Albatross.Yokai_Watch.Logic
         public int Rank { get; set; }
         public bool IsRare { get; set; }
         public bool IsLegend { get; set; }
-        public int MedalPosX { get; set; }
-        public int MedalPosY { get; set; }
+        public int MedalPosX = -1;
+        public int MedalPosY = -1;
         public int FavoriteFoodHash { get; set; }
         public int HatedFoodHash { get; set; }
+        public bool IsClassic { get; set; }
         public bool IsYokai { get; set; }
     }
 }

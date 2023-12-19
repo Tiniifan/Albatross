@@ -20,8 +20,8 @@ Albatross is a project to create an application that can modify some Yo-Kai Watc
 The Tool is written in C# and the project is Open Source, everyone can contribute.
 
 **Supported Game**
-- Yo-Kai Watch ❌
-- Yo-Kai Watch 2 ✅ (Only tryed on Psychic Specters)
+- Yo-Kai Watch ✅
+- Yo-Kai Watch 2 ✅ (BF/FS/PS)
 - Yo-kai Watch 3 ❌
 
 **Special Thanks**  
@@ -41,8 +41,7 @@ My tool couldn't have been done without the logic that I could learn by studying
 1. Decrypt your game (google it)
 2. After decrypting your game you will get ExtractedRomFs folder
 3. Open Albatross create a new project, specify project name, project game, project language and select the ExtractedRomFs
-The Tool is written in C# and the project is Open Source, everyone can contribute.
-4. Load your new Project, Allbatross will open HomeGame window, click on Yokai button to open YokaiWindow
+4. Load your new Project, Allbatross will open HomeGame window, click on an option like charaparam to edit yokais
 5. Edit some stuff
 6. When it's done, on the HomeGame window click on Save, wait... During save process Albatross will freeze, don't panic!  
 - **Apply your mod on Citra:**
