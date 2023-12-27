@@ -44,5 +44,8 @@
         public bool ShowInMedalium { get; set; }
         public int ScoutableHash { get; set; }
         public int FavoriteDonut { get; set; }
+        public int Speed { get; set; }
+        public int Strongest { get; set; }
+        public int Weakness { get; set; }
     }
 }

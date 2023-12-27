@@ -274,5 +274,33 @@ namespace Albatross.Yokai_Watch.Games.YW2
                     .Select(x => x.ToClass<Battlecommand>())
                 .ToArray();
         }
+
+        public string[] GetMapWhoContainsEncounter()
+        {
+            return null;
+        }
+
+        public (IEncountTable[], IEncountChara[]) GetMapEncounter(string mapName)
+        {
+            VirtualDirectory mapFolder = Game.Directory.GetFolderFromFullPath(Files["map_encounter"].Path);
+            string lastEncountConfigFile = mapFolder.Files.Keys.Where(x => x.StartsWith(mapName + "_enc_")).OrderByDescending(x => x).First();
+
+            CfgBin encountConfig = new CfgBin();
+            encountConfig.Open(Game.Directory.GetFileFromFullPath(Files["map_encounter"].Path + mapName + "/" + lastEncountConfigFile));
+
+            //IEncountTable[] encountTable = encountConfig.Entries
+                //.Where(x => x.GetName() == "ENCOUNT_TABLE_BEGIN")
+                //.SelectMany(x => x.Children)
+                //.Select(x => x.ToClass<EncountTable>())
+                //.ToArray();
+
+            //IEncountChara[] encountChara = encountConfig.Entries
+                //.Where(x => x.GetName() == "ENCOUNT_CHARA_BEGIN")
+                //.SelectMany(x => x.Children)
+                //.Select(x => x.ToClass<EncountChara>())
+                //.ToArray();
+
+            return (new IEncountTable[] { }, new IEncountChara[] {});
+        }
     }
 }

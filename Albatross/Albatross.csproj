@@ -84,6 +84,12 @@
     <Compile Include="Forms\Characters\NewCharabaseWindow.Designer.cs">
       <DependentUpon>NewCharabaseWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Encounters\EncounterWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Encounters\EncounterWindow.Designer.cs">
+      <DependentUpon>EncounterWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Home\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +162,7 @@
     <Compile Include="Yokai Watch\Common\Effects.cs" />
     <Compile Include="Yokai Watch\Common\FoodsType.cs" />
     <Compile Include="Yokai Watch\Common\Ranks.cs" />
+    <Compile Include="Yokai Watch\Common\Roles.cs" />
     <Compile Include="Yokai Watch\Common\ScoutablesType.cs" />
     <Compile Include="Yokai Watch\Common\Tribes.cs" />
     <Compile Include="Forms\Home\HomeGame.cs">
@@ -178,6 +185,7 @@
     <Compile Include="Yokai Watch\Games\YW1\Logic\Charaevolve.cs" />
     <Compile Include="Yokai Watch\Games\YW1\Logic\Charaparam.cs" />
     <Compile Include="Yokai Watch\Games\YW1\Logic\Charascale.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\Logic\EncountConfig.cs" />
     <Compile Include="Yokai Watch\Games\YW1\Logic\Fusion.cs" />
     <Compile Include="Yokai Watch\Games\YW1\Logic\Itemconfig.cs" />
     <Compile Include="Yokai Watch\Games\YW1\YW1Support.cs" />
@@ -202,11 +210,17 @@
     <Compile Include="Yokai Watch\Games\YW3\Logic\Skillconfig.cs" />
     <Compile Include="Yokai Watch\Games\YW3\YW3.cs" />
     <Compile Include="Yokai Watch\Games\YW3\YW3Support.cs" />
+    <Compile Include="Yokai Watch\Games\YWB\Logic\Charabase.cs" />
+    <Compile Include="Yokai Watch\Games\YWB\Logic\Charaparam.cs" />
+    <Compile Include="Yokai Watch\Games\YWB\Logic\Charascale.cs" />
+    <Compile Include="Yokai Watch\Games\YWB\YWBSupport.cs" />
+    <Compile Include="Yokai Watch\Games\YWB\YWB.cs" />
     <Compile Include="Yokai Watch\Logic\IBattleCommand.cs" />
     <Compile Include="Yokai Watch\Logic\ICharaabilityConfig.cs" />
     <Compile Include="Yokai Watch\Logic\ICharabase.cs" />
     <Compile Include="Yokai Watch\Logic\ICharaevolve.cs" />
     <Compile Include="Yokai Watch\Logic\ICharaparam.cs" />
+    <Compile Include="Yokai Watch\Logic\IEncountConfig.cs" />
     <Compile Include="Yokai Watch\Logic\IItem.cs" />
     <Compile Include="Yokai Watch\Logic\ICharascale.cs" />
     <EmbeddedResource Include="Forms\Characters\CharabaseWindow.resx">
@@ -223,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Characters\NewCharabaseWindow.resx">
       <DependentUpon>NewCharabaseWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Encounters\EncounterWindow.resx">
+      <DependentUpon>EncounterWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
@@ -262,16 +279,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type01.xi.00.png" />
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type02.xi.00.png" />
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type03.xi.00.png" />
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type04.xi.00.png" />
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type05.xi.00.png" />
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type06.xi.00.png" />
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type07.xi.00.png" />
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type08.xi.00.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\Rank Icon\Rank_A.png" />
     <EmbeddedResource Include="Resources\Rank Icon\Rank_B.png" />
     <EmbeddedResource Include="Resources\Rank Icon\Rank_C.png" />
@@ -280,14 +287,21 @@
     <EmbeddedResource Include="Resources\Rank Icon\Rank_S.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type00.xi.00.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type09.xi.00.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Icon.ico" />
     <Content Include="LICENSE-APACHE.txt" />
+    <EmbeddedResource Include="Resources\Tribe Icon\boss.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\brave.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\charming.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\eerie.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\enma.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\heartful.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\mysterious.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\shady.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\slippery.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\tough.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\untribe.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\wandroid.png" />
+    <EmbeddedResource Include="Resources\Tribe Icon\wicked.png" />
     <EmbeddedResource Include="Resources\Food Icon\bread.png" />
     <EmbeddedResource Include="Resources\Food Icon\candy.png" />
     <EmbeddedResource Include="Resources\Food Icon\chinese_food.png" />
@@ -307,9 +321,6 @@
     <EmbeddedResource Include="Resources\Food Icon\sushi.png" />
     <EmbeddedResource Include="Resources\Food Icon\sweets.png" />
     <EmbeddedResource Include="Resources\Food Icon\vegetables.png" />
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type010.xi.00.png" />
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type011.xi.00.png" />
-    <EmbeddedResource Include="Resources\Tribe Icon\y_type012.xi.00.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -603,7 +603,8 @@ namespace Albatross.Forms.Characters
             }
             else
             {
-                SetPictureBox(tribePictureBox, "Albatross.Resources.Tribe_Icon.y_type0" + SelectedCharaparam.Tribe + ".xi.00.png");
+                string tribeFile = tribeFlatComboBox.SelectedItem.ToString().ToLower().Replace(" ", "_");
+                SetPictureBox(tribePictureBox, "Albatross.Resources.Tribe_Icon." + tribeFile + ".png");
             }
 
             if (!tribeFlatComboBox.Focused) return;

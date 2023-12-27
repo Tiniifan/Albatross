@@ -6,6 +6,7 @@ using Albatross.Yokai_Watch;
 using Albatross.Yokai_Watch.Games;
 using Albatross.Yokai_Watch.Games.YW2;
 using Albatross.Forms.Characters;
+using Albatross.Forms.Encounters;
 
 namespace Albatross
 {
@@ -54,6 +55,10 @@ namespace Albatross
                     break;
                 case "Charaparam":
                     CharaparamButton_Click(sender, e);
+                    break;
+                case "Encounters":
+                    EncounterWindow encounterWindow = new EncounterWindow(Game);
+                    encounterWindow.ShowDialog();
                     break;
             }
         }

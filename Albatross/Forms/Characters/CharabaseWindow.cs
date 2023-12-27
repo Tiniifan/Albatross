@@ -116,6 +116,9 @@ namespace Albatross.Forms.Characters
                 } else if (GameOpened.Name == "Yo-Kai Watch 2")
                 {
                     medalPictureBox.Image = CropMedal(x, y, 44);
+                } else if (GameOpened.Name == "Yo-Kai Watch Blaster")
+                {
+                    medalPictureBox.Image = CropMedal(x, y, 44);
                 }
             } else
             {
@@ -149,6 +152,7 @@ namespace Albatross.Forms.Characters
             // Prepare combobox 
             tribeFlatComboBox.Items.AddRange(GameOpened.Tribes.Values.ToArray());
             rankFlatComboBox.Items.AddRange(Ranks.YW.Values.ToArray());
+            roleFlatComboBox.Items.AddRange(Roles.YWB.Values.ToArray());
             favoritefoodFlatComboBox.Items.AddRange(GameOpened.FoodsType.Values.ToArray());
             hatedFoodFlatComboBox.Items.AddRange(GameOpened.FoodsType.Values.ToArray());
             modelFlatComboBox.Items.AddRange(GameOpened.Files["model"].File.Directory.GetFolderFromFullPath(GameOpened.Files["model"].Path).Folders.Select(x => x.Name).ToArray());
@@ -162,9 +166,38 @@ namespace Albatross.Forms.Characters
                 tribePictureBox.Enabled = false;
                 tribeFlatComboBox.Enabled = false;
                 isClassicFlatCheckBox.Enabled = false;
-            } else
+                isClassicFlatCheckBox.Enabled = false;
+                label9.Enabled = false;
+                rolePictureBox.Enabled = false;
+                roleFlatComboBox.Enabled = false;
+                isClassicFlatCheckBox.Enabled = false;
+                foodGroupBox.Enabled = true;
+            }
+            else if (GameOpened.Name == "Yo-Kai Watch 2")
             {
+                label8.Enabled = true;
+                tribePictureBox.Enabled = true;
+                tribeFlatComboBox.Enabled = true;
                 isClassicFlatCheckBox.Enabled = true;
+                isClassicFlatCheckBox.Enabled = true;
+                label9.Enabled = true;
+                rolePictureBox.Enabled = true;
+                roleFlatComboBox.Enabled = true;
+                isClassicFlatCheckBox.Enabled = true;
+                foodGroupBox.Enabled = true;
+            }
+            else if (GameOpened.Name == "Yo-Kai Watch Blaster")
+            {
+                label8.Enabled = true;
+                tribePictureBox.Enabled = true;
+                tribeFlatComboBox.Enabled = true;
+                isClassicFlatCheckBox.Enabled = true;
+                isClassicFlatCheckBox.Enabled = true;
+                label9.Enabled = true;
+                rolePictureBox.Enabled = true;
+                roleFlatComboBox.Enabled = true;
+                isClassicFlatCheckBox.Enabled = true;
+                foodGroupBox.Enabled = false;
             }
         }
 
@@ -308,7 +341,7 @@ namespace Albatross.Forms.Characters
             }
 
             baseGroupBox.Enabled = SelectedCharabase.IsYokai;
-            foodGroupBox.Enabled = SelectedCharabase.IsYokai;
+            foodGroupBox.Enabled = SelectedCharabase.IsYokai && GameOpened.Name != "Yo-Kai Watch Blaster";
             descriptionGroupBox.Enabled = SelectedCharabase.IsYokai;
 
             if (SelectedCharabase.MedalPosX > -1 && SelectedCharabase.MedalPosY > -1)
@@ -318,7 +351,8 @@ namespace Albatross.Forms.Characters
                 medalXFlatNumericUpDown.Enabled = true;
                 medalYFlatNumericUpDown.Enabled = true;
                 SetMedal(true);
-            } else
+            } 
+            else
             {
                 medalXFlatNumericUpDown.Enabled = false;
                 medalYFlatNumericUpDown.Enabled = false;
@@ -334,6 +368,7 @@ namespace Albatross.Forms.Characters
                 isClassicFlatCheckBox.Checked = SelectedCharabase.IsClassic;
                 SetComboBox(SelectedCharabase.Tribe, GameOpened.Tribes, tribeFlatComboBox);
                 SetComboBox(SelectedCharabase.Rank, Ranks.YW, rankFlatComboBox);
+                SetComboBox(SelectedCharabase.Role, Roles.YWB, roleFlatComboBox);
                 SetComboBox(SelectedCharabase.FavoriteFoodHash, GameOpened.FoodsType, favoritefoodFlatComboBox);
                 SetComboBox(SelectedCharabase.HatedFoodHash, GameOpened.FoodsType, hatedFoodFlatComboBox);
             }
@@ -462,6 +497,10 @@ namespace Albatross.Forms.Characters
             {
                     medalSize = 44;
             }
+            else if (GameOpened.Name == "Yo-Kai Watch Blaster")
+            {
+                medalSize = 44;
+            }
 
             MedalWindow medalWindow = new MedalWindow(FaceIcon, medalSize);
             medalWindow.ShowDialog();
@@ -506,7 +545,8 @@ namespace Albatross.Forms.Characters
             }
             else
             {
-                SetPictureBox(tribePictureBox, "Albatross.Resources.Tribe_Icon.y_type0" + SelectedCharabase.Tribe + ".xi.00.png");
+                string tribeFile = tribeFlatComboBox.SelectedItem.ToString().ToLower().Replace(" ", "_");
+                SetPictureBox(tribePictureBox, "Albatross.Resources.Tribe_Icon." + tribeFile + ".png");
             }
 
             if (!tribeFlatComboBox.Focused) return;
@@ -540,6 +580,29 @@ namespace Albatross.Forms.Characters
             else
             {
                 SelectedCharabase.Rank = 0;
+            }
+        }
+
+        private void RoleFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (roleFlatComboBox.SelectedIndex == -1)
+            {
+                rolePictureBox.Image = null;
+            }
+            else
+            {
+                // To do
+            }
+
+            if (!roleFlatComboBox.Focused) return;
+
+            if (roleFlatComboBox.SelectedIndex != -1)
+            {
+                SelectedCharabase.Role = Roles.YWB.Values.ToList().IndexOf(roleFlatComboBox.SelectedItem.ToString());
+            }
+            else
+            {
+                SelectedCharabase.Role = 0;
             }
         }
 

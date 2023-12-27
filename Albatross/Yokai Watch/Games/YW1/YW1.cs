@@ -52,6 +52,7 @@ namespace Albatross.Yokai_Watch.Games.YW1
                 { "face_icon", new GameFile(Game, "/data/menu/face_icon") },
                 { "item_icon", new GameFile(Game, "/data/menu/item_icon") },
                 { "model", new GameFile(Game, "/data/character") },
+                { "map_encounter", new GameFile(Game, "/data/res/map") },
             };
         }
 
@@ -254,6 +255,41 @@ namespace Albatross.Yokai_Watch.Games.YW1
                 .SelectMany(x => x.Children)
                 .Select(x => x.ToClass<BattleCommand>())
                 .ToArray();
+        }
+
+        public string[] GetMapWhoContainsEncounter()
+        {
+            VirtualDirectory mapEncounterFolder = Game.Directory.GetFolderFromFullPath("/data/res/map");
+
+            return mapEncounterFolder.Folders
+                    .Where(folder =>
+                        folder.Files.Any(file =>
+                        file.Key.StartsWith(folder.Name + "_enc_")))
+                    .Select(folder => folder.Name)
+                    .ToArray();
+        }
+
+        public (IEncountTable[], IEncountChara[]) GetMapEncounter(string mapName)
+        {
+            VirtualDirectory mapFolder = Game.Directory.GetFolderFromFullPath(Files["map_encounter"].Path);
+            string lastEncountConfigFile = mapFolder.GetFolder(mapName).Files.Keys.Where(x => x.StartsWith(mapName + "_enc_") && !x.Contains("_enc_pos")).OrderByDescending(x => x).First();
+
+            CfgBin encountConfig = new CfgBin();
+            encountConfig.Open(Game.Directory.GetFileFromFullPath(Files["map_encounter"].Path + "/" + mapName + "/" + lastEncountConfigFile));
+
+            IEncountTable[] encountTable = encountConfig.Entries
+                .Where(x => x.GetName() == "ENCOUNT_TABLE_BEGIN")
+                .SelectMany(x => x.Children)
+                .Select(x => x.ToClass<EncountTable>())
+                .ToArray();
+
+            IEncountChara[] encountChara = encountConfig.Entries
+                .Where(x => x.GetName() == "ENCOUNT_CHARA_BEGIN")
+                .SelectMany(x => x.Children)
+                .Select(x => x.ToClass<EncountChara>())
+                .ToArray();
+
+            return (encountTable, encountChara);
         }
     }
 }

@@ -41,7 +41,9 @@
             this.facePictureBox = new System.Windows.Forms.PictureBox();
             this.characterGroupBox = new System.Windows.Forms.GroupBox();
             this.baseGroupBox = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.scaleText6 = new System.Windows.Forms.Label();
+            this.scaleFlatNumericUpDown6 = new Albatross.UI.FlatNumericUpDown();
+            this.scaleText5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,18 +53,16 @@
             this.scaleFlatNumericUpDown3 = new Albatross.UI.FlatNumericUpDown();
             this.scaleFlatNumericUpDown2 = new Albatross.UI.FlatNumericUpDown();
             this.scaleFlatNumericUpDown1 = new Albatross.UI.FlatNumericUpDown();
-            this.scaleText6 = new System.Windows.Forms.Label();
-            this.scaleFlatNumericUpDown6 = new Albatross.UI.FlatNumericUpDown();
             this.characterContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).BeginInit();
             this.characterGroupBox.SuspendLayout();
             this.baseGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown6)).BeginInit();
             this.SuspendLayout();
             // 
             // characterListBox
@@ -184,7 +184,7 @@
             // 
             this.baseGroupBox.Controls.Add(this.scaleText6);
             this.baseGroupBox.Controls.Add(this.scaleFlatNumericUpDown6);
-            this.baseGroupBox.Controls.Add(this.label7);
+            this.baseGroupBox.Controls.Add(this.scaleText5);
             this.baseGroupBox.Controls.Add(this.label6);
             this.baseGroupBox.Controls.Add(this.label4);
             this.baseGroupBox.Controls.Add(this.label3);
@@ -202,14 +202,47 @@
             this.baseGroupBox.TabStop = false;
             this.baseGroupBox.Text = "Scale";
             // 
-            // label7
+            // scaleText6
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(30, 127);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 13);
-            this.label7.TabIndex = 78;
-            this.label7.Text = "Scale 5";
+            this.scaleText6.AutoSize = true;
+            this.scaleText6.Location = new System.Drawing.Point(30, 151);
+            this.scaleText6.Name = "scaleText6";
+            this.scaleText6.Size = new System.Drawing.Size(43, 13);
+            this.scaleText6.TabIndex = 80;
+            this.scaleText6.Text = "Scale 6";
+            // 
+            // scaleFlatNumericUpDown6
+            // 
+            this.scaleFlatNumericUpDown6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.scaleFlatNumericUpDown6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.scaleFlatNumericUpDown6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.scaleFlatNumericUpDown6.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.scaleFlatNumericUpDown6.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown6.Location = new System.Drawing.Point(79, 149);
+            this.scaleFlatNumericUpDown6.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.scaleFlatNumericUpDown6.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.scaleFlatNumericUpDown6.Name = "scaleFlatNumericUpDown6";
+            this.scaleFlatNumericUpDown6.Size = new System.Drawing.Size(130, 20);
+            this.scaleFlatNumericUpDown6.TabIndex = 79;
+            this.scaleFlatNumericUpDown6.ValueChanged += new System.EventHandler(this.ScaleFlatNumericUpDown6_ValueChanged);
+            // 
+            // scaleText5
+            // 
+            this.scaleText5.AutoSize = true;
+            this.scaleText5.Location = new System.Drawing.Point(30, 127);
+            this.scaleText5.Name = "scaleText5";
+            this.scaleText5.Size = new System.Drawing.Size(43, 13);
+            this.scaleText5.TabIndex = 78;
+            this.scaleText5.Text = "Scale 5";
             // 
             // label6
             // 
@@ -367,39 +400,6 @@
             this.scaleFlatNumericUpDown1.TabIndex = 69;
             this.scaleFlatNumericUpDown1.ValueChanged += new System.EventHandler(this.ScaleFlatNumericUpDown1_ValueChanged);
             // 
-            // scaleText6
-            // 
-            this.scaleText6.AutoSize = true;
-            this.scaleText6.Location = new System.Drawing.Point(30, 151);
-            this.scaleText6.Name = "scaleText6";
-            this.scaleText6.Size = new System.Drawing.Size(43, 13);
-            this.scaleText6.TabIndex = 80;
-            this.scaleText6.Text = "Scale 6";
-            // 
-            // scaleFlatNumericUpDown6
-            // 
-            this.scaleFlatNumericUpDown6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.scaleFlatNumericUpDown6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.scaleFlatNumericUpDown6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.scaleFlatNumericUpDown6.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.scaleFlatNumericUpDown6.DecimalPlaces = 1;
-            this.scaleFlatNumericUpDown6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.scaleFlatNumericUpDown6.Location = new System.Drawing.Point(79, 149);
-            this.scaleFlatNumericUpDown6.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.scaleFlatNumericUpDown6.Minimum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            -2147483648});
-            this.scaleFlatNumericUpDown6.Name = "scaleFlatNumericUpDown6";
-            this.scaleFlatNumericUpDown6.Size = new System.Drawing.Size(130, 20);
-            this.scaleFlatNumericUpDown6.TabIndex = 79;
-            this.scaleFlatNumericUpDown6.ValueChanged += new System.EventHandler(this.ScaleFlatNumericUpDown6_ValueChanged);
-            // 
             // CharascaleWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,12 +418,12 @@
             this.characterGroupBox.PerformLayout();
             this.baseGroupBox.ResumeLayout(false);
             this.baseGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -442,7 +442,7 @@
         private System.Windows.Forms.PictureBox facePictureBox;
         private System.Windows.Forms.GroupBox characterGroupBox;
         private System.Windows.Forms.GroupBox baseGroupBox;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label scaleText5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

@@ -31,6 +31,7 @@ namespace Albatross
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeGame));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.charascaleButton = new System.Windows.Forms.Button();
             this.charaparamButton = new System.Windows.Forms.Button();
             this.charabaseButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -39,7 +40,6 @@ namespace Albatross
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.charascaleButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -57,6 +57,17 @@ namespace Albatross
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Character";
+            // 
+            // charascaleButton
+            // 
+            this.charascaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.charascaleButton.Location = new System.Drawing.Point(6, 48);
+            this.charascaleButton.Name = "charascaleButton";
+            this.charascaleButton.Size = new System.Drawing.Size(200, 23);
+            this.charascaleButton.TabIndex = 2;
+            this.charascaleButton.Text = "Charascale";
+            this.charascaleButton.UseVisualStyleBackColor = true;
+            this.charascaleButton.Click += new System.EventHandler(this.CharascaleButton_Click);
             // 
             // charaparamButton
             // 
@@ -142,17 +153,6 @@ namespace Albatross
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click_1);
-            // 
-            // charascaleButton
-            // 
-            this.charascaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.charascaleButton.Location = new System.Drawing.Point(6, 48);
-            this.charascaleButton.Name = "charascaleButton";
-            this.charascaleButton.Size = new System.Drawing.Size(200, 23);
-            this.charascaleButton.TabIndex = 2;
-            this.charascaleButton.Text = "Charascale";
-            this.charascaleButton.UseVisualStyleBackColor = true;
-            this.charascaleButton.Click += new System.EventHandler(this.CharascaleButton_Click);
             // 
             // HomeGame
             // 

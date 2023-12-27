@@ -44,5 +44,9 @@ namespace Albatross.Yokai_Watch.Games
         ICharaabilityConfig[] GetSkills();
 
         IBattleCommand[] GetBattleCommands();
+
+        string[] GetMapWhoContainsEncounter();
+
+        (IEncountTable[], IEncountChara[]) GetMapEncounter(string mapName);
     }
 }

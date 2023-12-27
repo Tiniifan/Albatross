@@ -16,6 +16,7 @@ namespace Albatross.Yokai_Watch.Logic
         public int DescriptionHash { get; set; }
         public int Tribe { get; set; }
         public int Rank { get; set; }
+        public int Role { get; set; }
         public bool IsRare { get; set; }
         public bool IsLegend { get; set; }
         public int MedalPosX = -1;

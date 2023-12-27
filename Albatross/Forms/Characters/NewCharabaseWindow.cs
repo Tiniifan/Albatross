@@ -13,6 +13,7 @@ using Albatross.Yokai_Watch.Logic;
 using Albatross.Yokai_Watch.Games;
 using YKW1 = Albatross.Yokai_Watch.Games.YW1.Logic;
 using YKW2 = Albatross.Yokai_Watch.Games.YW2.Logic;
+using YKWB = Albatross.Yokai_Watch.Games.YWB.Logic;
 
 namespace Albatross.Forms.Characters
 {
@@ -107,6 +108,9 @@ namespace Albatross.Forms.Characters
                     case "Yo-Kai Watch 2":
                         NewCharabase = GameSupport.GetLogic<YKW2.YokaiCharabase>();
                         break;
+                    case "Yo-Kai Watch Blaster":
+                        NewCharabase = GameSupport.GetLogic<YKWB.YokaiCharabase>();
+                        break;
                 }
             }
             else
@@ -118,6 +122,9 @@ namespace Albatross.Forms.Characters
                         break;
                     case "Yo-Kai Watch 2":
                         NewCharabase = GameSupport.GetLogic<YKW2.NPCCharabase>();
+                        break;
+                    case "Yo-Kai Watch Blaster":
+                        NewCharabase = GameSupport.GetLogic<YKWB.NPCCharabase>();
                         break;
                 }
             }
