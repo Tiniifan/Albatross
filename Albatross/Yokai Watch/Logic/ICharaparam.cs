@@ -47,5 +47,20 @@
         public int Speed { get; set; }
         public int Strongest { get; set; }
         public int Weakness { get; set; }
+        public bool CanFuse { get; set; }
+
+        public int BlasterSkill { get; set; }
+        public int BlasterAttack { get; set; }
+        public int BlasterSoultimate { get; set; }
+        public int BlasterMoveSlot1 { get; set; }
+        public int BlasterEarnLevelMoveSlot1 { get; set; }
+        public int BlasterMoveSlot2 { get; set; }
+        public int BlasterEarnLevelMoveSlot2 { get; set; }
+        public int BlasterMoveSlot3 { get; set; }
+        public int BlasterEarnLevelMoveSlot3 { get; set; }
+        public int BlasterMoveSlot4 { get; set; }
+        public int BlasterEarnLevelMoveSlot4 { get; set; }
+        public int DropOniOrbRate { get; set; }
+        public int DropOniOrb { get; set; }
     }
 }

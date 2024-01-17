@@ -21,17 +21,17 @@ namespace Albatross.Yokai_Watch.Games.YWB.Logic
         public int Unk2 { get; set; }
         public new int Strongest { get => base.Strongest; set => base.Strongest = value; }
         public new int Weakness { get => base.Weakness; set => base.Weakness = value; }
-        public new int BlasterSkill { get => base.SkillHash; set => base.SkillHash = value; }
-        public new int BlasterAttack { get => base.AttackHash; set => base.AttackHash = value; }
-        public new int BlasterSoultimate { get => base.AttackHash; set => base.AttackHash = value; }
-        public new int BlasterMoveSlot1 { get => base.AttackHash; set => base.AttackHash = value; }
-        public int BlasterEarnLevelMoveSlot1 { get; set; }
-        public new int BlasterMoveSlot2 { get => base.AttackHash; set => base.AttackHash = value; }
-        public int BlasterEarnLevelMoveSlot2 { get; set; }
-        public new int BlasterMoveSlot3 { get => base.AttackHash; set => base.AttackHash = value; }
-        public int BlasterEarnLevelMoveSlot3 { get; set; }
-        public new int BlasterMoveSlot4 { get => base.AttackHash; set => base.AttackHash = value; }
-        public int BlasterEarnLevelMoveSlot4 { get; set; }
+        public new int BlasterSkill { get => base.BlasterSkill; set => base.BlasterSkill = value; }
+        public new int BlasterAttack { get => base.BlasterAttack; set => base.BlasterAttack = value; }
+        public new int BlasterSoultimate { get => base.BlasterSoultimate; set => base.BlasterSoultimate = value; }
+        public new int BlasterMoveSlot1 { get => base.BlasterMoveSlot1; set => base.BlasterMoveSlot1 = value; }
+        public new int BlasterEarnLevelMoveSlot1 { get => base.BlasterEarnLevelMoveSlot1; set => base.BlasterEarnLevelMoveSlot1 = value; }
+        public new int BlasterMoveSlot2 { get => base.BlasterMoveSlot2; set => base.BlasterMoveSlot2 = value; }
+        public new int BlasterEarnLevelMoveSlot2 { get => base.BlasterEarnLevelMoveSlot2; set => base.BlasterEarnLevelMoveSlot2 = value; }
+        public new int BlasterMoveSlot3 { get => base.BlasterMoveSlot3; set => base.BlasterMoveSlot3 = value; }
+        public new int BlasterEarnLevelMoveSlot3 { get => base.BlasterEarnLevelMoveSlot3; set => base.BlasterEarnLevelMoveSlot3 = value; }
+        public new int BlasterMoveSlot4 { get => base.BlasterMoveSlot4; set => base.BlasterMoveSlot4 = value; }
+        public new int BlasterEarnLevelMoveSlot4 { get => base.BlasterEarnLevelMoveSlot4; set => base.BlasterEarnLevelMoveSlot4 = value; }
         public int Unk3 { get; set; }
         public int Unk4 { get; set; }
         public int Unk5 { get; set; }
@@ -58,10 +58,10 @@ namespace Albatross.Yokai_Watch.Games.YWB.Logic
         public new int Drop1Rate { get => base.Drop1Rate; set => base.Drop1Rate = value; }
         public new int Drop2Rate { get => base.Drop2Rate; set => base.Drop2Rate = value; }
         public int Unk24 { get; set; }
-        public int DropOniOrbRate { get; set; }
-        public int DropOniOrb { get; set; }
+        public new int DropOniOrbRate { get => base.DropOniOrbRate; set => base.DropOniOrbRate = value; }
+        public new int DropOniOrb { get => base.DropOniOrb; set => base.DropOniOrb = value; }
         public int Unk25 { get; set; }
-        public bool CanFuse { get; set; }
+        public new bool CanFuse { get => base.CanFuse; set => base.CanFuse = value; }
         public new int EvolveOffset { get => base.EvolveOffset; set => base.EvolveOffset = value; }
     }
 }
