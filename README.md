@@ -22,7 +22,8 @@ The Tool is written in C# and the project is Open Source, everyone can contribut
 **Supported Game**
 - Yo-Kai Watch ✅
 - Yo-Kai Watch 2 ✅ (BF/FS/PS)
-- Yo-kai Watch 3 ❌
+- Yo-kai Watch 3 ✅
+- Yo-kai Watch Blasters ✅
 
 **Special Thanks**  
 
@@ -34,7 +35,7 @@ My tool couldn't have been done without the logic that I could learn by studying
 
 **Screenshot**
 
-![](https://imgur.com/0W0t5gM.png)
+![](https://i.imgur.com/sKDoY2J.png)
 
 **How to use it**
 
