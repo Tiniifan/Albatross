@@ -12,6 +12,7 @@ namespace Albatross.Yokai_Watch.Common
             {0x03, "B"},
             {0x04, "A"},
             {0x05, "S"},
+            {0x0F, "Unrank"},
         };
     }
 }

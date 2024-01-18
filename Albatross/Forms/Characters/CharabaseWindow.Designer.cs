@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharabaseWindow));
             this.hashTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
@@ -38,7 +39,16 @@
             this.descriptionGroupBox = new System.Windows.Forms.GroupBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.baseGroupBox = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.rolePictureBox = new System.Windows.Forms.PictureBox();
+            this.roleFlatComboBox = new Albatross.UI.FlatComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.isCommandantFlatCheckBox = new Albatross.UI.FlatCheckBox();
+            this.isMysteryFlatCheckBox = new Albatross.UI.FlatCheckBox();
+            this.isDevaFlatCheckBox = new Albatross.UI.FlatCheckBox();
+            this.isPionnerFlatCheckBox = new Albatross.UI.FlatCheckBox();
+            this.isTreasureFlatCheckBox = new Albatross.UI.FlatCheckBox();
+            this.isMericanFlatCheckBox = new Albatross.UI.FlatCheckBox();
             this.isClassicFlatCheckBox = new Albatross.UI.FlatCheckBox();
             this.isRareFlatCheckBox = new Albatross.UI.FlatCheckBox();
             this.isLegendaryFlatCheckBox = new Albatross.UI.FlatCheckBox();
@@ -68,13 +78,11 @@
             this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.rolePictureBox = new System.Windows.Forms.PictureBox();
-            this.roleFlatComboBox = new Albatross.UI.FlatComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).BeginInit();
             this.characterGroupBox.SuspendLayout();
             this.descriptionGroupBox.SuspendLayout();
             this.baseGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rolePictureBox)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tribePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rankPictureBox)).BeginInit();
@@ -85,7 +93,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.medalYFlatNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medalXFlatNumericUpDown)).BeginInit();
             this.characterContextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rolePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // hashTextBox
@@ -159,7 +166,7 @@
             this.characterGroupBox.ForeColor = System.Drawing.Color.White;
             this.characterGroupBox.Location = new System.Drawing.Point(203, 32);
             this.characterGroupBox.Name = "characterGroupBox";
-            this.characterGroupBox.Size = new System.Drawing.Size(489, 503);
+            this.characterGroupBox.Size = new System.Drawing.Size(514, 583);
             this.characterGroupBox.TabIndex = 7;
             this.characterGroupBox.TabStop = false;
             this.characterGroupBox.Text = "Character";
@@ -168,9 +175,9 @@
             // 
             this.descriptionGroupBox.Controls.Add(this.descriptionTextBox);
             this.descriptionGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.descriptionGroupBox.Location = new System.Drawing.Point(20, 376);
+            this.descriptionGroupBox.Location = new System.Drawing.Point(20, 393);
             this.descriptionGroupBox.Name = "descriptionGroupBox";
-            this.descriptionGroupBox.Size = new System.Drawing.Size(452, 113);
+            this.descriptionGroupBox.Size = new System.Drawing.Size(480, 175);
             this.descriptionGroupBox.TabIndex = 79;
             this.descriptionGroupBox.TabStop = false;
             this.descriptionGroupBox.Text = "Description";
@@ -183,7 +190,7 @@
             this.descriptionTextBox.Location = new System.Drawing.Point(34, 18);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(384, 86);
+            this.descriptionTextBox.Size = new System.Drawing.Size(384, 143);
             this.descriptionTextBox.TabIndex = 50;
             this.descriptionTextBox.Click += new System.EventHandler(this.DescriptionTextBox_Click);
             // 
@@ -202,23 +209,132 @@
             this.baseGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.baseGroupBox.Location = new System.Drawing.Point(20, 110);
             this.baseGroupBox.Name = "baseGroupBox";
-            this.baseGroupBox.Size = new System.Drawing.Size(452, 165);
+            this.baseGroupBox.Size = new System.Drawing.Size(480, 182);
             this.baseGroupBox.TabIndex = 78;
             this.baseGroupBox.TabStop = false;
             this.baseGroupBox.Text = "Base";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(14, 85);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 13);
+            this.label9.TabIndex = 79;
+            this.label9.Text = "Role";
+            // 
+            // rolePictureBox
+            // 
+            this.rolePictureBox.Location = new System.Drawing.Point(34, 101);
+            this.rolePictureBox.Name = "rolePictureBox";
+            this.rolePictureBox.Size = new System.Drawing.Size(24, 24);
+            this.rolePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.rolePictureBox.TabIndex = 80;
+            this.rolePictureBox.TabStop = false;
+            // 
+            // roleFlatComboBox
+            // 
+            this.roleFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.roleFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.roleFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.roleFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.roleFlatComboBox.FormattingEnabled = true;
+            this.roleFlatComboBox.Location = new System.Drawing.Point(74, 101);
+            this.roleFlatComboBox.Name = "roleFlatComboBox";
+            this.roleFlatComboBox.Size = new System.Drawing.Size(156, 21);
+            this.roleFlatComboBox.TabIndex = 81;
+            this.roleFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.RoleFlatComboBox_SelectedIndexChanged);
+            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.isCommandantFlatCheckBox);
+            this.groupBox3.Controls.Add(this.isMysteryFlatCheckBox);
+            this.groupBox3.Controls.Add(this.isDevaFlatCheckBox);
+            this.groupBox3.Controls.Add(this.isPionnerFlatCheckBox);
+            this.groupBox3.Controls.Add(this.isTreasureFlatCheckBox);
+            this.groupBox3.Controls.Add(this.isMericanFlatCheckBox);
             this.groupBox3.Controls.Add(this.isClassicFlatCheckBox);
             this.groupBox3.Controls.Add(this.isRareFlatCheckBox);
             this.groupBox3.Controls.Add(this.isLegendaryFlatCheckBox);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox3.Location = new System.Drawing.Point(242, 82);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(176, 67);
+            this.groupBox3.Size = new System.Drawing.Size(228, 91);
             this.groupBox3.TabIndex = 78;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Status";
+            // 
+            // isCommandantFlatCheckBox
+            // 
+            this.isCommandantFlatCheckBox.AutoSize = true;
+            this.isCommandantFlatCheckBox.CheckMarkColor = System.Drawing.Color.White;
+            this.isCommandantFlatCheckBox.Location = new System.Drawing.Point(138, 65);
+            this.isCommandantFlatCheckBox.Name = "isCommandantFlatCheckBox";
+            this.isCommandantFlatCheckBox.Size = new System.Drawing.Size(88, 17);
+            this.isCommandantFlatCheckBox.TabIndex = 73;
+            this.isCommandantFlatCheckBox.Text = "Commandant";
+            this.isCommandantFlatCheckBox.UseVisualStyleBackColor = true;
+            this.isCommandantFlatCheckBox.CheckedChanged += new System.EventHandler(this.IsCommandantFlatCheckBox_CheckedChanged);
+            // 
+            // isMysteryFlatCheckBox
+            // 
+            this.isMysteryFlatCheckBox.AutoSize = true;
+            this.isMysteryFlatCheckBox.CheckMarkColor = System.Drawing.Color.White;
+            this.isMysteryFlatCheckBox.Location = new System.Drawing.Point(71, 42);
+            this.isMysteryFlatCheckBox.Name = "isMysteryFlatCheckBox";
+            this.isMysteryFlatCheckBox.Size = new System.Drawing.Size(62, 17);
+            this.isMysteryFlatCheckBox.TabIndex = 72;
+            this.isMysteryFlatCheckBox.Text = "Mystery";
+            this.isMysteryFlatCheckBox.UseVisualStyleBackColor = true;
+            this.isMysteryFlatCheckBox.CheckedChanged += new System.EventHandler(this.IsMysteryFlatCheckBox_CheckedChanged);
+            // 
+            // isDevaFlatCheckBox
+            // 
+            this.isDevaFlatCheckBox.AutoSize = true;
+            this.isDevaFlatCheckBox.CheckMarkColor = System.Drawing.Color.White;
+            this.isDevaFlatCheckBox.Location = new System.Drawing.Point(71, 19);
+            this.isDevaFlatCheckBox.Name = "isDevaFlatCheckBox";
+            this.isDevaFlatCheckBox.Size = new System.Drawing.Size(52, 17);
+            this.isDevaFlatCheckBox.TabIndex = 71;
+            this.isDevaFlatCheckBox.Text = "Deva";
+            this.isDevaFlatCheckBox.UseVisualStyleBackColor = true;
+            this.isDevaFlatCheckBox.CheckedChanged += new System.EventHandler(this.IsDevaFlatCheckBox_CheckedChanged);
+            // 
+            // isPionnerFlatCheckBox
+            // 
+            this.isPionnerFlatCheckBox.AutoSize = true;
+            this.isPionnerFlatCheckBox.CheckMarkColor = System.Drawing.Color.White;
+            this.isPionnerFlatCheckBox.Location = new System.Drawing.Point(138, 42);
+            this.isPionnerFlatCheckBox.Name = "isPionnerFlatCheckBox";
+            this.isPionnerFlatCheckBox.Size = new System.Drawing.Size(62, 17);
+            this.isPionnerFlatCheckBox.TabIndex = 70;
+            this.isPionnerFlatCheckBox.Text = "Pionner";
+            this.isPionnerFlatCheckBox.UseVisualStyleBackColor = true;
+            this.isPionnerFlatCheckBox.CheckedChanged += new System.EventHandler(this.IsPionnerFlatCheckBox_CheckedChanged);
+            // 
+            // isTreasureFlatCheckBox
+            // 
+            this.isTreasureFlatCheckBox.AutoSize = true;
+            this.isTreasureFlatCheckBox.CheckMarkColor = System.Drawing.Color.White;
+            this.isTreasureFlatCheckBox.Location = new System.Drawing.Point(71, 65);
+            this.isTreasureFlatCheckBox.Name = "isTreasureFlatCheckBox";
+            this.isTreasureFlatCheckBox.Size = new System.Drawing.Size(68, 17);
+            this.isTreasureFlatCheckBox.TabIndex = 69;
+            this.isTreasureFlatCheckBox.Text = "Treasure";
+            this.isTreasureFlatCheckBox.UseVisualStyleBackColor = true;
+            this.isTreasureFlatCheckBox.CheckedChanged += new System.EventHandler(this.IsTreasureFlatCheckBox_CheckedChanged);
+            // 
+            // isMericanFlatCheckBox
+            // 
+            this.isMericanFlatCheckBox.AutoSize = true;
+            this.isMericanFlatCheckBox.CheckMarkColor = System.Drawing.Color.White;
+            this.isMericanFlatCheckBox.Location = new System.Drawing.Point(7, 65);
+            this.isMericanFlatCheckBox.Name = "isMericanFlatCheckBox";
+            this.isMericanFlatCheckBox.Size = new System.Drawing.Size(64, 17);
+            this.isMericanFlatCheckBox.TabIndex = 68;
+            this.isMericanFlatCheckBox.Text = "Merican";
+            this.isMericanFlatCheckBox.UseVisualStyleBackColor = true;
+            this.isMericanFlatCheckBox.CheckedChanged += new System.EventHandler(this.IsMericanFlatCheckBox_CheckedChanged);
             // 
             // isClassicFlatCheckBox
             // 
@@ -248,7 +364,7 @@
             // 
             this.isLegendaryFlatCheckBox.AutoSize = true;
             this.isLegendaryFlatCheckBox.CheckMarkColor = System.Drawing.Color.White;
-            this.isLegendaryFlatCheckBox.Location = new System.Drawing.Point(62, 19);
+            this.isLegendaryFlatCheckBox.Location = new System.Drawing.Point(138, 19);
             this.isLegendaryFlatCheckBox.Name = "isLegendaryFlatCheckBox";
             this.isLegendaryFlatCheckBox.Size = new System.Drawing.Size(62, 17);
             this.isLegendaryFlatCheckBox.TabIndex = 66;
@@ -283,14 +399,14 @@
             this.tribeFlatComboBox.FormattingEnabled = true;
             this.tribeFlatComboBox.Location = new System.Drawing.Point(74, 44);
             this.tribeFlatComboBox.Name = "tribeFlatComboBox";
-            this.tribeFlatComboBox.Size = new System.Drawing.Size(130, 21);
+            this.tribeFlatComboBox.Size = new System.Drawing.Size(156, 21);
             this.tribeFlatComboBox.TabIndex = 77;
             this.tribeFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.TribeFlatComboBox_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(227, 28);
+            this.label2.Location = new System.Drawing.Point(239, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 62;
@@ -298,7 +414,7 @@
             // 
             // rankPictureBox
             // 
-            this.rankPictureBox.Location = new System.Drawing.Point(242, 44);
+            this.rankPictureBox.Location = new System.Drawing.Point(254, 44);
             this.rankPictureBox.Name = "rankPictureBox";
             this.rankPictureBox.Size = new System.Drawing.Size(24, 24);
             this.rankPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -312,16 +428,16 @@
             this.rankFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.rankFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.rankFlatComboBox.FormattingEnabled = true;
-            this.rankFlatComboBox.Location = new System.Drawing.Point(288, 44);
+            this.rankFlatComboBox.Location = new System.Drawing.Point(294, 44);
             this.rankFlatComboBox.Name = "rankFlatComboBox";
-            this.rankFlatComboBox.Size = new System.Drawing.Size(130, 21);
+            this.rankFlatComboBox.Size = new System.Drawing.Size(156, 21);
             this.rankFlatComboBox.TabIndex = 64;
             this.rankFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.RankFlatComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(258, 70);
+            this.label1.Location = new System.Drawing.Point(271, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 13);
             this.label1.TabIndex = 67;
@@ -329,7 +445,7 @@
             // 
             // medalPictureBox
             // 
-            this.medalPictureBox.Location = new System.Drawing.Point(420, 66);
+            this.medalPictureBox.Location = new System.Drawing.Point(433, 66);
             this.medalPictureBox.Name = "medalPictureBox";
             this.medalPictureBox.Size = new System.Drawing.Size(24, 24);
             this.medalPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -340,7 +456,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(258, 42);
+            this.label6.Location = new System.Drawing.Point(271, 42);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 1;
@@ -355,9 +471,9 @@
             this.foodGroupBox.Controls.Add(this.favoritefoodFlatComboBox);
             this.foodGroupBox.Controls.Add(this.label27);
             this.foodGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.foodGroupBox.Location = new System.Drawing.Point(20, 281);
+            this.foodGroupBox.Location = new System.Drawing.Point(20, 298);
             this.foodGroupBox.Name = "foodGroupBox";
-            this.foodGroupBox.Size = new System.Drawing.Size(452, 89);
+            this.foodGroupBox.Size = new System.Drawing.Size(480, 89);
             this.foodGroupBox.TabIndex = 77;
             this.foodGroupBox.TabStop = false;
             this.foodGroupBox.Text = "Food";
@@ -369,15 +485,15 @@
             this.hatedFoodFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.hatedFoodFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.hatedFoodFlatComboBox.FormattingEnabled = true;
-            this.hatedFoodFlatComboBox.Location = new System.Drawing.Point(288, 44);
+            this.hatedFoodFlatComboBox.Location = new System.Drawing.Point(294, 44);
             this.hatedFoodFlatComboBox.Name = "hatedFoodFlatComboBox";
-            this.hatedFoodFlatComboBox.Size = new System.Drawing.Size(130, 21);
+            this.hatedFoodFlatComboBox.Size = new System.Drawing.Size(156, 21);
             this.hatedFoodFlatComboBox.TabIndex = 67;
             this.hatedFoodFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.HatedFoodFlatComboBox_SelectedIndexChanged);
             // 
             // hatedFoodPictureBox
             // 
-            this.hatedFoodPictureBox.Location = new System.Drawing.Point(242, 44);
+            this.hatedFoodPictureBox.Location = new System.Drawing.Point(254, 44);
             this.hatedFoodPictureBox.Name = "hatedFoodPictureBox";
             this.hatedFoodPictureBox.Size = new System.Drawing.Size(24, 24);
             this.hatedFoodPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -411,14 +527,14 @@
             this.favoritefoodFlatComboBox.FormattingEnabled = true;
             this.favoritefoodFlatComboBox.Location = new System.Drawing.Point(74, 44);
             this.favoritefoodFlatComboBox.Name = "favoritefoodFlatComboBox";
-            this.favoritefoodFlatComboBox.Size = new System.Drawing.Size(130, 21);
+            this.favoritefoodFlatComboBox.Size = new System.Drawing.Size(156, 21);
             this.favoritefoodFlatComboBox.TabIndex = 58;
             this.favoritefoodFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.FavoritefoodFlatComboBox_SelectedIndexChanged);
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(227, 28);
+            this.label27.Location = new System.Drawing.Point(239, 28);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(36, 13);
             this.label27.TabIndex = 59;
@@ -427,7 +543,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(360, 70);
+            this.label4.Location = new System.Drawing.Point(373, 70);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(14, 13);
             this.label4.TabIndex = 73;
@@ -440,7 +556,7 @@
             this.modelFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.modelFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.modelFlatComboBox.FormattingEnabled = true;
-            this.modelFlatComboBox.Location = new System.Drawing.Point(301, 39);
+            this.modelFlatComboBox.Location = new System.Drawing.Point(314, 39);
             this.modelFlatComboBox.Name = "modelFlatComboBox";
             this.modelFlatComboBox.Size = new System.Drawing.Size(143, 21);
             this.modelFlatComboBox.TabIndex = 58;
@@ -449,7 +565,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(300, 70);
+            this.label3.Location = new System.Drawing.Point(313, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(14, 13);
             this.label3.TabIndex = 72;
@@ -462,7 +578,7 @@
             this.medalYFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.medalYFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.medalYFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.medalYFlatNumericUpDown.Location = new System.Drawing.Point(380, 68);
+            this.medalYFlatNumericUpDown.Location = new System.Drawing.Point(393, 68);
             this.medalYFlatNumericUpDown.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -480,7 +596,7 @@
             this.medalXFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.medalXFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.medalXFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.medalXFlatNumericUpDown.Location = new System.Drawing.Point(320, 68);
+            this.medalXFlatNumericUpDown.Location = new System.Drawing.Point(333, 68);
             this.medalXFlatNumericUpDown.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -499,7 +615,7 @@
             this.characterListBox.FormattingEnabled = true;
             this.characterListBox.Location = new System.Drawing.Point(12, 38);
             this.characterListBox.Name = "characterListBox";
-            this.characterListBox.Size = new System.Drawing.Size(185, 498);
+            this.characterListBox.Size = new System.Drawing.Size(185, 576);
             this.characterListBox.TabIndex = 6;
             this.characterListBox.SelectedIndexChanged += new System.EventHandler(this.CharacterListBox_SelectedIndexChanged);
             this.characterListBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CharacterListBox_MouseUp);
@@ -542,48 +658,18 @@
             this.searchTextBox.Text = "Search...";
             this.searchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(14, 85);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 13);
-            this.label9.TabIndex = 79;
-            this.label9.Text = "Role";
-            // 
-            // rolePictureBox
-            // 
-            this.rolePictureBox.Location = new System.Drawing.Point(34, 101);
-            this.rolePictureBox.Name = "rolePictureBox";
-            this.rolePictureBox.Size = new System.Drawing.Size(24, 24);
-            this.rolePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.rolePictureBox.TabIndex = 80;
-            this.rolePictureBox.TabStop = false;
-            // 
-            // roleFlatComboBox
-            // 
-            this.roleFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.roleFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.roleFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.roleFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.roleFlatComboBox.FormattingEnabled = true;
-            this.roleFlatComboBox.Location = new System.Drawing.Point(74, 101);
-            this.roleFlatComboBox.Name = "roleFlatComboBox";
-            this.roleFlatComboBox.Size = new System.Drawing.Size(130, 21);
-            this.roleFlatComboBox.TabIndex = 81;
-            this.roleFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.RoleFlatComboBox_SelectedIndexChanged);
-            // 
             // CharabaseWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(708, 546);
+            this.ClientSize = new System.Drawing.Size(731, 623);
             this.Controls.Add(this.characterGroupBox);
             this.Controls.Add(this.characterListBox);
             this.Controls.Add(this.searchTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CharabaseWindow";
-            this.Text = "CharabaseWindow";
+            this.Text = "Charabase";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CharabaseWindow_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).EndInit();
             this.characterGroupBox.ResumeLayout(false);
@@ -592,6 +678,7 @@
             this.descriptionGroupBox.PerformLayout();
             this.baseGroupBox.ResumeLayout(false);
             this.baseGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rolePictureBox)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tribePictureBox)).EndInit();
@@ -604,7 +691,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.medalYFlatNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medalXFlatNumericUpDown)).EndInit();
             this.characterContextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.rolePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -654,5 +740,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox rolePictureBox;
         private UI.FlatComboBox roleFlatComboBox;
+        private UI.FlatCheckBox isMericanFlatCheckBox;
+        private UI.FlatCheckBox isTreasureFlatCheckBox;
+        private UI.FlatCheckBox isPionnerFlatCheckBox;
+        private UI.FlatCheckBox isMysteryFlatCheckBox;
+        private UI.FlatCheckBox isDevaFlatCheckBox;
+        private UI.FlatCheckBox isCommandantFlatCheckBox;
     }
 }

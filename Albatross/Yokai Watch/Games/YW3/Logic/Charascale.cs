@@ -1,13 +1,14 @@
-﻿namespace Albatross.Yokai_Watch.Games.YW3.Logic
+﻿using Albatross.Yokai_Watch.Logic;
+
+namespace Albatross.Yokai_Watch.Games.YW3.Logic
 {
-    public class Charascale
+    public class Charascale : ICharascale
     {
-        public int BaseHash { get; set; }
-        public float Unk1 { get; set; }
-        public float WorldMap { get; set; }
-        public float Menu { get; set; }
-        public float Battle { get; set; }
-        public float Unk2 { get; set; }
-        public float Unk3 { get; set; }
+        public new int BaseHash { get => base.BaseHash; set => base.BaseHash = value; }
+        public new float Scale1 { get => base.Scale1; set => base.Scale1 = value; }
+        public new float Scale2 { get => base.Scale2; set => base.Scale2 = value; }
+        public new float Scale3 { get => base.Scale3; set => base.Scale3 = value; }
+        public new float Scale4 { get => base.Scale4; set => base.Scale4 = value; }
+        public new float Scale5 { get => base.Scale5; set => base.Scale5 = value; }
     }
 }

@@ -25,7 +25,7 @@
         public float AttributeDamageWater { get; set; }
         public int AttributeDamageWind { get; set; }
         public int SoultimateHash { get; set; }
-        public int SkillHash { get; set; }
+        public int AbilityHash { get; set; }
         public int Money { get; set; }
         public int Experience { get; set; }
         public int Drop1Hash { get; set; }
@@ -36,7 +36,7 @@
         public int Quote1 { get; set; }
         public int Quote2 { get; set; }
         public int Quote3 { get; set; }
-        public int Quote4 { get; set; }
+        public int BefriendQuote { get; set; }
         public int EvolveOffset { get; set; }
         public int EvolveParam { get; set; }
         public int EvolveLevel { get; set; }
@@ -48,6 +48,7 @@
         public int Strongest { get; set; }
         public int Weakness { get; set; }
         public bool CanFuse { get; set; }
+        public int WaitTime { get; set; }
 
         public int BlasterSkill { get; set; }
         public int BlasterAttack { get; set; }

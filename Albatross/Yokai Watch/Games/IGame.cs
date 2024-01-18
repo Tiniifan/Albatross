@@ -41,7 +41,21 @@ namespace Albatross.Yokai_Watch.Games
 
         IItem[] GetItems(string itemType);
 
-        ICharaabilityConfig[] GetSkills();
+        ICharaabilityConfig[] GetAbilities();
+
+        ISkillconfig[] GetSkills();
+
+        IBattleCharaparam[] GetBattleCharaparam();
+
+        void SaveBattleCharaparam(IBattleCharaparam[] battleCharaparams);
+
+        IHackslashCharaparam[] GetHackslashCharaparam();
+
+        void SaveHackslashCharaparam(IHackslashCharaparam[] hackslashCharaparams);
+
+        IHackslashCharaabilityConfig[] GetHackslashAbilities();
+
+        IHackslashTechnic[] GetHackslashSkills();
 
         IBattleCommand[] GetBattleCommands();
 

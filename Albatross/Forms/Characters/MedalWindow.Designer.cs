@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MedalWindow));
             this.faceIconPictureBox = new System.Windows.Forms.PictureBox();
             this.medalText = new System.Windows.Forms.Label();
             this.medalPanel = new System.Windows.Forms.Panel();
@@ -75,8 +76,9 @@
             this.ClientSize = new System.Drawing.Size(543, 305);
             this.Controls.Add(this.medalPanel);
             this.Controls.Add(this.medalText);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MedalWindow";
-            this.Text = "MedalWindow";
+            this.Text = "Medal";
             this.SizeChanged += new System.EventHandler(this.MedalWindow_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.faceIconPictureBox)).EndInit();
             this.medalPanel.ResumeLayout(false);

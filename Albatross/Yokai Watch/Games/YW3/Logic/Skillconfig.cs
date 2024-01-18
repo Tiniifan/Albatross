@@ -1,11 +1,13 @@
-﻿namespace Albatross.Yokai_Watch.Games.YW3.Logic
+﻿using Albatross.Yokai_Watch.Logic;
+
+namespace Albatross.Yokai_Watch.Games.YW3.Logic
 {
-    public class Skillconfig
+    public class Skillconfig : ISkillconfig
     {
-        public int SkillConfigHash { get; set; }
+        public new int SkillHash { get => base.SkillHash; set => base.SkillHash = value; }
         public int Unk1 { get; set; }
-        public int DescriptionHash { get; set; }
-        public int NameHash { get; set; }
+        public new int DescriptionHash { get => base.DescriptionHash; set => base.DescriptionHash = value; }
+        public new int NameHash { get => base.NameHash; set => base.NameHash = value; }
         public int Unk3 { get; set; }
         public int Power { get; set; }
         public int Unk4 { get; set; }

@@ -32,9 +32,9 @@ namespace Albatross.Forms.Encounters
 
         private IEncountChara SelectedEncountChara;
 
-        private List<string> Filenames;
-
         private T2bþ Charanames;
+
+        private Dictionary<string, string> Mapnames;
 
         public EncounterWindow(IGame game)
         {
@@ -44,7 +44,7 @@ namespace Albatross.Forms.Encounters
             Charaparams = new List<ICharaparam>();
             EncountTables = new List<IEncountTable>();
             EncountCharas = new List<IEncountChara>();
-            Filenames = new List<string>();
+            Mapnames = new Dictionary<string, string>();
 
             InitializeComponent();
             LoadEncounter();
@@ -91,21 +91,34 @@ namespace Albatross.Forms.Encounters
 
             // Get names
             Charanames = new T2bþ(GameOpened.Files["chara_text"].File.Directory.GetFileFromFullPath(GameOpened.Files["chara_text"].Path));
+            T2bþ systemtext = new T2bþ(GameOpened.Files["system_text"].File.Directory.GetFileFromFullPath(GameOpened.Files["system_text"].Path));
 
             // Prepare combobox
             ((DataGridViewComboBoxColumn)encounterDataGridView.Columns[1]).Items.AddRange(GetNames(Charaparams.ToArray()));
 
-            // Get folder who contains encounter data
-            Filenames = GameOpened.GetMapWhoContainsEncounter().ToList();
-            mapListBox.Items.AddRange(Filenames.ToArray());
+            // Get folder who contains encounter data          
+            string[] filenames = GameOpened.GetMapWhoContainsEncounter();
+            for (int i = 0; i < filenames.Length; i++)
+            {
+                // Obtain map name using crc32 hash
+                uint crc32 = Crc32.Compute(Encoding.GetEncoding("Shift-JIS").GetBytes(filenames[i]));
+                int crc32AsInt = (int)crc32;
+
+                string mapName = systemtext.Texts.TryGetValue(crc32AsInt, out var text) && text.Strings.Count > 0
+                    ? text.Strings[0].Text
+                    : "Map " + i;
+
+                Mapnames.Add(filenames[i], mapName);
+            }
+
+            mapListBox.Items.AddRange(Mapnames.Values.ToArray());
         }
 
         private void MapListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mapListBox.SelectedIndex == -1) return;
 
-            // Get map encounter data
-            (IEncountTable[], IEncountChara[]) encounterData = GameOpened.GetMapEncounter(mapListBox.SelectedItem.ToString());
+            (IEncountTable[], IEncountChara[]) encounterData = GameOpened.GetMapEncounter(Mapnames.ElementAt(mapListBox.SelectedIndex).Key);
             EncountTables = encounterData.Item1.ToList();
             EncountCharas = encounterData.Item2.ToList();
 
@@ -113,12 +126,18 @@ namespace Albatross.Forms.Encounters
             tableFlatComboBox.Items.Clear();
             tableFlatComboBox.Items.AddRange(EncountTables.Select((table, index) => $"Table {index + 1}").ToArray());
 
+            // Load first table
+            if (tableFlatComboBox.Items.Count > 0)
+            {
+                tableFlatComboBox.SelectedIndex = 0;
+            }
+
             mapGroupBox.Enabled = true;
         }
 
         private void TableFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!tableFlatComboBox.Focused && tableFlatComboBox.SelectedIndex != -1) return;
+            if (tableFlatComboBox.SelectedIndex == -1) return;
 
             encounterDataGridView.Rows.Clear();
             SelectedEncountTable = EncountTables[tableFlatComboBox.SelectedIndex];

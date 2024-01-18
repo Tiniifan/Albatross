@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Nyanko));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.confirmButton = new System.Windows.Forms.Button();
             this.textTextBox = new System.Windows.Forms.TextBox();
@@ -158,7 +159,7 @@
             // 
             this.removeTextToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.removeTextToolStripMenuItem.Name = "removeTextToolStripMenuItem";
-            this.removeTextToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeTextToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.removeTextToolStripMenuItem.Text = "Remove Text";
             this.removeTextToolStripMenuItem.Click += new System.EventHandler(this.RemoveTextToolStripMenuItem_Click);
             // 
@@ -169,14 +170,14 @@
             this.addKeyToolStripMenuItem});
             this.textTypeContextMenuStrip.Name = "contextMenuStrip1";
             this.textTypeContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.textTypeContextMenuStrip.Size = new System.Drawing.Size(181, 48);
+            this.textTypeContextMenuStrip.Size = new System.Drawing.Size(121, 26);
             // 
             // addKeyToolStripMenuItem
             // 
             this.addKeyToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.addKeyToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addKeyToolStripMenuItem.Name = "addKeyToolStripMenuItem";
-            this.addKeyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addKeyToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.addKeyToolStripMenuItem.Text = "Add Text";
             this.addKeyToolStripMenuItem.Click += new System.EventHandler(this.AddKeyToolStripMenuItem_Click);
             // 
@@ -194,7 +195,7 @@
             this.nounTypeAddTextToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.nounTypeAddTextToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.nounTypeAddTextToolStripMenuItem.Name = "nounTypeAddTextToolStripMenuItem";
-            this.nounTypeAddTextToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nounTypeAddTextToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.nounTypeAddTextToolStripMenuItem.Text = "Add Text";
             this.nounTypeAddTextToolStripMenuItem.Click += new System.EventHandler(this.NounTypeAddTextToolStripMenuItem_Click);
             // 
@@ -205,6 +206,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(803, 344);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Nyanko";
             this.Text = "Nyanko";
             this.Load += new System.EventHandler(this.Nyanko_Load);

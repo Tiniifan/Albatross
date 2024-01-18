@@ -244,7 +244,42 @@ namespace Albatross.Yokai_Watch.Games.YW2
             }
         }
 
-        public ICharaabilityConfig[] GetSkills()
+        public ISkillconfig[] GetSkills()
+        {
+            return null;
+        }
+
+        public IBattleCharaparam[] GetBattleCharaparam()
+        {
+            return null; ;
+        }
+
+        public void SaveBattleCharaparam(IBattleCharaparam[] battleCharaparams)
+        {
+
+        }
+
+        public IHackslashCharaparam[] GetHackslashCharaparam()
+        {
+            return null;
+        }
+
+        public void SaveHackslashCharaparam(IHackslashCharaparam[] hackslashCharaparams)
+        {
+
+        }
+
+        public IHackslashCharaabilityConfig[] GetHackslashAbilities()
+        {
+            return null;
+        }
+
+        public IHackslashTechnic[] GetHackslashSkills()
+        {
+            return null;
+        }
+
+        public ICharaabilityConfig[] GetAbilities()
         {
             VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/character");
             string lastskillFile = characterFolder.Files.Keys.Where(x => x.StartsWith("chara_ability")).OrderByDescending(x => x).First();

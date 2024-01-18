@@ -28,6 +28,8 @@ namespace Albatross.Forms.Characters
 
         private T2bþ Charanames;
 
+        private T2bþ Charadesc;
+
         private Bitmap FaceIcon;
 
         public CharabaseWindow(IGame game)
@@ -116,7 +118,12 @@ namespace Albatross.Forms.Characters
                 } else if (GameOpened.Name == "Yo-Kai Watch 2")
                 {
                     medalPictureBox.Image = CropMedal(x, y, 44);
-                } else if (GameOpened.Name == "Yo-Kai Watch Blaster")
+                }
+                else if (GameOpened.Name == "Yo-Kai Watch 3")
+                {
+                    medalPictureBox.Image = CropMedal(x, y, 32);
+                }
+                else if (GameOpened.Name == "Yo-Kai Watch Blaster")
                 {
                     medalPictureBox.Image = CropMedal(x, y, 44);
                 }
@@ -166,38 +173,67 @@ namespace Albatross.Forms.Characters
                 tribePictureBox.Enabled = false;
                 tribeFlatComboBox.Enabled = false;
                 isClassicFlatCheckBox.Enabled = false;
-                isClassicFlatCheckBox.Enabled = false;
+                isMericanFlatCheckBox.Enabled = false;
+                isDevaFlatCheckBox.Enabled = false;
+                isMysteryFlatCheckBox.Enabled = false;
+                isTreasureFlatCheckBox.Enabled = false;
+                isPionnerFlatCheckBox.Enabled = false;
+                isCommandantFlatCheckBox.Enabled = false;
                 label9.Enabled = false;
                 rolePictureBox.Enabled = false;
                 roleFlatComboBox.Enabled = false;
-                isClassicFlatCheckBox.Enabled = false;
                 foodGroupBox.Enabled = true;
             }
             else if (GameOpened.Name == "Yo-Kai Watch 2")
             {
-                label8.Enabled = true;
+                label8.Enabled = false;
                 tribePictureBox.Enabled = true;
                 tribeFlatComboBox.Enabled = true;
                 isClassicFlatCheckBox.Enabled = true;
+                isMericanFlatCheckBox.Enabled = false;
+                isDevaFlatCheckBox.Enabled = false;
+                isMysteryFlatCheckBox.Enabled = false;
+                isTreasureFlatCheckBox.Enabled = false;
+                isPionnerFlatCheckBox.Enabled = false;
+                isCommandantFlatCheckBox.Enabled = false;
+                label9.Enabled = false;
+                rolePictureBox.Enabled = false;
+                roleFlatComboBox.Enabled = false;
+                foodGroupBox.Enabled = true;
+            } else if (GameOpened.Name == "Yo-Kai Watch 3")
+            {
+                label8.Enabled = false;
+                tribePictureBox.Enabled = true;
+                tribeFlatComboBox.Enabled = true;
                 isClassicFlatCheckBox.Enabled = true;
-                label9.Enabled = true;
+                isMericanFlatCheckBox.Enabled = true;
+                isDevaFlatCheckBox.Enabled = true;
+                isMysteryFlatCheckBox.Enabled = true;
+                isTreasureFlatCheckBox.Enabled = true;
+                isPionnerFlatCheckBox.Enabled = true;
+                isCommandantFlatCheckBox.Enabled = true;
+                label9.Enabled = false;
                 rolePictureBox.Enabled = true;
                 roleFlatComboBox.Enabled = true;
-                isClassicFlatCheckBox.Enabled = true;
                 foodGroupBox.Enabled = true;
+                Charadesc = new T2bþ(GameOpened.Files["chara_desc_text"].File.Directory.GetFileFromFullPath(GameOpened.Files["chara_desc_text"].Path));
             }
             else if (GameOpened.Name == "Yo-Kai Watch Blaster")
             {
-                label8.Enabled = true;
+                label8.Enabled = false;
                 tribePictureBox.Enabled = true;
                 tribeFlatComboBox.Enabled = true;
                 isClassicFlatCheckBox.Enabled = true;
-                isClassicFlatCheckBox.Enabled = true;
-                label9.Enabled = true;
+                isMericanFlatCheckBox.Enabled = false;
+                isDevaFlatCheckBox.Enabled = false;
+                isMysteryFlatCheckBox.Enabled = false;
+                isTreasureFlatCheckBox.Enabled = false;
+                isPionnerFlatCheckBox.Enabled = false;
+                isCommandantFlatCheckBox.Enabled = false;
+                label9.Enabled = false;
                 rolePictureBox.Enabled = true;
                 roleFlatComboBox.Enabled = true;
-                isClassicFlatCheckBox.Enabled = true;
-                foodGroupBox.Enabled = false;
+                foodGroupBox.Enabled = true;
             }
         }
 
@@ -316,7 +352,13 @@ namespace Albatross.Forms.Characters
                 nameTextBox.Clear();
             }
 
-            if (Charanames.Texts.ContainsKey(SelectedCharabase.DescriptionHash))
+            if (GameOpened.Name == "Yo-Kai Watch 3" && Charadesc.Texts.ContainsKey(SelectedCharabase.DescriptionHash))
+            {
+                string characterDescription = Charadesc.Texts[SelectedCharabase.DescriptionHash].Strings[0].Text;
+                characterDescription = characterDescription.Replace("\\n", Environment.NewLine);
+                descriptionTextBox.Text = characterDescription;
+            }
+            else if (Charanames.Texts.ContainsKey(SelectedCharabase.DescriptionHash))
             {
                 string characterDescription = Charanames.Texts[SelectedCharabase.DescriptionHash].Strings[0].Text;
                 characterDescription = characterDescription.Replace("\\n", Environment.NewLine);
@@ -366,6 +408,11 @@ namespace Albatross.Forms.Characters
                 isRareFlatCheckBox.Checked = SelectedCharabase.IsRare;
                 isLegendaryFlatCheckBox.Checked = SelectedCharabase.IsLegend;
                 isClassicFlatCheckBox.Checked = SelectedCharabase.IsClassic;
+                isMericanFlatCheckBox.Checked = SelectedCharabase.IsMerican;
+                isDevaFlatCheckBox.Checked = SelectedCharabase.IsDeva;
+                isMysteryFlatCheckBox.Checked = SelectedCharabase.IsLegendaryMystery;
+                isPionnerFlatCheckBox.Checked = SelectedCharabase.IsPionner;
+                isCommandantFlatCheckBox.Checked = SelectedCharabase.IsCommandant;
                 SetComboBox(SelectedCharabase.Tribe, GameOpened.Tribes, tribeFlatComboBox);
                 SetComboBox(SelectedCharabase.Rank, Ranks.YW, rankFlatComboBox);
                 SetComboBox(SelectedCharabase.Role, Roles.YWB, roleFlatComboBox);
@@ -497,6 +544,10 @@ namespace Albatross.Forms.Characters
             {
                     medalSize = 44;
             }
+            else if (GameOpened.Name == "Yo-Kai Watch 3")
+            {
+                medalSize = 32;
+            }
             else if (GameOpened.Name == "Yo-Kai Watch Blaster")
             {
                 medalSize = 44;
@@ -535,6 +586,48 @@ namespace Albatross.Forms.Characters
             if (!isClassicFlatCheckBox.Focused) return;
 
             SelectedCharabase.IsClassic = isClassicFlatCheckBox.Checked;
+        }
+
+        private void IsMericanFlatCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isMericanFlatCheckBox.Focused) return;
+
+            SelectedCharabase.IsMerican = isMericanFlatCheckBox.Checked;
+        }
+
+        private void IsDevaFlatCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isDevaFlatCheckBox.Focused) return;
+
+            SelectedCharabase.IsDeva = isDevaFlatCheckBox.Checked;
+        }
+
+        private void IsMysteryFlatCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isMysteryFlatCheckBox.Focused) return;
+
+            SelectedCharabase.IsLegendaryMystery = isLegendaryFlatCheckBox.Checked;
+        }
+
+        private void IsTreasureFlatCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isTreasureFlatCheckBox.Focused) return;
+
+            SelectedCharabase.IsTreasure = isTreasureFlatCheckBox.Checked;
+        }
+
+        private void IsPionnerFlatCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isPionnerFlatCheckBox.Focused) return;
+
+            SelectedCharabase.IsPionner = isPionnerFlatCheckBox.Checked;
+        }
+
+        private void IsCommandantFlatCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isCommandantFlatCheckBox.Focused) return;
+
+            SelectedCharabase.IsClassic = isCommandantFlatCheckBox.Checked;
         }
 
         private void TribeFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -669,7 +762,17 @@ namespace Albatross.Forms.Characters
 
         private void DescriptionTextBox_Click(object sender, EventArgs e)
         {
-            Nyanko.Nyanko nyanko = new Nyanko.Nyanko(Path.GetFileName(GameOpened.Files["chara_text"].Path), Charanames, true, false, SelectedCharabase.DescriptionHash);
+            string fileName = "";
+
+            if (GameOpened.Name == "Yo-Kai Watch 3")
+            {
+                fileName = "chara_desc_text";
+            } else
+            {
+                fileName = "chara_text";
+            }
+
+            Nyanko.Nyanko nyanko = new Nyanko.Nyanko(Path.GetFileName(GameOpened.Files[fileName].Path), Charanames, true, false, SelectedCharabase.DescriptionHash);
             nyanko.ShowDialog();
             Charanames = nyanko.T2bþFileOpened;
 

@@ -15,6 +15,7 @@ using Albatross.Yokai_Watch.Games;
 using Albatross.Yokai_Watch.Common;
 using YKW1 = Albatross.Yokai_Watch.Games.YW1.Logic;
 using YKW2 = Albatross.Yokai_Watch.Games.YW2.Logic;
+using YKW3 = Albatross.Yokai_Watch.Games.YW3.Logic;
 
 namespace Albatross.Forms.Characters
 {
@@ -24,13 +25,23 @@ namespace Albatross.Forms.Characters
 
         private List<IItem> Items;
 
-        private List<ICharaabilityConfig> Skills;
+        private List<ICharaabilityConfig> Abilities;
+
+        private List<ISkillconfig> Skills;
 
         private List<IBattleCommand> BattleCommands;
 
         private List<ICharabase> Charabases;
 
         private List<ICharaparam> Charaparams;
+
+        private List<IBattleCharaparam> BattleCharaparams;
+
+        private List<IHackslashCharaparam> HackslashCharaparams;
+
+        private List<IHackslashCharaabilityConfig> HackslashAbilities;
+
+        private List<IHackslashTechnic> HackslashTechnics;
 
         private List<ICharaparam> CharaparamsFiltred;
 
@@ -48,15 +59,24 @@ namespace Albatross.Forms.Characters
 
         private T2bþ Addmembernames;
 
+        private T2bþ HackslashAbilitynames;
+
+        private T2bþ HackslashTechnicnames;
+
         public CharaparamWindow(IGame game)
         {
             GameOpened = game;
 
             Items = new List<IItem>();
-            Skills = new List<ICharaabilityConfig>();
+            Abilities = new List<ICharaabilityConfig>();
+            Skills = new List<ISkillconfig>();
             BattleCommands = new List<IBattleCommand>();
             Charabases = new List<ICharabase>();
             Charaparams = new List<ICharaparam>();
+            BattleCharaparams = new List<IBattleCharaparam>();
+            HackslashCharaparams = new List<IHackslashCharaparam>();
+            HackslashAbilities = new List<IHackslashCharaabilityConfig>();
+            HackslashTechnics = new List<IHackslashTechnic>();
             CharaparamsFiltred = new List<ICharaparam>();
 
             InitializeComponent();
@@ -104,12 +124,24 @@ namespace Albatross.Forms.Characters
                 .ToArray();
         }
 
-        private string[] GetNames(ICharaabilityConfig[] skills)
+        private string[] GetNames(ICharaabilityConfig[] abilities)
+        {
+            return abilities
+                .Select((ability, index) =>
+                {
+                    return Abilitynames.Nouns.TryGetValue(ability.NameHash, out var noun) && noun.Strings.Count > 0
+                        ? noun.Strings[0].Text
+                        : "Ability " + index;
+                })
+                .ToArray();
+        }
+
+        private string[] GetNames(ISkillconfig[] skills)
         {
             return skills
                 .Select((skill, index) =>
                 {
-                    return Abilitynames.Nouns.TryGetValue(skill.NameHash, out var noun) && noun.Strings.Count > 0
+                    return Skillnames.Nouns.TryGetValue(skill.NameHash, out var noun) && noun.Strings.Count > 0
                         ? noun.Strings[0].Text
                         : "Skill " + index;
                 })
@@ -137,6 +169,30 @@ namespace Albatross.Forms.Characters
                     {
                         return "Battle Command " + index;
                     }
+                })
+                .ToArray();
+        }
+
+        private string[] GetNames(IHackslashCharaabilityConfig[] hackslashAbilities)
+        {
+            return hackslashAbilities
+                .Select((hackslashAbility, index) =>
+                {
+                    return HackslashAbilitynames.Nouns.TryGetValue(hackslashAbility.NameHash, out var noun) && noun.Strings.Count > 0
+                        ? noun.Strings[0].Text
+                        : "Ability " + index;
+                })
+                .ToArray();
+        }
+
+        private string[] GetNames(IHackslashTechnic[] hackslashSkills)
+        {
+            return hackslashSkills
+                .Select((hackslashSkill, index) =>
+                {
+                    return HackslashTechnicnames.Nouns.TryGetValue(hackslashSkill.NameHash, out var noun) && noun.Strings.Count > 0
+                        ? noun.Strings[0].Text
+                        : "Skill " + index;
                 })
                 .ToArray();
         }
@@ -171,7 +227,7 @@ namespace Albatross.Forms.Characters
             attackFlatComboBox.Items.Clear();
             inspiritFlatComboBox.Items.Clear();
             soultimateFlatComboBox.Items.Clear();
-            skillFlatComboBox.Items.Clear();
+            abilityFlatComboBox.Items.Clear();
             itemFlatComboBox1.Items.Clear();
             baseModelFlatComboBox.Items.Clear();
             characterListBox.Items.Clear();
@@ -181,8 +237,28 @@ namespace Albatross.Forms.Characters
 
             // Get resources
             Items.AddRange(GameOpened.GetItems("all"));
-            Skills.AddRange(GameOpened.GetSkills());
-            BattleCommands.AddRange(GameOpened.GetBattleCommands());
+            Abilities.AddRange(GameOpened.GetAbilities());
+
+            if (GameOpened.Name == "Yo-Kai Watch 3")
+            {
+                Skills.AddRange(GameOpened.GetSkills());
+                BattleCharaparams.AddRange(GameOpened.GetBattleCharaparam());
+                HackslashCharaparams.AddRange(GameOpened.GetHackslashCharaparam());
+                HackslashAbilities.AddRange(GameOpened.GetHackslashAbilities());
+                HackslashTechnics.AddRange(GameOpened.GetHackslashSkills());
+                HackslashAbilitynames = new T2bþ(GameOpened.Files["hackslash_chara_ability_text"].File.Directory.GetFileFromFullPath(GameOpened.Files["hackslash_chara_ability_text"].Path));
+                HackslashTechnicnames = new T2bþ(GameOpened.Files["hackslash_technic_text"].File.Directory.GetFileFromFullPath(GameOpened.Files["hackslash_technic_text"].Path));
+                attackAFlatComboBox.Items.AddRange(GetNames(HackslashTechnics.ToArray()).ToArray());
+                attackXFlatComboBox.Items.AddRange(attackAFlatComboBox.Items.Cast<Object>().ToArray());
+                attackYFlatComboBox.Items.AddRange(attackAFlatComboBox.Items.Cast<Object>().ToArray());
+                soultimateBlasterTFlatComboBox.Items.AddRange(attackAFlatComboBox.Items.Cast<Object>().ToArray());
+                abilityBlasterTFlatComboBox.Items.AddRange(GetNames(HackslashAbilities.ToArray()).ToArray());
+            }
+            else
+            {
+                BattleCommands.AddRange(GameOpened.GetBattleCommands());
+            }
+
             Charabases.AddRange(GameOpened.GetCharacterbase(true));
             Charaparams.AddRange(GameOpened.GetCharaparam());
             ICharaevolve[] charaevolves = GameOpened.GetCharaevolution();
@@ -197,12 +273,22 @@ namespace Albatross.Forms.Characters
 
             // Prepare combobox 
             tribeFlatComboBox.Items.AddRange(GameOpened.Tribes.Values.ToArray());
+            resistanceFlatComboBox.Items.AddRange(Attributes.YW.Values.ToArray());
+            weaknessFlatComboBox.Items.AddRange(Attributes.YW.Values.ToArray());
             scoutFlatComboBox.Items.AddRange(GameOpened.ScoutablesType.Values.ToArray());
-            attackFlatComboBox.Items.AddRange(GetNames(BattleCommands.ToArray()).ToArray());
+            
+            if (GameOpened.Name == "Yo-Kai Watch 3")
+            {
+                attackFlatComboBox.Items.AddRange(GetNames(Skills.ToArray()).ToArray());
+            } else
+            {
+                attackFlatComboBox.Items.AddRange(GetNames(BattleCommands.ToArray()).ToArray());
+            }
+
             techniqueFlatComboBox.Items.AddRange(attackFlatComboBox.Items.Cast<Object>().ToArray());
             inspiritFlatComboBox.Items.AddRange(attackFlatComboBox.Items.Cast<Object>().ToArray());
             soultimateFlatComboBox.Items.AddRange(attackFlatComboBox.Items.Cast<Object>().ToArray());
-            skillFlatComboBox.Items.AddRange(GetNames(Skills.ToArray()).ToArray());
+            abilityFlatComboBox.Items.AddRange(GetNames(Abilities.ToArray()).ToArray());
             itemFlatComboBox1.Items.AddRange(GetNames(Items.ToArray()).ToArray());
             itemFlatComboBox2.Items.AddRange(itemFlatComboBox1.Items.Cast<Object>().ToArray());
             baseModelFlatComboBox.Items.AddRange(GetNames(Charabases.ToArray()).ToArray());
@@ -224,11 +310,21 @@ namespace Albatross.Forms.Characters
                 tribeFlatComboBox.Enabled = true;
                 label13.Enabled = false;
                 scoutFlatComboBox.Enabled = false;
+                label21.Enabled = false;
                 maxStatFlatNumericUpDown1.Enabled = false;
                 maxStatFlatNumericUpDown2.Enabled = false;
                 maxStatFlatNumericUpDown3.Enabled = false;
                 maxStatFlatNumericUpDown4.Enabled = false;
                 maxStatFlatNumericUpDown5.Enabled = false;
+                label44.Visible = false;
+                waitTimeFlatNumericUpDown.Visible = false;
+                vsTabControl2.TabPages.RemoveAt(1);
+                vsTabControl2.TabPages.RemoveAt(1);
+                label42.Visible = false;
+                pictureBox1.Visible = false;
+                resistanceFlatComboBox.Visible = false;
+                label43.Visible = false;
+                weaknessFlatComboBox.Visible = false;
             }
             else if (GameOpened.Name == "Yo-Kai Watch 2")
             {
@@ -242,6 +338,46 @@ namespace Albatross.Forms.Characters
                 maxStatFlatNumericUpDown3.Enabled = true;
                 maxStatFlatNumericUpDown4.Enabled = true;
                 maxStatFlatNumericUpDown5.Enabled = true;
+                label44.Visible = false;
+                waitTimeFlatNumericUpDown.Visible = false;
+                vsTabControl2.TabPages.RemoveAt(1);
+                vsTabControl2.TabPages.RemoveAt(1);
+                label42.Visible = false;
+                pictureBox1.Visible = false;
+                resistanceFlatComboBox.Visible = false;
+                label43.Visible = false;
+                weaknessFlatComboBox.Visible = false;
+            }
+            else if (GameOpened.Name == "Yo-Kai Watch 3")
+            {
+                label44.Visible = true;
+                waitTimeFlatNumericUpDown.Visible = true;
+                label8.Enabled = false;
+                tribePictureBox.Enabled = false;
+                tribeFlatComboBox.Enabled = false;
+                label13.Enabled = true;
+                scoutFlatComboBox.Enabled = true;
+                maxStatFlatNumericUpDown1.Enabled = true;
+                maxStatFlatNumericUpDown2.Enabled = true;
+                maxStatFlatNumericUpDown3.Enabled = true;
+                maxStatFlatNumericUpDown4.Enabled = true;
+                maxStatFlatNumericUpDown5.Enabled = true;
+                label36.Visible = false;
+                attributeFlatNumericUpDown1.Visible = false;
+                label35.Visible = false;
+                attributeFlatNumericUpDown2.Visible = false;
+                label34.Visible = false;
+                attributeFlatNumericUpDown3.Visible = false;
+                label33.Visible = false;
+                attributeFlatNumericUpDown4.Visible = false;
+                label32.Visible = false;
+                attributeFlatNumericUpDown5.Visible = false;
+                label31.Visible = false;
+                attributeFlatNumericUpDown6.Visible = false;
+                vsTabControl2.TabPages.RemoveAt(1);
+                eatGroupBox.Enabled = false;
+                favoriteFoodGroupBox.Enabled = false;
+                hatedFoodGroupBox.Enabled = false;
             }
         }
 
@@ -264,6 +400,9 @@ namespace Albatross.Forms.Characters
                     case "Yo-Kai Watch 2":
                         charaevolve = GameSupport.GetLogic<YKW2.Charaevolve>();
                         break;
+                    case "Yo-Kai Watch 3":
+                        charaevolve = GameSupport.GetLogic<YKW3.Charaevolve>();
+                        break;
                 }
 
                 // Assign values to charaevolve properties
@@ -278,6 +417,8 @@ namespace Albatross.Forms.Characters
             // Save Charaparams and charaevolves arrays to the game
             GameOpened.SaveCharaparam(Charaparams.ToArray());
             GameOpened.SaveCharaevolution(charaevolves.ToArray());
+            GameOpened.SaveBattleCharaparam(BattleCharaparams.ToArray());
+            GameOpened.SaveHackslashCharaparam(HackslashCharaparams.ToArray());
 
             // Save text files related to battle and member commands
             GameSupport.SaveTextFile(GameOpened.Files["battle_text"], BattleCommandnames);
@@ -297,6 +438,9 @@ namespace Albatross.Forms.Characters
                 case "Yo-Kai Watch 2":
                     newCharaparam = GameSupport.GetLogic<YKW2.Charaparam>();
                     break;
+                case "Yo-Kai Watch 3":
+                    newCharaparam = GameSupport.GetLogic<YKW3.Charaparam>();
+                    break;
             }
 
             // Generate a param name with a random number
@@ -312,10 +456,23 @@ namespace Albatross.Forms.Characters
                 paramHash = unchecked((int)paramHashUInt);
             }
 
-            newCharaparam.BaseHash = paramHash;
+            newCharaparam.ParamHash = paramHash;
             newCharaparam.EvolveOffset = -1;
 ;
             Charaparams.Add(newCharaparam);
+
+            // Automatically adds additional data for YKW3
+            if (GameOpened.Name == "Yo-Kai Watch 3")
+            {
+                IBattleCharaparam battleCharaparam = GameSupport.GetLogic<YKW3.BattleCharaparam>();
+                IHackslashCharaparam hackslashCharaparam = GameSupport.GetLogic<YKW3.HackslashCharaparam>();
+
+                battleCharaparam.ParamHash = paramHash;
+                hackslashCharaparam.ParamHash = paramHash;
+
+                BattleCharaparams.Add(battleCharaparam);
+                HackslashCharaparams.Add(hackslashCharaparam);
+            }
 
             // Update all names
             characterListBox.Items.Clear();
@@ -341,6 +498,24 @@ namespace Albatross.Forms.Characters
                 characterGroupBox.Enabled = false;
 
                 Charaparams.Remove(SelectedCharaparam);
+
+                // Remove additional data for YKW3
+                if (GameOpened.Name == "Yo-Kai Watch 3")
+                {
+                    IBattleCharaparam selectedBattleParam = BattleCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+                    IHackslashCharaparam selectedHackslashCharaparam = HackslashCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
+                    if (selectedBattleParam != null)
+                    {
+                        BattleCharaparams.Remove(selectedBattleParam);
+                    }
+
+                    if (selectedHackslashCharaparam != null)
+                    {
+                        HackslashCharaparams.Remove(selectedHackslashCharaparam);
+                    }
+                }
+
                 facePictureBox.Image = null;
 
                 MessageBox.Show(characterListBox.SelectedItem.ToString() + " has been removed!");
@@ -389,6 +564,8 @@ namespace Albatross.Forms.Characters
             hashTextBox.Text = SelectedCharaparam.ParamHash.ToString("X8");
 
             ICharabase selectedCharabase = Charabases.FirstOrDefault(x => x.BaseHash == SelectedCharaparam.BaseHash);
+            IBattleCharaparam selectedBattleParam = BattleCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+            IHackslashCharaparam selectedHackslashCharaparam = HackslashCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
 
             if (selectedCharabase != null)
             {
@@ -424,7 +601,10 @@ namespace Albatross.Forms.Characters
 
             SetComboBox(SelectedCharaparam.Tribe, GameOpened.Tribes, tribeFlatComboBox);
             SetComboBox(SelectedCharaparam.ScoutableHash, GameOpened.ScoutablesType, scoutFlatComboBox);
+            SetComboBox(SelectedCharaparam.Strongest, Attributes.YW, resistanceFlatComboBox);
+            SetComboBox(SelectedCharaparam.Weakness, Attributes.YW, weaknessFlatComboBox);
             experienceCurveFlatNumericUpDown.Value = SelectedCharaparam.ExperienceCurve;
+            waitTimeFlatNumericUpDown.Value = SelectedCharaparam.WaitTime;
             medalFlatNumericUpDown.Value = SelectedCharaparam.MedaliumOffset;
             isShownFlatCheckBox.Checked = SelectedCharaparam.ShowInMedalium;
             if (SelectedCharaparam.EvolveParam != 0)
@@ -444,12 +624,28 @@ namespace Albatross.Forms.Characters
                 evolutionFlatNumericUpDown.Enabled = false;
                 evolutionPictureBox.Image = null;
             }
-            itemFlatComboBox1.SelectedIndex = Items.FindIndex(x => x.ItemHash == SelectedCharaparam.Drop1Hash);
-            dropFlatNumericUpDown1.Value = SelectedCharaparam.Drop1Rate;
-            itemFlatComboBox2.SelectedIndex = Items.FindIndex(x => x.ItemHash == SelectedCharaparam.Drop2Hash);
-            dropFlatNumericUpDown2.Value = SelectedCharaparam.Drop2Rate;
-            moneyFlatNumericUpDown.Value = SelectedCharaparam.Money;
-            experienceFlatNumericUpDown.Value = SelectedCharaparam.Experience;
+
+            // Item & Experience & Money
+            if (GameOpened.Name == "Yo-Kai Watch 3")
+            {
+                if (selectedBattleParam != null)
+                {
+                    itemFlatComboBox1.SelectedIndex = Items.FindIndex(x => x.ItemHash == selectedBattleParam.Drop1Hash);
+                    dropFlatNumericUpDown1.Value = selectedBattleParam.Drop1Rate;
+                    itemFlatComboBox2.SelectedIndex = Items.FindIndex(x => x.ItemHash == selectedBattleParam.Drop2Hash);
+                    dropFlatNumericUpDown2.Value = selectedBattleParam.Drop2Rate;
+                    moneyFlatNumericUpDown.Value = selectedBattleParam.Money;
+                    experienceFlatNumericUpDown.Value = selectedBattleParam.Experience;
+                }
+            } else
+            {
+                itemFlatComboBox1.SelectedIndex = Items.FindIndex(x => x.ItemHash == SelectedCharaparam.Drop1Hash);
+                dropFlatNumericUpDown1.Value = SelectedCharaparam.Drop1Rate;
+                itemFlatComboBox2.SelectedIndex = Items.FindIndex(x => x.ItemHash == SelectedCharaparam.Drop2Hash);
+                dropFlatNumericUpDown2.Value = SelectedCharaparam.Drop2Rate;
+                moneyFlatNumericUpDown.Value = SelectedCharaparam.Money;
+                experienceFlatNumericUpDown.Value = SelectedCharaparam.Experience;
+            }
 
             minStatFlatNumericUpDown1.Value = SelectedCharaparam.MinHP;
             minStatFlatNumericUpDown2.Value = SelectedCharaparam.MinStrength;
@@ -467,11 +663,33 @@ namespace Albatross.Forms.Characters
             attributeFlatNumericUpDown4.Value = Convert.ToDecimal(SelectedCharaparam.AttributeDamageLigthning);
             attributeFlatNumericUpDown5.Value = Convert.ToDecimal(SelectedCharaparam.AttributeDamageWater);
             attributeFlatNumericUpDown6.Value = Convert.ToDecimal(SelectedCharaparam.AttributeDamageWind);
-            attackFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.AttackHash);
-            techniqueFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.TechniqueHash);
-            inspiritFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.InspiritHash);
-            soultimateFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.SoultimateHash);
-            skillFlatComboBox.SelectedIndex = Skills.FindIndex(x => x.CharaabilityConfigHash == SelectedCharaparam.SkillHash);
+
+            if (GameOpened.Name == "Yo-Kai Watch 3")
+            {
+                attackFlatComboBox.SelectedIndex = Skills.FindIndex(x => x.SkillHash == SelectedCharaparam.AttackHash);
+                techniqueFlatComboBox.SelectedIndex = Skills.FindIndex(x => x.SkillHash == SelectedCharaparam.TechniqueHash);
+                inspiritFlatComboBox.SelectedIndex = Skills.FindIndex(x => x.SkillHash == SelectedCharaparam.InspiritHash);
+                soultimateFlatComboBox.SelectedIndex = Skills.FindIndex(x => x.SkillHash == SelectedCharaparam.SoultimateHash);
+
+                // Blaster T
+                if (selectedHackslashCharaparam != null)
+                {
+                    attackAFlatComboBox.SelectedIndex = HackslashTechnics.FindIndex(x => x.HackslashTechnicHash == selectedHackslashCharaparam.AttackAHash);
+                    attackXFlatComboBox.SelectedIndex = HackslashTechnics.FindIndex(x => x.HackslashTechnicHash == selectedHackslashCharaparam.AttackXHash);
+                    attackYFlatComboBox.SelectedIndex = HackslashTechnics.FindIndex(x => x.HackslashTechnicHash == selectedHackslashCharaparam.AttackYHash);
+                    soultimateBlasterTFlatComboBox.SelectedIndex = HackslashTechnics.FindIndex(x => x.HackslashTechnicHash == selectedHackslashCharaparam.SoultimateHash);
+                    abilityBlasterTFlatComboBox.SelectedIndex = HackslashAbilities.FindIndex(x => x.CharaabilityConfigHash == selectedHackslashCharaparam.SkillHash);
+                }
+            }
+            else
+            {
+                attackFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.AttackHash);
+                techniqueFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.TechniqueHash);
+                inspiritFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.InspiritHash);
+                soultimateFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.SoultimateHash);
+            }
+
+            abilityFlatComboBox.SelectedIndex = Abilities.FindIndex(x => x.CharaabilityConfigHash == SelectedCharaparam.AbilityHash);
 
             if (BattleCommandnames.Texts.ContainsKey(SelectedCharaparam.Quote1))
             {
@@ -500,9 +718,9 @@ namespace Albatross.Forms.Characters
                 hatedFoodQuoteTextBox.Clear();
             }
 
-            if (Addmembernames.Texts.ContainsKey(SelectedCharaparam.Quote4))
+            if (Addmembernames.Texts.ContainsKey(SelectedCharaparam.BefriendQuote))
             {
-                string recruitQuote = Addmembernames.Texts[SelectedCharaparam.Quote4].Strings[0].Text;
+                string recruitQuote = Addmembernames.Texts[SelectedCharaparam.BefriendQuote].Strings[0].Text;
                 recruitQuote = recruitQuote.Replace("\\n", Environment.NewLine);
                 befriendQuoteTextBox.Text = recruitQuote;
             }
@@ -622,6 +840,8 @@ namespace Albatross.Forms.Characters
         private void ScoutFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!scoutFlatComboBox.Focused) return;
+
+            SelectedCharaparam.ScoutableHash = GameOpened.ScoutablesType.Values.ToList().IndexOf(scoutFlatComboBox.SelectedItem.ToString());
         }
 
         private void ExperienceCurveFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -629,6 +849,13 @@ namespace Albatross.Forms.Characters
             if (!experienceCurveFlatNumericUpDown.Focused) return;
 
             SelectedCharaparam.ExperienceCurve = Convert.ToInt32(experienceCurveFlatNumericUpDown.Value);
+        }
+
+        private void WaitTimeFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!waitTimeFlatNumericUpDown.Focused) return;
+
+            SelectedCharaparam.WaitTime = Convert.ToInt32(waitTimeFlatNumericUpDown.Value);
         }
 
         private void MedalFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -714,10 +941,17 @@ namespace Albatross.Forms.Characters
 
         private void ItemFlatComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            IBattleCharaparam selectedBattleParam = BattleCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
             if (itemFlatComboBox1.SelectedIndex == -1)
             {
                 itemPictureBox1.Image = null;
                 SelectedCharaparam.Drop1Hash = 0;
+
+                if (selectedBattleParam != null)
+                {
+                    selectedBattleParam.Drop1Hash = 0;
+                }
             }
             else
             {
@@ -726,6 +960,11 @@ namespace Albatross.Forms.Characters
                 if (itemFlatComboBox1.Focused)
                 {
                     SelectedCharaparam.Drop1Hash = item.ItemHash;
+
+                    if (selectedBattleParam != null)
+                    {
+                        selectedBattleParam.Drop1Hash = item.ItemHash;
+                    }
                 }
 
                 try
@@ -745,15 +984,29 @@ namespace Albatross.Forms.Characters
         {
             if (!dropFlatNumericUpDown1.Focused) return;
 
+            IBattleCharaparam selectedBattleParam = BattleCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
+            if (selectedBattleParam != null)
+            {
+                selectedBattleParam.Drop1Rate = Convert.ToInt32(dropFlatNumericUpDown1.Value);
+            }
+
             SelectedCharaparam.Drop1Rate = Convert.ToInt32(dropFlatNumericUpDown1.Value);
         }
 
         private void ItemFlatComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            IBattleCharaparam selectedBattleParam = BattleCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
             if (itemFlatComboBox2.SelectedIndex == -1)
             {
                 itemPictureBox2.Image = null;
                 SelectedCharaparam.Drop2Hash = 0;
+
+                if (selectedBattleParam != null)
+                {
+                    selectedBattleParam.Drop2Hash = 0;
+                }
             }
             else
             {
@@ -762,6 +1015,11 @@ namespace Albatross.Forms.Characters
                 if (itemFlatComboBox2.Focused)
                 {
                     SelectedCharaparam.Drop2Hash = item.ItemHash;
+
+                    if (selectedBattleParam != null)
+                    {
+                        selectedBattleParam.Drop2Hash = item.ItemHash;
+                    }
                 }
 
                 try
@@ -781,6 +1039,13 @@ namespace Albatross.Forms.Characters
         {
             if (!dropFlatNumericUpDown2.Focused) return;
 
+            IBattleCharaparam selectedBattleParam = BattleCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
+            if (selectedBattleParam != null)
+            {
+                selectedBattleParam.Drop2Rate = Convert.ToInt32(dropFlatNumericUpDown2.Value);
+            }
+
             SelectedCharaparam.Drop2Rate = Convert.ToInt32(dropFlatNumericUpDown2.Value);
         }
 
@@ -788,12 +1053,26 @@ namespace Albatross.Forms.Characters
         {
             if (!moneyFlatNumericUpDown.Focused) return;
 
+            IBattleCharaparam selectedBattleParam = BattleCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
+            if (selectedBattleParam != null)
+            {
+                selectedBattleParam.Money = Convert.ToInt32(moneyFlatNumericUpDown.Value);
+            }
+
             SelectedCharaparam.Money = Convert.ToInt32(moneyFlatNumericUpDown.Value);
         }
 
         private void ExperienceFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (!experienceFlatNumericUpDown.Focused) return;
+
+            IBattleCharaparam selectedBattleParam = BattleCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
+            if (selectedBattleParam != null)
+            {
+                selectedBattleParam.Experience = Convert.ToInt32(experienceFlatNumericUpDown.Value);
+            }
 
             SelectedCharaparam.Experience = Convert.ToInt32(experienceFlatNumericUpDown.Value);
         }
@@ -866,6 +1145,20 @@ namespace Albatross.Forms.Characters
             if (!maxStatFlatNumericUpDown5.Focused) return;
 
             SelectedCharaparam.MaxSpeed = Convert.ToInt32(maxStatFlatNumericUpDown5.Value);
+        }
+
+        private void ResistanceFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!resistanceFlatComboBox.Focused) return;
+
+            SelectedCharaparam.Strongest = Attributes.YW.Values.ToList().IndexOf(resistanceFlatComboBox.SelectedItem.ToString());
+        }
+
+        private void WeaknessFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!weaknessFlatComboBox.Focused) return;
+
+            SelectedCharaparam.Weakness = Attributes.YW.Values.ToList().IndexOf(weaknessFlatComboBox.SelectedItem.ToString());
         }
 
         private void AttributeFlatNumericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -966,17 +1259,112 @@ namespace Albatross.Forms.Characters
             }
         }
 
-        private void SkillFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void AbilityFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!skillFlatComboBox.Focused) return;
+            if (!abilityFlatComboBox.Focused) return;
 
-            if (skillFlatComboBox.SelectedIndex == -1)
+            if (abilityFlatComboBox.SelectedIndex == -1)
             {
-                SelectedCharaparam.SkillHash = 0;
+                SelectedCharaparam.AbilityHash = 0;
             }
             else
             {
-                SelectedCharaparam.SkillHash = Skills[skillFlatComboBox.SelectedIndex].CharaabilityConfigHash;
+                SelectedCharaparam.AbilityHash = Abilities[abilityFlatComboBox.SelectedIndex].CharaabilityConfigHash;
+            }
+        }
+
+        private void AttackAFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!attackAFlatComboBox.Focused) return;
+
+            IHackslashCharaparam selectedHackslashCharaparam = HackslashCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
+            if (selectedHackslashCharaparam != null)
+            {
+                if (attackAFlatComboBox.SelectedIndex == -1)
+                {
+                    selectedHackslashCharaparam.AttackAHash = 0;
+                }
+                else
+                {
+                    selectedHackslashCharaparam.AttackAHash = HackslashTechnics[attackAFlatComboBox.SelectedIndex].HackslashTechnicHash;
+                }
+            }
+        }
+
+        private void AttackXFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!attackXFlatComboBox.Focused) return;
+
+            IHackslashCharaparam selectedHackslashCharaparam = HackslashCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
+            if (selectedHackslashCharaparam != null)
+            {
+                if (attackXFlatComboBox.SelectedIndex == -1)
+                {
+                    selectedHackslashCharaparam.AttackXHash = 0;
+                }
+                else
+                {
+                    selectedHackslashCharaparam.AttackXHash = HackslashTechnics[attackXFlatComboBox.SelectedIndex].HackslashTechnicHash;
+                }
+            }
+        }
+
+        private void AttackYFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!attackYFlatComboBox.Focused) return;
+
+            IHackslashCharaparam selectedHackslashCharaparam = HackslashCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
+            if (selectedHackslashCharaparam != null)
+            {
+                if (attackYFlatComboBox.SelectedIndex == -1)
+                {
+                    selectedHackslashCharaparam.AttackYHash = 0;
+                }
+                else
+                {
+                    selectedHackslashCharaparam.AttackYHash = HackslashTechnics[attackYFlatComboBox.SelectedIndex].HackslashTechnicHash;
+                }
+            }
+        }
+
+        private void SoultimateBlasterTFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!soultimateBlasterTFlatComboBox.Focused) return;
+
+            IHackslashCharaparam selectedHackslashCharaparam = HackslashCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
+            if (selectedHackslashCharaparam != null)
+            {
+                if (soultimateBlasterTFlatComboBox.SelectedIndex == -1)
+                {
+                    selectedHackslashCharaparam.SoultimateHash = 0;
+                }
+                else
+                {
+                    selectedHackslashCharaparam.SoultimateHash = HackslashTechnics[soultimateBlasterTFlatComboBox.SelectedIndex].HackslashTechnicHash;
+                }
+            }
+        }
+
+        private void AbilityBlasterTFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!abilityBlasterTFlatComboBox.Focused) return;
+
+            IHackslashCharaparam selectedHackslashCharaparam = HackslashCharaparams.FirstOrDefault(x => x.ParamHash == SelectedCharaparam.ParamHash);
+
+            if (selectedHackslashCharaparam != null)
+            {
+                if (abilityBlasterTFlatComboBox.SelectedIndex == -1)
+                {
+                    selectedHackslashCharaparam.SkillHash = 0;
+                }
+                else
+                {
+                    selectedHackslashCharaparam.SkillHash = HackslashAbilities[abilityBlasterTFlatComboBox.SelectedIndex].CharaabilityConfigHash;
+                }
             }
         }
 
@@ -1048,17 +1436,17 @@ namespace Albatross.Forms.Characters
 
         private void BefriendQuoteTextBox_Click(object sender, EventArgs e)
         {
-            Nyanko.Nyanko nyanko = new Nyanko.Nyanko(Path.GetFileName(GameOpened.Files["battle_text"].Path), Addmembernames, true, false, SelectedCharaparam.Quote4);
+            Nyanko.Nyanko nyanko = new Nyanko.Nyanko(Path.GetFileName(GameOpened.Files["battle_text"].Path), Addmembernames, true, false, SelectedCharaparam.BefriendQuote);
             nyanko.ShowDialog();
             Addmembernames = nyanko.T2bþFileOpened;
 
             if (nyanko.SelectedHash != 0)
             {
-                SelectedCharaparam.Quote4 = nyanko.SelectedHash;
+                SelectedCharaparam.BefriendQuote = nyanko.SelectedHash;
 
-                if (Addmembernames.Texts.ContainsKey(SelectedCharaparam.Quote4))
+                if (Addmembernames.Texts.ContainsKey(SelectedCharaparam.BefriendQuote))
                 {
-                    string quote = Addmembernames.Texts[SelectedCharaparam.Quote4].Strings[0].Text;
+                    string quote = Addmembernames.Texts[SelectedCharaparam.BefriendQuote].Strings[0].Text;
                     befriendQuoteTextBox.Text = quote.Replace("\\n", Environment.NewLine);
                 }
                 else

@@ -8,6 +8,7 @@ using Albatross.Yokai_Watch.Games.YW1;
 using Albatross.Yokai_Watch.Games.YW2;
 using Albatross.Yokai_Watch.Games.YW3;
 using Albatross.Yokai_Watch.Games.YWB;
+using Albatross.Yokai_Watch.Games.YWB2;
 
 namespace Albatross
 {
@@ -71,6 +72,9 @@ namespace Albatross
                     break;
                 case "ywb":
                     game = new YWB(projectFolder, projectLanguage);
+                    break;
+                case "ywb2":
+                    game = new YWB2(projectFolder, projectLanguage);
                     break;
                 default:
                     MessageBox.Show("Can't open this project because the game isn't supported", "Unsupported game", MessageBoxButtons.OK, MessageBoxIcon.Error);

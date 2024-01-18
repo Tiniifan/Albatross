@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchWindow));
             this.vsTabControl1 = new Albatross.UI.VSTabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.searchButton = new System.Windows.Forms.Button();
@@ -122,8 +123,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(482, 384);
             this.Controls.Add(this.vsTabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SearchWindow";
-            this.Text = "SearchWindow";
+            this.Text = "Search";
             this.vsTabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();

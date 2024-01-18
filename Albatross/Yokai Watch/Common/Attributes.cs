@@ -2,9 +2,9 @@
 
 namespace Albatross.Yokai_Watch.Common
 {
-    public class Attribute
+    public static class Attributes
     {
-        public static Dictionary<byte, string> Value = new Dictionary<byte, string>()
+        public static Dictionary<int, string> YW = new Dictionary<int, string>()
         {
             {0x00, "Untype" },
             {0x01, "Fire" },

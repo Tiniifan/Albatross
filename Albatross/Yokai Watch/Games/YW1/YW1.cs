@@ -49,6 +49,7 @@ namespace Albatross.Yokai_Watch.Games.YW1
                 { "skill_text", new GameFile(Game, "/data/res/text/skill_text_" + LanguageCode + ".cfg.bin") },
                 { "chara_ability_text", new GameFile(Game, "/data/res/text/chara_ability_text_" + LanguageCode + ".cfg.bin") },
                 { "addmembermenu_text", new GameFile(Game, "/data/res/text/menu/addmembermenu_text_" + LanguageCode + ".cfg.bin") },
+                { "system_text", new GameFile(Game, "/data/res/text/system_text_" + LanguageCode + ".cfg.bin") },
                 { "face_icon", new GameFile(Game, "/data/menu/face_icon") },
                 { "item_icon", new GameFile(Game, "/data/menu/item_icon") },
                 { "model", new GameFile(Game, "/data/character") },
@@ -227,7 +228,42 @@ namespace Albatross.Yokai_Watch.Games.YW1
             }
         }
 
-        public ICharaabilityConfig[] GetSkills()
+        public ISkillconfig[] GetSkills()
+        {
+            return null;
+        }
+
+        public IBattleCharaparam[] GetBattleCharaparam()
+        {
+            return null; ;
+        }
+
+        public void SaveBattleCharaparam(IBattleCharaparam[] battleCharaparams)
+        {
+
+        }
+
+        public IHackslashCharaparam[] GetHackslashCharaparam()
+        {
+            return null;
+        }
+
+        public void SaveHackslashCharaparam(IHackslashCharaparam[] hackslashCharaparams)
+        {
+
+        }
+
+        public IHackslashCharaabilityConfig[] GetHackslashAbilities()
+        {
+            return null;
+        }
+
+        public IHackslashTechnic[] GetHackslashSkills()
+        {
+            return null;
+        }
+
+        public ICharaabilityConfig[] GetAbilities()
         {
             VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/character");
             string lastskillFile = characterFolder.Files.Keys.Where(x => x.StartsWith("chara_ability")).OrderByDescending(x => x).First();

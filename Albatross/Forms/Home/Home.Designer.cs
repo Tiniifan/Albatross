@@ -57,7 +57,7 @@ namespace Albatross
             this.deleteToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(570, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(729, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -129,7 +129,7 @@ namespace Albatross
             this.gameDataGridView.RowHeadersVisible = false;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.gameDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.gameDataGridView.Size = new System.Drawing.Size(543, 271);
+            this.gameDataGridView.Size = new System.Drawing.Size(703, 379);
             this.gameDataGridView.TabIndex = 5;
             this.gameDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GameDataGridView_CellDoubleClick);
             // 
@@ -140,6 +140,7 @@ namespace Albatross
             this.Column1.HeaderText = "Name";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.Width = 250;
             // 
             // Column2
             // 
@@ -158,19 +159,19 @@ namespace Albatross
             this.Column4.HeaderText = "Path";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 240;
+            this.Column4.Width = 250;
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(570, 310);
+            this.ClientSize = new System.Drawing.Size(729, 418);
             this.Controls.Add(this.gameDataGridView);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(586, 349);
-            this.MinimumSize = new System.Drawing.Size(478, 349);
+            this.MaximumSize = new System.Drawing.Size(745, 457);
+            this.MinimumSize = new System.Drawing.Size(745, 457);
             this.Name = "Home";
             this.Text = "Albatross";
             this.menuStrip1.ResumeLayout(false);

@@ -158,7 +158,7 @@
     <Compile Include="UI\FlatNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Yokai Watch\Common\Attribute.cs" />
+    <Compile Include="Yokai Watch\Common\Attributes.cs" />
     <Compile Include="Yokai Watch\Common\Effects.cs" />
     <Compile Include="Yokai Watch\Common\FoodsType.cs" />
     <Compile Include="Yokai Watch\Common\Ranks.cs" />
@@ -204,17 +204,33 @@
     <Compile Include="Yokai Watch\Games\YW2\YW2.cs" />
     <Compile Include="Yokai Watch\Games\IGame.cs" />
     <Compile Include="Yokai Watch\Games\YW2\YW2Support.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\BattleCharaparam.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\HackslashTechnic.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\HackslashCharaability.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\Skillbattleconfig.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\Battlecommand.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\Charaability.cs" />
     <Compile Include="Yokai Watch\Games\YW3\Logic\Charabase.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\Charaevolve.cs" />
     <Compile Include="Yokai Watch\Games\YW3\Logic\Charaparam.cs" />
     <Compile Include="Yokai Watch\Games\YW3\Logic\Charascale.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\HackslashCharaparam.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\Itemconfig.cs" />
     <Compile Include="Yokai Watch\Games\YW3\Logic\Skillconfig.cs" />
     <Compile Include="Yokai Watch\Games\YW3\YW3.cs" />
     <Compile Include="Yokai Watch\Games\YW3\YW3Support.cs" />
+    <Compile Include="Yokai Watch\Games\YWB2\YWB2Support.cs" />
+    <Compile Include="Yokai Watch\Games\YWB2\YWB2.cs" />
     <Compile Include="Yokai Watch\Games\YWB\Logic\Charabase.cs" />
     <Compile Include="Yokai Watch\Games\YWB\Logic\Charaparam.cs" />
     <Compile Include="Yokai Watch\Games\YWB\Logic\Charascale.cs" />
     <Compile Include="Yokai Watch\Games\YWB\YWBSupport.cs" />
     <Compile Include="Yokai Watch\Games\YWB\YWB.cs" />
+    <Compile Include="Yokai Watch\Logic\IBattleCharaparam.cs" />
+    <Compile Include="Yokai Watch\Logic\IHackslashTechnic.cs" />
+    <Compile Include="Yokai Watch\Logic\IHackslashCharaabilityConfig.cs" />
+    <Compile Include="Yokai Watch\Logic\IHackslashCharaparam.cs" />
+    <Compile Include="Yokai Watch\Logic\ISkillconfig.cs" />
     <Compile Include="Yokai Watch\Logic\IBattleCommand.cs" />
     <Compile Include="Yokai Watch\Logic\ICharaabilityConfig.cs" />
     <Compile Include="Yokai Watch\Logic\ICharabase.cs" />
@@ -289,6 +305,14 @@
   <ItemGroup>
     <Content Include="Icon.ico" />
     <Content Include="LICENSE-APACHE.txt" />
+    <EmbeddedResource Include="Resources\Food Icon\donut.png" />
+    <EmbeddedResource Include="Resources\Food Icon\hot_dog.png" />
+    <EmbeddedResource Include="Resources\Food Icon\ice_cream.png" />
+    <EmbeddedResource Include="Resources\Food Icon\mega_tasty_bar.png" />
+    <EmbeddedResource Include="Resources\Food Icon\pasta.png" />
+    <EmbeddedResource Include="Resources\Food Icon\pizza.png" />
+    <EmbeddedResource Include="Resources\Food Icon\sukiyaki.png" />
+    <EmbeddedResource Include="Resources\Food Icon\tempura.png" />
     <EmbeddedResource Include="Resources\Tribe Icon\boss.png" />
     <EmbeddedResource Include="Resources\Tribe Icon\brave.png" />
     <EmbeddedResource Include="Resources\Tribe Icon\charming.png" />

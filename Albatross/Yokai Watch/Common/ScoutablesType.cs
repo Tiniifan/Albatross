@@ -11,8 +11,8 @@ namespace Albatross.Yokai_Watch.Common
 
         public static Dictionary<int, string> YW2 = new Dictionary<int, string>()
         {
-            { 0x00654331, "Normal" },
             { 0x00000000, "Can't scout" },
+            { 0x00654331, "Normal" },
             { 0x00765444, "Normal" },
             { 0x00765555, "Normal" },
             { 0x00544331, "Normal" },
@@ -131,7 +131,16 @@ namespace Albatross.Yokai_Watch.Common
 
         public static Dictionary<int, string> YW3 = new Dictionary<int, string>
         {
-
+            { 0x00000001, "Scout 0" },
+            { 0x00000004, "Scout 1" },
+            { 0x00000000, "Scout 2" },
+            { 0x00000005, "Scout 3" },
+            { 0x00000006, "Scout 4" },
+            { 0x00000007, "Scout 5" },
+            { 0x00000008, "Scout 6" },
+            { 0x00000009, "Scout 7" },
+            { 0x00000003, "Scout 8" },
+            { 0x00000002, "Scout 9" },
         };
     }
 }

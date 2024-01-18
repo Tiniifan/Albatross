@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharaparamWindow));
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.characterListBox = new System.Windows.Forms.ListBox();
             this.characterContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -68,16 +69,29 @@
             this.scoutFlatComboBox = new Albatross.UI.FlatComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.vsTabControl2 = new Albatross.UI.VSTabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label22 = new System.Windows.Forms.Label();
             this.attackFlatComboBox = new Albatross.UI.FlatComboBox();
-            this.skillFlatComboBox = new Albatross.UI.FlatComboBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.techniqueFlatComboBox = new Albatross.UI.FlatComboBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.inspiritFlatComboBox = new Albatross.UI.FlatComboBox();
-            this.soultimateFlatComboBox = new Albatross.UI.FlatComboBox();
             this.label23 = new System.Windows.Forms.Label();
+            this.abilityFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.soultimateFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.inspiritFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.techniqueFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.flatComboBox1 = new Albatross.UI.FlatComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.flatComboBox2 = new Albatross.UI.FlatComboBox();
+            this.flatComboBox3 = new Albatross.UI.FlatComboBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.flatComboBox4 = new Albatross.UI.FlatComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.flatComboBox5 = new Albatross.UI.FlatComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.attributeFlatNumericUpDown2 = new Albatross.UI.FlatNumericUpDown();
             this.label31 = new System.Windows.Forms.Label();
@@ -109,13 +123,13 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.befriendGroupBox = new System.Windows.Forms.GroupBox();
             this.befriendQuoteTextBox = new System.Windows.Forms.TextBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.hatedFoodGroupBox = new System.Windows.Forms.GroupBox();
             this.hatedFoodQuoteTextBox = new System.Windows.Forms.TextBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.favoriteFoodGroupBox = new System.Windows.Forms.GroupBox();
             this.favoriteFoodQuoteTextBox = new System.Windows.Forms.TextBox();
-            this.descriptionGroupBox = new System.Windows.Forms.GroupBox();
+            this.eatGroupBox = new System.Windows.Forms.GroupBox();
             this.eatQuoteTextBox = new System.Windows.Forms.TextBox();
             this.hashTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -124,19 +138,24 @@
             this.label12 = new System.Windows.Forms.Label();
             this.baseModelFlatComboBox = new Albatross.UI.FlatComboBox();
             this.facePictureBox = new System.Windows.Forms.PictureBox();
-            this.vsTabControl2 = new Albatross.UI.VSTabControl();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.flatComboBox1 = new Albatross.UI.FlatComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.flatComboBox2 = new Albatross.UI.FlatComboBox();
-            this.flatComboBox3 = new Albatross.UI.FlatComboBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.flatComboBox4 = new Albatross.UI.FlatComboBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.flatComboBox5 = new Albatross.UI.FlatComboBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label37 = new System.Windows.Forms.Label();
+            this.attackAFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.abilityBlasterTFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.soultimateBlasterTFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.attackYFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.attackXFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.resistanceFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.weaknessFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.waitTimeFlatNumericUpDown = new Albatross.UI.FlatNumericUpDown();
             this.characterContextMenuStrip.SuspendLayout();
             this.characterGroupBox.SuspendLayout();
             this.vsTabControl1.SuspendLayout();
@@ -156,6 +175,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.experienceCurveFlatNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tribePictureBox)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.vsTabControl2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.attributeFlatNumericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.attributeFlatNumericUpDown1)).BeginInit();
@@ -174,14 +196,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown1)).BeginInit();
             this.tabPage1.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.descriptionGroupBox.SuspendLayout();
+            this.befriendGroupBox.SuspendLayout();
+            this.hatedFoodGroupBox.SuspendLayout();
+            this.favoriteFoodGroupBox.SuspendLayout();
+            this.eatGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).BeginInit();
-            this.vsTabControl2.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage6.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitTimeFlatNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // searchTextBox
@@ -204,7 +226,7 @@
             this.characterListBox.FormattingEnabled = true;
             this.characterListBox.Location = new System.Drawing.Point(12, 38);
             this.characterListBox.Name = "characterListBox";
-            this.characterListBox.Size = new System.Drawing.Size(185, 576);
+            this.characterListBox.Size = new System.Drawing.Size(185, 550);
             this.characterListBox.TabIndex = 7;
             this.characterListBox.SelectedIndexChanged += new System.EventHandler(this.CharacterListBox_SelectedIndexChanged);
             this.characterListBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CharacterListBox_MouseUp);
@@ -249,7 +271,7 @@
             this.characterGroupBox.ForeColor = System.Drawing.Color.White;
             this.characterGroupBox.Location = new System.Drawing.Point(203, 32);
             this.characterGroupBox.Name = "characterGroupBox";
-            this.characterGroupBox.Size = new System.Drawing.Size(499, 580);
+            this.characterGroupBox.Size = new System.Drawing.Size(499, 557);
             this.characterGroupBox.TabIndex = 8;
             this.characterGroupBox.TabStop = false;
             this.characterGroupBox.Text = "Character";
@@ -275,7 +297,7 @@
             this.vsTabControl1.Name = "vsTabControl1";
             this.vsTabControl1.Padding = new System.Drawing.Point(0, 0);
             this.vsTabControl1.SelectedIndex = 0;
-            this.vsTabControl1.Size = new System.Drawing.Size(460, 450);
+            this.vsTabControl1.Size = new System.Drawing.Size(460, 437);
             this.vsTabControl1.TabIndex = 66;
             // 
             // tabPage3
@@ -287,7 +309,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(452, 396);
+            this.tabPage3.Size = new System.Drawing.Size(452, 408);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Trait";
             // 
@@ -347,7 +369,7 @@
             this.evolutionFlatComboBox.FormattingEnabled = true;
             this.evolutionFlatComboBox.Location = new System.Drawing.Point(74, 44);
             this.evolutionFlatComboBox.Name = "evolutionFlatComboBox";
-            this.evolutionFlatComboBox.Size = new System.Drawing.Size(130, 21);
+            this.evolutionFlatComboBox.Size = new System.Drawing.Size(137, 21);
             this.evolutionFlatComboBox.TabIndex = 58;
             this.evolutionFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.EvolutionFlatComboBox_SelectedIndexChanged);
             this.evolutionFlatComboBox.TextChanged += new System.EventHandler(this.EvolutionFlatComboBox_TextChanged);
@@ -379,7 +401,7 @@
             this.groupBox5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox5.Location = new System.Drawing.Point(19, 220);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(422, 162);
+            this.groupBox5.Size = new System.Drawing.Size(422, 171);
             this.groupBox5.TabIndex = 68;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Drop";
@@ -482,7 +504,7 @@
             this.itemFlatComboBox2.FormattingEnabled = true;
             this.itemFlatComboBox2.Location = new System.Drawing.Point(74, 78);
             this.itemFlatComboBox2.Name = "itemFlatComboBox2";
-            this.itemFlatComboBox2.Size = new System.Drawing.Size(138, 21);
+            this.itemFlatComboBox2.Size = new System.Drawing.Size(137, 21);
             this.itemFlatComboBox2.TabIndex = 57;
             this.itemFlatComboBox2.SelectedIndexChanged += new System.EventHandler(this.ItemFlatComboBox2_SelectedIndexChanged);
             // 
@@ -511,9 +533,9 @@
             this.itemFlatComboBox1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.itemFlatComboBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.itemFlatComboBox1.FormattingEnabled = true;
-            this.itemFlatComboBox1.Location = new System.Drawing.Point(74, 40);
+            this.itemFlatComboBox1.Location = new System.Drawing.Point(74, 41);
             this.itemFlatComboBox1.Name = "itemFlatComboBox1";
-            this.itemFlatComboBox1.Size = new System.Drawing.Size(138, 21);
+            this.itemFlatComboBox1.Size = new System.Drawing.Size(137, 21);
             this.itemFlatComboBox1.TabIndex = 56;
             this.itemFlatComboBox1.SelectedIndexChanged += new System.EventHandler(this.ItemFlatComboBox1_SelectedIndexChanged);
             // 
@@ -528,7 +550,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label44);
             this.groupBox2.Controls.Add(this.isShownFlatCheckBox);
+            this.groupBox2.Controls.Add(this.waitTimeFlatNumericUpDown);
             this.groupBox2.Controls.Add(this.medalFlatNumericUpDown);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.experienceCurveFlatNumericUpDown);
@@ -599,7 +623,7 @@
             0,
             0});
             this.experienceCurveFlatNumericUpDown.Name = "experienceCurveFlatNumericUpDown";
-            this.experienceCurveFlatNumericUpDown.Size = new System.Drawing.Size(130, 22);
+            this.experienceCurveFlatNumericUpDown.Size = new System.Drawing.Size(50, 22);
             this.experienceCurveFlatNumericUpDown.TabIndex = 65;
             this.experienceCurveFlatNumericUpDown.ValueChanged += new System.EventHandler(this.ExperienceCurveFlatNumericUpDown_ValueChanged);
             // 
@@ -639,7 +663,7 @@
             this.tribeFlatComboBox.FormattingEnabled = true;
             this.tribeFlatComboBox.Location = new System.Drawing.Point(74, 44);
             this.tribeFlatComboBox.Name = "tribeFlatComboBox";
-            this.tribeFlatComboBox.Size = new System.Drawing.Size(130, 21);
+            this.tribeFlatComboBox.Size = new System.Drawing.Size(137, 21);
             this.tribeFlatComboBox.TabIndex = 58;
             this.tribeFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.TribeFlatComboBox_SelectedIndexChanged);
             // 
@@ -690,9 +714,53 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(452, 421);
+            this.tabPage2.Size = new System.Drawing.Size(452, 408);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Stat and Moveset";
+            // 
+            // vsTabControl2
+            // 
+            this.vsTabControl2.ActiveIndicator = System.Drawing.Color.White;
+            this.vsTabControl2.ActiveTab = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.vsTabControl2.ActiveText = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.vsTabControl2.Background = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.vsTabControl2.BackgroundTab = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.vsTabControl2.Border = System.Drawing.Color.White;
+            this.vsTabControl2.Controls.Add(this.tabPage4);
+            this.vsTabControl2.Controls.Add(this.tabPage6);
+            this.vsTabControl2.Controls.Add(this.tabPage5);
+            this.vsTabControl2.Divider = System.Drawing.Color.White;
+            this.vsTabControl2.Font = new System.Drawing.Font("Leelawadee UI", 8.25F);
+            this.vsTabControl2.InActiveIndicator = System.Drawing.Color.White;
+            this.vsTabControl2.InActiveTab = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.vsTabControl2.InActiveText = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.vsTabControl2.Location = new System.Drawing.Point(17, 209);
+            this.vsTabControl2.Margin = new System.Windows.Forms.Padding(0);
+            this.vsTabControl2.Name = "vsTabControl2";
+            this.vsTabControl2.Padding = new System.Drawing.Point(0, 0);
+            this.vsTabControl2.SelectedIndex = 0;
+            this.vsTabControl2.Size = new System.Drawing.Size(422, 192);
+            this.vsTabControl2.TabIndex = 67;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.tabPage4.Controls.Add(this.label22);
+            this.tabPage4.Controls.Add(this.attackFlatComboBox);
+            this.tabPage4.Controls.Add(this.label23);
+            this.tabPage4.Controls.Add(this.abilityFlatComboBox);
+            this.tabPage4.Controls.Add(this.soultimateFlatComboBox);
+            this.tabPage4.Controls.Add(this.label26);
+            this.tabPage4.Controls.Add(this.inspiritFlatComboBox);
+            this.tabPage4.Controls.Add(this.label24);
+            this.tabPage4.Controls.Add(this.label25);
+            this.tabPage4.Controls.Add(this.techniqueFlatComboBox);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(414, 163);
+            this.tabPage4.TabIndex = 0;
+            this.tabPage4.Text = "Moves";
             // 
             // label22
             // 
@@ -716,71 +784,27 @@
             this.attackFlatComboBox.TabIndex = 55;
             this.attackFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.AttackFlatComboBox_SelectedIndexChanged);
             // 
-            // skillFlatComboBox
+            // label23
             // 
-            this.skillFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.skillFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.skillFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.skillFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.skillFlatComboBox.FormattingEnabled = true;
-            this.skillFlatComboBox.Location = new System.Drawing.Point(107, 125);
-            this.skillFlatComboBox.Name = "skillFlatComboBox";
-            this.skillFlatComboBox.Size = new System.Drawing.Size(257, 21);
-            this.skillFlatComboBox.TabIndex = 65;
-            this.skillFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.SkillFlatComboBox_SelectedIndexChanged);
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(41, 74);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(43, 13);
+            this.label23.TabIndex = 62;
+            this.label23.Text = "Inspirit";
             // 
-            // label26
+            // abilityFlatComboBox
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(41, 128);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(28, 13);
-            this.label26.TabIndex = 64;
-            this.label26.Text = "Skill";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(41, 47);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(60, 13);
-            this.label24.TabIndex = 58;
-            this.label24.Text = "Technique";
-            // 
-            // techniqueFlatComboBox
-            // 
-            this.techniqueFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.techniqueFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.techniqueFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.techniqueFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.techniqueFlatComboBox.FormattingEnabled = true;
-            this.techniqueFlatComboBox.Location = new System.Drawing.Point(107, 44);
-            this.techniqueFlatComboBox.Name = "techniqueFlatComboBox";
-            this.techniqueFlatComboBox.Size = new System.Drawing.Size(257, 21);
-            this.techniqueFlatComboBox.TabIndex = 59;
-            this.techniqueFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.TechniqueFlatComboBox_SelectedIndexChanged);
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(41, 101);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(62, 13);
-            this.label25.TabIndex = 60;
-            this.label25.Text = "Soultimate";
-            // 
-            // inspiritFlatComboBox
-            // 
-            this.inspiritFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.inspiritFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.inspiritFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.inspiritFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.inspiritFlatComboBox.FormattingEnabled = true;
-            this.inspiritFlatComboBox.Location = new System.Drawing.Point(107, 71);
-            this.inspiritFlatComboBox.Name = "inspiritFlatComboBox";
-            this.inspiritFlatComboBox.Size = new System.Drawing.Size(257, 21);
-            this.inspiritFlatComboBox.TabIndex = 63;
-            this.inspiritFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.InspiritFlatComboBox_SelectedIndexChanged);
+            this.abilityFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.abilityFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.abilityFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.abilityFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.abilityFlatComboBox.FormattingEnabled = true;
+            this.abilityFlatComboBox.Location = new System.Drawing.Point(107, 125);
+            this.abilityFlatComboBox.Name = "abilityFlatComboBox";
+            this.abilityFlatComboBox.Size = new System.Drawing.Size(257, 21);
+            this.abilityFlatComboBox.TabIndex = 65;
+            this.abilityFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.AbilityFlatComboBox_SelectedIndexChanged);
             // 
             // soultimateFlatComboBox
             // 
@@ -795,31 +819,205 @@
             this.soultimateFlatComboBox.TabIndex = 61;
             this.soultimateFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.SoultimateFlatComboBox_SelectedIndexChanged);
             // 
-            // label23
+            // label26
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(41, 74);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(43, 13);
-            this.label23.TabIndex = 62;
-            this.label23.Text = "Inspirit";
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(41, 128);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(39, 13);
+            this.label26.TabIndex = 64;
+            this.label26.Text = "Ability";
+            // 
+            // inspiritFlatComboBox
+            // 
+            this.inspiritFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.inspiritFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.inspiritFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.inspiritFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.inspiritFlatComboBox.FormattingEnabled = true;
+            this.inspiritFlatComboBox.Location = new System.Drawing.Point(107, 71);
+            this.inspiritFlatComboBox.Name = "inspiritFlatComboBox";
+            this.inspiritFlatComboBox.Size = new System.Drawing.Size(257, 21);
+            this.inspiritFlatComboBox.TabIndex = 63;
+            this.inspiritFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.InspiritFlatComboBox_SelectedIndexChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(41, 47);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(60, 13);
+            this.label24.TabIndex = 58;
+            this.label24.Text = "Technique";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(41, 101);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(62, 13);
+            this.label25.TabIndex = 60;
+            this.label25.Text = "Soultimate";
+            // 
+            // techniqueFlatComboBox
+            // 
+            this.techniqueFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.techniqueFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.techniqueFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.techniqueFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.techniqueFlatComboBox.FormattingEnabled = true;
+            this.techniqueFlatComboBox.Location = new System.Drawing.Point(107, 44);
+            this.techniqueFlatComboBox.Name = "techniqueFlatComboBox";
+            this.techniqueFlatComboBox.Size = new System.Drawing.Size(257, 21);
+            this.techniqueFlatComboBox.TabIndex = 59;
+            this.techniqueFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.TechniqueFlatComboBox_SelectedIndexChanged);
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.tabPage6.Controls.Add(this.label3);
+            this.tabPage6.Controls.Add(this.flatComboBox1);
+            this.tabPage6.Controls.Add(this.label4);
+            this.tabPage6.Controls.Add(this.flatComboBox2);
+            this.tabPage6.Controls.Add(this.flatComboBox3);
+            this.tabPage6.Controls.Add(this.label28);
+            this.tabPage6.Controls.Add(this.flatComboBox4);
+            this.tabPage6.Controls.Add(this.label29);
+            this.tabPage6.Controls.Add(this.label30);
+            this.tabPage6.Controls.Add(this.flatComboBox5);
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(414, 163);
+            this.tabPage6.TabIndex = 3;
+            this.tabPage6.Text = "Blaster Moves";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(41, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 13);
+            this.label3.TabIndex = 66;
+            this.label3.Text = "Attack";
+            // 
+            // flatComboBox1
+            // 
+            this.flatComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.flatComboBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.flatComboBox1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.flatComboBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.flatComboBox1.FormattingEnabled = true;
+            this.flatComboBox1.Location = new System.Drawing.Point(107, 17);
+            this.flatComboBox1.Name = "flatComboBox1";
+            this.flatComboBox1.Size = new System.Drawing.Size(257, 21);
+            this.flatComboBox1.TabIndex = 67;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(41, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 72;
+            this.label4.Text = "Inspirit";
+            // 
+            // flatComboBox2
+            // 
+            this.flatComboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.flatComboBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.flatComboBox2.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.flatComboBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.flatComboBox2.FormattingEnabled = true;
+            this.flatComboBox2.Location = new System.Drawing.Point(107, 125);
+            this.flatComboBox2.Name = "flatComboBox2";
+            this.flatComboBox2.Size = new System.Drawing.Size(257, 21);
+            this.flatComboBox2.TabIndex = 75;
+            // 
+            // flatComboBox3
+            // 
+            this.flatComboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.flatComboBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.flatComboBox3.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.flatComboBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.flatComboBox3.FormattingEnabled = true;
+            this.flatComboBox3.Location = new System.Drawing.Point(107, 98);
+            this.flatComboBox3.Name = "flatComboBox3";
+            this.flatComboBox3.Size = new System.Drawing.Size(257, 21);
+            this.flatComboBox3.TabIndex = 71;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(41, 128);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(28, 13);
+            this.label28.TabIndex = 74;
+            this.label28.Text = "Skill";
+            // 
+            // flatComboBox4
+            // 
+            this.flatComboBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.flatComboBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.flatComboBox4.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.flatComboBox4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.flatComboBox4.FormattingEnabled = true;
+            this.flatComboBox4.Location = new System.Drawing.Point(107, 71);
+            this.flatComboBox4.Name = "flatComboBox4";
+            this.flatComboBox4.Size = new System.Drawing.Size(257, 21);
+            this.flatComboBox4.TabIndex = 73;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(41, 47);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(60, 13);
+            this.label29.TabIndex = 68;
+            this.label29.Text = "Technique";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(41, 101);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(62, 13);
+            this.label30.TabIndex = 70;
+            this.label30.Text = "Soultimate";
+            // 
+            // flatComboBox5
+            // 
+            this.flatComboBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.flatComboBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.flatComboBox5.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.flatComboBox5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.flatComboBox5.FormattingEnabled = true;
+            this.flatComboBox5.Location = new System.Drawing.Point(107, 44);
+            this.flatComboBox5.Name = "flatComboBox5";
+            this.flatComboBox5.Size = new System.Drawing.Size(257, 21);
+            this.flatComboBox5.TabIndex = 69;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.pictureBox1);
+            this.groupBox3.Controls.Add(this.resistanceFlatComboBox);
+            this.groupBox3.Controls.Add(this.weaknessFlatComboBox);
             this.groupBox3.Controls.Add(this.attributeFlatNumericUpDown2);
             this.groupBox3.Controls.Add(this.label31);
             this.groupBox3.Controls.Add(this.attributeFlatNumericUpDown1);
-            this.groupBox3.Controls.Add(this.label32);
             this.groupBox3.Controls.Add(this.attributeFlatNumericUpDown3);
-            this.groupBox3.Controls.Add(this.label33);
             this.groupBox3.Controls.Add(this.attributeFlatNumericUpDown4);
             this.groupBox3.Controls.Add(this.label34);
             this.groupBox3.Controls.Add(this.attributeFlatNumericUpDown5);
             this.groupBox3.Controls.Add(this.label35);
             this.groupBox3.Controls.Add(this.attributeFlatNumericUpDown6);
             this.groupBox3.Controls.Add(this.label36);
+            this.groupBox3.Controls.Add(this.label42);
+            this.groupBox3.Controls.Add(this.label43);
+            this.groupBox3.Controls.Add(this.label32);
+            this.groupBox3.Controls.Add(this.label33);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox3.Location = new System.Drawing.Point(17, 115);
+            this.groupBox3.Location = new System.Drawing.Point(17, 106);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(422, 91);
             this.groupBox3.TabIndex = 66;
@@ -1027,7 +1225,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(14, 79);
+            this.label21.Location = new System.Drawing.Point(14, 71);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(28, 13);
             this.label21.TabIndex = 53;
@@ -1040,7 +1238,7 @@
             this.maxStatFlatNumericUpDown5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maxStatFlatNumericUpDown5.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.maxStatFlatNumericUpDown5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.maxStatFlatNumericUpDown5.Location = new System.Drawing.Point(371, 79);
+            this.maxStatFlatNumericUpDown5.Location = new System.Drawing.Point(370, 69);
             this.maxStatFlatNumericUpDown5.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -1058,7 +1256,7 @@
             this.maxStatFlatNumericUpDown4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maxStatFlatNumericUpDown4.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.maxStatFlatNumericUpDown4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.maxStatFlatNumericUpDown4.Location = new System.Drawing.Point(292, 79);
+            this.maxStatFlatNumericUpDown4.Location = new System.Drawing.Point(291, 69);
             this.maxStatFlatNumericUpDown4.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -1076,7 +1274,7 @@
             this.maxStatFlatNumericUpDown3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maxStatFlatNumericUpDown3.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.maxStatFlatNumericUpDown3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.maxStatFlatNumericUpDown3.Location = new System.Drawing.Point(213, 79);
+            this.maxStatFlatNumericUpDown3.Location = new System.Drawing.Point(212, 69);
             this.maxStatFlatNumericUpDown3.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -1094,7 +1292,7 @@
             this.maxStatFlatNumericUpDown2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maxStatFlatNumericUpDown2.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.maxStatFlatNumericUpDown2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.maxStatFlatNumericUpDown2.Location = new System.Drawing.Point(133, 79);
+            this.maxStatFlatNumericUpDown2.Location = new System.Drawing.Point(132, 69);
             this.maxStatFlatNumericUpDown2.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -1112,7 +1310,7 @@
             this.maxStatFlatNumericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maxStatFlatNumericUpDown1.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.maxStatFlatNumericUpDown1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.maxStatFlatNumericUpDown1.Location = new System.Drawing.Point(55, 79);
+            this.maxStatFlatNumericUpDown1.Location = new System.Drawing.Point(54, 69);
             this.maxStatFlatNumericUpDown1.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -1126,7 +1324,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(14, 51);
+            this.label20.Location = new System.Drawing.Point(14, 43);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(27, 13);
             this.label20.TabIndex = 47;
@@ -1139,7 +1337,7 @@
             this.minStatFlatNumericUpDown5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.minStatFlatNumericUpDown5.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.minStatFlatNumericUpDown5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.minStatFlatNumericUpDown5.Location = new System.Drawing.Point(371, 51);
+            this.minStatFlatNumericUpDown5.Location = new System.Drawing.Point(370, 41);
             this.minStatFlatNumericUpDown5.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -1157,7 +1355,7 @@
             this.minStatFlatNumericUpDown4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.minStatFlatNumericUpDown4.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.minStatFlatNumericUpDown4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.minStatFlatNumericUpDown4.Location = new System.Drawing.Point(292, 51);
+            this.minStatFlatNumericUpDown4.Location = new System.Drawing.Point(291, 41);
             this.minStatFlatNumericUpDown4.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -1175,7 +1373,7 @@
             this.minStatFlatNumericUpDown3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.minStatFlatNumericUpDown3.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.minStatFlatNumericUpDown3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.minStatFlatNumericUpDown3.Location = new System.Drawing.Point(213, 51);
+            this.minStatFlatNumericUpDown3.Location = new System.Drawing.Point(212, 41);
             this.minStatFlatNumericUpDown3.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -1193,7 +1391,7 @@
             this.minStatFlatNumericUpDown2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.minStatFlatNumericUpDown2.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.minStatFlatNumericUpDown2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.minStatFlatNumericUpDown2.Location = new System.Drawing.Point(134, 51);
+            this.minStatFlatNumericUpDown2.Location = new System.Drawing.Point(133, 41);
             this.minStatFlatNumericUpDown2.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -1238,7 +1436,7 @@
             this.minStatFlatNumericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.minStatFlatNumericUpDown1.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.minStatFlatNumericUpDown1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.minStatFlatNumericUpDown1.Location = new System.Drawing.Point(55, 51);
+            this.minStatFlatNumericUpDown1.Location = new System.Drawing.Point(54, 41);
             this.minStatFlatNumericUpDown1.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -1270,27 +1468,27 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.tabPage1.Controls.Add(this.groupBox8);
-            this.tabPage1.Controls.Add(this.groupBox7);
-            this.tabPage1.Controls.Add(this.groupBox6);
-            this.tabPage1.Controls.Add(this.descriptionGroupBox);
+            this.tabPage1.Controls.Add(this.befriendGroupBox);
+            this.tabPage1.Controls.Add(this.hatedFoodGroupBox);
+            this.tabPage1.Controls.Add(this.favoriteFoodGroupBox);
+            this.tabPage1.Controls.Add(this.eatGroupBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(452, 396);
+            this.tabPage1.Size = new System.Drawing.Size(452, 408);
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "Quotes";
             // 
-            // groupBox8
+            // befriendGroupBox
             // 
-            this.groupBox8.Controls.Add(this.befriendQuoteTextBox);
-            this.groupBox8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox8.Location = new System.Drawing.Point(19, 307);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(422, 83);
-            this.groupBox8.TabIndex = 83;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Befriend Quote";
+            this.befriendGroupBox.Controls.Add(this.befriendQuoteTextBox);
+            this.befriendGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.befriendGroupBox.Location = new System.Drawing.Point(19, 307);
+            this.befriendGroupBox.Name = "befriendGroupBox";
+            this.befriendGroupBox.Size = new System.Drawing.Size(422, 83);
+            this.befriendGroupBox.TabIndex = 83;
+            this.befriendGroupBox.TabStop = false;
+            this.befriendGroupBox.Text = "Befriend Quote";
             // 
             // befriendQuoteTextBox
             // 
@@ -1305,16 +1503,16 @@
             this.befriendQuoteTextBox.TabIndex = 50;
             this.befriendQuoteTextBox.Click += new System.EventHandler(this.BefriendQuoteTextBox_Click);
             // 
-            // groupBox7
+            // hatedFoodGroupBox
             // 
-            this.groupBox7.Controls.Add(this.hatedFoodQuoteTextBox);
-            this.groupBox7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox7.Location = new System.Drawing.Point(19, 209);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(422, 83);
-            this.groupBox7.TabIndex = 82;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Hated Food Quote";
+            this.hatedFoodGroupBox.Controls.Add(this.hatedFoodQuoteTextBox);
+            this.hatedFoodGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.hatedFoodGroupBox.Location = new System.Drawing.Point(19, 209);
+            this.hatedFoodGroupBox.Name = "hatedFoodGroupBox";
+            this.hatedFoodGroupBox.Size = new System.Drawing.Size(422, 83);
+            this.hatedFoodGroupBox.TabIndex = 82;
+            this.hatedFoodGroupBox.TabStop = false;
+            this.hatedFoodGroupBox.Text = "Hated Food Quote";
             // 
             // hatedFoodQuoteTextBox
             // 
@@ -1329,16 +1527,16 @@
             this.hatedFoodQuoteTextBox.TabIndex = 50;
             this.hatedFoodQuoteTextBox.Click += new System.EventHandler(this.HatedFoodQuoteTextBox_Click);
             // 
-            // groupBox6
+            // favoriteFoodGroupBox
             // 
-            this.groupBox6.Controls.Add(this.favoriteFoodQuoteTextBox);
-            this.groupBox6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox6.Location = new System.Drawing.Point(19, 113);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(422, 83);
-            this.groupBox6.TabIndex = 81;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Favorite Food Quote";
+            this.favoriteFoodGroupBox.Controls.Add(this.favoriteFoodQuoteTextBox);
+            this.favoriteFoodGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.favoriteFoodGroupBox.Location = new System.Drawing.Point(19, 113);
+            this.favoriteFoodGroupBox.Name = "favoriteFoodGroupBox";
+            this.favoriteFoodGroupBox.Size = new System.Drawing.Size(422, 83);
+            this.favoriteFoodGroupBox.TabIndex = 81;
+            this.favoriteFoodGroupBox.TabStop = false;
+            this.favoriteFoodGroupBox.Text = "Favorite Food Quote";
             // 
             // favoriteFoodQuoteTextBox
             // 
@@ -1353,16 +1551,16 @@
             this.favoriteFoodQuoteTextBox.TabIndex = 50;
             this.favoriteFoodQuoteTextBox.Click += new System.EventHandler(this.FavoriteFoodQuoteTextBox_Click);
             // 
-            // descriptionGroupBox
+            // eatGroupBox
             // 
-            this.descriptionGroupBox.Controls.Add(this.eatQuoteTextBox);
-            this.descriptionGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.descriptionGroupBox.Location = new System.Drawing.Point(19, 15);
-            this.descriptionGroupBox.Name = "descriptionGroupBox";
-            this.descriptionGroupBox.Size = new System.Drawing.Size(422, 83);
-            this.descriptionGroupBox.TabIndex = 80;
-            this.descriptionGroupBox.TabStop = false;
-            this.descriptionGroupBox.Text = "Eat Quote";
+            this.eatGroupBox.Controls.Add(this.eatQuoteTextBox);
+            this.eatGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.eatGroupBox.Location = new System.Drawing.Point(19, 15);
+            this.eatGroupBox.Name = "eatGroupBox";
+            this.eatGroupBox.Size = new System.Drawing.Size(422, 83);
+            this.eatGroupBox.TabIndex = 80;
+            this.eatGroupBox.TabStop = false;
+            this.eatGroupBox.Text = "Eat Quote";
             // 
             // eatQuoteTextBox
             // 
@@ -1447,185 +1645,228 @@
             this.facePictureBox.TabIndex = 60;
             this.facePictureBox.TabStop = false;
             // 
-            // vsTabControl2
+            // tabPage5
             // 
-            this.vsTabControl2.ActiveIndicator = System.Drawing.Color.White;
-            this.vsTabControl2.ActiveTab = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.vsTabControl2.ActiveText = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.vsTabControl2.Background = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.vsTabControl2.BackgroundTab = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.vsTabControl2.Border = System.Drawing.Color.White;
-            this.vsTabControl2.Controls.Add(this.tabPage4);
-            this.vsTabControl2.Controls.Add(this.tabPage6);
-            this.vsTabControl2.Divider = System.Drawing.Color.White;
-            this.vsTabControl2.Font = new System.Drawing.Font("Leelawadee UI", 8.25F);
-            this.vsTabControl2.InActiveIndicator = System.Drawing.Color.White;
-            this.vsTabControl2.InActiveTab = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.vsTabControl2.InActiveText = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.vsTabControl2.Location = new System.Drawing.Point(17, 218);
-            this.vsTabControl2.Margin = new System.Windows.Forms.Padding(0);
-            this.vsTabControl2.Name = "vsTabControl2";
-            this.vsTabControl2.Padding = new System.Drawing.Point(0, 0);
-            this.vsTabControl2.SelectedIndex = 0;
-            this.vsTabControl2.Size = new System.Drawing.Size(422, 192);
-            this.vsTabControl2.TabIndex = 67;
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.tabPage5.Controls.Add(this.label37);
+            this.tabPage5.Controls.Add(this.attackAFlatComboBox);
+            this.tabPage5.Controls.Add(this.label38);
+            this.tabPage5.Controls.Add(this.abilityBlasterTFlatComboBox);
+            this.tabPage5.Controls.Add(this.soultimateBlasterTFlatComboBox);
+            this.tabPage5.Controls.Add(this.label39);
+            this.tabPage5.Controls.Add(this.attackYFlatComboBox);
+            this.tabPage5.Controls.Add(this.label40);
+            this.tabPage5.Controls.Add(this.label41);
+            this.tabPage5.Controls.Add(this.attackXFlatComboBox);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(414, 163);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Blaster T Moves";
             // 
-            // tabPage4
+            // label37
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.tabPage4.Controls.Add(this.label22);
-            this.tabPage4.Controls.Add(this.attackFlatComboBox);
-            this.tabPage4.Controls.Add(this.label23);
-            this.tabPage4.Controls.Add(this.skillFlatComboBox);
-            this.tabPage4.Controls.Add(this.soultimateFlatComboBox);
-            this.tabPage4.Controls.Add(this.label26);
-            this.tabPage4.Controls.Add(this.inspiritFlatComboBox);
-            this.tabPage4.Controls.Add(this.label24);
-            this.tabPage4.Controls.Add(this.label25);
-            this.tabPage4.Controls.Add(this.techniqueFlatComboBox);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(414, 163);
-            this.tabPage4.TabIndex = 0;
-            this.tabPage4.Text = "Moves";
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(41, 20);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(50, 13);
+            this.label37.TabIndex = 66;
+            this.label37.Text = "A-Attack";
             // 
-            // tabPage6
+            // attackAFlatComboBox
             // 
-            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.tabPage6.Controls.Add(this.label3);
-            this.tabPage6.Controls.Add(this.flatComboBox1);
-            this.tabPage6.Controls.Add(this.label4);
-            this.tabPage6.Controls.Add(this.flatComboBox2);
-            this.tabPage6.Controls.Add(this.flatComboBox3);
-            this.tabPage6.Controls.Add(this.label28);
-            this.tabPage6.Controls.Add(this.flatComboBox4);
-            this.tabPage6.Controls.Add(this.label29);
-            this.tabPage6.Controls.Add(this.label30);
-            this.tabPage6.Controls.Add(this.flatComboBox5);
-            this.tabPage6.Location = new System.Drawing.Point(4, 25);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(414, 163);
-            this.tabPage6.TabIndex = 3;
-            this.tabPage6.Text = "Blaster Moves";
+            this.attackAFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.attackAFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.attackAFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.attackAFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.attackAFlatComboBox.FormattingEnabled = true;
+            this.attackAFlatComboBox.Location = new System.Drawing.Point(107, 17);
+            this.attackAFlatComboBox.Name = "attackAFlatComboBox";
+            this.attackAFlatComboBox.Size = new System.Drawing.Size(257, 21);
+            this.attackAFlatComboBox.TabIndex = 67;
+            this.attackAFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.AttackAFlatComboBox_SelectedIndexChanged);
             // 
-            // label3
+            // label38
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 13);
-            this.label3.TabIndex = 66;
-            this.label3.Text = "Attack";
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(41, 74);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(48, 13);
+            this.label38.TabIndex = 72;
+            this.label38.Text = "Y-Attack";
             // 
-            // flatComboBox1
+            // abilityBlasterTFlatComboBox
             // 
-            this.flatComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.flatComboBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.flatComboBox1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.flatComboBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.flatComboBox1.FormattingEnabled = true;
-            this.flatComboBox1.Location = new System.Drawing.Point(107, 17);
-            this.flatComboBox1.Name = "flatComboBox1";
-            this.flatComboBox1.Size = new System.Drawing.Size(257, 21);
-            this.flatComboBox1.TabIndex = 67;
+            this.abilityBlasterTFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.abilityBlasterTFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.abilityBlasterTFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.abilityBlasterTFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.abilityBlasterTFlatComboBox.FormattingEnabled = true;
+            this.abilityBlasterTFlatComboBox.Location = new System.Drawing.Point(107, 125);
+            this.abilityBlasterTFlatComboBox.Name = "abilityBlasterTFlatComboBox";
+            this.abilityBlasterTFlatComboBox.Size = new System.Drawing.Size(257, 21);
+            this.abilityBlasterTFlatComboBox.TabIndex = 75;
+            this.abilityBlasterTFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.AbilityBlasterTFlatComboBox_SelectedIndexChanged);
             // 
-            // label4
+            // soultimateBlasterTFlatComboBox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 74);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
-            this.label4.TabIndex = 72;
-            this.label4.Text = "Inspirit";
+            this.soultimateBlasterTFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.soultimateBlasterTFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.soultimateBlasterTFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.soultimateBlasterTFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.soultimateBlasterTFlatComboBox.FormattingEnabled = true;
+            this.soultimateBlasterTFlatComboBox.Location = new System.Drawing.Point(107, 98);
+            this.soultimateBlasterTFlatComboBox.Name = "soultimateBlasterTFlatComboBox";
+            this.soultimateBlasterTFlatComboBox.Size = new System.Drawing.Size(257, 21);
+            this.soultimateBlasterTFlatComboBox.TabIndex = 71;
+            this.soultimateBlasterTFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.SoultimateBlasterTFlatComboBox_SelectedIndexChanged);
             // 
-            // flatComboBox2
+            // label39
             // 
-            this.flatComboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.flatComboBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.flatComboBox2.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.flatComboBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.flatComboBox2.FormattingEnabled = true;
-            this.flatComboBox2.Location = new System.Drawing.Point(107, 125);
-            this.flatComboBox2.Name = "flatComboBox2";
-            this.flatComboBox2.Size = new System.Drawing.Size(257, 21);
-            this.flatComboBox2.TabIndex = 75;
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(41, 128);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(39, 13);
+            this.label39.TabIndex = 74;
+            this.label39.Text = "Ability";
             // 
-            // flatComboBox3
+            // attackYFlatComboBox
             // 
-            this.flatComboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.flatComboBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.flatComboBox3.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.flatComboBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.flatComboBox3.FormattingEnabled = true;
-            this.flatComboBox3.Location = new System.Drawing.Point(107, 98);
-            this.flatComboBox3.Name = "flatComboBox3";
-            this.flatComboBox3.Size = new System.Drawing.Size(257, 21);
-            this.flatComboBox3.TabIndex = 71;
+            this.attackYFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.attackYFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.attackYFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.attackYFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.attackYFlatComboBox.FormattingEnabled = true;
+            this.attackYFlatComboBox.Location = new System.Drawing.Point(107, 71);
+            this.attackYFlatComboBox.Name = "attackYFlatComboBox";
+            this.attackYFlatComboBox.Size = new System.Drawing.Size(257, 21);
+            this.attackYFlatComboBox.TabIndex = 73;
+            this.attackYFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.AttackYFlatComboBox_SelectedIndexChanged);
             // 
-            // label28
+            // label40
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(41, 128);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(28, 13);
-            this.label28.TabIndex = 74;
-            this.label28.Text = "Skill";
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(41, 47);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(49, 13);
+            this.label40.TabIndex = 68;
+            this.label40.Text = "X-Attack";
             // 
-            // flatComboBox4
+            // label41
             // 
-            this.flatComboBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.flatComboBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.flatComboBox4.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.flatComboBox4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.flatComboBox4.FormattingEnabled = true;
-            this.flatComboBox4.Location = new System.Drawing.Point(107, 71);
-            this.flatComboBox4.Name = "flatComboBox4";
-            this.flatComboBox4.Size = new System.Drawing.Size(257, 21);
-            this.flatComboBox4.TabIndex = 73;
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(41, 101);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(62, 13);
+            this.label41.TabIndex = 70;
+            this.label41.Text = "Soultimate";
             // 
-            // label29
+            // attackXFlatComboBox
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(41, 47);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(60, 13);
-            this.label29.TabIndex = 68;
-            this.label29.Text = "Technique";
+            this.attackXFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.attackXFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.attackXFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.attackXFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.attackXFlatComboBox.FormattingEnabled = true;
+            this.attackXFlatComboBox.Location = new System.Drawing.Point(107, 44);
+            this.attackXFlatComboBox.Name = "attackXFlatComboBox";
+            this.attackXFlatComboBox.Size = new System.Drawing.Size(257, 21);
+            this.attackXFlatComboBox.TabIndex = 69;
+            this.attackXFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.AttackXFlatComboBox_SelectedIndexChanged);
             // 
-            // label30
+            // label42
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(41, 101);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(62, 13);
-            this.label30.TabIndex = 70;
-            this.label30.Text = "Soultimate";
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(10, 27);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(61, 13);
+            this.label42.TabIndex = 62;
+            this.label42.Text = "Resistance";
             // 
-            // flatComboBox5
+            // pictureBox1
             // 
-            this.flatComboBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.flatComboBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.flatComboBox5.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.flatComboBox5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.flatComboBox5.FormattingEnabled = true;
-            this.flatComboBox5.Location = new System.Drawing.Point(107, 44);
-            this.flatComboBox5.Name = "flatComboBox5";
-            this.flatComboBox5.Size = new System.Drawing.Size(257, 21);
-            this.flatComboBox5.TabIndex = 69;
+            this.pictureBox1.Location = new System.Drawing.Point(30, 43);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 63;
+            this.pictureBox1.TabStop = false;
+            // 
+            // resistanceFlatComboBox
+            // 
+            this.resistanceFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.resistanceFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.resistanceFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.resistanceFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.resistanceFlatComboBox.FormattingEnabled = true;
+            this.resistanceFlatComboBox.Location = new System.Drawing.Point(60, 43);
+            this.resistanceFlatComboBox.Name = "resistanceFlatComboBox";
+            this.resistanceFlatComboBox.Size = new System.Drawing.Size(130, 21);
+            this.resistanceFlatComboBox.TabIndex = 64;
+            this.resistanceFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.ResistanceFlatComboBox_SelectedIndexChanged);
+            // 
+            // weaknessFlatComboBox
+            // 
+            this.weaknessFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.weaknessFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.weaknessFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.weaknessFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.weaknessFlatComboBox.FormattingEnabled = true;
+            this.weaknessFlatComboBox.Location = new System.Drawing.Point(263, 43);
+            this.weaknessFlatComboBox.Name = "weaknessFlatComboBox";
+            this.weaknessFlatComboBox.Size = new System.Drawing.Size(130, 21);
+            this.weaknessFlatComboBox.TabIndex = 66;
+            this.weaknessFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.WeaknessFlatComboBox_SelectedIndexChanged);
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(213, 27);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(59, 13);
+            this.label43.TabIndex = 65;
+            this.label43.Text = "Weakness";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(130, 74);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(31, 13);
+            this.label44.TabIndex = 68;
+            this.label44.Text = "Wait";
+            // 
+            // waitTimeFlatNumericUpDown
+            // 
+            this.waitTimeFlatNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.waitTimeFlatNumericUpDown.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.waitTimeFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.waitTimeFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.waitTimeFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.waitTimeFlatNumericUpDown.Location = new System.Drawing.Point(161, 71);
+            this.waitTimeFlatNumericUpDown.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.waitTimeFlatNumericUpDown.Name = "waitTimeFlatNumericUpDown";
+            this.waitTimeFlatNumericUpDown.Size = new System.Drawing.Size(50, 22);
+            this.waitTimeFlatNumericUpDown.TabIndex = 67;
+            this.waitTimeFlatNumericUpDown.ValueChanged += new System.EventHandler(this.WaitTimeFlatNumericUpDown_ValueChanged);
             // 
             // CharaparamWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(714, 626);
+            this.ClientSize = new System.Drawing.Size(714, 596);
             this.Controls.Add(this.characterGroupBox);
             this.Controls.Add(this.characterListBox);
             this.Controls.Add(this.searchTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CharaparamWindow";
-            this.Text = "CharaparamWindow";
+            this.Text = "Charaparam";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CharaparamWindow_FormClosed);
             this.characterContextMenuStrip.ResumeLayout(false);
             this.characterGroupBox.ResumeLayout(false);
@@ -1651,6 +1892,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.tribePictureBox)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.vsTabControl2.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.attributeFlatNumericUpDown2)).EndInit();
@@ -1670,20 +1916,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown1)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.descriptionGroupBox.ResumeLayout(false);
-            this.descriptionGroupBox.PerformLayout();
+            this.befriendGroupBox.ResumeLayout(false);
+            this.befriendGroupBox.PerformLayout();
+            this.hatedFoodGroupBox.ResumeLayout(false);
+            this.hatedFoodGroupBox.PerformLayout();
+            this.favoriteFoodGroupBox.ResumeLayout(false);
+            this.favoriteFoodGroupBox.PerformLayout();
+            this.eatGroupBox.ResumeLayout(false);
+            this.eatGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).EndInit();
-            this.vsTabControl2.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitTimeFlatNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1731,7 +1976,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label22;
         private UI.FlatComboBox attackFlatComboBox;
-        private UI.FlatComboBox skillFlatComboBox;
+        private UI.FlatComboBox abilityFlatComboBox;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label26;
         private UI.FlatComboBox techniqueFlatComboBox;
@@ -1770,13 +2015,13 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.GroupBox befriendGroupBox;
         private System.Windows.Forms.TextBox befriendQuoteTextBox;
-        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox hatedFoodGroupBox;
         private System.Windows.Forms.TextBox hatedFoodQuoteTextBox;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox favoriteFoodGroupBox;
         private System.Windows.Forms.TextBox favoriteFoodQuoteTextBox;
-        private System.Windows.Forms.GroupBox descriptionGroupBox;
+        private System.Windows.Forms.GroupBox eatGroupBox;
         private System.Windows.Forms.TextBox eatQuoteTextBox;
         private UI.FlatNumericUpDown medalFlatNumericUpDown;
         private System.Windows.Forms.Label label14;
@@ -1799,5 +2044,23 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private UI.FlatComboBox flatComboBox5;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Label label37;
+        private UI.FlatComboBox attackAFlatComboBox;
+        private System.Windows.Forms.Label label38;
+        private UI.FlatComboBox abilityBlasterTFlatComboBox;
+        private UI.FlatComboBox soultimateBlasterTFlatComboBox;
+        private System.Windows.Forms.Label label39;
+        private UI.FlatComboBox attackYFlatComboBox;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private UI.FlatComboBox attackXFlatComboBox;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private UI.FlatComboBox resistanceFlatComboBox;
+        private UI.FlatComboBox weaknessFlatComboBox;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label44;
+        private UI.FlatNumericUpDown waitTimeFlatNumericUpDown;
     }
 }

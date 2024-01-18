@@ -36,7 +36,7 @@ namespace Albatross.Yokai_Watch.Games.YW2.Logic
         public int Unk7 { get; set; }
         public int Unk8 { get; set; }
         public new int ScoutableHash { get => base.ScoutableHash; set => base.ScoutableHash = value; }
-        public new int SkillHash { get => base.SkillHash; set => base.SkillHash = value; }
+        public new int AbilityHash { get => base.AbilityHash; set => base.AbilityHash = value; }
         public new int Money { get => base.Money; set => base.Money = value; }
         public new int Experience { get => base.Experience; set => base.Experience = value; }
         public int Unk9 { get; set; }
@@ -50,7 +50,7 @@ namespace Albatross.Yokai_Watch.Games.YW2.Logic
         public new int Quote1 { get => base.Quote1; set => base.Quote1 = value; }
         public new int Quote2 { get => base.Quote2; set => base.Quote2 = value; }
         public new int Quote3 { get => base.Quote3; set => base.Quote3 = value; }
-        public new int Quote4 { get => base.Quote4; set => base.Quote4 = value; }
+        public new int BefriendQuote { get => base.BefriendQuote; set => base.BefriendQuote = value; }
         public int Unk12 { get; set; }
         public new int EvolveOffset { get => base.EvolveOffset; set => base.EvolveOffset = value; }
         public new int MedaliumOffset { get => base.MedaliumOffset; set => base.MedaliumOffset = value; }

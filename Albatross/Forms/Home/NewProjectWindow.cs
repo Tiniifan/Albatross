@@ -7,6 +7,7 @@ using Albatross.Yokai_Watch.Games.YW1;
 using Albatross.Yokai_Watch.Games.YW2;
 using Albatross.Yokai_Watch.Games.YW3;
 using Albatross.Yokai_Watch.Games.YWB;
+using Albatross.Yokai_Watch.Games.YWB2;
 
 namespace Albatross
 {
@@ -29,6 +30,8 @@ namespace Albatross
                     return YW3Support.AvailableLanguages[language];
                 case 3:
                     return YWBSupport.AvailableLanguages[language];
+                case 4:
+                    return YWB2Support.AvailableLanguages[language];
                 default:
                     return null;
             }
@@ -76,6 +79,9 @@ namespace Albatross
                         break;
                     case 3:
                         languageFlatComboBox.Items.AddRange(YWBSupport.AvailableLanguages.Keys.ToArray());
+                        break;
+                    case 4:
+                        languageFlatComboBox.Items.AddRange(YWB2Support.AvailableLanguages.Keys.ToArray());
                         break;
                 }
 
@@ -143,6 +149,17 @@ namespace Albatross
                     using (StreamWriter sw = File.AppendText("./AlbatrosTemp.txt"))
                     {
                         sw.WriteLine(nameTextBox.Text.Replace("|", "") + "|ywb|" + languageCode + "|" + pathTextBox.Text);
+                    }
+                }
+            }
+            else if (gameFlatComboBox1.SelectedIndex == 4)
+            {
+                projectCreated = File.Exists(pathTextBox.Text + @"\yw_a.fa");
+                if (projectCreated)
+                {
+                    using (StreamWriter sw = File.AppendText("./AlbatrosTemp.txt"))
+                    {
+                        sw.WriteLine(nameTextBox.Text.Replace("|", "") + "|ywb2|" + languageCode + "|" + pathTextBox.Text);
                     }
                 }
             }

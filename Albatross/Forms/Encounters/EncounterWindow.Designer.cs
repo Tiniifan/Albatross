@@ -33,17 +33,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EncounterWindow));
             this.mapListBox = new System.Windows.Forms.ListBox();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.encounterDataGridView = new System.Windows.Forms.DataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hashTextBox = new System.Windows.Forms.TextBox();
             this.hashLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.mapGroupBox = new System.Windows.Forms.GroupBox();
             this.tableFlatComboBox = new Albatross.UI.FlatComboBox();
-            this.Column3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.encounterDataGridView)).BeginInit();
             this.mapGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +56,7 @@
             this.mapListBox.FormattingEnabled = true;
             this.mapListBox.Location = new System.Drawing.Point(12, 38);
             this.mapListBox.Name = "mapListBox";
-            this.mapListBox.Size = new System.Drawing.Size(185, 355);
+            this.mapListBox.Size = new System.Drawing.Size(237, 355);
             this.mapListBox.TabIndex = 9;
             this.mapListBox.SelectedIndexChanged += new System.EventHandler(this.MapListBox_SelectedIndexChanged);
             // 
@@ -66,7 +67,7 @@
             this.searchTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.searchTextBox.Location = new System.Drawing.Point(12, 12);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(185, 13);
+            this.searchTextBox.Size = new System.Drawing.Size(237, 13);
             this.searchTextBox.TabIndex = 8;
             this.searchTextBox.Text = "Search...";
             // 
@@ -114,6 +115,26 @@
             this.encounterDataGridView.Size = new System.Drawing.Size(403, 278);
             this.encounterDataGridView.TabIndex = 49;
             // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Picture";
+            this.Column3.Name = "Column3";
+            // 
+            // Column1
+            // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column1.HeaderText = "Yokai";
+            this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column1.Width = 200;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Level";
+            this.Column2.Name = "Column2";
+            // 
             // hashTextBox
             // 
             this.hashTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
@@ -153,7 +174,7 @@
             this.mapGroupBox.Controls.Add(this.tableFlatComboBox);
             this.mapGroupBox.Enabled = false;
             this.mapGroupBox.ForeColor = System.Drawing.Color.White;
-            this.mapGroupBox.Location = new System.Drawing.Point(203, 32);
+            this.mapGroupBox.Location = new System.Drawing.Point(257, 32);
             this.mapGroupBox.Name = "mapGroupBox";
             this.mapGroupBox.Size = new System.Drawing.Size(438, 362);
             this.mapGroupBox.TabIndex = 63;
@@ -173,37 +194,18 @@
             this.tableFlatComboBox.TabIndex = 62;
             this.tableFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.TableFlatComboBox_SelectedIndexChanged);
             // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Picture";
-            this.Column3.Name = "Column3";
-            // 
-            // Column1
-            // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column1.HeaderText = "Yokai";
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column1.Width = 200;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Level";
-            this.Column2.Name = "Column2";
-            // 
             // EncounterWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(653, 404);
+            this.ClientSize = new System.Drawing.Size(710, 404);
             this.Controls.Add(this.mapGroupBox);
             this.Controls.Add(this.mapListBox);
             this.Controls.Add(this.searchTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EncounterWindow";
-            this.Text = "EncounterWindow";
+            this.Text = "Encounter";
             ((System.ComponentModel.ISupportInitialize)(this.encounterDataGridView)).EndInit();
             this.mapGroupBox.ResumeLayout(false);
             this.mapGroupBox.PerformLayout();

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharascaleWindow));
             this.characterListBox = new System.Windows.Forms.ListBox();
             this.characterContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -409,8 +410,9 @@
             this.Controls.Add(this.characterListBox);
             this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.characterGroupBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CharascaleWindow";
-            this.Text = "CharascaleWindow";
+            this.Text = "Charascale";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CharascaleWindow_FormClosed);
             this.characterContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).EndInit();
