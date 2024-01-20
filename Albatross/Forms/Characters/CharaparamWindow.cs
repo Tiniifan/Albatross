@@ -829,7 +829,7 @@ namespace Albatross.Forms.Characters
 
             if (tribeFlatComboBox.SelectedIndex != -1)
             {
-                SelectedCharaparam.Tribe = Ranks.YW.Values.ToList().IndexOf(tribeFlatComboBox.SelectedItem.ToString());
+                SelectedCharaparam.Tribe = GameOpened.Tribes.Values.ToList().IndexOf(tribeFlatComboBox.SelectedItem.ToString());
             }
             else
             {

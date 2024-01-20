@@ -646,7 +646,7 @@ namespace Albatross.Forms.Characters
 
             if (tribeFlatComboBox.SelectedIndex != -1)
             {
-                SelectedCharabase.Tribe = Ranks.YW.Values.ToList().IndexOf(tribeFlatComboBox.SelectedItem.ToString());
+                SelectedCharabase.Tribe = GameOpened.Tribes.Values.ToList().IndexOf(tribeFlatComboBox.SelectedItem.ToString());
             }
             else
             {
