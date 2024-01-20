@@ -1213,7 +1213,14 @@ namespace Albatross.Forms.Characters
             }
             else
             {
-                SelectedCharaparam.AttackHash = BattleCommands[attackFlatComboBox.SelectedIndex].BattleCommandHash;
+                if (GameOpened.Name == "Yo-Kai Watch 3")
+                {
+                    SelectedCharaparam.AttackHash = Skills[attackFlatComboBox.SelectedIndex].SkillHash;
+                }
+                else
+                {
+                    SelectedCharaparam.AttackHash = BattleCommands[attackFlatComboBox.SelectedIndex].BattleCommandHash;
+                }
             }
         }
 
@@ -1227,7 +1234,14 @@ namespace Albatross.Forms.Characters
             }
             else
             {
-                SelectedCharaparam.TechniqueHash = BattleCommands[techniqueFlatComboBox.SelectedIndex].BattleCommandHash;
+                if (GameOpened.Name == "Yo-Kai Watch 3")
+                {
+                    SelectedCharaparam.TechniqueHash = Skills[techniqueFlatComboBox.SelectedIndex].SkillHash;
+                }
+                else
+                {
+                    SelectedCharaparam.TechniqueHash = BattleCommands[techniqueFlatComboBox.SelectedIndex].BattleCommandHash;
+                }
             }
         }
 
@@ -1241,7 +1255,14 @@ namespace Albatross.Forms.Characters
             }
             else
             {
-                SelectedCharaparam.InspiritHash = BattleCommands[inspiritFlatComboBox.SelectedIndex].BattleCommandHash;
+                if (GameOpened.Name == "Yo-Kai Watch 3")
+                {
+                    SelectedCharaparam.InspiritHash = Skills[inspiritFlatComboBox.SelectedIndex].SkillHash;
+                }
+                else
+                {
+                    SelectedCharaparam.InspiritHash = BattleCommands[inspiritFlatComboBox.SelectedIndex].BattleCommandHash;
+                }
             }
         }
 
@@ -1255,7 +1276,14 @@ namespace Albatross.Forms.Characters
             }
             else
             {
-                SelectedCharaparam.SoultimateHash = BattleCommands[soultimateFlatComboBox.SelectedIndex].BattleCommandHash;
+                if (GameOpened.Name == "Yo-Kai Watch 3")
+                {
+                    SelectedCharaparam.SoultimateHash = Skills[soultimateFlatComboBox.SelectedIndex].SkillHash;
+                }
+                else
+                {
+                    SelectedCharaparam.SoultimateHash = BattleCommands[soultimateFlatComboBox.SelectedIndex].BattleCommandHash;
+                }
             }
         }
 
