@@ -411,6 +411,7 @@ namespace Albatross.Forms.Characters
                 isMericanFlatCheckBox.Checked = SelectedCharabase.IsMerican;
                 isDevaFlatCheckBox.Checked = SelectedCharabase.IsDeva;
                 isMysteryFlatCheckBox.Checked = SelectedCharabase.IsLegendaryMystery;
+                isTreasureFlatCheckBox.Checked = SelectedCharabase.IsTreasure;
                 isPionnerFlatCheckBox.Checked = SelectedCharabase.IsPionner;
                 isCommandantFlatCheckBox.Checked = SelectedCharabase.IsCommandant;
                 SetComboBox(SelectedCharabase.Tribe, GameOpened.Tribes, tribeFlatComboBox);
@@ -606,7 +607,7 @@ namespace Albatross.Forms.Characters
         {
             if (!isMysteryFlatCheckBox.Focused) return;
 
-            SelectedCharabase.IsLegendaryMystery = isLegendaryFlatCheckBox.Checked;
+            SelectedCharabase.IsLegendaryMystery = isMysteryFlatCheckBox.Checked;
         }
 
         private void IsTreasureFlatCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -627,7 +628,7 @@ namespace Albatross.Forms.Characters
         {
             if (!isCommandantFlatCheckBox.Focused) return;
 
-            SelectedCharabase.IsClassic = isCommandantFlatCheckBox.Checked;
+            SelectedCharabase.IsCommandant = isCommandantFlatCheckBox.Checked;
         }
 
         private void TribeFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -721,7 +722,7 @@ namespace Albatross.Forms.Characters
 
             if (favoritefoodFlatComboBox.SelectedIndex != -1)
             {
-                SelectedCharabase.FavoriteFoodHash = GameOpened.FoodsType.Keys.ToList().IndexOf(favoritefoodFlatComboBox.SelectedIndex);
+                SelectedCharabase.FavoriteFoodHash = GameOpened.FoodsType.Values.ToList().IndexOf(favoritefoodFlatComboBox.SelectedItem.ToString());
             }
             else
             {
@@ -752,7 +753,7 @@ namespace Albatross.Forms.Characters
 
             if (hatedFoodFlatComboBox.SelectedIndex != -1)
             {
-                SelectedCharabase.HatedFoodHash = GameOpened.FoodsType.Keys.ToList().IndexOf(hatedFoodFlatComboBox.SelectedIndex);
+                SelectedCharabase.HatedFoodHash = GameOpened.FoodsType.Values.ToList().IndexOf(hatedFoodFlatComboBox.SelectedItem.ToString());
             }
             else
             {
