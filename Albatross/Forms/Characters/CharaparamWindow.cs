@@ -841,7 +841,7 @@ namespace Albatross.Forms.Characters
         {
             if (!scoutFlatComboBox.Focused) return;
 
-            SelectedCharaparam.ScoutableHash = GameOpened.ScoutablesType.Values.ToList().IndexOf(scoutFlatComboBox.SelectedItem.ToString());
+            SelectedCharaparam.ScoutableHash = GameOpened.ScoutablesType.Keys.ElementAt(scoutFlatComboBox.SelectedIndex);
         }
 
         private void ExperienceCurveFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
