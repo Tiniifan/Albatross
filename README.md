@@ -40,14 +40,18 @@ My tool couldn't have been done without the logic that I could learn by studying
 **How to use it**
 
 1. Decrypt your game (google it)
-2. After decrypting your game you will get ExtractedRomFs folder
+2. After decrypting your game you will get ExtractedRomFs folder *if your game has an update and you are playing the update, it's recommended to merge .fa
 3. Open Albatross create a new project, specify project name, project game, project language and select the ExtractedRomFs
 4. Load your new Project, Allbatross will open HomeGame window, click on an option like charaparam to edit yokais
 5. Edit some stuff
 6. When it's done, on the HomeGame window click on Save, wait... During save process Albatross will freeze, don't panic!  
 - **Apply your mod on Citra:**
 1. Go to ExtractedRomFs Folder
-2. On YKW1: copy yw1_a.fa. On YKW2: copy yw2_a.fa and yw2_lg_[YourLanguageCode].fa. On YKW3 copy yw_a.fa and yw_lg_[YourLanguageCode].fa
+2. 
+- If you have YKW1: copy yw1_a.fa. 
+- If you have YKW2: copy yw2_a.fa and yw2_lg_[YourLanguageCode].fa. 
+- If you have YKW3 copy yw_a.fa and yw_lg_[YourLanguageCode].fa
+- If you have YKWB1 copy yw_a.fa and ywb_lg_[YourLanguageCode].fa
 3. Open Citra
 4. Right click on your Yokai-Watch Game
 5. Click on "Open mod location", citra will open a new file explorer window
@@ -56,7 +60,11 @@ My tool couldn't have been done without the logic that I could learn by studying
 8. Now you can run your game, your game will have the changes, if there are no changes try the tutorial again
 - **Apply your mod on 3ds (Custom Firmware):**
 1. Go to ExtractedRomFs Folder
-2. If you have YKW1: copy yw1_a.fa. If you have YKW2: copy yw2_a.fa and yw2_lg_[YourLanguageCode].fa. If you have YKW3 copy yw_a.fa and yw_lg_[YourLanguageCode].fa
+2. 
+- If you have YKW1: copy yw1_a.fa. 
+- If you have YKW2: copy yw2_a.fa and yw2_lg_[YourLanguageCode].fa. 
+- If you have YKW3 copy yw_a.fa and yw_lg_[YourLanguageCode].fa
+- If you have YKWB1 copy yw_a.fa and ywb_lg_[YourLanguageCode].fa
 3. Connect your 3DS to your Computer
 4. On 3DS files go to luma/titles folder
 5. Create a new folder called as the Title ID of your game (check the table)
@@ -69,8 +77,16 @@ My tool couldn't have been done without the logic that I could learn by studying
 | Yo-Kai Watch 2 Psychic Specter|Europe|00040000001B2900|
 | Yo-Kai Watch 2 Psychic Specter|Oceania|00040000001B2800|
 | Yo-Kai Watch 2 Psychic Specter|US|00040000001B2700|
-| Yo-Kai Watch 3|Europe|00040000001D6800|
-| Yo-Kai Watch 3|US|00040000001D6700|
+| Yo-Kai Watch 3 (English UK)|Europe|00040000001D6800|
+| Yo-Kai Watch 3 (Français)|Europe|00040000001D6900|
+| Yo-Kai Watch 3 (Deutsch)|Europe|00040000001D6A00|
+| Yo-Kai Watch 3 (Italiano)|Europe|00040000001D6B00|
+| Yo-Kai Watch 3 (Español)|Europe|00040000001D6C00|
+| Yo-Kai Watch 3 (English US)|US|00040000001D6700|
+| Yo-kai Watch Blasters: White Dog Squad|Europe|00040000001CF000|
+| Yo-kai Watch Blasters: Red Cat Corps|Europe|00040000001CEC00|
+| Yo-kai Watch Blasters: White Dog Squad|US|00040000001CEF00|
+| Yo-kai Watch Blasters: Red Cat Corps|US|00040000001CEB00|
 
 6. Click on folder that you have created
 7. Create a new folder called romfs
