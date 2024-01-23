@@ -648,6 +648,9 @@ namespace Albatross.Level5.Binary.Logic
                                 case TypeCode.Single:
                                     variableTypeElementFromArray = Type.Float;
                                     break;
+                                case TypeCode.Boolean:
+                                    variableTypeElementFromArray = Type.Int;
+                                    break;
                                 default:
                                     variableTypeElementFromArray = Type.Int;
                                     arrayElements[i] = 0;
@@ -670,6 +673,9 @@ namespace Albatross.Level5.Binary.Logic
                                 break;
                             case TypeCode.Single:
                                 variableType = Type.Float;
+                                break;
+                            case TypeCode.Boolean:
+                                variableType = Type.Int;
                                 break;
                             default:
                                 variableType = Type.Int;

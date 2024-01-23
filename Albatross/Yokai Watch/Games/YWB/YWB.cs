@@ -48,6 +48,7 @@ namespace Albatross.Yokai_Watch.Games.YWB
                 { "skill_text", new GameFile(Language, "/data/res/text/skill_text_" + LanguageCode + ".cfg.bin") },
                 { "chara_ability_text", new GameFile(Language, "/data/res/text/chara_ability_text_" + LanguageCode + ".cfg.bin") },
                 { "addmembermenu_text", new GameFile(Language, "/data/res/text/menu/addmembermenu_text_" + LanguageCode + ".cfg.bin") },
+                { "orgetime_technic", new GameFile(Language, "/data/res/text/orgetime_technic_text_" + LanguageCode + ".cfg.bin") },
                 { "face_icon", new GameFile(Game, "/data/menu/face_icon") },
                 { "item_icon", new GameFile(Game, "/data/menu/item_icon") },
                 { "model", new GameFile(Game, "/data/character") },
@@ -171,42 +172,75 @@ namespace Albatross.Yokai_Watch.Games.YWB
             CfgBin charaBaseFile = new CfgBin();
             charaBaseFile.Open(Game.Directory.GetFileFromFullPath("/data/res/character/" + lastcharabase));
 
-            return new ICharaparam[] { };
-            //return charaBaseFile.Entries
-            //.Where(x => x.GetName() == "CHARA_BASE_YOKAI_INFO")
-            //.SelectMany(x => x.Children)
-            //.Select(x => x.ToClass<Charabase>())
-            //.ToArray();
+            return charaBaseFile.Entries
+                .Where(x => x.GetName() == "CHARA_PARAM_INFO_LIST_BEG")
+                .SelectMany(x => x.Children)
+                .Select(x => x.ToClass<Charaparam>())
+                .ToArray();
         }
 
         public void SaveCharaparam(ICharaparam[] charaparams)
         {
+            Charaparam[] formatCharaparams = charaparams.OfType<Charaparam>().ToArray();
 
+            VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/character");
+            string lastCharaparam = characterFolder.Files.Keys.Where(x => x.StartsWith("chara_param")).OrderByDescending(x => x).First();
+
+            CfgBin charaparamFile = new CfgBin();
+            charaparamFile.Open(Game.Directory.GetFileFromFullPath("/data/res/character/" + lastCharaparam));
+
+            charaparamFile.ReplaceEntry("CHARA_PARAM_INFO_LIST_BEG", "CHARA_PARAM_INFO_", formatCharaparams);
+
+            Game.Directory.GetFolderFromFullPath("/data/res/character").Files[lastCharaparam].ByteContent = charaparamFile.Save();
         }
 
         public ICharaevolve[] GetCharaevolution()
         {
             VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/character");
-            string lastcharabase = characterFolder.Files.Keys.Where(x => x.StartsWith("chara_param")).OrderByDescending(x => x).First();
+            string lastCharaparam = characterFolder.Files.Keys.Where(x => x.StartsWith("chara_param")).OrderByDescending(x => x).First();
 
-            CfgBin charaBaseFile = new CfgBin();
-            charaBaseFile.Open(Game.Directory.GetFileFromFullPath("/data/res/character/" + lastcharabase));
+            CfgBin charaparamFile = new CfgBin();
+            charaparamFile.Open(Game.Directory.GetFileFromFullPath("/data/res/character/" + lastCharaparam));
 
-            return new ICharaevolve[] { };
+            return charaparamFile.Entries
+                .Where(x => x.GetName() == "CHARA_PARAM_EVOLVE_INFO_LIST_BEG")
+                .SelectMany(x => x.Children)
+                .Select(x => x.ToClass<Charaevolve>())
+                .ToArray();
         }
 
         public void SaveCharaevolution(ICharaevolve[] charaevolutions)
         {
+            Charaevolve[] formatCharaevolutions = charaevolutions.OfType<Charaevolve>().ToArray();
 
+            VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/character");
+            string lastCharaparam = characterFolder.Files.Keys.Where(x => x.StartsWith("chara_param")).OrderByDescending(x => x).First();
+
+            CfgBin charaparamFile = new CfgBin();
+            charaparamFile.Open(Game.Directory.GetFileFromFullPath("/data/res/character/" + lastCharaparam));
+
+            charaparamFile.ReplaceEntry("CHARA_PARAM_EVOLVE_INFO_LIST_BEG", "CHARA_PARAM_EVOLVE_INFO_", formatCharaevolutions);
+
+            Game.Directory.GetFolderFromFullPath("/data/res/character").Files[lastCharaparam].ByteContent = charaparamFile.Save();
         }
 
         public IItem[] GetItems(string itemType)
         {
+            VirtualDirectory itemFolder = Game.Directory.GetFolderFromFullPath("data/res/item");
+            string lastItemconfig = itemFolder.Files.Keys.Where(x => x.StartsWith("item_config")).OrderByDescending(x => x).First();
+
             CfgBin itemconfigFile = new CfgBin();
-            itemconfigFile.Open(Game.Directory.GetFileFromFullPath("/data/res/item/item_config_0.05d.cfg.bin"));
+            itemconfigFile.Open(Game.Directory.GetFileFromFullPath("data/res/item/" + lastItemconfig));
 
             switch (itemType)
             {
+                case "all":
+                    string[] itemTypes = { "ITEM_EQUIPMENT_BEGIN", "ITEM_SOUL_BEGIN", "ITEM_BATTLE_BEGIN", "ITEM_CONSUME_BEGIN", "ITEM_IMPORTANT_BEGIN", "ITEM_ELEMENT_BEGIN", "ITEM_AURA_BEGIN", "ITEM_KEY_BEGIN" };
+                    return itemconfigFile.Entries
+                        .Where(x => itemTypes.Contains(x.GetName()))
+                        .SelectMany(x => x.Children)
+                        .Select(x => x.ToClass<Item>())
+                        .ToArray();
                 default:
                     return new IItem[] { };
             }
@@ -247,36 +281,39 @@ namespace Albatross.Yokai_Watch.Games.YWB
             return null;
         }
 
+        public IOrgetimeTechnic[] GetOrgetimeTechnics()
+        {
+            VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/orge");
+            string lastskillFile = characterFolder.Files.Keys.Where(x => x.StartsWith("orge_time_technic") && x.Contains("menu") == false).OrderByDescending(x => x).First();
+
+            CfgBin charaabilityConfig = new CfgBin();
+            charaabilityConfig.Open(Game.Directory.GetFileFromFullPath("/data/res/orge/" + lastskillFile));
+
+            return charaabilityConfig.Entries
+                .Where(x => x.GetName() == "ORGE_TECHNIC_INFO_LIST_BEG")
+                .SelectMany(x => x.Children)
+                .Select(x => x.ToClass<OrgetimeTechnic>())
+                .ToArray();
+        }
+
         public ICharaabilityConfig[] GetAbilities()
         {
-            VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/character");
+            VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/skill");
             string lastskillFile = characterFolder.Files.Keys.Where(x => x.StartsWith("chara_ability")).OrderByDescending(x => x).First();
 
             CfgBin charaabilityConfig = new CfgBin();
-            charaabilityConfig.Open(Game.Directory.GetFileFromFullPath("/data/res/character/" + lastskillFile));
+            charaabilityConfig.Open(Game.Directory.GetFileFromFullPath("/data/res/skill/" + lastskillFile));
 
-            return new ICharaabilityConfig[] { };
-            //return charaabilityConfig.Entries
-            //.Where(x => x.GetName() == "CHARA_ABILITY_CONFIG_INFO_BEGIN")
-            //.SelectMany(x => x.Children)
-            //.Select(x => x.ToClass<CharaabilityConfig>())
-            //.ToArray();
+            return charaabilityConfig.Entries
+                .Where(x => x.GetName() == "CHARA_ABILITY_CONFIG_INFO_LIST_BEG")
+                .SelectMany(x => x.Children)
+                .Select(x => x.ToClass<CharaabilityConfig>())
+                .ToArray();
         }
 
         public IBattleCommand[] GetBattleCommands()
         {
-            VirtualDirectory battleFolder = Game.Directory.GetFolderFromFullPath("data/res/battle");
-            string lastBattleCommand = battleFolder.Files.Keys.Where(x => x.StartsWith("battle_command")).OrderByDescending(x => x).First();
-
-            CfgBin battlecommandConfig = new CfgBin();
-            battlecommandConfig.Open(Game.Directory.GetFileFromFullPath("/data/res/battle/" + lastBattleCommand));
-
-            return new IBattleCommand[] { };
-            //return battlecommandConfig.Entries
-            //.Where(x => x.GetName() == "BATTLE_COMMAND_INFO_BEGIN")
-            //.SelectMany(x => x.Children)
-            //.Select(x => x.ToClass<BattleCommand>())
-            //.ToArray();
+            return new IBattleCommand[0];
         }
 
         public string[] GetMapWhoContainsEncounter()

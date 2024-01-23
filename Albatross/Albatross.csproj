@@ -158,6 +158,7 @@
     <Compile Include="UI\FlatNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Yokai Watch\Common\Speeds.cs" />
     <Compile Include="Yokai Watch\Common\Attributes.cs" />
     <Compile Include="Yokai Watch\Common\Effects.cs" />
     <Compile Include="Yokai Watch\Common\FoodsType.cs" />
@@ -221,15 +222,20 @@
     <Compile Include="Yokai Watch\Games\YW3\YW3Support.cs" />
     <Compile Include="Yokai Watch\Games\YWB2\YWB2Support.cs" />
     <Compile Include="Yokai Watch\Games\YWB2\YWB2.cs" />
+    <Compile Include="Yokai Watch\Games\YWB\Logic\Charaability.cs" />
     <Compile Include="Yokai Watch\Games\YWB\Logic\Charabase.cs" />
+    <Compile Include="Yokai Watch\Games\YWB\Logic\Charaevolve.cs" />
     <Compile Include="Yokai Watch\Games\YWB\Logic\Charaparam.cs" />
     <Compile Include="Yokai Watch\Games\YWB\Logic\Charascale.cs" />
+    <Compile Include="Yokai Watch\Games\YWB\Logic\Itemconfig.cs" />
+    <Compile Include="Yokai Watch\Games\YWB\Logic\OrgetimeTechnic.cs" />
     <Compile Include="Yokai Watch\Games\YWB\YWBSupport.cs" />
     <Compile Include="Yokai Watch\Games\YWB\YWB.cs" />
     <Compile Include="Yokai Watch\Logic\IBattleCharaparam.cs" />
     <Compile Include="Yokai Watch\Logic\IHackslashTechnic.cs" />
     <Compile Include="Yokai Watch\Logic\IHackslashCharaabilityConfig.cs" />
     <Compile Include="Yokai Watch\Logic\IHackslashCharaparam.cs" />
+    <Compile Include="Yokai Watch\Logic\IOrgetimeTechnic.cs" />
     <Compile Include="Yokai Watch\Logic\ISkillconfig.cs" />
     <Compile Include="Yokai Watch\Logic\IBattleCommand.cs" />
     <Compile Include="Yokai Watch\Logic\ICharaabilityConfig.cs" />

@@ -8,8 +8,8 @@ namespace Albatross.Yokai_Watch.Games.YW3.Logic
         public int Unk1 { get; set; }
         public int Unk2 { get; set; }
         public new int SkillHash { get => base.SkillHash; set => base.SkillHash = value; }
-        public new int AttackAHash { get => base.AttackAHash; set => base.AttackAHash = value; }
         public new int SoultimateHash { get => base.SoultimateHash; set => base.SoultimateHash = value; }
+        public new int AttackAHash { get => base.AttackAHash; set => base.AttackAHash = value; }
         public new int AttackYHash { get => base.AttackYHash; set => base.AttackYHash = value; }
         public new int AttackXHash { get => base.AttackXHash; set => base.AttackXHash = value; }
         public int Unk3 { get; set; }

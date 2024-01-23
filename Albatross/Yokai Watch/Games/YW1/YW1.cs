@@ -263,6 +263,11 @@ namespace Albatross.Yokai_Watch.Games.YW1
             return null;
         }
 
+        public IOrgetimeTechnic[] GetOrgetimeTechnics()
+        {
+            return new IOrgetimeTechnic[0];
+        }
+
         public ICharaabilityConfig[] GetAbilities()
         {
             VirtualDirectory characterFolder = Game.Directory.GetFolderFromFullPath("data/res/character");

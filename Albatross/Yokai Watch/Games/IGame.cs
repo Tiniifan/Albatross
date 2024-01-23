@@ -57,6 +57,8 @@ namespace Albatross.Yokai_Watch.Games
 
         IHackslashTechnic[] GetHackslashSkills();
 
+        IOrgetimeTechnic[] GetOrgetimeTechnics();
+
         IBattleCommand[] GetBattleCommands();
 
         string[] GetMapWhoContainsEncounter();

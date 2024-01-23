@@ -391,6 +391,11 @@ namespace Albatross.Yokai_Watch.Games.YW3
                 .ToArray();
         }
 
+        public IOrgetimeTechnic[] GetOrgetimeTechnics()
+        {
+            return new IOrgetimeTechnic[0];
+        }
+
         public IBattleCommand[] GetBattleCommands()
         {
             List<IBattleCommand> ouput = new List<IBattleCommand>();
