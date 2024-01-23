@@ -300,6 +300,9 @@ namespace Albatross.Forms.Characters
             if (GameOpened.Name == "Yo-Kai Watch 3")
             {
                 attackFlatComboBox.Items.AddRange(GetNames(Skills.ToArray()).ToArray());
+            } else
+            {
+                attackFlatComboBox.Items.AddRange(GetNames(BattleCommands.ToArray()).ToArray());
             }
 
             if (GameOpened.Name == "Yo-Kai Watch Blaster")
