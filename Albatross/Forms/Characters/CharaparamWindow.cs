@@ -460,7 +460,7 @@ namespace Albatross.Forms.Characters
             List<ICharaevolve> charaevolves = new List<ICharaevolve>() { };
 
             // Loop through Charaparams with non-zero ParamHash
-            foreach (ICharaparam charaparamWithEvolve in Charaparams.Where(x => x.EvolveOffset != -1).ToArray())
+            foreach (ICharaparam charaparamWithEvolve in Charaparams.Where(x => x.EvolveParam != 0x00).ToArray())
             {
                 ICharaevolve charaevolve = null;
 

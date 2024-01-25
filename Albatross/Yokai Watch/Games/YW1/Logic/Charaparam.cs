@@ -27,7 +27,7 @@ namespace Albatross.Yokai_Watch.Games.YW1.Logic
         public new float AttributeDamageEarth { get => base.AttributeDamageEarth; set => base.AttributeDamageEarth = value; }
         public new float AttributeDamageLigthning { get => base.AttributeDamageLigthning; set => base.AttributeDamageLigthning = value; }
         public new float AttributeDamageWater { get => base.AttributeDamageWater; set => base.AttributeDamageWater = value; }
-        public new int AttributeDamageWind { get => base.AttributeDamageWind; set => base.AttributeDamageWind = value; }
+        public new float AttributeDamageWind { get => base.AttributeDamageWind; set => base.AttributeDamageWind = value; }
         public new int SoultimateHash { get => base.SoultimateHash; set => base.SoultimateHash = value; }
         public int Unk8 { get; set; }
         public int Unk9 { get; set; }

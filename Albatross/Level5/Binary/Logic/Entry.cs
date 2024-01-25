@@ -593,21 +593,24 @@ namespace Albatross.Level5.Binary.Logic
                 }
                 else
                 {
-                    if (values[valueIndex] is OffsetTextPair offsetTextPair)
+                    if (valueIndex < properties.Count())
                     {
-                        if (propertyType == typeof(string))
+                        if (values[valueIndex] is OffsetTextPair offsetTextPair)
                         {
-                            values[valueIndex] = offsetTextPair.Text;
+                            if (propertyType == typeof(string))
+                            {
+                                values[valueIndex] = offsetTextPair.Text;
+                            }
+                            else
+                            {
+                                values[valueIndex] = offsetTextPair.Offset;
+                            }
                         }
-                        else
-                        {
-                            values[valueIndex] = offsetTextPair.Offset;
-                        }
-                    }
 
-                    object convertedValue = Convert.ChangeType(values[valueIndex], propertyType);
-                    property.SetValue(structure, convertedValue);
-                    valueIndex++;
+                        object convertedValue = Convert.ChangeType(values[valueIndex], propertyType);
+                        property.SetValue(structure, convertedValue);
+                        valueIndex++;
+                    }
                 }
             }
 

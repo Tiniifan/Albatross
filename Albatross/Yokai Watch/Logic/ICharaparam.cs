@@ -23,7 +23,7 @@
         public float AttributeDamageEarth { get; set; }
         public float AttributeDamageLigthning { get; set; }
         public float AttributeDamageWater { get; set; }
-        public int AttributeDamageWind { get; set; }
+        public float AttributeDamageWind { get; set; }
         public int SoultimateHash { get; set; }
         public int AbilityHash { get; set; }
         public int Money { get; set; }
