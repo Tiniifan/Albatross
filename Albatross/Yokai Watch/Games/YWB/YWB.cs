@@ -8,6 +8,7 @@ using Albatross.Level5.Text;
 using Albatross.Level5.Binary;
 using Albatross.Yokai_Watch.Logic;
 using Albatross.Level5.Archive.ARC0;
+using Albatross.Level5.Archive.XPCK;
 using Albatross.Yokai_Watch.Games.YWB.Logic;
 
 namespace Albatross.Yokai_Watch.Games.YWB
@@ -49,9 +50,11 @@ namespace Albatross.Yokai_Watch.Games.YWB
                 { "chara_ability_text", new GameFile(Language, "/data/res/text/chara_ability_text_" + LanguageCode + ".cfg.bin") },
                 { "addmembermenu_text", new GameFile(Language, "/data/res/text/menu/addmembermenu_text_" + LanguageCode + ".cfg.bin") },
                 { "orgetime_technic", new GameFile(Language, "/data/res/text/orgetime_technic_text_" + LanguageCode + ".cfg.bin") },
+                { "system_text", new GameFile(Language, "/data/res/text/system_text_" + LanguageCode + ".cfg.bin") },
                 { "face_icon", new GameFile(Game, "/data/menu/face_icon") },
                 { "item_icon", new GameFile(Game, "/data/menu/item_icon") },
                 { "model", new GameFile(Game, "/data/character") },
+                { "map_encounter", new GameFile(Game, "/data/res/map") },
             };
         }
 
@@ -318,30 +321,53 @@ namespace Albatross.Yokai_Watch.Games.YWB
 
         public string[] GetMapWhoContainsEncounter()
         {
-            return null;
+            VirtualDirectory mapEncounterFolder = Game.Directory.GetFolderFromFullPath("/data/res/map");
+
+            return mapEncounterFolder.Folders
+                .Where(folder =>
+                {
+                    SubMemoryStream pckFile = folder.Files.FirstOrDefault(x => x.Key == folder.Name + ".pck").Value;
+
+                    if (pckFile != null)
+                    {
+                        pckFile.Read();
+
+                        XPCK mapArchive = new XPCK(pckFile.ByteContent);
+
+                        if (mapArchive.Directory.Files.Any(file => file.Key.StartsWith(folder.Name + "_enc_")))
+                        {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                })
+                .Select(folder => folder.Name)
+                .ToArray();
         }
 
         public (IEncountTable[], IEncountChara[]) GetMapEncounter(string mapName)
         {
             VirtualDirectory mapFolder = Game.Directory.GetFolderFromFullPath(Files["map_encounter"].Path);
-            string lastEncountConfigFile = mapFolder.Files.Keys.Where(x => x.StartsWith(mapName + "_enc_")).OrderByDescending(x => x).First();
+            XPCK mapArchive = new XPCK(mapFolder.GetFolder(mapName).Files[mapName + ".pck"].ByteContent);
+            string lastEncountConfigFile = mapArchive.Directory.Files.Keys.Where(x => x.StartsWith(mapName + "_enc_") && !x.Contains("_enc_pos")).OrderByDescending(x => x).First();
 
             CfgBin encountConfig = new CfgBin();
-            encountConfig.Open(Game.Directory.GetFileFromFullPath(Files["map_encounter"].Path + mapName + "/" + lastEncountConfigFile));
+            mapArchive.Directory.Files[lastEncountConfigFile].Read();
+            encountConfig.Open(mapArchive.Directory.Files[lastEncountConfigFile].ByteContent);
 
-            //IEncountTable[] encountTable = encountConfig.Entries
-            //.Where(x => x.GetName() == "ENCOUNT_TABLE_BEGIN")
-            //.SelectMany(x => x.Children)
-            //.Select(x => x.ToClass<EncountTable>())
-            //.ToArray();
+            IEncountTable[] encountTable = encountConfig.Entries
+                .Where(x => x.GetName() == "ENCOUNT_TABLE_BEGIN")
+                .SelectMany(x => x.Children)
+                .Select(x => x.ToClass<EncountTable>())
+                .ToArray();
 
-            //IEncountChara[] encountChara = encountConfig.Entries
-            //.Where(x => x.GetName() == "ENCOUNT_CHARA_BEGIN")
-            //.SelectMany(x => x.Children)
-            //.Select(x => x.ToClass<EncountChara>())
-            //.ToArray();
+            return (encountTable, null);
+        }
 
-            return (new IEncountTable[] { }, new IEncountChara[] { });
+        public void SaveMapEncounter(string mapName, IEncountTable[] encountTables, IEncountChara[] encountCharas)
+        {
+
         }
     }
 }

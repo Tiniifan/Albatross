@@ -110,7 +110,8 @@ namespace Albatross
             this.featureListBox.Items.AddRange(new object[] {
             "Charabase",
             "Charascale",
-            "Charaparam"});
+            "Charaparam",
+            "Encounters"});
             this.featureListBox.Location = new System.Drawing.Point(6, 19);
             this.featureListBox.Name = "featureListBox";
             this.featureListBox.Size = new System.Drawing.Size(204, 381);

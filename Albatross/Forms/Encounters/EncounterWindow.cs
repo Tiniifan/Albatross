@@ -120,6 +120,8 @@ namespace Albatross.Forms.Encounters
 
             // Get folder who contains encounter data          
             string[] filenames = GameOpened.GetMapWhoContainsEncounter();
+            Dictionary<string, int> nameCounter = new Dictionary<string, int>();
+
             for (int i = 0; i < filenames.Length; i++)
             {
                 // Obtain map name using crc32 hash
@@ -129,6 +131,19 @@ namespace Albatross.Forms.Encounters
                 string mapName = systemtext.Texts.TryGetValue(crc32AsInt, out var text) && text.Strings.Count > 0
                     ? text.Strings[0].Text
                     : "Map " + i;
+
+                // Check if the name has already been added
+                if (nameCounter.ContainsKey(mapName))
+                {
+                    // Increment the counter and add the name with the counter in parentheses
+                    nameCounter[mapName]++;
+                    mapName = $"{mapName} ({nameCounter[mapName]})";
+                }
+                else
+                {
+                    // Add the name to the counter dictionary
+                    nameCounter.Add(mapName, 1);
+                }
 
                 Mapnames.Add(filenames[i], mapName);
             }
@@ -140,12 +155,19 @@ namespace Albatross.Forms.Encounters
         {
             if (mapListBox.SelectedIndex == -1) return;
 
+            encounterDataGridView.Rows.Clear();
             encounterDataGridView.Enabled = false;
+            tableFlatComboBox.SelectedIndex = -1;
+            tableFlatComboBox.Text = "";
 
-            (IEncountTable[], IEncountChara[]) encounterData = GameOpened.GetMapEncounter(Mapnames.ElementAt(mapListBox.SelectedIndex).Key);
+            (IEncountTable[], IEncountChara[]) encounterData = GameOpened.GetMapEncounter(Mapnames.FirstOrDefault(x => x.Value == mapListBox.SelectedItem.ToString()).Key);
             EncountTables = encounterData.Item1.ToList();
-            EncountCharas = encounterData.Item2.ToList();
 
+            if (encounterData.Item2 != null)
+            {
+                EncountCharas = encounterData.Item2.ToList();
+            }
+            
             // Fill table
             tableFlatComboBox.Items.Clear();
             tableFlatComboBox.Items.AddRange(EncountTables.Select((table, index) => $"Table {index + 1}").ToArray());
@@ -167,38 +189,78 @@ namespace Albatross.Forms.Encounters
             SelectedEncountTable = EncountTables[tableFlatComboBox.SelectedIndex];
             hashTextBox.Text = SelectedEncountTable.EncountConfigHash.ToString("X8");
 
-            // Iterate through the encounter offsets
-            for (int i = 0; i < SelectedEncountTable.EncountOffsets.Count(); i++)
+            if (GameOpened.Name == "Yo-Kai Watch Blaster")
             {
-                DataGridViewComboBoxColumn comboBox = (DataGridViewComboBoxColumn)encounterDataGridView.Columns[1];
-
-                int charaIndex = SelectedEncountTable.EncountOffsets[i];
-
-                if (charaIndex != -1)
+                // Iterate through the encounter offsets
+                for (int i = 0; i < SelectedEncountTable.CharaCount; i++)
                 {
-                    // Retrieve charaparam and charabase information
-                    ICharaparam charaparam = Charaparams.FirstOrDefault(x => x.ParamHash == EncountCharas[charaIndex].ParamHash);
-                    ICharabase charabase = Charabases.FirstOrDefault(x => x.BaseHash == charaparam.BaseHash);
+                    DataGridViewComboBoxColumn comboBox = (DataGridViewComboBoxColumn)encounterDataGridView.Columns[1];
 
-                    // Try to get the picture of the yokai
-                    Bitmap yokaiPicture;
-                    string fileName = GameSupport.GetFileModelText(charabase.FileNamePrefix, charabase.FileNameNumber, charabase.FileNameVariant);
-                    try
-                    {
-                        byte[] imageData = GameOpened.Files["face_icon"].File.Directory.GetFileFromFullPath(GameOpened.Files["face_icon"].Path + "/" + fileName + ".xi");
-                        yokaiPicture = IMGC.ToBitmap(imageData);
-                    }
-                    catch
-                    {
-                        yokaiPicture = null;
-                    }
+                    int paramHash = SelectedEncountTable.Charas[0 + i * 3];
+                    int level = SelectedEncountTable.Charas[1 + i * 3];
 
-                    // Add a row with yokai picture, ComboBox item, and level
-                    encounterDataGridView.Rows.Add(yokaiPicture, comboBox.Items[Charaparams.IndexOf(charaparam)], EncountCharas[charaIndex].Level);
+                    if (paramHash != 0x00)
+                    {
+                        // Retrieve charaparam and charabase information
+                        ICharaparam charaparam = Charaparams.FirstOrDefault(x => x.ParamHash == paramHash);
+                        ICharabase charabase = Charabases.FirstOrDefault(x => x.BaseHash == charaparam.BaseHash);
+
+                        // Try to get the picture of the yokai
+                        Bitmap yokaiPicture;
+                        string fileName = GameSupport.GetFileModelText(charabase.FileNamePrefix, charabase.FileNameNumber, charabase.FileNameVariant);
+                        try
+                        {
+                            byte[] imageData = GameOpened.Files["face_icon"].File.Directory.GetFileFromFullPath(GameOpened.Files["face_icon"].Path + "/" + fileName + ".xi");
+                            yokaiPicture = IMGC.ToBitmap(imageData);
+                        }
+                        catch
+                        {
+                            yokaiPicture = null;
+                        }
+
+                        // Add a row with yokai picture, ComboBox item, and level
+                        encounterDataGridView.Rows.Add(yokaiPicture, comboBox.Items[Charaparams.IndexOf(charaparam)], level);
+                    }
+                    else
+                    {
+                        encounterDataGridView.Rows.Add(null, null, level);
+                    }
                 }
-                else
+            } else
+            {
+                // Iterate through the encounter offsets
+                for (int i = 0; i < SelectedEncountTable.EncountOffsets.Count(); i++)
                 {
-                    encounterDataGridView.Rows.Add(null, null, 0);
+                    DataGridViewComboBoxColumn comboBox = (DataGridViewComboBoxColumn)encounterDataGridView.Columns[1];
+
+                    int charaIndex = SelectedEncountTable.EncountOffsets[i];
+
+                    if (charaIndex != -1)
+                    {
+                        // Retrieve charaparam and charabase information
+                        ICharaparam charaparam = Charaparams.FirstOrDefault(x => x.ParamHash == EncountCharas[charaIndex].ParamHash);
+                        ICharabase charabase = Charabases.FirstOrDefault(x => x.BaseHash == charaparam.BaseHash);
+
+                        // Try to get the picture of the yokai
+                        Bitmap yokaiPicture;
+                        string fileName = GameSupport.GetFileModelText(charabase.FileNamePrefix, charabase.FileNameNumber, charabase.FileNameVariant);
+                        try
+                        {
+                            byte[] imageData = GameOpened.Files["face_icon"].File.Directory.GetFileFromFullPath(GameOpened.Files["face_icon"].Path + "/" + fileName + ".xi");
+                            yokaiPicture = IMGC.ToBitmap(imageData);
+                        }
+                        catch
+                        {
+                            yokaiPicture = null;
+                        }
+
+                        // Add a row with yokai picture, ComboBox item, and level
+                        encounterDataGridView.Rows.Add(yokaiPicture, comboBox.Items[Charaparams.IndexOf(charaparam)], EncountCharas[charaIndex].Level);
+                    }
+                    else
+                    {
+                        encounterDataGridView.Rows.Add(null, null, 0);
+                    }
                 }
             }
 
@@ -261,36 +323,69 @@ namespace Albatross.Forms.Encounters
                         encounterDataGridView.Rows[e.RowIndex].Cells[0].Value = yokaiPicture;
                         encounterDataGridView.Rows[e.RowIndex].Cells[2].Value = 1;
                     }
-                }
-
-                IEncountChara encountChara = null;
-
-                // Determine the game type and get the corresponding Charaevolve logic
-                switch (GameOpened.Name)
+                } 
+                else if (e.ColumnIndex == 2)
                 {
-                    case "Yo-Kai Watch 1":
-                        encountChara = GameSupport.GetLogic<YKW1.EncountChara>();
-                        break;
-                        //case "Yo-Kai Watch 2":
-                        //encountChara = GameSupport.GetLogic<YKW2.Charaevolve>();
-                        //break;
-                        //case "Yo-Kai Watch 3":
-                        //encountChara = GameSupport.GetLogic<YKW3.Charaevolve>();
-                        //break;
-                        //case "Yo-Kai Watch Blaster":
-                        //encountChara = GameSupport.GetLogic<YKWB.Charaevolve>();
-                        //break;
+                    try
+                    {
+                        int number = Convert.ToInt32(encounterDataGridView.Rows[e.RowIndex].Cells[2].Value);
+                        level = number;
+                    }
+                    catch
+                    {
+                    }
                 }
 
-                // Settings
-                encountChara.ParamHash = paramHash;
-                encountChara.Level = level;
+                if (SelectedEncountTable.EncountOffsets[e.RowIndex] != 0)
+                {
+                    // Update
+                    int charaIndex = SelectedEncountTable.EncountOffsets[e.RowIndex];
+                    
+                    if (e.ColumnIndex == 1)
+                    {
+                        EncountCharas[charaIndex].ParamHash = paramHash;
+                    } else if (e.ColumnIndex == 2)
+                    {
+                        EncountCharas[charaIndex].Level = level;
+                    }
 
-                // Add
-                EncountCharas.Add(encountChara);
+                    // Refresh
+                    TableFlatComboBox_SelectedIndexChanged(sender, e);
+                } 
+                else
+                {
+                    // Insert new one
+                    IEncountChara encountChara = null;
 
-                Console.WriteLine(e.RowIndex);
-                SelectedEncountTable.EncountOffsets[e.RowIndex] = EncountCharas.Count() - 1;
+                    // Determine the game type and get the corresponding Charaevolve logic
+                    switch (GameOpened.Name)
+                    {
+                        case "Yo-Kai Watch 1":
+                            encountChara = GameSupport.GetLogic<YKW1.EncountChara>();
+                            break;
+                            //case "Yo-Kai Watch 2":
+                            //encountChara = GameSupport.GetLogic<YKW2.Charaevolve>();
+                            //break;
+                            //case "Yo-Kai Watch 3":
+                            //encountChara = GameSupport.GetLogic<YKW3.Charaevolve>();
+                            //break;
+                            //case "Yo-Kai Watch Blaster":
+                            //encountChara = GameSupport.GetLogic<YKWB.Charaevolve>();
+                            //break;
+                    }
+
+                    // Settings
+                    encountChara.ParamHash = paramHash;
+                    encountChara.Level = level;
+
+                    // Add
+                    EncountCharas.Add(encountChara);
+
+                    SelectedEncountTable.EncountOffsets[e.RowIndex] = EncountCharas.Count() - 1;
+                }
+
+                // Save
+                GameOpened.SaveMapEncounter(Mapnames.FirstOrDefault(x => x.Value == mapListBox.SelectedItem.ToString()).Key, EncountTables.ToArray(), EncountCharas.ToArray());
 
                 EncounterDataGridEditInProgress = false;
                 IsProcessingCellValueChange = false;
@@ -320,11 +415,55 @@ namespace Albatross.Forms.Encounters
 
         private void RemoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Get selected index
             int encountCharaIndex = SelectedEncountTable.EncountOffsets[encounterDataGridView.SelectedRows[0].Index];
 
-            if (encountCharaIndex != 0 && EncountCharas.Count < encountCharaIndex)
+            // Update all indexes
+            if (encountCharaIndex != 0 && encountCharaIndex < EncountCharas.Count)
             {
-                //EncountCharas.RemoveAt()
+                EncountCharas.RemoveAt(encountCharaIndex);
+
+                if (EncountCharas.Count > 0)
+                {
+                    for (int i = 0; i < EncountTables.Count; i++)
+                    {
+                        for (int j = 0; j < EncountTables[i].EncountOffsets.Length; j++)
+                        {
+                            if (EncountTables[i].EncountOffsets[j] == encountCharaIndex)
+                            {
+                                // Reset
+                                EncountTables[i].EncountOffsets[j] = -1;
+                            } else if (EncountTables[i].EncountOffsets[j] > encountCharaIndex)
+                            {
+                                // Index -1 to all items after encountCharaIndex
+                                EncountTables[i].EncountOffsets[j] -= 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Refresh
+            TableFlatComboBox_SelectedIndexChanged(sender, e);
+        }
+
+        private void AddToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemoveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (tableFlatComboBox.Items.Count > 0)
+            {
+                // Remove selected table
+                EncountTables.RemoveAt(tableFlatComboBox.SelectedIndex);
+
+                // Save
+                GameOpened.SaveMapEncounter(Mapnames.FirstOrDefault(x => x.Value == mapListBox.SelectedItem.ToString()).Key, EncountTables.ToArray(), EncountCharas.ToArray());
+
+                // Refresh
+                MapListBox_SelectedIndexChanged(sender, e);
             }
         }
     }

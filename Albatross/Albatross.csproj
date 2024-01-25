@@ -196,8 +196,8 @@
     <Compile Include="Yokai Watch\Games\YW2\Logic\Charabase.cs" />
     <Compile Include="Yokai Watch\Games\YW2\Logic\Charaevolve.cs" />
     <Compile Include="Yokai Watch\Games\YW2\Logic\Charaparam.cs" />
-    <Compile Include="Yokai Watch\Games\YW2\Logic\Encountchara.cs" />
     <Compile Include="Yokai Watch\Games\YW2\Logic\Charascale.cs" />
+    <Compile Include="Yokai Watch\Games\YW2\Logic\EncountConfig.cs" />
     <Compile Include="Yokai Watch\Games\YW2\Logic\Fusion.cs" />
     <Compile Include="Yokai Watch\Games\YW2\Logic\Itemconfig.cs" />
     <Compile Include="Yokai Watch\Games\YW2\Logic\Legendconfig.cs" />
@@ -206,6 +206,7 @@
     <Compile Include="Yokai Watch\Games\IGame.cs" />
     <Compile Include="Yokai Watch\Games\YW2\YW2Support.cs" />
     <Compile Include="Yokai Watch\Games\YW3\Logic\BattleCharaparam.cs" />
+    <Compile Include="Yokai Watch\Games\YW3\Logic\EncountConfig.cs" />
     <Compile Include="Yokai Watch\Games\YW3\Logic\HackslashTechnic.cs" />
     <Compile Include="Yokai Watch\Games\YW3\Logic\HackslashCharaability.cs" />
     <Compile Include="Yokai Watch\Games\YW3\Logic\Skillbattleconfig.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Yokai Watch\Games\YWB\Logic\Charaevolve.cs" />
     <Compile Include="Yokai Watch\Games\YWB\Logic\Charaparam.cs" />
     <Compile Include="Yokai Watch\Games\YWB\Logic\Charascale.cs" />
+    <Compile Include="Yokai Watch\Games\YWB\Logic\EncountConfig.cs" />
     <Compile Include="Yokai Watch\Games\YWB\Logic\Itemconfig.cs" />
     <Compile Include="Yokai Watch\Games\YWB\Logic\OrgetimeTechnic.cs" />
     <Compile Include="Yokai Watch\Games\YWB\YWBSupport.cs" />

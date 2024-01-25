@@ -64,5 +64,7 @@ namespace Albatross.Yokai_Watch.Games
         string[] GetMapWhoContainsEncounter();
 
         (IEncountTable[], IEncountChara[]) GetMapEncounter(string mapName);
+
+        void SaveMapEncounter(string mapName, IEncountTable[] encountTables, IEncountChara[] encountCharas);
     }
 }

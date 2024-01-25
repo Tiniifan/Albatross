@@ -593,7 +593,7 @@ namespace Albatross.Level5.Binary.Logic
                 }
                 else
                 {
-                    if (valueIndex < properties.Count())
+                    if (valueIndex < values.Count())
                     {
                         if (values[valueIndex] is OffsetTextPair offsetTextPair)
                         {

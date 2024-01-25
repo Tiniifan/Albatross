@@ -4,6 +4,8 @@
     {
         public int EncountConfigHash { get; set; }
         public int[] EncountOffsets { get; set; }
+        public int CharaCount { get; set; }
+        public int[] Charas { get; set; }
     }
 
     public class IEncountChara

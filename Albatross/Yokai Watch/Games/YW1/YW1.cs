@@ -332,5 +332,22 @@ namespace Albatross.Yokai_Watch.Games.YW1
 
             return (encountTable, encountChara);
         }
+
+        public void SaveMapEncounter(string mapName, IEncountTable[] encountTables, IEncountChara[] encountCharas)
+        {
+            EncountTable[] formatEncountTables = encountTables.OfType<EncountTable>().ToArray();
+            EncountChara[] formatEncountCharas = encountCharas.OfType<EncountChara>().ToArray();
+
+            VirtualDirectory mapFolder = Game.Directory.GetFolderFromFullPath(Files["map_encounter"].Path);
+            string lastEncountConfigFile = mapFolder.GetFolder(mapName).Files.Keys.Where(x => x.StartsWith(mapName + "_enc_") && !x.Contains("_enc_pos")).OrderByDescending(x => x).First();
+
+            CfgBin encountConfig = new CfgBin();
+            encountConfig.Open(Game.Directory.GetFileFromFullPath(Files["map_encounter"].Path + "/" + mapName + "/" + lastEncountConfigFile));
+
+            encountConfig.ReplaceEntry("ENCOUNT_TABLE_BEGIN", "ENCOUNT_TABLE_INFO_", encountTables);
+            encountConfig.ReplaceEntry("ENCOUNT_CHARA_BEGIN", "ENCOUNT_CHARA_INFO_", encountCharas);
+
+            Game.Directory.GetFolderFromFullPath("/data/res/map/" + mapName).Files[lastEncountConfigFile].ByteContent = encountConfig.Save();
+        }
     }
 }

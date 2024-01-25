@@ -447,5 +447,10 @@ namespace Albatross.Yokai_Watch.Games.YW3
 
             return (new IEncountTable[] { }, new IEncountChara[] { });
         }
+
+        public void SaveMapEncounter(string mapName, IEncountTable[] encountTables, IEncountChara[] encountCharas)
+        {
+
+        }
     }
 }
