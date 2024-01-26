@@ -15,6 +15,9 @@ namespace Albatross.Yokai_Watch.Games.YW2
             { "Italiano", "it"},
             { "Nederlands", "nl"},
             { "русский язык", "ru"},
+            { "English (AUS)", "en"},
+            { "Español (AUS)", "esus"},
+            { "Français (AUS)", "fra"},
         };
     }
 }

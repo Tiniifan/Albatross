@@ -106,7 +106,7 @@ namespace Albatross
         {
             bool projectCreated = false;
 
-            string languageCode = GetLanguageCode(languageFlatComboBox.Text);
+            string languageCode = GetLanguageCode(languageFlatComboBox.SelectedItem.ToString());
 
             if (gameFlatComboBox1.SelectedIndex == 0)
             {
@@ -121,7 +121,14 @@ namespace Albatross
             }
             else if (gameFlatComboBox1.SelectedIndex == 1)
             {
-                projectCreated = File.Exists(pathTextBox.Text + @"\yw2_a.fa") && File.Exists(pathTextBox.Text + @"\yw2_lg_" + languageCode + @".fa");
+                if (languageFlatComboBox.SelectedItem.ToString().Contains("(AUS)"))
+                {
+                    projectCreated = File.Exists(pathTextBox.Text + @"\yw2_a.fa");
+                } else
+                {
+                    projectCreated = File.Exists(pathTextBox.Text + @"\yw2_a.fa") && File.Exists(pathTextBox.Text + @"\yw2_lg_" + languageCode + @".fa");
+                }
+               
                 if (projectCreated)
                 {
                     using (StreamWriter sw = File.AppendText("./AlbatrosTemp.txt"))

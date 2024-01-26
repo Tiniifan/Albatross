@@ -39,22 +39,43 @@ namespace Albatross.Yokai_Watch.Games.YW2
             LanguageCode = language;
 
             Game = new ARC0(new FileStream(RomfsPath + @"\yw2_a.fa", FileMode.Open));
-            Language = new ARC0(new FileStream(RomfsPath + @"\yw2_lg_" + LanguageCode + ".fa", FileMode.Open));
 
-            Files = new Dictionary<string, GameFile>
+            // Check if language fa exist
+            if (File.Exists(RomfsPath + @"\yw2_lg_" + LanguageCode + ".fa"))
             {
-                { "chara_text", new GameFile(Language, "/data/res/text/chara_text_" + LanguageCode + ".cfg.bin") },
-                { "item_text", new GameFile(Language, "/data/res/text/item_text_" + LanguageCode + ".cfg.bin") },
-                { "battle_text", new GameFile(Language, "/data/res/text/battle_text_" + LanguageCode + ".cfg.bin") },
-                { "skill_text", new GameFile(Language, "/data/res/text/skill_text_" + LanguageCode + ".cfg.bin") },
-                { "chara_ability_text", new GameFile(Language, "/data/res/text/chara_ability_text_" + LanguageCode + ".cfg.bin") },
-                { "addmembermenu_text", new GameFile(Language, "/data/res/text/menu/addmembermenu_text_" + LanguageCode + ".cfg.bin") },
-                { "system_text", new GameFile(Language, "/data/res/text/system_text_" + LanguageCode + ".cfg.bin") },
-                { "face_icon", new GameFile(Game, "/data/menu/face_icon") },
-                { "item_icon", new GameFile(Game, "/data/menu/item_icon") },
-                { "model", new GameFile(Game, "/data/character") },
-                { "map_encounter", new GameFile(Game, "/data/res/map") },
-            };
+                Language = new ARC0(new FileStream(RomfsPath + @"\yw2_lg_" + LanguageCode + ".fa", FileMode.Open));
+
+                Files = new Dictionary<string, GameFile>
+                {
+                    { "chara_text", new GameFile(Language, "/data/res/text/chara_text_" + LanguageCode + ".cfg.bin") },
+                    { "item_text", new GameFile(Language, "/data/res/text/item_text_" + LanguageCode + ".cfg.bin") },
+                    { "battle_text", new GameFile(Language, "/data/res/text/battle_text_" + LanguageCode + ".cfg.bin") },
+                    { "skill_text", new GameFile(Language, "/data/res/text/skill_text_" + LanguageCode + ".cfg.bin") },
+                    { "chara_ability_text", new GameFile(Language, "/data/res/text/chara_ability_text_" + LanguageCode + ".cfg.bin") },
+                    { "addmembermenu_text", new GameFile(Language, "/data/res/text/menu/addmembermenu_text_" + LanguageCode + ".cfg.bin") },
+                    { "system_text", new GameFile(Language, "/data/res/text/system_text_" + LanguageCode + ".cfg.bin") },
+                    { "face_icon", new GameFile(Game, "/data/menu/face_icon") },
+                    { "item_icon", new GameFile(Game, "/data/menu/item_icon") },
+                    { "model", new GameFile(Game, "/data/character") },
+                    { "map_encounter", new GameFile(Game, "/data/res/map") },
+                };
+            } else
+            {
+                Files = new Dictionary<string, GameFile>
+                {
+                    { "chara_text", new GameFile(Game, "/data/res/text/chara_text_" + LanguageCode + ".cfg.bin") },
+                    { "item_text", new GameFile(Game, "/data/res/text/item_text_" + LanguageCode + ".cfg.bin") },
+                    { "battle_text", new GameFile(Game, "/data/res/text/battle_text_" + LanguageCode + ".cfg.bin") },
+                    { "skill_text", new GameFile(Game, "/data/res/text/skill_text_" + LanguageCode + ".cfg.bin") },
+                    { "chara_ability_text", new GameFile(Game, "/data/res/text/chara_ability_text_" + LanguageCode + ".cfg.bin") },
+                    { "addmembermenu_text", new GameFile(Game, "/data/res/text/menu/addmembermenu_text_" + LanguageCode + ".cfg.bin") },
+                    { "system_text", new GameFile(Game, "/data/res/text/system_text_" + LanguageCode + ".cfg.bin") },
+                    { "face_icon", new GameFile(Game, "/data/menu/face_icon") },
+                    { "item_icon", new GameFile(Game, "/data/menu/item_icon") },
+                    { "model", new GameFile(Game, "/data/character") },
+                    { "map_encounter", new GameFile(Game, "/data/res/map") },
+                };
+            }
         }
 
         public void Save()
@@ -66,17 +87,27 @@ namespace Albatross.Yokai_Watch.Games.YW2
                 Directory.CreateDirectory(tempPath);
             }
 
+            List<string>sourceFiles = new List<string>(){ };
+            List<string> destinationFiles = new List<string>(){ };
+
             // Save
             Game.Save(tempPath + @"\yw2_a.fa");
-            Language.Save(tempPath + @"\yw2_lg_" + LanguageCode + ".fa");
+            sourceFiles.Add(@"./temp/yw2_a.fa");
+            destinationFiles.Add(RomfsPath + @"\yw2_a.fa");
+
+            if (Language != null)
+            {
+                Language.Save(tempPath + @"\yw2_lg_" + LanguageCode + ".fa");
+                sourceFiles.Add(@"./temp/yw2_lg_" + LanguageCode + ".fa");
+                destinationFiles.Add(RomfsPath + @"\yw2_lg_" + LanguageCode + ".fa");
+            }
 
             // Close File
             Game.Close();
-            Language.Close();
-
-            // Move
-            string[] sourceFiles = new string[2] { @"./temp/yw2_a.fa", @"./temp/yw2_lg_" + LanguageCode + ".fa" };
-            string[] destinationFiles = new string[2] { RomfsPath + @"\yw2_a.fa", RomfsPath + @"\yw2_lg_" + LanguageCode + ".fa" };
+            if (Language != null)
+            {
+                Language.Close();
+            }
 
             for (int i = 0; i < 2; i++)
             {
@@ -90,7 +121,10 @@ namespace Albatross.Yokai_Watch.Games.YW2
 
             // Re Open
             Game = new ARC0(new FileStream(RomfsPath + @"\yw2_a.fa", FileMode.Open));
-            Language = new ARC0(new FileStream(RomfsPath + @"\yw2_lg_" + LanguageCode + ".fa", FileMode.Open));
+            if (sourceFiles.Count > 1)
+            {
+                Language = new ARC0(new FileStream(RomfsPath + @"\yw2_lg_" + LanguageCode + ".fa", FileMode.Open));
+            }         
         }
 
         public ICharabase[] GetCharacterbase(bool isYokai)
