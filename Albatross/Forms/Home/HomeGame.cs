@@ -7,6 +7,7 @@ using Albatross.Yokai_Watch.Games;
 using Albatross.Yokai_Watch.Games.YW2;
 using Albatross.Forms.Characters;
 using Albatross.Forms.Encounters;
+using Albatross.Forms.Shops;
 
 namespace Albatross
 {
@@ -59,6 +60,10 @@ namespace Albatross
                 case "Encounters":
                     EncounterWindow encounterWindow = new EncounterWindow(Game);
                     encounterWindow.ShowDialog();
+                    break;
+                case "Shops":
+                    ShopWindow shopWindow = new ShopWindow(Game);
+                    shopWindow.ShowDialog();
                     break;
             }
         }

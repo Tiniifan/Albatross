@@ -108,6 +108,12 @@
     <Compile Include="Forms\Nyanko\SearchWindow.Designer.cs">
       <DependentUpon>SearchWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Shops\ShopWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shops\ShopWindow.Designer.cs">
+      <DependentUpon>ShopWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Level5\Archive\ARC0\ARC0.cs" />
     <Compile Include="Level5\Archive\ARC0\ARC0Support.cs" />
     <Compile Include="Level5\Archive\IArchive.cs" />
@@ -188,6 +194,7 @@
     <Compile Include="Yokai Watch\Games\YW1\Logic\Charascale.cs" />
     <Compile Include="Yokai Watch\Games\YW1\Logic\EncountConfig.cs" />
     <Compile Include="Yokai Watch\Games\YW1\Logic\Fusion.cs" />
+    <Compile Include="Yokai Watch\Games\YW1\Logic\Shop.cs" />
     <Compile Include="Yokai Watch\Games\YW1\Logic\Itemconfig.cs" />
     <Compile Include="Yokai Watch\Games\YW1\YW1Support.cs" />
     <Compile Include="Yokai Watch\Games\YW1\YW1.cs" />
@@ -238,6 +245,7 @@
     <Compile Include="Yokai Watch\Logic\IHackslashCharaabilityConfig.cs" />
     <Compile Include="Yokai Watch\Logic\IHackslashCharaparam.cs" />
     <Compile Include="Yokai Watch\Logic\IOrgetimeTechnic.cs" />
+    <Compile Include="Yokai Watch\Logic\IShop.cs" />
     <Compile Include="Yokai Watch\Logic\ISkillconfig.cs" />
     <Compile Include="Yokai Watch\Logic\IBattleCommand.cs" />
     <Compile Include="Yokai Watch\Logic\ICharaabilityConfig.cs" />
@@ -279,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Nyanko\SearchWindow.resx">
       <DependentUpon>SearchWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Shops\ShopWindow.resx">
+      <DependentUpon>ShopWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -138,6 +138,8 @@ namespace Albatross.Forms.Characters
 
             NewCharabase.NameHash = NameHash;
             NewCharabase.IsYokai = isYokaiFlatCheckBox.Checked;
+            NewCharabase.MedalPosX = isYokaiFlatCheckBox.Checked ? 0 : -1;
+            NewCharabase.MedalPosY = isYokaiFlatCheckBox.Checked ? 0 : -1;
 
             if (modelTypeVSTabControl.SelectedIndex == 0)
             {

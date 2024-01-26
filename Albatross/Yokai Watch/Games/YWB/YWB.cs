@@ -369,5 +369,15 @@ namespace Albatross.Yokai_Watch.Games.YWB
         {
 
         }
+
+        public (IShopConfig[], IShopValidCondition[]) GetShop(string shopName)
+        {
+            return (null, null);
+        }
+
+        public void SaveShop(string shopName, IShopConfig[] shopConfigs, IShopValidCondition[] shopValidConditions)
+        {
+
+        }
     }
 }

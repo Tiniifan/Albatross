@@ -66,5 +66,9 @@ namespace Albatross.Yokai_Watch.Games
         (IEncountTable[], IEncountChara[]) GetMapEncounter(string mapName);
 
         void SaveMapEncounter(string mapName, IEncountTable[] encountTables, IEncountChara[] encountCharas);
+
+        (IShopConfig[], IShopValidCondition[]) GetShop(string shopName);
+
+        void SaveShop(string shopName, IShopConfig[] shopConfigs, IShopValidCondition[] shopValidConditions);
     }
 }

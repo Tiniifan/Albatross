@@ -54,6 +54,7 @@ namespace Albatross.Yokai_Watch.Games.YW1
                 { "item_icon", new GameFile(Game, "/data/menu/item_icon") },
                 { "model", new GameFile(Game, "/data/character") },
                 { "map_encounter", new GameFile(Game, "/data/res/map") },
+                { "shop", new GameFile(Game, "/data/res/shop") },
             };
         }
 
@@ -196,25 +197,25 @@ namespace Albatross.Yokai_Watch.Games.YW1
                     return itemconfigFile.Entries
                         .Where(x => x.GetName() == "ITEM_EQUIPMENT_BEGIN")
                         .SelectMany(x => x.Children)
-                        .Select(x => x.ToClass<Consumable>())
+                        .Select(x => x.ToClass<Item>())
                         .ToArray();
                 case "consumable":
                     return itemconfigFile.Entries
                         .Where(x => x.GetName() == "ITEM_CONSUME_BEGIN")
                         .SelectMany(x => x.Children)
-                        .Select(x => x.ToClass<Consumable>())
+                        .Select(x => x.ToClass<Item>())
                         .ToArray();
                 case "important":
                     return itemconfigFile.Entries
                         .Where(x => x.GetName() == "ITEM_IMPORTANT_BEGIN")
                         .SelectMany(x => x.Children)
-                        .Select(x => x.ToClass<Consumable>())
+                        .Select(x => x.ToClass<Item>())
                         .ToArray();
                 case "creature":
                     return itemconfigFile.Entries
                         .Where(x => x.GetName() == "ITEM_CREATURE_BEGIN")
                         .SelectMany(x => x.Children)
-                        .Select(x => x.ToClass<Consumable>())
+                        .Select(x => x.ToClass<Item>())
                         .ToArray();
                 case "all":
                     string[] itemTypes = { "ITEM_EQUIPMENT_BEGIN", "ITEM_CONSUME_BEGIN", "ITEM_IMPORTANT_BEGIN", "ITEM_CREATURE_BEGIN" };
@@ -348,6 +349,28 @@ namespace Albatross.Yokai_Watch.Games.YW1
             encountConfig.ReplaceEntry("ENCOUNT_CHARA_BEGIN", "ENCOUNT_CHARA_INFO_", encountCharas);
 
             Game.Directory.GetFolderFromFullPath("/data/res/map/" + mapName).Files[lastEncountConfigFile].ByteContent = encountConfig.Save();
+        }
+
+        public (IShopConfig[], IShopValidCondition[]) GetShop(string shopName)
+        {
+            VirtualDirectory shopFolder = Game.Directory.GetFolderFromFullPath("data/res/shop");
+            string lastShopFile = shopFolder.Files.Keys.Where(x => x.StartsWith("shop_") && x.Contains(shopName)).OrderByDescending(x => x).First();
+
+            CfgBin shopCfgBin = new CfgBin();
+            shopCfgBin.Open(Game.Directory.GetFileFromFullPath("/data/res/shop/" + lastShopFile));
+
+            IShopConfig[] shopConfig = shopCfgBin.Entries
+                .Where(x => x.GetName() == "SHOP_CONFIG_INFO_BEGIN")
+                .SelectMany(x => x.Children)
+                .Select(x => x.ToClass<ShopConfig>())
+                .ToArray();
+
+            return (shopConfig, null);
+        }
+
+        public void SaveShop(string shopName, IShopConfig[] shopConfigs, IShopValidCondition[] shopValidConditions)
+        {
+
         }
     }
 }

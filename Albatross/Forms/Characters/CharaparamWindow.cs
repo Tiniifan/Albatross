@@ -1100,7 +1100,25 @@ namespace Albatross.Forms.Characters
 
                 try
                 {
-                    string fileName = "item_" + item.ItemNumber.ToString().PadLeft(3, '0');
+                    int fileNumber = 0;
+                    string fileName = "";
+
+                    switch(GameOpened.Name)
+                    {
+                        case "Yo-Kai Watch 1":
+                            fileNumber = item.ItemPosY * 16 + (item.ItemPosX + 1);
+                            fileName = "item_" + fileNumber.ToString().PadLeft(3, '0');
+                            break;
+                        case "Yo-Kai Watch 2":
+                            fileNumber = item.ItemPosY * 16 + (item.ItemPosX + 1);
+                            fileName = "item_" + fileNumber.ToString().PadLeft(3, '0');
+                            break;
+                        case "Yo-Kai Watch 3":
+                            fileNumber = item.ItemPosY * 32 + (item.ItemPosX + 1);
+                            fileName = "item_" + fileNumber.ToString().PadLeft(4, '0');
+                            break;
+                    }
+
                     byte[] imageData = GameOpened.Files["item_icon"].File.Directory.GetFileFromFullPath(GameOpened.Files["item_icon"].Path + "/" + fileName + ".xi");
                     itemPictureBox1.Image = IMGC.ToBitmap(imageData);
                 }
@@ -1155,9 +1173,27 @@ namespace Albatross.Forms.Characters
 
                 try
                 {
-                    string fileName = "item_" + item.ItemNumber.ToString().PadLeft(3, '0');
+                    int fileNumber = 0;
+                    string fileName = "";
+
+                    switch (GameOpened.Name)
+                    {
+                        case "Yo-Kai Watch 1":
+                            fileNumber = item.ItemPosY * 16 + (item.ItemPosX + 1);
+                            fileName = "item_" + fileNumber.ToString().PadLeft(3, '0');
+                            break;
+                        case "Yo-Kai Watch 2":
+                            fileNumber = item.ItemPosY * 16 + (item.ItemPosX + 1);
+                            fileName = "item_" + fileNumber.ToString().PadLeft(3, '0');
+                            break;
+                        case "Yo-Kai Watch 3":
+                            fileNumber = item.ItemPosY * 32 + (item.ItemPosX + 1);
+                            fileName = "item_" + fileNumber.ToString().PadLeft(4, '0');
+                            break;
+                    }
+
                     byte[] imageData = GameOpened.Files["item_icon"].File.Directory.GetFileFromFullPath(GameOpened.Files["item_icon"].Path + "/" + fileName + ".xi");
-                    itemPictureBox2.Image = IMGC.ToBitmap(imageData);
+                    itemPictureBox1.Image = IMGC.ToBitmap(imageData);
                 }
                 catch
                 {

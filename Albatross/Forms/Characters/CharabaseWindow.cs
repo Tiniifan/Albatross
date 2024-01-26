@@ -512,7 +512,7 @@ namespace Albatross.Forms.Characters
                 (int,int,int) fileName = GameSupport.GetFileModelValue(modelFlatComboBox.SelectedItem.ToString());
                 SelectedCharabase.FileNamePrefix = fileName.Item1;
                 SelectedCharabase.FileNameNumber = fileName.Item2;
-                SelectedCharabase.FileNameVariant = fileName.Item2;
+                SelectedCharabase.FileNameVariant = fileName.Item3;
             }
         }
 
