@@ -326,10 +326,13 @@ namespace Albatross.Forms.Characters
             // Link charaevolve to charaparam
             foreach (ICharaparam charaparamsWithEvolve in Charaparams.Where(x => x.EvolveOffset != -1).ToArray())
             {
-                ICharaevolve charaevolve = charaevolves[charaparamsWithEvolve.EvolveOffset];
-                charaparamsWithEvolve.EvolveParam = charaevolve.ParamHash;
-                charaparamsWithEvolve.EvolveLevel = charaevolve.Level;
-                charaparamsWithEvolve.EvolveCost = charaevolve.Cost;
+                if (charaparamsWithEvolve.EvolveOffset < charaevolves.Length)
+                {
+                    ICharaevolve charaevolve = charaevolves[charaparamsWithEvolve.EvolveOffset];
+                    charaparamsWithEvolve.EvolveParam = charaevolve.ParamHash;
+                    charaparamsWithEvolve.EvolveLevel = charaevolve.Level;
+                    charaparamsWithEvolve.EvolveCost = charaevolve.Cost;
+                }
             }
 
             if (GameOpened.Name == "Yo-Kai Watch 1")
@@ -340,16 +343,19 @@ namespace Albatross.Forms.Characters
                 label13.Enabled = false;
                 scoutFlatComboBox.Enabled = false;
                 label21.Enabled = false;
-                label47.Enabled = false;
-                evolutionCostFlatNumericUpDown.Enabled = false;
+                label47.Visible = false;
+                evolutionCostFlatNumericUpDown.Visible = false;
+                evolutionFlatNumericUpDown.Size = new Size(128, 22);
                 maxStatFlatNumericUpDown1.Enabled = false;
                 maxStatFlatNumericUpDown2.Enabled = false;
                 maxStatFlatNumericUpDown3.Enabled = false;
                 maxStatFlatNumericUpDown4.Enabled = false;
                 maxStatFlatNumericUpDown5.Enabled = false;
                 speedFlatComboBox.Visible = false;
-                label44.Visible = false;
-                waitTimeFlatNumericUpDown.Visible = false;
+                label44.Enabled = false;
+                waitTimeFlatNumericUpDown.Enabled = false;
+                label48.Enabled = false;
+                battleTypeFlatNumericUpDown.Enabled = false;
                 vsTabControl2.TabPages.RemoveAt(1);
                 vsTabControl2.TabPages.RemoveAt(1);
                 label42.Visible = false;
@@ -365,16 +371,19 @@ namespace Albatross.Forms.Characters
                 tribeFlatComboBox.Enabled = false;
                 label13.Enabled = true;
                 scoutFlatComboBox.Enabled = true;
-                label47.Enabled = false;
-                evolutionCostFlatNumericUpDown.Enabled = false;
+                label47.Visible = false;
+                evolutionCostFlatNumericUpDown.Visible = false;
+                evolutionFlatNumericUpDown.Size = new Size(128, 22);
                 maxStatFlatNumericUpDown1.Enabled = true;
                 maxStatFlatNumericUpDown2.Enabled = true;
                 maxStatFlatNumericUpDown3.Enabled = true;
                 maxStatFlatNumericUpDown4.Enabled = true;
                 maxStatFlatNumericUpDown5.Enabled = true;
                 speedFlatComboBox.Visible = false;
-                label44.Visible = false;
-                waitTimeFlatNumericUpDown.Visible = false;
+                label44.Enabled = false;
+                waitTimeFlatNumericUpDown.Enabled = false;
+                label48.Enabled = false;
+                battleTypeFlatNumericUpDown.Enabled = false;
                 vsTabControl2.TabPages.RemoveAt(1);
                 vsTabControl2.TabPages.RemoveAt(1);
                 label42.Visible = false;
@@ -385,15 +394,18 @@ namespace Albatross.Forms.Characters
             }
             else if (GameOpened.Name == "Yo-Kai Watch 3")
             {
-                label44.Visible = true;
-                waitTimeFlatNumericUpDown.Visible = true;
+                label44.Enabled = true;
+                waitTimeFlatNumericUpDown.Enabled = true;
+                label48.Enabled = true;
+                battleTypeFlatNumericUpDown.Enabled = true;
                 label8.Enabled = false;
                 tribePictureBox.Enabled = false;
                 tribeFlatComboBox.Enabled = false;
                 label13.Enabled = true;
                 scoutFlatComboBox.Enabled = true;
-                label47.Enabled = false;
-                evolutionCostFlatNumericUpDown.Enabled = false;
+                label47.Visible = false;
+                evolutionCostFlatNumericUpDown.Visible = false;
+                evolutionFlatNumericUpDown.Size = new Size(128, 22);
                 maxStatFlatNumericUpDown1.Enabled = true;
                 maxStatFlatNumericUpDown2.Enabled = true;
                 maxStatFlatNumericUpDown3.Enabled = true;
@@ -419,8 +431,10 @@ namespace Albatross.Forms.Characters
             }
             else if (GameOpened.Name == "Yo-Kai Watch Blaster")
             {
-                label44.Visible = false;
-                waitTimeFlatNumericUpDown.Visible = false;
+                label44.Enabled = false;
+                waitTimeFlatNumericUpDown.Enabled = false;
+                label48.Enabled = false;
+                battleTypeFlatNumericUpDown.Enabled = false;
                 label8.Enabled = false;
                 tribePictureBox.Enabled = false;
                 tribeFlatComboBox.Enabled = false;
@@ -689,6 +703,7 @@ namespace Albatross.Forms.Characters
             SetComboBox(SelectedCharaparam.Speed, Speeds.YWB, speedFlatComboBox);
             experienceCurveFlatNumericUpDown.Value = SelectedCharaparam.ExperienceCurve;
             waitTimeFlatNumericUpDown.Value = SelectedCharaparam.WaitTime;
+            battleTypeFlatNumericUpDown.Value = SelectedCharaparam.BattleType;
             medalFlatNumericUpDown.Value = SelectedCharaparam.MedaliumOffset;
             isShownFlatCheckBox.Checked = SelectedCharaparam.ShowInMedalium;
             if (SelectedCharaparam.EvolveParam != 0)
@@ -982,6 +997,13 @@ namespace Albatross.Forms.Characters
             SelectedCharaparam.WaitTime = Convert.ToInt32(waitTimeFlatNumericUpDown.Value);
         }
 
+        private void BattleTypeFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!battleTypeFlatNumericUpDown.Focused) return;
+
+            SelectedCharaparam.BattleType = Convert.ToInt32(battleTypeFlatNumericUpDown.Value);
+        }
+
         private void MedalFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (!medalFlatNumericUpDown.Focused) return;
@@ -1193,7 +1215,7 @@ namespace Albatross.Forms.Characters
                     }
 
                     byte[] imageData = GameOpened.Files["item_icon"].File.Directory.GetFileFromFullPath(GameOpened.Files["item_icon"].Path + "/" + fileName + ".xi");
-                    itemPictureBox1.Image = IMGC.ToBitmap(imageData);
+                    itemPictureBox2.Image = IMGC.ToBitmap(imageData);
                 }
                 catch
                 {

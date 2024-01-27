@@ -657,7 +657,7 @@ namespace Albatross.Forms.Characters
 
         private void RankFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (rankFlatComboBox.SelectedIndex == -1)
+            if (rankFlatComboBox.SelectedIndex == -1 || rankFlatComboBox.SelectedItem.ToString().Contains("Unrank"))
             {
                 rankPictureBox.Image = null;
             } else

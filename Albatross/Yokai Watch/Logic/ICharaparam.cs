@@ -50,6 +50,7 @@
         public int Weakness { get; set; }
         public bool CanFuse { get; set; }
         public int WaitTime { get; set; }
+        public int BattleType { get; set; }
 
         public int BlasterSkill { get; set; }
         public int BlasterAttack { get; set; }

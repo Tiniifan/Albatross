@@ -39,6 +39,8 @@
             this.vsTabControl1 = new Albatross.UI.VSTabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.evolutionGroupBox = new System.Windows.Forms.GroupBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.evolutionCostFlatNumericUpDown = new Albatross.UI.FlatNumericUpDown();
             this.evolutionFlatNumericUpDown = new Albatross.UI.FlatNumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.evolutionPictureBox = new System.Windows.Forms.PictureBox();
@@ -71,7 +73,6 @@
             this.scoutFlatComboBox = new Albatross.UI.FlatComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.speedFlatComboBox = new Albatross.UI.FlatComboBox();
             this.vsTabControl2 = new Albatross.UI.VSTabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label22 = new System.Windows.Forms.Label();
@@ -139,7 +140,6 @@
             this.maxStatFlatNumericUpDown2 = new Albatross.UI.FlatNumericUpDown();
             this.maxStatFlatNumericUpDown1 = new Albatross.UI.FlatNumericUpDown();
             this.label20 = new System.Windows.Forms.Label();
-            this.minStatFlatNumericUpDown5 = new Albatross.UI.FlatNumericUpDown();
             this.minStatFlatNumericUpDown4 = new Albatross.UI.FlatNumericUpDown();
             this.minStatFlatNumericUpDown3 = new Albatross.UI.FlatNumericUpDown();
             this.minStatFlatNumericUpDown2 = new Albatross.UI.FlatNumericUpDown();
@@ -149,6 +149,8 @@
             this.minStatFlatNumericUpDown1 = new Albatross.UI.FlatNumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.speedFlatComboBox = new Albatross.UI.FlatComboBox();
+            this.minStatFlatNumericUpDown5 = new Albatross.UI.FlatNumericUpDown();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.befriendGroupBox = new System.Windows.Forms.GroupBox();
             this.befriendQuoteTextBox = new System.Windows.Forms.TextBox();
@@ -165,13 +167,14 @@
             this.label12 = new System.Windows.Forms.Label();
             this.baseModelFlatComboBox = new Albatross.UI.FlatComboBox();
             this.facePictureBox = new System.Windows.Forms.PictureBox();
-            this.evolutionCostFlatNumericUpDown = new Albatross.UI.FlatNumericUpDown();
-            this.label47 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.battleTypeFlatNumericUpDown = new Albatross.UI.FlatNumericUpDown();
             this.characterContextMenuStrip.SuspendLayout();
             this.characterGroupBox.SuspendLayout();
             this.vsTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.evolutionGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.evolutionCostFlatNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evolutionFlatNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evolutionPictureBox)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -208,18 +211,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.maxStatFlatNumericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxStatFlatNumericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxStatFlatNumericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown5)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.befriendGroupBox.SuspendLayout();
             this.hatedFoodGroupBox.SuspendLayout();
             this.favoriteFoodGroupBox.SuspendLayout();
             this.eatGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.evolutionCostFlatNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.battleTypeFlatNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // searchTextBox
@@ -339,12 +342,39 @@
             this.evolutionGroupBox.Controls.Add(this.evolutionFlatComboBox);
             this.evolutionGroupBox.Controls.Add(this.label27);
             this.evolutionGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.evolutionGroupBox.Location = new System.Drawing.Point(19, 150);
+            this.evolutionGroupBox.Location = new System.Drawing.Point(19, 185);
             this.evolutionGroupBox.Name = "evolutionGroupBox";
             this.evolutionGroupBox.Size = new System.Drawing.Size(422, 89);
             this.evolutionGroupBox.TabIndex = 69;
             this.evolutionGroupBox.TabStop = false;
             this.evolutionGroupBox.Text = "Evolution";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(333, 28);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(75, 13);
+            this.label47.TabIndex = 69;
+            this.label47.Text = "Oni Orb Cost";
+            // 
+            // evolutionCostFlatNumericUpDown
+            // 
+            this.evolutionCostFlatNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.evolutionCostFlatNumericUpDown.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.evolutionCostFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.evolutionCostFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.evolutionCostFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.evolutionCostFlatNumericUpDown.Location = new System.Drawing.Point(333, 43);
+            this.evolutionCostFlatNumericUpDown.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.evolutionCostFlatNumericUpDown.Name = "evolutionCostFlatNumericUpDown";
+            this.evolutionCostFlatNumericUpDown.Size = new System.Drawing.Size(74, 22);
+            this.evolutionCostFlatNumericUpDown.TabIndex = 68;
+            this.evolutionCostFlatNumericUpDown.ValueChanged += new System.EventHandler(this.EvolutionCostFlatNumericUpDown_ValueChanged);
             // 
             // evolutionFlatNumericUpDown
             // 
@@ -417,7 +447,7 @@
             this.groupBox5.Controls.Add(this.itemFlatComboBox1);
             this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox5.Location = new System.Drawing.Point(19, 257);
+            this.groupBox5.Location = new System.Drawing.Point(19, 284);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(422, 171);
             this.groupBox5.TabIndex = 68;
@@ -568,6 +598,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label48);
+            this.groupBox2.Controls.Add(this.battleTypeFlatNumericUpDown);
             this.groupBox2.Controls.Add(this.label44);
             this.groupBox2.Controls.Add(this.isShownFlatCheckBox);
             this.groupBox2.Controls.Add(this.waitTimeFlatNumericUpDown);
@@ -583,7 +615,7 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox2.Location = new System.Drawing.Point(19, 15);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(422, 119);
+            this.groupBox2.Size = new System.Drawing.Size(422, 159);
             this.groupBox2.TabIndex = 67;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Base";
@@ -591,7 +623,7 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(130, 83);
+            this.label44.Location = new System.Drawing.Point(26, 119);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(31, 13);
             this.label44.TabIndex = 68;
@@ -616,14 +648,14 @@
             this.waitTimeFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.waitTimeFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
             this.waitTimeFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.waitTimeFlatNumericUpDown.Location = new System.Drawing.Point(161, 80);
+            this.waitTimeFlatNumericUpDown.Location = new System.Drawing.Point(74, 117);
             this.waitTimeFlatNumericUpDown.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.waitTimeFlatNumericUpDown.Name = "waitTimeFlatNumericUpDown";
-            this.waitTimeFlatNumericUpDown.Size = new System.Drawing.Size(50, 22);
+            this.waitTimeFlatNumericUpDown.Size = new System.Drawing.Size(139, 22);
             this.waitTimeFlatNumericUpDown.TabIndex = 67;
             this.waitTimeFlatNumericUpDown.ValueChanged += new System.EventHandler(this.WaitTimeFlatNumericUpDown_ValueChanged);
             // 
@@ -668,7 +700,7 @@
             0,
             0});
             this.experienceCurveFlatNumericUpDown.Name = "experienceCurveFlatNumericUpDown";
-            this.experienceCurveFlatNumericUpDown.Size = new System.Drawing.Size(50, 22);
+            this.experienceCurveFlatNumericUpDown.Size = new System.Drawing.Size(137, 22);
             this.experienceCurveFlatNumericUpDown.TabIndex = 65;
             this.experienceCurveFlatNumericUpDown.ValueChanged += new System.EventHandler(this.ExperienceCurveFlatNumericUpDown_ValueChanged);
             // 
@@ -763,19 +795,6 @@
             this.tabPage2.Size = new System.Drawing.Size(452, 461);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Stat and Moveset";
-            // 
-            // speedFlatComboBox
-            // 
-            this.speedFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.speedFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.speedFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.speedFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.speedFlatComboBox.FormattingEnabled = true;
-            this.speedFlatComboBox.Location = new System.Drawing.Point(370, 41);
-            this.speedFlatComboBox.Name = "speedFlatComboBox";
-            this.speedFlatComboBox.Size = new System.Drawing.Size(69, 21);
-            this.speedFlatComboBox.TabIndex = 68;
-            this.speedFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.SpeedFlatComboBox_SelectedIndexChanged);
             // 
             // vsTabControl2
             // 
@@ -1701,24 +1720,6 @@
             this.label20.TabIndex = 47;
             this.label20.Text = "Min";
             // 
-            // minStatFlatNumericUpDown5
-            // 
-            this.minStatFlatNumericUpDown5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.minStatFlatNumericUpDown5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.minStatFlatNumericUpDown5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.minStatFlatNumericUpDown5.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.minStatFlatNumericUpDown5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.minStatFlatNumericUpDown5.Location = new System.Drawing.Point(370, 41);
-            this.minStatFlatNumericUpDown5.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.minStatFlatNumericUpDown5.Name = "minStatFlatNumericUpDown5";
-            this.minStatFlatNumericUpDown5.Size = new System.Drawing.Size(68, 22);
-            this.minStatFlatNumericUpDown5.TabIndex = 46;
-            this.minStatFlatNumericUpDown5.ValueChanged += new System.EventHandler(this.MinStatFlatNumericUpDown5_ValueChanged);
-            // 
             // minStatFlatNumericUpDown4
             // 
             this.minStatFlatNumericUpDown4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
@@ -1835,6 +1836,37 @@
             this.label16.Size = new System.Drawing.Size(21, 13);
             this.label16.TabIndex = 34;
             this.label16.Text = "HP";
+            // 
+            // speedFlatComboBox
+            // 
+            this.speedFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.speedFlatComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.speedFlatComboBox.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.speedFlatComboBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.speedFlatComboBox.FormattingEnabled = true;
+            this.speedFlatComboBox.Location = new System.Drawing.Point(370, 41);
+            this.speedFlatComboBox.Name = "speedFlatComboBox";
+            this.speedFlatComboBox.Size = new System.Drawing.Size(69, 21);
+            this.speedFlatComboBox.TabIndex = 68;
+            this.speedFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.SpeedFlatComboBox_SelectedIndexChanged);
+            // 
+            // minStatFlatNumericUpDown5
+            // 
+            this.minStatFlatNumericUpDown5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.minStatFlatNumericUpDown5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.minStatFlatNumericUpDown5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.minStatFlatNumericUpDown5.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.minStatFlatNumericUpDown5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.minStatFlatNumericUpDown5.Location = new System.Drawing.Point(370, 41);
+            this.minStatFlatNumericUpDown5.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.minStatFlatNumericUpDown5.Name = "minStatFlatNumericUpDown5";
+            this.minStatFlatNumericUpDown5.Size = new System.Drawing.Size(68, 22);
+            this.minStatFlatNumericUpDown5.TabIndex = 46;
+            this.minStatFlatNumericUpDown5.ValueChanged += new System.EventHandler(this.MinStatFlatNumericUpDown5_ValueChanged);
             // 
             // tabPage1
             // 
@@ -2016,32 +2048,32 @@
             this.facePictureBox.TabIndex = 60;
             this.facePictureBox.TabStop = false;
             // 
-            // evolutionCostFlatNumericUpDown
+            // label48
             // 
-            this.evolutionCostFlatNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.evolutionCostFlatNumericUpDown.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.evolutionCostFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.evolutionCostFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.evolutionCostFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.evolutionCostFlatNumericUpDown.Location = new System.Drawing.Point(333, 43);
-            this.evolutionCostFlatNumericUpDown.Maximum = new decimal(new int[] {
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(227, 119);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(47, 13);
+            this.label48.TabIndex = 70;
+            this.label48.Text = "Bat. Typ";
+            // 
+            // battleTypeFlatNumericUpDown
+            // 
+            this.battleTypeFlatNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.battleTypeFlatNumericUpDown.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.battleTypeFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.battleTypeFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.battleTypeFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.battleTypeFlatNumericUpDown.Location = new System.Drawing.Point(275, 117);
+            this.battleTypeFlatNumericUpDown.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-            this.evolutionCostFlatNumericUpDown.Name = "evolutionCostFlatNumericUpDown";
-            this.evolutionCostFlatNumericUpDown.Size = new System.Drawing.Size(74, 22);
-            this.evolutionCostFlatNumericUpDown.TabIndex = 68;
-            this.evolutionCostFlatNumericUpDown.ValueChanged += new System.EventHandler(this.EvolutionCostFlatNumericUpDown_ValueChanged);
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(333, 28);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(75, 13);
-            this.label47.TabIndex = 69;
-            this.label47.Text = "Oni Orb Cost";
+            this.battleTypeFlatNumericUpDown.Name = "battleTypeFlatNumericUpDown";
+            this.battleTypeFlatNumericUpDown.Size = new System.Drawing.Size(132, 22);
+            this.battleTypeFlatNumericUpDown.TabIndex = 69;
+            this.battleTypeFlatNumericUpDown.ValueChanged += new System.EventHandler(this.BattleTypeFlatNumericUpDown_ValueChanged);
             // 
             // CharaparamWindow
             // 
@@ -2063,6 +2095,7 @@
             this.tabPage3.ResumeLayout(false);
             this.evolutionGroupBox.ResumeLayout(false);
             this.evolutionGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.evolutionCostFlatNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evolutionFlatNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evolutionPictureBox)).EndInit();
             this.groupBox5.ResumeLayout(false);
@@ -2106,11 +2139,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.maxStatFlatNumericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxStatFlatNumericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxStatFlatNumericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minStatFlatNumericUpDown5)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.befriendGroupBox.ResumeLayout(false);
             this.befriendGroupBox.PerformLayout();
@@ -2121,7 +2154,7 @@
             this.eatGroupBox.ResumeLayout(false);
             this.eatGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.evolutionCostFlatNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.battleTypeFlatNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2266,5 +2299,7 @@
         private UI.FlatNumericUpDown earnLevelFlatNumericUpDown2;
         private System.Windows.Forms.Label label47;
         private UI.FlatNumericUpDown evolutionCostFlatNumericUpDown;
+        private System.Windows.Forms.Label label48;
+        private UI.FlatNumericUpDown battleTypeFlatNumericUpDown;
     }
 }
