@@ -218,8 +218,13 @@
             this.scaleFlatNumericUpDown6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.scaleFlatNumericUpDown6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.scaleFlatNumericUpDown6.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.scaleFlatNumericUpDown6.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown6.DecimalPlaces = 2;
             this.scaleFlatNumericUpDown6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown6.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.scaleFlatNumericUpDown6.Location = new System.Drawing.Point(79, 149);
             this.scaleFlatNumericUpDown6.Maximum = new decimal(new int[] {
             999,
@@ -287,8 +292,13 @@
             this.scaleFlatNumericUpDown5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.scaleFlatNumericUpDown5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.scaleFlatNumericUpDown5.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.scaleFlatNumericUpDown5.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown5.DecimalPlaces = 2;
             this.scaleFlatNumericUpDown5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown5.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.scaleFlatNumericUpDown5.Location = new System.Drawing.Point(79, 125);
             this.scaleFlatNumericUpDown5.Maximum = new decimal(new int[] {
             999,
@@ -311,8 +321,13 @@
             this.scaleFlatNumericUpDown4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.scaleFlatNumericUpDown4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.scaleFlatNumericUpDown4.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.scaleFlatNumericUpDown4.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown4.DecimalPlaces = 2;
             this.scaleFlatNumericUpDown4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown4.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.scaleFlatNumericUpDown4.Location = new System.Drawing.Point(79, 99);
             this.scaleFlatNumericUpDown4.Maximum = new decimal(new int[] {
             999,
@@ -335,8 +350,13 @@
             this.scaleFlatNumericUpDown3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.scaleFlatNumericUpDown3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.scaleFlatNumericUpDown3.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.scaleFlatNumericUpDown3.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown3.DecimalPlaces = 2;
             this.scaleFlatNumericUpDown3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown3.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.scaleFlatNumericUpDown3.Location = new System.Drawing.Point(79, 73);
             this.scaleFlatNumericUpDown3.Maximum = new decimal(new int[] {
             999,
@@ -359,8 +379,13 @@
             this.scaleFlatNumericUpDown2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.scaleFlatNumericUpDown2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.scaleFlatNumericUpDown2.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.scaleFlatNumericUpDown2.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown2.DecimalPlaces = 2;
             this.scaleFlatNumericUpDown2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown2.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.scaleFlatNumericUpDown2.Location = new System.Drawing.Point(79, 47);
             this.scaleFlatNumericUpDown2.Maximum = new decimal(new int[] {
             999,
@@ -383,8 +408,13 @@
             this.scaleFlatNumericUpDown1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.scaleFlatNumericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.scaleFlatNumericUpDown1.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.scaleFlatNumericUpDown1.DecimalPlaces = 1;
+            this.scaleFlatNumericUpDown1.DecimalPlaces = 2;
             this.scaleFlatNumericUpDown1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown1.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.scaleFlatNumericUpDown1.Location = new System.Drawing.Point(79, 21);
             this.scaleFlatNumericUpDown1.Maximum = new decimal(new int[] {
             999,

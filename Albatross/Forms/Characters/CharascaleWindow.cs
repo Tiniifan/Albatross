@@ -281,42 +281,42 @@ namespace Albatross.Forms.Characters
         {
             if (!scaleFlatNumericUpDown1.Focused) return;
 
-            SelectedCharascale.Scale1 = Convert.ToInt32(scaleFlatNumericUpDown1.Value);
+            SelectedCharascale.Scale1 = Convert.ToSingle(scaleFlatNumericUpDown1.Value);
         }
 
         private void ScaleFlatNumericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             if (!scaleFlatNumericUpDown2.Focused) return;
 
-            SelectedCharascale.Scale2 = Convert.ToInt32(scaleFlatNumericUpDown2.Value);
+            SelectedCharascale.Scale2 = Convert.ToSingle(scaleFlatNumericUpDown2.Value);
         }
 
         private void ScaleFlatNumericUpDown3_ValueChanged(object sender, EventArgs e)
         {
             if (!scaleFlatNumericUpDown3.Focused) return;
 
-            SelectedCharascale.Scale3 = Convert.ToInt32(scaleFlatNumericUpDown3.Value);
+            SelectedCharascale.Scale3 = Convert.ToSingle(scaleFlatNumericUpDown3.Value);
         }
 
         private void ScaleFlatNumericUpDown4_ValueChanged(object sender, EventArgs e)
         {
             if (!scaleFlatNumericUpDown4.Focused) return;
 
-            SelectedCharascale.Scale4 = Convert.ToInt32(scaleFlatNumericUpDown4.Value);
+            SelectedCharascale.Scale4 = Convert.ToSingle(scaleFlatNumericUpDown4.Value);
         }
 
         private void ScaleFlatNumericUpDown5_ValueChanged(object sender, EventArgs e)
         {
             if (!scaleFlatNumericUpDown5.Focused) return;
 
-            SelectedCharascale.Scale5 = Convert.ToInt32(scaleFlatNumericUpDown5.Value);
+            SelectedCharascale.Scale5 = Convert.ToSingle(scaleFlatNumericUpDown5.Value);
         }
 
         private void ScaleFlatNumericUpDown6_ValueChanged(object sender, EventArgs e)
         {
             if (!scaleFlatNumericUpDown6.Focused) return;
 
-            SelectedCharascale.Scale6 = Convert.ToInt32(scaleFlatNumericUpDown6.Value);
+            SelectedCharascale.Scale6 = Convert.ToSingle(scaleFlatNumericUpDown6.Value);
         }
     }
 }

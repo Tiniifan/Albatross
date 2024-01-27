@@ -1368,42 +1368,42 @@ namespace Albatross.Forms.Characters
         {
             if (!attributeFlatNumericUpDown1.Focused) return;
 
-            SelectedCharaparam.AttributeDamageFire = Convert.ToInt32(attributeFlatNumericUpDown1.Value);
+            SelectedCharaparam.AttributeDamageFire = Convert.ToSingle(attributeFlatNumericUpDown1.Value);
         }
 
         private void AttributeFlatNumericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             if (!attributeFlatNumericUpDown2.Focused) return;
 
-            SelectedCharaparam.AttributeDamageIce = Convert.ToInt32(attributeFlatNumericUpDown2.Value);
+            SelectedCharaparam.AttributeDamageIce = Convert.ToSingle(attributeFlatNumericUpDown2.Value);
         }
 
         private void AttributeFlatNumericUpDown3_ValueChanged(object sender, EventArgs e)
         {
             if (!attributeFlatNumericUpDown3.Focused) return;
 
-            SelectedCharaparam.AttributeDamageEarth = Convert.ToInt32(attributeFlatNumericUpDown3.Value);
+            SelectedCharaparam.AttributeDamageEarth = Convert.ToSingle(attributeFlatNumericUpDown3.Value);
         }
 
         private void AttributeFlatNumericUpDown4_ValueChanged(object sender, EventArgs e)
         {
             if (!attributeFlatNumericUpDown4.Focused) return;
 
-            SelectedCharaparam.AttributeDamageLigthning = Convert.ToInt32(attributeFlatNumericUpDown4.Value);
+            SelectedCharaparam.AttributeDamageLigthning = Convert.ToSingle(attributeFlatNumericUpDown4.Value);
         }
 
         private void AttributeFlatNumericUpDown5_ValueChanged(object sender, EventArgs e)
         {
             if (!attributeFlatNumericUpDown5.Focused) return;
 
-            SelectedCharaparam.AttributeDamageWater = Convert.ToInt32(attributeFlatNumericUpDown5.Value);
+            SelectedCharaparam.AttributeDamageWater = Convert.ToSingle(attributeFlatNumericUpDown5.Value);
         }
 
         private void AttributeFlatNumericUpDown6_ValueChanged(object sender, EventArgs e)
         {
             if (!attributeFlatNumericUpDown6.Focused) return;
 
-            SelectedCharaparam.AttributeDamageWind = Convert.ToInt32(attributeFlatNumericUpDown6.Value);
+            SelectedCharaparam.AttributeDamageWind = Convert.ToSingle(attributeFlatNumericUpDown6.Value);
         }
 
         private void AttackFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
