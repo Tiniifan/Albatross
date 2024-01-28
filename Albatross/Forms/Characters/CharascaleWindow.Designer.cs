@@ -54,6 +54,8 @@
             this.scaleFlatNumericUpDown3 = new Albatross.UI.FlatNumericUpDown();
             this.scaleFlatNumericUpDown2 = new Albatross.UI.FlatNumericUpDown();
             this.scaleFlatNumericUpDown1 = new Albatross.UI.FlatNumericUpDown();
+            this.scaleText7 = new System.Windows.Forms.Label();
+            this.scaleFlatNumericUpDown7 = new Albatross.UI.FlatNumericUpDown();
             this.characterContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).BeginInit();
             this.characterGroupBox.SuspendLayout();
@@ -64,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown7)).BeginInit();
             this.SuspendLayout();
             // 
             // characterListBox
@@ -74,7 +77,7 @@
             this.characterListBox.FormattingEnabled = true;
             this.characterListBox.Location = new System.Drawing.Point(12, 38);
             this.characterListBox.Name = "characterListBox";
-            this.characterListBox.Size = new System.Drawing.Size(185, 303);
+            this.characterListBox.Size = new System.Drawing.Size(185, 329);
             this.characterListBox.TabIndex = 9;
             this.characterListBox.SelectedIndexChanged += new System.EventHandler(this.CharacterListBox_SelectedIndexChanged);
             // 
@@ -176,13 +179,15 @@
             this.characterGroupBox.ForeColor = System.Drawing.Color.White;
             this.characterGroupBox.Location = new System.Drawing.Point(203, 32);
             this.characterGroupBox.Name = "characterGroupBox";
-            this.characterGroupBox.Size = new System.Drawing.Size(297, 310);
+            this.characterGroupBox.Size = new System.Drawing.Size(297, 336);
             this.characterGroupBox.TabIndex = 10;
             this.characterGroupBox.TabStop = false;
             this.characterGroupBox.Text = "Character";
             // 
             // baseGroupBox
             // 
+            this.baseGroupBox.Controls.Add(this.scaleText7);
+            this.baseGroupBox.Controls.Add(this.scaleFlatNumericUpDown7);
             this.baseGroupBox.Controls.Add(this.scaleText6);
             this.baseGroupBox.Controls.Add(this.scaleFlatNumericUpDown6);
             this.baseGroupBox.Controls.Add(this.scaleText5);
@@ -198,7 +203,7 @@
             this.baseGroupBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.baseGroupBox.Location = new System.Drawing.Point(20, 110);
             this.baseGroupBox.Name = "baseGroupBox";
-            this.baseGroupBox.Size = new System.Drawing.Size(255, 181);
+            this.baseGroupBox.Size = new System.Drawing.Size(255, 213);
             this.baseGroupBox.TabIndex = 78;
             this.baseGroupBox.TabStop = false;
             this.baseGroupBox.Text = "Scale";
@@ -431,16 +436,56 @@
             this.scaleFlatNumericUpDown1.TabIndex = 69;
             this.scaleFlatNumericUpDown1.ValueChanged += new System.EventHandler(this.ScaleFlatNumericUpDown1_ValueChanged);
             // 
+            // scaleText7
+            // 
+            this.scaleText7.AutoSize = true;
+            this.scaleText7.Location = new System.Drawing.Point(30, 177);
+            this.scaleText7.Name = "scaleText7";
+            this.scaleText7.Size = new System.Drawing.Size(43, 13);
+            this.scaleText7.TabIndex = 82;
+            this.scaleText7.Text = "Scale 7";
+            // 
+            // scaleFlatNumericUpDown7
+            // 
+            this.scaleFlatNumericUpDown7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.scaleFlatNumericUpDown7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.scaleFlatNumericUpDown7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.scaleFlatNumericUpDown7.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.scaleFlatNumericUpDown7.DecimalPlaces = 2;
+            this.scaleFlatNumericUpDown7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scaleFlatNumericUpDown7.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.scaleFlatNumericUpDown7.Location = new System.Drawing.Point(79, 175);
+            this.scaleFlatNumericUpDown7.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.scaleFlatNumericUpDown7.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.scaleFlatNumericUpDown7.Name = "scaleFlatNumericUpDown7";
+            this.scaleFlatNumericUpDown7.Size = new System.Drawing.Size(130, 20);
+            this.scaleFlatNumericUpDown7.TabIndex = 81;
+            this.scaleFlatNumericUpDown7.ValueChanged += new System.EventHandler(this.ScaleFlatNumericUpDown7_ValueChanged);
+            // 
             // CharascaleWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(516, 352);
+            this.ClientSize = new System.Drawing.Size(516, 377);
             this.Controls.Add(this.characterListBox);
             this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.characterGroupBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(532, 416);
+            this.MinimumSize = new System.Drawing.Size(532, 416);
             this.Name = "CharascaleWindow";
             this.Text = "Charascale";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CharascaleWindow_FormClosed);
@@ -456,6 +501,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleFlatNumericUpDown7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -486,5 +532,7 @@
         private UI.FlatNumericUpDown scaleFlatNumericUpDown1;
         private System.Windows.Forms.Label scaleText6;
         private UI.FlatNumericUpDown scaleFlatNumericUpDown6;
+        private System.Windows.Forms.Label scaleText7;
+        private UI.FlatNumericUpDown scaleFlatNumericUpDown7;
     }
 }

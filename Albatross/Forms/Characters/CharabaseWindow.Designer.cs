@@ -668,6 +668,8 @@
             this.Controls.Add(this.characterListBox);
             this.Controls.Add(this.searchTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(747, 662);
+            this.MinimumSize = new System.Drawing.Size(747, 662);
             this.Name = "CharabaseWindow";
             this.Text = "Charabase";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CharabaseWindow_FormClosed);

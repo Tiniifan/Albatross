@@ -9,5 +9,6 @@
         public float Scale4 { get; set; }
         public float Scale5 { get; set; }
         public float Scale6 { get; set; }
+        public float Scale7 { get; set; }
     }
 }

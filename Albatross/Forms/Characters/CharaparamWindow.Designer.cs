@@ -36,6 +36,12 @@
             this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.characterGroupBox = new System.Windows.Forms.GroupBox();
+            this.hashTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.facePictureBox = new System.Windows.Forms.PictureBox();
             this.vsTabControl1 = new Albatross.UI.VSTabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.evolutionGroupBox = new System.Windows.Forms.GroupBox();
@@ -60,6 +66,8 @@
             this.itemFlatComboBox1 = new Albatross.UI.FlatComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.battleTypeFlatNumericUpDown = new Albatross.UI.FlatNumericUpDown();
             this.label44 = new System.Windows.Forms.Label();
             this.isShownFlatCheckBox = new Albatross.UI.FlatCheckBox();
             this.waitTimeFlatNumericUpDown = new Albatross.UI.FlatNumericUpDown();
@@ -160,17 +168,10 @@
             this.favoriteFoodQuoteTextBox = new System.Windows.Forms.TextBox();
             this.eatGroupBox = new System.Windows.Forms.GroupBox();
             this.eatQuoteTextBox = new System.Windows.Forms.TextBox();
-            this.hashTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.baseModelFlatComboBox = new Albatross.UI.FlatComboBox();
-            this.facePictureBox = new System.Windows.Forms.PictureBox();
-            this.label48 = new System.Windows.Forms.Label();
-            this.battleTypeFlatNumericUpDown = new Albatross.UI.FlatNumericUpDown();
             this.characterContextMenuStrip.SuspendLayout();
             this.characterGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).BeginInit();
             this.vsTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.evolutionGroupBox.SuspendLayout();
@@ -185,6 +186,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.moneyFlatNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.experienceFlatNumericUpDown)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.battleTypeFlatNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.waitTimeFlatNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medalFlatNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.experienceCurveFlatNumericUpDown)).BeginInit();
@@ -221,8 +223,6 @@
             this.hatedFoodGroupBox.SuspendLayout();
             this.favoriteFoodGroupBox.SuspendLayout();
             this.eatGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.battleTypeFlatNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // searchTextBox
@@ -294,6 +294,63 @@
             this.characterGroupBox.TabIndex = 8;
             this.characterGroupBox.TabStop = false;
             this.characterGroupBox.Text = "Character";
+            // 
+            // hashTextBox
+            // 
+            this.hashTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.hashTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.hashTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.hashTextBox.Location = new System.Drawing.Point(162, 49);
+            this.hashTextBox.Name = "hashTextBox";
+            this.hashTextBox.ReadOnly = true;
+            this.hashTextBox.Size = new System.Drawing.Size(113, 13);
+            this.hashTextBox.TabIndex = 64;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(96, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.TabIndex = 63;
+            this.label5.Text = "Hash";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(289, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(31, 13);
+            this.label6.TabIndex = 59;
+            this.label6.Text = "Base";
+            // 
+            // nameTextBox
+            // 
+            this.nameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nameTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.nameTextBox.Location = new System.Drawing.Point(162, 68);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.ReadOnly = true;
+            this.nameTextBox.Size = new System.Drawing.Size(113, 13);
+            this.nameTextBox.TabIndex = 62;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(96, 68);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(35, 13);
+            this.label12.TabIndex = 61;
+            this.label12.Text = "Name";
+            // 
+            // facePictureBox
+            // 
+            this.facePictureBox.Location = new System.Drawing.Point(20, 31);
+            this.facePictureBox.Name = "facePictureBox";
+            this.facePictureBox.Size = new System.Drawing.Size(64, 64);
+            this.facePictureBox.TabIndex = 60;
+            this.facePictureBox.TabStop = false;
             // 
             // vsTabControl1
             // 
@@ -619,6 +676,33 @@
             this.groupBox2.TabIndex = 67;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Base";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(227, 119);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(47, 13);
+            this.label48.TabIndex = 70;
+            this.label48.Text = "Bat. Typ";
+            // 
+            // battleTypeFlatNumericUpDown
+            // 
+            this.battleTypeFlatNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.battleTypeFlatNumericUpDown.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.battleTypeFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.battleTypeFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.battleTypeFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.battleTypeFlatNumericUpDown.Location = new System.Drawing.Point(275, 117);
+            this.battleTypeFlatNumericUpDown.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.battleTypeFlatNumericUpDown.Name = "battleTypeFlatNumericUpDown";
+            this.battleTypeFlatNumericUpDown.Size = new System.Drawing.Size(132, 22);
+            this.battleTypeFlatNumericUpDown.TabIndex = 69;
+            this.battleTypeFlatNumericUpDown.ValueChanged += new System.EventHandler(this.BattleTypeFlatNumericUpDown_ValueChanged);
             // 
             // label44
             // 
@@ -1978,55 +2062,6 @@
             this.eatQuoteTextBox.TabIndex = 50;
             this.eatQuoteTextBox.Click += new System.EventHandler(this.EatQuoteTextBox_Click);
             // 
-            // hashTextBox
-            // 
-            this.hashTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.hashTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.hashTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.hashTextBox.Location = new System.Drawing.Point(162, 49);
-            this.hashTextBox.Name = "hashTextBox";
-            this.hashTextBox.ReadOnly = true;
-            this.hashTextBox.Size = new System.Drawing.Size(113, 13);
-            this.hashTextBox.TabIndex = 64;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(96, 49);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
-            this.label5.TabIndex = 63;
-            this.label5.Text = "Hash";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(289, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 13);
-            this.label6.TabIndex = 59;
-            this.label6.Text = "Base";
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nameTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.nameTextBox.Location = new System.Drawing.Point(162, 68);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.ReadOnly = true;
-            this.nameTextBox.Size = new System.Drawing.Size(113, 13);
-            this.nameTextBox.TabIndex = 62;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(96, 68);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(35, 13);
-            this.label12.TabIndex = 61;
-            this.label12.Text = "Name";
-            // 
             // baseModelFlatComboBox
             // 
             this.baseModelFlatComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
@@ -2040,41 +2075,6 @@
             this.baseModelFlatComboBox.TabIndex = 65;
             this.baseModelFlatComboBox.SelectedIndexChanged += new System.EventHandler(this.BaseModelFlatComboBox_SelectedIndexChanged);
             // 
-            // facePictureBox
-            // 
-            this.facePictureBox.Location = new System.Drawing.Point(20, 31);
-            this.facePictureBox.Name = "facePictureBox";
-            this.facePictureBox.Size = new System.Drawing.Size(64, 64);
-            this.facePictureBox.TabIndex = 60;
-            this.facePictureBox.TabStop = false;
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(227, 119);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(47, 13);
-            this.label48.TabIndex = 70;
-            this.label48.Text = "Bat. Typ";
-            // 
-            // battleTypeFlatNumericUpDown
-            // 
-            this.battleTypeFlatNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.battleTypeFlatNumericUpDown.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.battleTypeFlatNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.battleTypeFlatNumericUpDown.ButtonHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.battleTypeFlatNumericUpDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.battleTypeFlatNumericUpDown.Location = new System.Drawing.Point(275, 117);
-            this.battleTypeFlatNumericUpDown.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.battleTypeFlatNumericUpDown.Name = "battleTypeFlatNumericUpDown";
-            this.battleTypeFlatNumericUpDown.Size = new System.Drawing.Size(132, 22);
-            this.battleTypeFlatNumericUpDown.TabIndex = 69;
-            this.battleTypeFlatNumericUpDown.ValueChanged += new System.EventHandler(this.BattleTypeFlatNumericUpDown_ValueChanged);
-            // 
             // CharaparamWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2085,12 +2085,15 @@
             this.Controls.Add(this.characterListBox);
             this.Controls.Add(this.searchTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(730, 690);
+            this.MinimumSize = new System.Drawing.Size(730, 690);
             this.Name = "CharaparamWindow";
             this.Text = "Charaparam";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CharaparamWindow_FormClosed);
             this.characterContextMenuStrip.ResumeLayout(false);
             this.characterGroupBox.ResumeLayout(false);
             this.characterGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).EndInit();
             this.vsTabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.evolutionGroupBox.ResumeLayout(false);
@@ -2108,6 +2111,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.experienceFlatNumericUpDown)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.battleTypeFlatNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.waitTimeFlatNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medalFlatNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.experienceCurveFlatNumericUpDown)).EndInit();
@@ -2153,8 +2157,6 @@
             this.favoriteFoodGroupBox.PerformLayout();
             this.eatGroupBox.ResumeLayout(false);
             this.eatGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.facePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.battleTypeFlatNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

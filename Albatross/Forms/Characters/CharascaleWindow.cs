@@ -85,11 +85,15 @@ namespace Albatross.Forms.Characters
             {
                 scaleText6.Enabled = false;
                 scaleFlatNumericUpDown6.Enabled = false;
+                scaleText7.Enabled = false;
+                scaleFlatNumericUpDown7.Enabled = false;
             }
             else if (GameOpened.Name == "Yo-Kai Watch 2")
             {
                 scaleText6.Enabled = true;
                 scaleFlatNumericUpDown6.Enabled = true;
+                scaleText7.Enabled = false;
+                scaleFlatNumericUpDown7.Enabled = false;
             }
             else if (GameOpened.Name == "Yo-Kai Watch Blaster")
             {
@@ -97,6 +101,8 @@ namespace Albatross.Forms.Characters
                 scaleFlatNumericUpDown5.Enabled = false;
                 scaleText6.Enabled = false;
                 scaleFlatNumericUpDown6.Enabled = false;
+                scaleText7.Enabled = false;
+                scaleFlatNumericUpDown7.Enabled = false;
             }
         }
 
@@ -235,6 +241,7 @@ namespace Albatross.Forms.Characters
             scaleFlatNumericUpDown4.Value = Convert.ToDecimal(SelectedCharascale.Scale4);
             scaleFlatNumericUpDown5.Value = Convert.ToDecimal(SelectedCharascale.Scale5);
             scaleFlatNumericUpDown6.Value = Convert.ToDecimal(SelectedCharascale.Scale6);
+            scaleFlatNumericUpDown7.Value = Convert.ToDecimal(SelectedCharascale.Scale7);
 
             characterGroupBox.Enabled = true;
         }
@@ -317,6 +324,13 @@ namespace Albatross.Forms.Characters
             if (!scaleFlatNumericUpDown6.Focused) return;
 
             SelectedCharascale.Scale6 = Convert.ToSingle(scaleFlatNumericUpDown6.Value);
+        }
+
+        private void ScaleFlatNumericUpDown7_ValueChanged(object sender, EventArgs e)
+        {
+            if (!scaleFlatNumericUpDown7.Focused) return;
+
+            SelectedCharascale.Scale7 = Convert.ToSingle(scaleFlatNumericUpDown7.Value);
         }
     }
 }

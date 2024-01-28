@@ -287,6 +287,8 @@
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.label5);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "NewCharabaseWindow";
             this.Text = "Make Charabase";
             this.modelTypeVSTabControl.ResumeLayout(false);
