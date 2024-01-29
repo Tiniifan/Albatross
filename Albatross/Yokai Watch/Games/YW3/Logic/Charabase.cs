@@ -42,7 +42,7 @@ namespace Albatross.Yokai_Watch.Games.YW3.Logic
         public new bool IsRare { get => base.IsRare; set => base.IsRare = value; }
         public new bool IsLegend { get => base.IsLegend; set => base.IsLegend = value; }
         public new bool IsPionner { get => base.IsPionner; set => base.IsPionner = value; }
-        public new bool IsCommandant { get => base.IsPionner; set => base.IsPionner = value; }
+        public new bool IsCommandant { get => base.IsCommandant; set => base.IsCommandant = value; }
         public new int FavoriteFoodHash { get => base.FavoriteFoodHash; set => base.FavoriteFoodHash = value; }
         public new int HatedFoodHash { get => base.HatedFoodHash; set => base.HatedFoodHash = value; }
         public int Unk11 { get; set; }
