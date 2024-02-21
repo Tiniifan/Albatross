@@ -154,21 +154,27 @@ namespace Albatross.Forms.Characters
             }
             else
             {
+                if (newNameFlatComboBox.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a prefix");
+                    return;
+                }
+
                 string prefix = newNameFlatComboBox.SelectedItem.ToString();
                 string number = newNumberFlatNumericUpDown.Value.ToString().PadLeft(3, '0');
                 string variance = newNumberFlatNumericUpDown.Value.ToString().PadLeft(3, '0');
                 string fileName = prefix + number + variance;
 
-                (int, int, int) fileNameSplited = GameSupport.GetFileModelValue(variance);
+                (int, int, int) fileNameSplited = GameSupport.GetFileModelValue(fileName);
                 NewCharabase.FileNamePrefix = fileNameSplited.Item1;
                 NewCharabase.FileNameNumber = fileNameSplited.Item2;
                 NewCharabase.FileNameVariant = fileNameSplited.Item2;
 
                 // Check if model path is valid
                 VirtualDirectory modelPath = null;
-                if (newModelTextBox.Text != null)
+                if (newModelTextBox.Text != null && newModelTextBox.Text != "")
                 {
-                    modelPath = GameOpened.Files["model"].File.Directory.GetFolder(GameOpened.Files["model"].Path);
+                    modelPath = GameOpened.Files["model"].File.Directory.GetFolderFromFullPath(GameOpened.Files["model"].Path);
 
                     if (modelPath.Folders.Any(x => x.Name == fileName))
                     {
@@ -179,7 +185,7 @@ namespace Albatross.Forms.Characters
 
                 // Check if icon path is valid
                 VirtualDirectory iconPath = null;
-                if (newIconTextBox.Text != null)
+                if (newIconTextBox.Text != null && newIconTextBox.Text != "")
                 {
                     iconPath = GameOpened.Files["iconPath"].File.Directory.GetFolderFromFullPath(GameOpened.Files["iconPath"].Path);
 
@@ -191,7 +197,7 @@ namespace Albatross.Forms.Characters
                 }
 
                 // Insert new models and animations
-                if (newModelTextBox.Text != null)
+                if (newModelTextBox.Text != null && newModelTextBox.Text != "")
                 {         
                     modelPath.AddFolder(fileName);
                     modelPath = modelPath.GetFolder(fileName);
@@ -202,8 +208,16 @@ namespace Albatross.Forms.Characters
                     {
                         if (Path.GetExtension(file) == ".xc")
                         {
-                            // Get the name of model
-                            string modelFileName = fileName + "_" + index.ToString().PadLeft(2, '0') + ".xc";
+                            string modelFileName = "";
+                            string[] splitFileByUnderscore = Path.GetFileName(file).Split('_');
+
+                            if (splitFileByUnderscore.Length > 1)
+                            {
+                                modelFileName = fileName + "_" + splitFileByUnderscore[splitFileByUnderscore.Length-1] + ".xc";
+                            } else
+                            {
+                                modelFileName = fileName + "_p" + index.ToString().PadLeft(2, '0') + ".xc";
+                            }
 
                             // Read file data
                             SubMemoryStream fileData = new SubMemoryStream(File.ReadAllBytes(file));
@@ -219,7 +233,7 @@ namespace Albatross.Forms.Characters
                 }
 
                 // Insert new icon
-                if (newIconTextBox.Text != null)
+                if (newIconTextBox.Text != null && newIconTextBox.Text != "")
                 {
                     byte[] imageData = new byte[] { };
 

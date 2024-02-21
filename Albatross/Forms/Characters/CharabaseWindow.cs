@@ -450,9 +450,15 @@ namespace Albatross.Forms.Characters
             else
             {
                 CharabasesFiltred = Charabases
-                    .Where(x =>
-                        Charanames.Nouns.ContainsKey(x.NameHash) &&
-                        Charanames.Nouns[x.NameHash].Strings.Any(s => s.Text.ToLower().Contains(searchTextBox.Text.ToLower())))
+                    .Where(charabase =>
+                    {
+                        bool searchByBaseHash = ("0x" + charabase.BaseHash.ToString("X8").ToLower()).Contains(searchTextBox.Text.ToLower());
+                        bool searchByModelName = GameSupport.GetFileModelText(charabase.FileNamePrefix, charabase.FileNameNumber, charabase.FileNameVariant).ToLower().Contains(searchTextBox.Text.ToLower());
+                        bool searchByYokaiName = Charanames.Nouns.ContainsKey(charabase.NameHash) &&
+                           Charanames.Nouns[charabase.NameHash].Strings.Any(s => s.Text.ToLower().Contains(searchTextBox.Text.ToLower()));
+
+                        return searchByBaseHash || searchByModelName || searchByYokaiName;
+                    })
                     .ToList();
 
                 string[] names = GetNames(CharabasesFiltred.ToArray());
@@ -722,7 +728,8 @@ namespace Albatross.Forms.Characters
 
             if (favoritefoodFlatComboBox.SelectedIndex != -1)
             {
-                SelectedCharabase.FavoriteFoodHash = GameOpened.FoodsType.Values.ToList().IndexOf(favoritefoodFlatComboBox.SelectedItem.ToString());
+                int foodIndex = GameOpened.FoodsType.Values.ToList().IndexOf(favoritefoodFlatComboBox.SelectedItem.ToString());
+                SelectedCharabase.FavoriteFoodHash = GameOpened.FoodsType.ElementAt(foodIndex).Key; 
             }
             else
             {
@@ -753,7 +760,8 @@ namespace Albatross.Forms.Characters
 
             if (hatedFoodFlatComboBox.SelectedIndex != -1)
             {
-                SelectedCharabase.HatedFoodHash = GameOpened.FoodsType.Values.ToList().IndexOf(hatedFoodFlatComboBox.SelectedItem.ToString());
+                int foodIndex = GameOpened.FoodsType.Values.ToList().IndexOf(hatedFoodFlatComboBox.SelectedItem.ToString());
+                SelectedCharabase.HatedFoodHash = GameOpened.FoodsType.ElementAt(foodIndex).Key;
             }
             else
             {

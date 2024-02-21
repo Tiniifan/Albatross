@@ -45,7 +45,7 @@ namespace Albatross.Yokai_Watch.Games.YWB.Logic
         public int Unk7 { get; set; }
         public int Unk8 { get; set; }
         public new int Tribe { get => base.Tribe; set => base.Tribe = value; }
-        public int Unk9 { get => base.Role; set => base.Role = value; }
+        public new bool IsClassic { get => base.IsClassic; set => base.IsClassic = value; }
         public new int Role { get => base.Role; set => base.Role = value; }
         public int Unk10 { get; set; }
 

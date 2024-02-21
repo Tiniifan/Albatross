@@ -50,7 +50,14 @@
         public int Weakness { get; set; }
         public bool CanFuse { get; set; }
         public int WaitTime { get; set; }
+        public int EquipmentSlotsAmount { get; set; }
         public int BattleType { get; set; }
+        public int Attitude { get; set; }
+        public float AttackPercentage { get; set; }
+        public float TechniquePercentage { get; set; }
+        public float InspiritPercentage { get; set; }
+        public int GuardHash { get; set; }
+        public float GuardPercentage { get; set; }
 
         public int BlasterSkill { get; set; }
         public int BlasterAttack { get; set; }

@@ -260,13 +260,16 @@ namespace Albatross.Forms.Characters
             else
             {
                 CharascalesFiltred = Charascales
-                    .Where(charaparam =>
+                    .Where(charascale =>
                     {
-                        var searchCharabase = Charabases.FirstOrDefault(x => x.BaseHash == charaparam.BaseHash);
+                        var searchCharabase = Charabases.FirstOrDefault(x => x.BaseHash == charascale.BaseHash);
 
-                        return searchCharabase != null &&
-                               Charanames.Nouns.ContainsKey(searchCharabase.NameHash) &&
+                        bool searchByBaseHash = ("0x" + charascale.BaseHash.ToString("X8").ToLower()).Contains(searchTextBox.Text.ToLower());
+                        bool searchByModelName = searchCharabase != null && GameSupport.GetFileModelText(searchCharabase.FileNamePrefix, searchCharabase.FileNameNumber, searchCharabase.FileNameVariant).ToLower().Contains(searchTextBox.Text.ToLower());
+                        bool searchByYokaiName = searchCharabase != null && Charanames.Nouns.ContainsKey(searchCharabase.NameHash) &&
                                Charanames.Nouns[searchCharabase.NameHash].Strings.Any(s => s.Text.ToLower().Contains(searchTextBox.Text.ToLower()));
+
+                        return searchByBaseHash || searchByModelName || searchByYokaiName;
                     })
                     .ToList();
 

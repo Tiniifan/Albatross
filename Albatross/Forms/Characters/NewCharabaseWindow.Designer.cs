@@ -233,7 +233,6 @@
             // 
             this.newIconTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.newIconTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.newIconTextBox.Enabled = false;
             this.newIconTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.newIconTextBox.Location = new System.Drawing.Point(62, 34);
             this.newIconTextBox.Name = "newIconTextBox";
@@ -245,7 +244,6 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Enabled = false;
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(16, 34);
             this.label3.Name = "label3";

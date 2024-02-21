@@ -314,6 +314,7 @@ namespace Albatross.Forms.Characters
                 techniqueFlatComboBox.Items.AddRange(attackFlatComboBox.Items.Cast<Object>().ToArray());
                 inspiritFlatComboBox.Items.AddRange(attackFlatComboBox.Items.Cast<Object>().ToArray());
                 soultimateFlatComboBox.Items.AddRange(attackFlatComboBox.Items.Cast<Object>().ToArray());
+                guardFlatComboBox.Items.AddRange(attackFlatComboBox.Items.Cast<Object>().ToArray());
                 abilityFlatComboBox.Items.AddRange(GetNames(Abilities.ToArray()).ToArray());
             }
 
@@ -363,6 +364,7 @@ namespace Albatross.Forms.Characters
                 resistanceFlatComboBox.Visible = false;
                 label43.Visible = false;
                 weaknessFlatComboBox.Visible = false;
+                equipmentSlotFlatNumericUpDown.Enabled = false;
             }
             else if (GameOpened.Name == "Yo-Kai Watch 2")
             {
@@ -391,6 +393,7 @@ namespace Albatross.Forms.Characters
                 resistanceFlatComboBox.Visible = false;
                 label43.Visible = false;
                 weaknessFlatComboBox.Visible = false;
+                equipmentSlotFlatNumericUpDown.Enabled = true;
             }
             else if (GameOpened.Name == "Yo-Kai Watch 3")
             {
@@ -428,6 +431,7 @@ namespace Albatross.Forms.Characters
                 eatGroupBox.Enabled = false;
                 favoriteFoodGroupBox.Enabled = false;
                 hatedFoodGroupBox.Enabled = false;
+                equipmentSlotFlatNumericUpDown.Enabled = true;
             }
             else if (GameOpened.Name == "Yo-Kai Watch Blaster")
             {
@@ -465,6 +469,7 @@ namespace Albatross.Forms.Characters
                 eatGroupBox.Enabled = false;
                 favoriteFoodGroupBox.Enabled = false;
                 hatedFoodGroupBox.Enabled = false;
+                equipmentSlotFlatNumericUpDown.Enabled = false;
             }
         }
 
@@ -518,7 +523,6 @@ namespace Albatross.Forms.Characters
             }        
             GameSupport.SaveTextFile(GameOpened.Files["addmembermenu_text"], Addmembernames);
         }
-
 
         private void InsertToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -702,6 +706,7 @@ namespace Albatross.Forms.Characters
             SetComboBox(SelectedCharaparam.Weakness, Attributes.YW, weaknessFlatComboBox);
             SetComboBox(SelectedCharaparam.Speed, Speeds.YWB, speedFlatComboBox);
             experienceCurveFlatNumericUpDown.Value = SelectedCharaparam.ExperienceCurve;
+            equipmentSlotFlatNumericUpDown.Value = SelectedCharaparam.EquipmentSlotsAmount;
             waitTimeFlatNumericUpDown.Value = SelectedCharaparam.WaitTime;
             battleTypeFlatNumericUpDown.Value = SelectedCharaparam.BattleType;
             medalFlatNumericUpDown.Value = SelectedCharaparam.MedaliumOffset;
@@ -777,6 +782,12 @@ namespace Albatross.Forms.Characters
                 techniqueFlatComboBox.SelectedIndex = Skills.FindIndex(x => x.SkillHash == SelectedCharaparam.TechniqueHash);
                 inspiritFlatComboBox.SelectedIndex = Skills.FindIndex(x => x.SkillHash == SelectedCharaparam.InspiritHash);
                 soultimateFlatComboBox.SelectedIndex = Skills.FindIndex(x => x.SkillHash == SelectedCharaparam.SoultimateHash);
+                guardFlatComboBox.SelectedIndex = Skills.FindIndex(x => x.SkillHash == SelectedCharaparam.GuardHash);
+
+                attackFlatNumericUpDown.Value = (decimal)SelectedCharaparam.AttackPercentage;
+                techniqueFlatNumericUpDown.Value = (decimal)SelectedCharaparam.TechniquePercentage;
+                inspiritFlatNumericUpDown.Value = (decimal)SelectedCharaparam.InspiritPercentage;
+                guardFlatNumericUpDown.Value = (decimal)SelectedCharaparam.GuardPercentage;
 
                 // Blaster T
                 if (selectedHackslashCharaparam != null)
@@ -806,6 +817,12 @@ namespace Albatross.Forms.Characters
                 techniqueFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.TechniqueHash);
                 inspiritFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.InspiritHash);
                 soultimateFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.SoultimateHash);
+                guardFlatComboBox.SelectedIndex = BattleCommands.FindIndex(x => x.BattleCommandHash == SelectedCharaparam.GuardHash);
+
+                attackFlatNumericUpDown.Value = (decimal)SelectedCharaparam.AttackPercentage;
+                techniqueFlatNumericUpDown.Value = (decimal)SelectedCharaparam.TechniquePercentage;
+                inspiritFlatNumericUpDown.Value = (decimal)SelectedCharaparam.InspiritPercentage;
+                guardFlatNumericUpDown.Value = (decimal)SelectedCharaparam.GuardPercentage;
             }
 
             if (GameOpened.Name == "Yo-Kai Watch Blaster")
@@ -887,9 +904,13 @@ namespace Albatross.Forms.Characters
                     {
                         var searchCharabase = Charabases.FirstOrDefault(x => x.BaseHash == charaparam.BaseHash);
 
-                        return searchCharabase != null &&
-                               Charanames.Nouns.ContainsKey(searchCharabase.NameHash) &&
+                        bool searchByBaseHash = ("0x" + charaparam.BaseHash.ToString("X8").ToLower()).Contains(searchTextBox.Text.ToLower());
+                        bool searchByParamHash = ("0x" + charaparam.ParamHash.ToString("X8").ToLower()).Contains(searchTextBox.Text.ToLower());
+                        bool searchByModelName = searchCharabase != null && GameSupport.GetFileModelText(searchCharabase.FileNamePrefix, searchCharabase.FileNameNumber, searchCharabase.FileNameVariant).ToLower().Contains(searchTextBox.Text.ToLower());
+                        bool searchByYokaiName = searchCharabase != null && Charanames.Nouns.ContainsKey(searchCharabase.NameHash) &&
                                Charanames.Nouns[searchCharabase.NameHash].Strings.Any(s => s.Text.ToLower().Contains(searchTextBox.Text.ToLower()));
+
+                        return searchByBaseHash || searchByParamHash || searchByModelName || searchByYokaiName;
                     })
                     .ToList();
 
@@ -988,6 +1009,13 @@ namespace Albatross.Forms.Characters
             if (!experienceCurveFlatNumericUpDown.Focused) return;
 
             SelectedCharaparam.ExperienceCurve = Convert.ToInt32(experienceCurveFlatNumericUpDown.Value);
+        }
+
+        private void EquipmentSlotFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!equipmentSlotFlatNumericUpDown.Focused) return;
+
+            SelectedCharaparam.EquipmentSlotsAmount = Convert.ToInt32(equipmentSlotFlatNumericUpDown.Value);
         }
 
         private void WaitTimeFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -1427,6 +1455,13 @@ namespace Albatross.Forms.Characters
             }
         }
 
+        private void AttackFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!attackFlatNumericUpDown.Focused) return;
+
+            SelectedCharaparam.AttackPercentage = Convert.ToSingle(attackFlatNumericUpDown.Value);
+        }
+
         private void TechniqueFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!techniqueFlatComboBox.Focused) return;
@@ -1448,6 +1483,13 @@ namespace Albatross.Forms.Characters
             }
         }
 
+        private void TechniqueFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!techniqueFlatNumericUpDown.Focused) return;
+
+            SelectedCharaparam.TechniquePercentage = Convert.ToSingle(techniqueFlatNumericUpDown.Value);
+        }
+
         private void InspiritFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!inspiritFlatComboBox.Focused) return;
@@ -1467,6 +1509,41 @@ namespace Albatross.Forms.Characters
                     SelectedCharaparam.InspiritHash = BattleCommands[inspiritFlatComboBox.SelectedIndex].BattleCommandHash;
                 }
             }
+        }
+
+        private void InspiritFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!inspiritFlatNumericUpDown.Focused) return;
+
+            SelectedCharaparam.InspiritPercentage = Convert.ToSingle(inspiritFlatNumericUpDown.Value);
+        }
+
+        private void GuardFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!guardFlatComboBox.Focused) return;
+
+            if (guardFlatComboBox.SelectedIndex == -1)
+            {
+                SelectedCharaparam.GuardHash = 0;
+            }
+            else
+            {
+                if (GameOpened.Name == "Yo-Kai Watch 3")
+                {
+                    SelectedCharaparam.GuardHash = Skills[guardFlatComboBox.SelectedIndex].SkillHash;
+                }
+                else
+                {
+                    SelectedCharaparam.GuardHash = BattleCommands[guardFlatComboBox.SelectedIndex].BattleCommandHash;
+                }
+            }
+        }
+
+        private void GuardFlatNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!guardFlatNumericUpDown.Focused) return;
+
+            SelectedCharaparam.GuardPercentage = Convert.ToSingle(guardFlatNumericUpDown.Value);
         }
 
         private void SoultimateFlatComboBox_SelectedIndexChanged(object sender, EventArgs e)
