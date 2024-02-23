@@ -98,3 +98,5 @@ My tool couldn't have been done without the logic that I could learn by studying
 13. Now you can run your game, your game will have the changes, if there are no changes try the tutorial again
 
 If you want to cancel your modification, rename the folder "romfs" to "romfs2" or delete it.
+
+[Join the Official Discord!](https://discord.gg/3wKp5ZxA9N)
