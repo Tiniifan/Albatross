@@ -89,22 +89,22 @@
             this.deleteToolStripMenuItem});
             this.characterContextMenuStrip.Name = "characterContextMenuStrip";
             this.characterContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.characterContextMenuStrip.Size = new System.Drawing.Size(202, 48);
+            this.characterContextMenuStrip.Size = new System.Drawing.Size(118, 48);
             // 
             // insertToolStripMenuItem
             // 
             this.insertToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.insertToolStripMenuItem.Text = "Insert from unused base";
+            this.insertToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.insertToolStripMenuItem.Text = "Insert";
             this.insertToolStripMenuItem.Click += new System.EventHandler(this.InsertToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.deleteToolStripMenuItem.Text = "Remove unused scale";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.deleteToolStripMenuItem.Text = "Remove";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // searchTextBox

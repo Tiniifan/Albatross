@@ -575,18 +575,19 @@ namespace Albatross.Forms.Characters
                 HackslashCharaparams.Add(hackslashCharaparam);
             }
 
+            // Reset search
+            CharaparamsFiltred = null;
+            searchTextBox.Text = "Search...";
+
             // Update all names
             characterListBox.Items.Clear();
             evolutionFlatComboBox.Items.Clear();
             characterListBox.Items.AddRange(GetNames(Charaparams.ToArray()).ToArray());
             evolutionFlatComboBox.Items.AddRange(characterListBox.Items.Cast<Object>().ToArray());
 
-            // Select the added charabase
-            if (CharaparamsFiltred.Count == 0)
-            {
-                characterListBox.Focus();
-                characterListBox.SelectedIndex = characterListBox.Items.Count - 1;
-            }
+            // Select the added charaparam
+            characterListBox.Focus();
+            characterListBox.SelectedIndex = characterListBox.Items.Count - 1;
         }
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)

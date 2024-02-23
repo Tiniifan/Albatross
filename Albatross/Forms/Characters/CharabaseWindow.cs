@@ -276,6 +276,10 @@ namespace Albatross.Forms.Characters
                     int lastIndex = Charabases.FindLastIndex(x => x.IsYokai == newCharabase.IsYokai) + 1;
                     Charabases.Insert(lastIndex, newCharabase);
 
+                    // Reset search
+                    CharabasesFiltred = null;
+                    searchTextBox.Text = "Search...";
+
                     // Update available model
                     modelFlatComboBox.Items.Clear();
                     modelFlatComboBox.Items.AddRange(GameOpened.Files["model"].File.Directory.GetFolderFromFullPath(GameOpened.Files["model"].Path).Folders.Select(x => x.Name).ToArray());
@@ -772,27 +776,30 @@ namespace Albatross.Forms.Characters
         private void DescriptionTextBox_Click(object sender, EventArgs e)
         {
             string fileName = "";
+            T2bþ fileText = null;
 
             if (GameOpened.Name == "Yo-Kai Watch 3")
             {
                 fileName = "chara_desc_text";
+                fileText = Charadesc;
             } else
             {
                 fileName = "chara_text";
+                fileText = Charanames;
             }
 
-            Nyanko.Nyanko nyanko = new Nyanko.Nyanko(Path.GetFileName(GameOpened.Files[fileName].Path), Charanames, true, false, SelectedCharabase.DescriptionHash);
+            Nyanko.Nyanko nyanko = new Nyanko.Nyanko(Path.GetFileName(GameOpened.Files[fileName].Path), fileText, true, false, SelectedCharabase.DescriptionHash);
             nyanko.ShowDialog();
-            Charanames = nyanko.T2bþFileOpened;
+            fileText = nyanko.T2bþFileOpened;
 
             // Update current description
             if (nyanko.SelectedHash != 0)
             {
                 SelectedCharabase.DescriptionHash = nyanko.SelectedHash;
 
-                if (Charanames.Texts.ContainsKey(SelectedCharabase.DescriptionHash))
+                if (fileText.Texts.ContainsKey(SelectedCharabase.DescriptionHash))
                 {
-                    string description = Charanames.Texts[SelectedCharabase.DescriptionHash].Strings[0].Text;
+                    string description = fileText.Texts[SelectedCharabase.DescriptionHash].Strings[0].Text;
                     descriptionTextBox.Text = description.Replace("\\n", Environment.NewLine);
                 }
                 else

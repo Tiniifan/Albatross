@@ -14,6 +14,7 @@ namespace Albatross.Yokai_Watch.Games
         public static Dictionary<int, char> PrefixLetter = new Dictionary<int, char>() 
         {
             {0, 'c'},
+            {1, '?'},
             {2, '?'},
             {3, '?'},
             {4, '?'},

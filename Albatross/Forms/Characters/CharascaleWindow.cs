@@ -46,6 +46,18 @@ namespace Albatross.Forms.Characters
             LoadCharascale();
         }
 
+        private string[] GetNames(ICharabase[] charabases)
+        {
+            return charabases
+                .Select((charabase, index) =>
+                {
+                    return Charanames.Nouns.TryGetValue(charabase.NameHash, out var noun) && noun.Strings.Count > 0
+                        ? noun.Strings[0].Text
+                        : "Name " + index;
+                })
+                .ToArray();
+        }
+
         private string[] GetNames(ICharascale[] charascales)
         {
             return charascales
@@ -113,40 +125,56 @@ namespace Albatross.Forms.Characters
 
         private void InsertToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ICharascale newCharascale = null;
+
             // Get all charabase that haven't scale
-            foreach (ICharabase charabase in Charabases.Where(x => Charascales.Any(y => y.BaseHash == x.BaseHash) == false).ToArray())
-            {
-                ICharascale newCharascale = null;
+            ICharabase[] charabaseWithoutScale = Charabases.Where(x => Charascales.Any(y => y.BaseHash == x.BaseHash) == false).ToArray();
 
-                switch (GameOpened.Name)
+            using (NewCharascaleWindow newCharascaleWindow = new NewCharascaleWindow(GetNames(charabaseWithoutScale)))
+            {
+                DialogResult result = newCharascaleWindow.ShowDialog();
+
+                if (result == DialogResult.OK)
                 {
-                    case "Yo-Kai Watch 1":
-                        newCharascale = GameSupport.GetLogic<YKW1.Charascale>();
-                        break;
-                    case "Yo-Kai Watch 2":
-                        newCharascale = GameSupport.GetLogic<YKW2.Charascale>();
-                        break;
-                    case "Yo-Kai Watch 3":
-                        newCharascale = GameSupport.GetLogic<YKW3.Charascale>();
-                        break;
-                    case "Yo-Kai Watch Blaster":
-                        newCharascale = GameSupport.GetLogic<YKWB.Charascale>();
-                        break;
+                    switch (GameOpened.Name)
+                    {
+                        case "Yo-Kai Watch 1":
+                            newCharascale = GameSupport.GetLogic<YKW1.Charascale>();
+                            break;
+                        case "Yo-Kai Watch 2":
+                            newCharascale = GameSupport.GetLogic<YKW2.Charascale>();
+                            break;
+                        case "Yo-Kai Watch 3":
+                            newCharascale = GameSupport.GetLogic<YKW3.Charascale>();
+                            break;
+                        case "Yo-Kai Watch Blaster":
+                            newCharascale = GameSupport.GetLogic<YKWB.Charascale>();
+                            break;
+                    }
+
+                    newCharascale.BaseHash = charabaseWithoutScale[newCharascaleWindow.SelectedBaseIndex].BaseHash;
+                    newCharascale.Scale1 = 1;
+                    newCharascale.Scale2 = 1;
+                    newCharascale.Scale3 = 1;
+                    newCharascale.Scale4 = 1;
+                    newCharascale.Scale5 = 1;
+                    newCharascale.Scale6 = 1;
+                    newCharascale.Scale7 = 1;
+
+                    Charascales.Add(newCharascale);
+
+                    // Reset search
+                    CharascalesFiltred = null;
+                    searchTextBox.Text = "Search...";
+
+                    // Update all names
+                    characterListBox.Items.Clear();
+                    characterListBox.Items.AddRange(GetNames(Charascales.ToArray()).ToArray());
+
+                    // Select the added charabase
+                    characterListBox.Focus();
+                    characterListBox.SelectedIndex = characterListBox.Items.Count - 1;
                 }
-
-                newCharascale.BaseHash = charabase.BaseHash;
-                Charascales.Add(newCharascale);
-            }
-
-            // Update all names
-            characterListBox.Items.Clear();
-            characterListBox.Items.AddRange(GetNames(Charascales.ToArray()).ToArray());
-
-            // Select the added charabase
-            if (CharascalesFiltred.Count == 0)
-            {
-                characterListBox.Focus();
-                characterListBox.SelectedIndex = characterListBox.Items.Count - 1;
             }
         }
 
