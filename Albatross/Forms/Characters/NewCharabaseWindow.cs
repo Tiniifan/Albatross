@@ -162,13 +162,13 @@ namespace Albatross.Forms.Characters
 
                 string prefix = newNameFlatComboBox.SelectedItem.ToString();
                 string number = newNumberFlatNumericUpDown.Value.ToString().PadLeft(3, '0');
-                string variance = newNumberFlatNumericUpDown.Value.ToString().PadLeft(3, '0');
+                string variance = newVarianceFlatNumericUpDown1.Value.ToString().PadLeft(3, '0');
                 string fileName = prefix + number + variance;
 
                 (int, int, int) fileNameSplited = GameSupport.GetFileModelValue(fileName);
                 NewCharabase.FileNamePrefix = fileNameSplited.Item1;
                 NewCharabase.FileNameNumber = fileNameSplited.Item2;
-                NewCharabase.FileNameVariant = fileNameSplited.Item2;
+                NewCharabase.FileNameVariant = fileNameSplited.Item3;
 
                 // Check if model path is valid
                 VirtualDirectory modelPath = null;
@@ -187,7 +187,7 @@ namespace Albatross.Forms.Characters
                 VirtualDirectory iconPath = null;
                 if (newIconTextBox.Text != null && newIconTextBox.Text != "")
                 {
-                    iconPath = GameOpened.Files["iconPath"].File.Directory.GetFolderFromFullPath(GameOpened.Files["iconPath"].Path);
+                    iconPath = GameOpened.Files["face_icon"].File.Directory.GetFolderFromFullPath(GameOpened.Files["face_icon"].Path);
 
                     if (iconPath.Files.Any(x => x.Key == fileName + ".xi"))
                     {
@@ -206,28 +206,28 @@ namespace Albatross.Forms.Characters
                     string[] files = Directory.GetFiles(newModelTextBox.Text);
                     foreach (string file in files)
                     {
-                        if (Path.GetExtension(file) == ".xc")
+                        if (Path.GetExtension(file) == ".xc" || Path.GetExtension(file) == ".xv")
                         {
                             string modelFileName = "";
-                            string[] splitFileByUnderscore = Path.GetFileName(file).Split('_');
+                            string[] splitFileByUnderscore = Path.GetFileNameWithoutExtension(file).Split('_');
 
                             if (splitFileByUnderscore.Length > 1)
                             {
-                                modelFileName = fileName + "_" + splitFileByUnderscore[splitFileByUnderscore.Length-1] + ".xc";
-                            } else
-                            {
-                                modelFileName = fileName + "_p" + index.ToString().PadLeft(2, '0') + ".xc";
+                                modelFileName = fileName + "_" + splitFileByUnderscore[splitFileByUnderscore.Length-1] + Path.GetExtension(file);
                             }
 
-                            // Read file data
-                            SubMemoryStream fileData = new SubMemoryStream(File.ReadAllBytes(file));
-                            fileData.Size = fileData.ByteContent.Length;
-                            fileData.Color = Color.Orange;
+                            if (modelFileName != "")
+                            {
+                                // Read file data
+                                SubMemoryStream fileData = new SubMemoryStream(File.ReadAllBytes(file));
+                                fileData.Size = fileData.ByteContent.Length;
+                                fileData.Color = Color.Orange;
 
-                            // Insert new file
-                            modelPath.AddFile(modelFileName, fileData);
+                                // Insert new file
+                                modelPath.AddFile(modelFileName, fileData);
 
-                            index += 10;
+                                index += 10;
+                            }
                         }
                     }
                 }
@@ -239,23 +239,21 @@ namespace Albatross.Forms.Characters
 
                     if (Path.GetExtension(newIconTextBox.Text) != ".xi")
                     {
-                        // Convert JPEG.PNG to .IMGC
-                        // Need to write
+                        MessageBox.Show("The image could not be converted to .xi");
                     } else
                     {
                         imageData = File.ReadAllBytes(newIconTextBox.Text);
                     }
 
-                    // Get the name of icon
-                    string modelFileName = fileName + ".xi";
+                    if (imageData.Length != 0)
+                    {
+                        SubMemoryStream fileData = new SubMemoryStream(imageData);
+                        fileData.Size = fileData.ByteContent.Length;
+                        fileData.Color = Color.Orange;
 
-                    // Read file data
-                    SubMemoryStream fileData = new SubMemoryStream(imageData);
-                    fileData.Size = fileData.ByteContent.Length;
-                    fileData.Color = Color.Orange;
-
-                    // Insert new file
-                    iconPath.AddFile(modelFileName, fileData);
+                        // Insert new file
+                        iconPath.AddFile(fileName + ".xi", fileData);
+                    }
                 }
             }
 

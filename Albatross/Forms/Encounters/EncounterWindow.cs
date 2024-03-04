@@ -56,6 +56,13 @@ namespace Albatross.Forms.Encounters
             LoadEncounter();
         }
 
+        private string GetNames(int nameHash)
+        {
+            return Charanames.Nouns.TryGetValue(nameHash, out var noun) && noun.Strings.Count > 0
+                        ? noun.Strings[0].Text
+                        : "Undefined";
+        }
+
         private string[] GetNames(ICharabase[] charabases)
         {
             return charabases
@@ -159,6 +166,8 @@ namespace Albatross.Forms.Encounters
             encounterDataGridView.Enabled = false;
             tableFlatComboBox.SelectedIndex = -1;
             tableFlatComboBox.Text = "";
+
+            // Console.WriteLine(Mapnames.FirstOrDefault(x => x.Value == mapListBox.SelectedItem.ToString()).Key + " " + mapListBox.SelectedItem.ToString());
 
             (IEncountTable[], IEncountChara[]) encounterData = GameOpened.GetMapEncounter(Mapnames.FirstOrDefault(x => x.Value == mapListBox.SelectedItem.ToString()).Key);
             EncountTables = encounterData.Item1.ToList();
