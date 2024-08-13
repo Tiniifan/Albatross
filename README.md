@@ -99,4 +99,4 @@ My tool couldn't have been done without the logic that I could learn by studying
 
 If you want to cancel your modification, rename the folder "romfs" to "romfs2" or delete it.
 
-[Join the Official Discord!](https://discord.gg/3wKp5ZxA9N)
+Yu want to join a discord server about YKW modding: [click here!](https://discord.gg/wmuhEaNaSZ)
